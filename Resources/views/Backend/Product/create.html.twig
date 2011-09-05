@@ -1,0 +1,15 @@
+{% extends 'SyliusAssortmentBundle:Backend:layout.html.twig' %}
+
+{% block content %}
+
+<h2>creating new product...</h2>
+
+<form action="{{ path('sylius_assortment_backend_product_create') }}" method="post">
+
+{{ form_widget(form) }}
+		
+<input type="submit" value="create product" />
+
+</form>
+
+{% endblock content %}

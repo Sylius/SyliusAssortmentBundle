@@ -1,0 +1,17 @@
+{% extends 'SyliusAssortmentBundle:Frontend:layout.html.twig' %}
+
+{% block content %}
+
+<h2>products list.</h2>
+
+{% for product in products %}
+
+    id: {{ product.id }} <br />
+    name: {{ product.name }} <br />
+    description... <br />
+    {{ product.description }} <br />
+    link: <a href="{{ path('sylius_assortment_product_show', {'id': product.id, 'slug': product.slug}) }}">{{ product.name }}</a>
+
+{% endfor %}
+
+{% endblock %}

@@ -1,0 +1,25 @@
+<!doctype html>
+
+    <head>
+    
+        <title> Sylius e-commerce platform administration. </title>
+        <meta charset="utf-8">
+    
+    </head>
+    
+        <body>
+        
+            <h1>backend.</h1>
+            
+                <ul>
+                    <li><a href="{{ path('sylius_assortment_backend_product_list') }}">list products</a></li>
+                    <li><a href="{{ path('sylius_assortment_backend_product_create') }}">create product</a></li>
+                </ul>
+            
+            {% block content %}
+            
+            {% endblock %}
+        
+        </body>
+
+</html>

@@ -1,0 +1,15 @@
+{% extends 'SyliusAssortmentBundle:Backend:layout.html.twig' %}
+
+{% block content %}
+
+<h2>updating product...</h2>
+
+<form action="{{ path('sylius_assortment_backend_product_update', {'id': product.id}) }}" method="post">
+
+{{ form_widget(form) }}
+		
+<input type="submit" value="update product" />
+
+</form>
+
+{% endblock content %}

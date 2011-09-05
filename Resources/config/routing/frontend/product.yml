@@ -1,0 +1,7 @@
+sylius_assortment_product_show:
+    pattern: /product/{id}/{slug}
+    defaults: { _controller: sylius_assortment.controller.frontend.product:showAction }
+    
+sylius_assortment_product_list:
+    pattern: /products
+    defaults: { _controller: sylius_assortment.controller.frontend.product:listAction }
