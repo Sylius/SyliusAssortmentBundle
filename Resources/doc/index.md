@@ -58,6 +58,99 @@ Add the `Sylius\Bundle` namespace to your autoloader.
 
 $loader->registerNamespaces(array(
     // ...
-    'FOS' => __DIR__.'/../vendor/bundles',
+    'Sylius\\Bundle' => __DIR__.'/../vendor/bundles',
 ));
 ```
+
+### Adding bundle to kernel.
+
+Finally, enable the bundle in the kernel.
+
+``` php
+<?php
+// app/AppKernel.php
+
+public function registerBundles()
+{
+    $bundles = array(
+        // ...
+        new Sylius\Bundle\AssortmentBundle\SyliusAssortmentBundle(),
+    );
+}
+```
+### Creating your Product class.
+
+Next step is creating your desired Product class. Its totally up to you how your product will look like so...
+What are your waiting for?
+
+``` php
+<?php
+// src/Application/Bundle/AssortmentBundle/Entity/Product.php
+
+namespace Application\Bundle\AssortmentBundle\Entity;
+
+use Sylius\Bundle\AssortmentBundle\Entity\Product as BaseProduct;
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="sylius_assortment_product")
+ */
+class Product extends BaseProduct
+{
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+}
+```
+
+### Container configuration.
+
+Now you have to do the minimal configuration, no worries, it is not painful.
+
+Open up your `config.yml` file and add this...
+
+``` yaml
+sylius_assortment:
+    driver: ORM
+    classes:
+        model:
+            product: Application\Bundle\AssortmentBundle\Entity\Product
+```
+
+`Please note, that the "ORM" is currently the only supported driver.`
+
+### Import routing files.
+
+Now is the time to import routing files. Open up your `routing.yml` file. Customize the prefixes or whatever you want.
+
+``` yaml
+sylius_assortment_product:
+    resource: "@SyliusAssortmentBundle/Resources/config/routing/frontend/product.yml"
+
+sylius_assortment_backend_product:
+    resource: "@SyliusAssortmentBundle/Resources/config/routing/backend/product.yml"
+    prefix: /administration
+```
+
+### Updating database schema.
+
+The last thing you need to do is updating the database schema.
+
+For "ORM" driver run the following command.
+
+``` bash
+$ php app/console doctrine:schema:update --force
+```
+
+### Finish.
+
+That is all, I hope it was not so bad.
+Now you can visit `/administration/products` to see the list of products.
+It will be of course empty so use the "create product" link to change it !
+Customize the your product class, the product form and whatever you want.
+
+`This documentation is under construction.`
