@@ -2,19 +2,20 @@ About SyliusAssortmentBundle...
 =================================
 
 This bundle is part of **Sylius e-commerce system**.
-It provides basic CRUD interface for product model.
-The goal was to have many extension points.
+It provides basic interfaces and mechanisms for product model.
 
 About project "Sylius".
 -----------------------
 
 I've created a set of bundles from which you can create a fully featured e-commerce platform.
-Now I'm working on a bundle that will integrate them into one, rich e-commerce system, that will fit the needs of end user, but also will be friendly for developers.
+Now I'm working on a bundle that will integrate them into one, rich e-commerce system, that will fit the needs of end-user, but also devs would enjoy.
 All is based on Symfony2.
-Most of the bundles are in useable stage, actually there are 2 online shops built on Sylius bundles that run in production.
+Most of the bundles are in useable stage.
+There are 2 online shops built on Sylius bundles that run in production.
 The work is focused now on bundle that provide plugins system with web interface, and a theming bundle.
+More bundles are one their way to github.
 
-**Please note!** I know that many of this bundles are far from being ideal.
+**Please note!** I know that many of this bundles are far from being perfect.
 I just want to share my work with others and also learn something new.
 
 Documentation.
