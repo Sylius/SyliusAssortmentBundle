@@ -8,7 +8,7 @@ About project "Sylius".
 -----------------------
 
 I've created a set of bundles from which you can create a fully featured e-commerce platform.
-Now I'm working on a bundle that will integrate them into one, rich e-commerce system, that will fit the needs of end-user, but also devs would enjoy.
+Now I'm working on a bundle that will integrate them into a rich e-commerce system, that will fit the needs of end-user, but also devs would enjoy.
 All is based on Symfony2.
 Most of the bundles are in useable stage.
 There are 2 online shops built on Sylius bundles that run in production.
