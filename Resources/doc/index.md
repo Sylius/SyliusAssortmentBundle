@@ -8,6 +8,7 @@ It is a pretty simple bundle that provides basic mechanism to perform CRUD opera
 Installation.
 -------------
 
++ Installing dependencies.
 + Downloading the bundle.
 + Autoloader configuration.
 + Adding bundle to kernel.
@@ -15,6 +16,11 @@ Installation.
 + DIC configuration.
 + Importing routing cfgs.
 + Updating database schema.
+
+### Installing dependencies.
+
+This bundle uses Pagerfanta library and PagerfantaBundle.
+The installation guide can be found [here](https://github.com/whiteoctober/WhiteOctoberPagerfantaBundle).
 
 ### Downloading the bundle.
 
