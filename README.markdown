@@ -7,13 +7,11 @@ It provides basic interfaces and mechanisms for product model.
 About project "Sylius".
 -----------------------
 
-I've created a set of bundles from which you can create a fully featured e-commerce platform.
-Now I'm working on a bundle that will integrate them into a rich e-commerce system, that will fit the needs of end-user, but also devs would enjoy.
-All is based on Symfony2.
-Most of the bundles are in useable stage.
-There are 2 online shops built on Sylius bundles that run in production.
-The work is focused now on bundle that provide plugins system with web interface, and a theming bundle.
-More bundles are one their way to github.
+Sylius is meant to be a e-commerce system build on Symfony2 and by its community.
+The goal is to create a end-user application that will be developer friendly.
+Most of parts are fully functional and are powering 2 online shops that run in production.
+The work is focused on the bundles like PluginsBundle and ThemingBundle.
+More bundles are one their way to github. Stay tuned.
 
 **Please note!** I know that many of this bundles are far from being perfect.
 I just want to share my work with others and also learn something new.
