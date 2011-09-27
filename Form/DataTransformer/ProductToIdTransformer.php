@@ -20,7 +20,7 @@ use Sylius\Bundle\AssortmentBundle\Model\ProductManagerInterface;
 /**
  * Product to id transformer.
  *
- * @author Paweł Jędrzejewski <pjedrzejewski@sylius.pl>
+ * @author Paweł Jędrzejewski <pjedrzejewski@diweb.pl>
  */
 class ProductToIdTransformer implements DataTransformerInterface
 {

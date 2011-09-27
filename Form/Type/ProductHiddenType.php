@@ -18,7 +18,7 @@ use Sylius\Bundle\AssortmentBundle\Form\DataTransformer\ProductToIdTransformer;
 /**
  * Product hidden type.
  *
- * @author Paweł Jędrzejewski <pjedrzejewski@sylius.pl>
+ * @author Paweł Jędrzejewski <pjedrzejewski@diweb.pl>
  */
 class ProductFormType extends AbstractType
 {

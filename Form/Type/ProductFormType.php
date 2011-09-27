@@ -17,7 +17,7 @@ use Symfony\Component\Form\AbstractType;
 /**
  * Product form type.
  *
- * @author Paweł Jędrzejewski <pjedrzejewski@sylius.pl>
+ * @author Paweł Jędrzejewski <pjedrzejewski@diweb.pl>
  */
 class ProductFormType extends AbstractType
 {
