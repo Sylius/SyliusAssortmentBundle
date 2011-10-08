@@ -158,5 +158,3 @@ That is all, I hope it was not so bad.
 Now you can visit `/administration/products` to see the list of products.
 It will be of course empty so use the "create product" link to change it !
 Customize the your product class, the product form and whatever you want.
-
-`This documentation is under construction.`

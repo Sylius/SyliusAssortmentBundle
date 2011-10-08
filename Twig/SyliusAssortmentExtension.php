@@ -29,7 +29,7 @@ class SyliusAssortmentExtension extends Twig_Extension
     public function getFunctions()
     {
         return array(
-         	'sylius_assortment_cutText'         => new Twig_Function_Method($this, 'cutText', array('is_safe' => array('html'))),
+         	'sylius_assortment_cut_text'         => new Twig_Function_Method($this, 'cutText', array('is_safe' => array('html'))),
         );
     }
     
