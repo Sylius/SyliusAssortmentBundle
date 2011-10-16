@@ -35,12 +35,6 @@ class SyliusAssortmentExtension extends Twig_Extension
     
 	/**
      * Cuts the text.
-     * 
-     * @param $text
-     * @param $length
-     * @param $ending
-     * @param $exact
-     * @param $considerHtml
      */
     public function cutText($text, $length = 100, $ending = '...', $exact = true, $considerHtml = false)
     {

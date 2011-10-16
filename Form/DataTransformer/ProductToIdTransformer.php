@@ -11,11 +11,11 @@
 
 namespace Sylius\Bundle\AssortmentBundle\Form\DataTransformer;
 
+use Sylius\Bundle\AssortmentBundle\Model\ProductInterface;
+use Sylius\Bundle\AssortmentBundle\Model\ProductManagerInterface;
 use Symfony\Component\Form\Exception\TransformationFailedException;
 use Symfony\Component\Form\Exception\UnexpectedTypeException;
 use Symfony\Component\Form\DataTransformerInterface;
-use Sylius\Bundle\AssortmentBundle\Model\ProductInterface;
-use Sylius\Bundle\AssortmentBundle\Model\ProductManagerInterface;
 
 /**
  * Product to id transformer.

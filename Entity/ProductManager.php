@@ -119,7 +119,8 @@ class ProductManager extends BaseProductManager
     {
         $queryBuilder = $this->entityManager->createQueryBuilder()
             ->select('p')
-            ->from($this->class, 'p');
+            ->from($this->class, 'p')
+            ->orderBy('p.createdAt', 'DESC');
             
         return new Pagerfanta(new DoctrineORMAdapter($queryBuilder->getQuery()));
     }

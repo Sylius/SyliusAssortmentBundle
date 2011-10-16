@@ -11,6 +11,8 @@
 
 namespace Sylius\Bundle\AssortmentBundle\Command;
 
+use Sylius\Bundle\AssortmentBundle\EventDispatcher\Event\FilterProductEvent;
+use Sylius\Bundle\AssortmentBundle\EventDispatcher\SyliusAssortmentEvents;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
@@ -55,6 +57,7 @@ EOT
             throw new \InvalidArgumentException(sprintf('The product with id "%s" does not exist.', $input->getArgument('id')));
         }
         
+        $this->getContainer()->get('event_dispatcher')->dispatch(SyliusAssortmentEvents::PRODUCT_DELETE, new FilterProductEvent($product));
         $this->getContainer()->get('sylius_assortment.manipulator.product')->delete($product);
 
         $output->writeln(sprintf('Deleted product with id: <comment>%s</comment>', $input->getArgument('id')));

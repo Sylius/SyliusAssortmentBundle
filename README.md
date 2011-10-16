@@ -6,8 +6,13 @@ It provides basic interfaces and mechanisms for product model.
 Sylius.
 -------
 
-This bundle is part of **Sylius**.
-Visit (sylius.org)[http://sylius.org] for more information.
+**Sylius** is simple but **end-user and developer friendly** webshop engine built on top of Symfony2. Visit [sylius.org](http://sylius.org).
+
+Examples.
+---------
+
+If you want to see this and other bundles in action, try out the (Sylius sandbox application)[http://github.com/Sylius/Sylius-Sandbox].
+It's open sourced github project.
 
 Documentation.
 --------------
@@ -24,7 +29,7 @@ License.
 
 Licence can be found here...
 
-    Resources/meta/LICENSE
+    Resources/meta/LICENSE.
 
 Authors.
 --------

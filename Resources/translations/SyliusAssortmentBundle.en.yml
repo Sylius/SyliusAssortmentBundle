@@ -1,18 +1,11 @@
-# This file is part of Sylius package.
+# This file is part of the Sylius package.
 # (c) Paweł Jędrzejewski
 
-product.show: Show product
-product.list: List products
-product.create: Create product
-product.update: Edit product
-product.delete: Delete product
+product.action.show: Show product
+product.action.list: List products
+product.action.create: Create product
+product.action.update: Edit product
+product.action.delete: Delete product
 
-product.header.show: Products details.
-product.header.list: Products list. <small>Manage your assortment...</small>
-product.header.create: Creating product. <small>Use this form to create a new product...</small>
-product.header.update: Updating product. <small>Use this form to modify existing product...</small>
-
-product.property.name: Product name...
-product.property.description: Product description...
-
-product.list.empty: "<strong>Information.</strong> No products to display." 
+product.property.name: Product name
+product.property.description: Product description

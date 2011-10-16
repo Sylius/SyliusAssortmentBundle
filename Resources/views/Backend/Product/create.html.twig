@@ -2,13 +2,34 @@
 
 {% block content %}
 
-<h2>creating new product...</h2>
+<div class="page-header"> 
+    <h1>Creating product.<small> Use the form below to create a new product...</small></h1> 
+</div> 
 
 <form action="{{ path('sylius_assortment_backend_product_create') }}" method="post">
 
-{{ form_widget(form) }}
+<fieldset>
+    {{ form_errors(form.name) }}
+    <div class="clearfix">
+    <label for="form[name]">Name...</label> 
+    <div class="input">
+        {{ form_widget(form.name, {'attr': {'class': 'span7'}}) }}
+    </div>
+    </div>
+    {{ form_errors(form.description) }}
+    <div class="clearfix">
+    <label for="form[description]">Description...</label> 
+    <div class="input">
+        {{ form_widget(form.description, {'attr': {'class': 'xxlarge', 'rows': 10}}) }}
+    </div>
+    </div>
+</fieldset>
 		
-<input type="submit" value="create product" />
+{{ form_rest(form) }}
+		
+<div class="actions">
+<input type="submit" value="create product" class="btn primary large" />
+</div>
 
 </form>
 

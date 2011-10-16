@@ -1,7 +1,9 @@
 SyliusAssortmentBundle documentation.
 =====================================
 
-It is a pretty simple bundle that provides basic mechanism to perform CRUD operations on product. In this documentation you will learn how to install and work with it. Have a nice read.
+It is a pretty simple bundle that provides basic mechanism to perform CRUD operations on product.
+
+In this documentation you will learn how to install and work with it. Have a nice read.
 
 **Note!** This documentation is inspired by [FOSUserBundle docs](https://github.com/FriendsOfSymfony/FOSUserBundle/blob/master/Resources/doc/index.md).
 
@@ -136,10 +138,11 @@ Now is the time to import routing files. Open up your `routing.yml` file. Custom
 ``` yaml
 sylius_assortment_product:
     resource: "@SyliusAssortmentBundle/Resources/config/routing/frontend/product.yml"
+    prefix: /assortment/products
 
 sylius_assortment_backend_product:
     resource: "@SyliusAssortmentBundle/Resources/config/routing/backend/product.yml"
-    prefix: /administration
+    prefix: /administration/assortment/products
 ```
 
 ### Updating database schema.
@@ -155,6 +158,6 @@ $ php app/console doctrine:schema:update --force
 ### Finish.
 
 That is all, I hope it was not so bad.
-Now you can visit `/administration/products` to see the list of products.
-It will be of course empty so use the "create product" link to change it !
+Now you can visit `/administration/products/list` to see the list of products.
+It will be of course empty so use the "create product" link to change it!
 Customize the your product class, the product form and whatever you want.

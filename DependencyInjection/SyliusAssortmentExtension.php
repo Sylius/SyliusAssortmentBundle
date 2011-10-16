@@ -18,15 +18,12 @@ use Symfony\Component\Config\FileLocator;
 use Symfony\Component\Config\Definition\Processor;
 
 /**
- * Assortment extension.
+ * Assortment dependency injection extension.
  * 
  * @author Paweł Jędrzejewski <pjedrzejewski@diweb.pl>
  */
 class SyliusAssortmentExtension extends Extension
 {
-    /**
-     * @see Extension/Symfony\Component\DependencyInjection\Extension.ExtensionInterface::load()
-     */
     public function load(array $config, ContainerBuilder $container)
     {
         $processor = new Processor();
@@ -79,10 +76,6 @@ class SyliusAssortmentExtension extends Extension
     
 	/**
      * Remap parameters.
-     * 
-     * @param $config
-     * @param ContainerBuilder $container
-     * @param $map
      */
     protected function remapParameters(array $config, ContainerBuilder $container, array $map)
     {
@@ -95,10 +88,6 @@ class SyliusAssortmentExtension extends Extension
 
     /**
      * Remap parameter namespaces.
-     * 
-     * @param $config
-     * @param ContainerBuilder $container
-     * @param $map
      */
     protected function remapParametersNamespaces(array $config, ContainerBuilder $container, array $namespaces)
     {

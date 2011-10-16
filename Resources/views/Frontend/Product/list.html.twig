@@ -2,19 +2,26 @@
 
 {% block content %}
 
-<h2>products list.</h2>
+<div class="page-header"> 
+    <h1>Assortment products.<small> List of all registered products in assortment...</small></h1> 
+</div> 
+	
+{% if products %}
+    {% for product in products %}
+        <div class="well">
+            <h2>{{ product.name }}</h2>
+            {{ sylius_assortment_cut_text(product.description, 256, '...') }}
+            <a href="{{ path('sylius_assortment_product_show', {'id': product.id, 'slug': product.slug}) }}" class="btn pull-right">more info...</a>
+        </div>
+    {% endfor %}
+{% else %}
+<div class="alert-message info">
+  <p><strong>Information.</strong> No products to display.</p>
+</div>
+{% endif %}
 
-{% for product in products %}
-
-    id: {{ product.id }} <br />
-    name: {{ product.name }} <br />
-    description... <br />
-    {{ product.description }} <br />
-    link: <a href="{{ path('sylius_assortment_product_show', {'id': product.id, 'slug': product.slug}) }}">{{ product.name }}</a>
-
-{% endfor %}
-
-    <br /> <br />
-    {{ pagerfanta(paginator, 'default') }}
+{% if paginator.haveToPaginate() %}
+{{ pagerfanta(paginator, 'twitter_bootstrap', {'prev_message': "previous page...", 'next_message': "next page..."}) }}
+{% endif %}
 
 {% endblock %}

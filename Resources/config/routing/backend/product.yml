@@ -1,19 +1,19 @@
 sylius_assortment_backend_product_list:
-    pattern: /products
+    pattern: /list
     defaults: { _controller: sylius_assortment.controller.backend.product:listAction }
 
 sylius_assortment_backend_product_create:
-    pattern: /product/create
+    pattern: /create
     defaults: { _controller: sylius_assortment.controller.backend.product:createAction }
     
 sylius_assortment_backend_product_update:
-    pattern: /product/{id}/update
+    pattern: /{id}/update
     defaults: { _controller: sylius_assortment.controller.backend.product:updateAction }
         
 sylius_assortment_backend_product_delete:
-    pattern: /product/{id}/delete
+    pattern: /{id}/delete
     defaults: { _controller: sylius_assortment.controller.backend.product:deleteAction }
     
 sylius_assortment_backend_product_show:
-    pattern: /product/{id}
+    pattern: /{id}
     defaults: { _controller: sylius_assortment.controller.backend.product:showAction }

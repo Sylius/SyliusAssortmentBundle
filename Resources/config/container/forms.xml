@@ -21,6 +21,7 @@
     </parameters>
     
     <services>
+    	<!-- types... -->
         <service id="sylius_assortment.form.type.product" class="%sylius_assortment.form.type.product.class%">
         	<argument>%sylius_assortment.model.product.class%</argument>
         	<tag name="form.type" alias="sylius_assortment_product" />
@@ -31,6 +32,7 @@
         	<tag name="form.type" alias="sylius_assortment_product_hidden" />
         </service>
         
+        <!-- data transformers... -->
         <service id="sylius_assortment.form.data_transformer.product_to_id" class="%sylius_assortment.form.data_transformer.product_to_id.class%">
         	<argument type="service" id="sylius_assortment.manager.product" />
         </service>

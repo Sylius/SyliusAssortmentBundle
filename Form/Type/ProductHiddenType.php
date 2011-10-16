@@ -20,7 +20,7 @@ use Sylius\Bundle\AssortmentBundle\Form\DataTransformer\ProductToIdTransformer;
  *
  * @author Paweł Jędrzejewski <pjedrzejewski@diweb.pl>
  */
-class ProductFormType extends AbstractType
+class ProductHiddenType extends AbstractType
 {
     /**
      * Data class.

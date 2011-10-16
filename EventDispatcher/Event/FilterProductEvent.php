@@ -21,6 +21,11 @@ use Sylius\Bundle\AssortmentBundle\Model\ProductInterface;
  */
 class FilterProductEvent extends Event
 {
+    /**
+     * Product object.
+     * 
+     * @var ProductInterface
+     */
     private $product;
     
     public function __construct(ProductInterface $product)
