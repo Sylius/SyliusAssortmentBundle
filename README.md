@@ -11,7 +11,7 @@ Sylius.
 Examples.
 ---------
 
-If you want to see this and other bundles in action, try out the (Sylius sandbox application)[http://github.com/Sylius/Sylius-Sandbox].
+If you want to see this and other bundles in action, try out the [Sylius sandbox application](http://github.com/Sylius/Sylius-Sandbox).
 It's open sourced github project.
 
 Documentation.
