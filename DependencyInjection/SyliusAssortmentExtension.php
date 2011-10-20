@@ -52,6 +52,7 @@ class SyliusAssortmentExtension extends Extension
             'forms',
             'inflectors',
             'manipulators',
+            'sorting',
         );
          
         foreach($configurations as $basename) {

@@ -17,6 +17,7 @@ use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityRepository;
 use Sylius\Bundle\AssortmentBundle\Model\ProductInterface;
 use Sylius\Bundle\AssortmentBundle\Model\ProductManager as BaseProductManager;
+use Sylius\Bundle\AssortmentBundle\Sorting\SorterInterface;
 
 /**
  * ORM product manager.
@@ -115,12 +116,16 @@ class ProductManager extends BaseProductManager
     /**
      * {@inheritdoc}
      */
-    public function createPaginator()
+    public function createPaginator(SorterInterface $sorter = null)
     {
         $queryBuilder = $this->entityManager->createQueryBuilder()
             ->select('p')
             ->from($this->class, 'p')
-            ->orderBy('p.createdAt', 'DESC');
+        ;
+        
+        if (null !== $sorter) {
+            $sorter->sort($queryBuilder);
+        }
             
         return new Pagerfanta(new DoctrineORMAdapter($queryBuilder->getQuery()));
     }

@@ -11,6 +11,8 @@
 
 namespace Sylius\Bundle\AssortmentBundle\Model;
 
+use Sylius\Bundle\AssortmentBundle\Sorting\SorterInterface;
+
 /**
  * Product manager interface.
  * 
@@ -80,5 +82,5 @@ interface ProductManagerInterface
     /**
      * Creates paginator.
      */
-    function createPaginator();
+    function createPaginator(SorterInterface $sorter = null);
 }

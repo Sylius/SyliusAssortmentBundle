@@ -47,7 +47,9 @@ class ProductController extends ContainerAware
     {
         $productManager = $this->container->get('sylius_assortment.manager.product');
         
-        $paginator = $productManager->createPaginator();    
+        $delegatingSorter = $this->container->get('sylius_assortment.sorting');
+        
+        $paginator = $productManager->createPaginator($delegatingSorter);    
         $paginator->setCurrentPage($this->container->get('request')->query->get('page', 1), true, true);
         
         $products = $paginator->getCurrentPageResults();

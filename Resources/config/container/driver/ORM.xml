@@ -17,12 +17,22 @@
 
 	<parameters>
 	    <parameter key="sylius_assortment.manager.product.class">Sylius\Bundle\AssortmentBundle\Entity\ProductManager</parameter>
+	    <parameter key="sylius_assortment.sorter.default.class">Sylius\Bundle\AssortmentBundle\Sorting\ORM\DefaultSorter</parameter>
 	</parameters>
 	
 	<services>
+		<!-- managers... -->
 	    <service id="sylius_assortment.manager.product" class="%sylius_assortment.manager.product.class%">
 	        <argument type="service" id="doctrine.orm.default_entity_manager" />
 	        <argument>%sylius_assortment.model.product.class%</argument>
+	    </service>
+	    
+	    <!-- sorters... -->
+	    <service id="sylius_assortment.sorter.default" class="%sylius_assortment.sorter.default.class%">
+	    	<call method="setContainer">
+	    		<argument type="service" id="service_container" />
+	    	</call>
+	    	<tag name="sylius_assortment.sorter" />
 	    </service>
 	</services>
 
