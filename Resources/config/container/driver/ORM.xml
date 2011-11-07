@@ -17,7 +17,7 @@
 
 	<parameters>
 	    <parameter key="sylius_assortment.manager.product.class">Sylius\Bundle\AssortmentBundle\Entity\ProductManager</parameter>
-	    <parameter key="sylius_assortment.sorter.default.class">Sylius\Bundle\AssortmentBundle\Sorting\ORM\DefaultSorter</parameter>
+	    <parameter key="sylius_assortment.sorter.product.class">Sylius\Bundle\AssortmentBundle\Sorting\ORM\ProductSorter</parameter>
 	</parameters>
 	
 	<services>
@@ -28,11 +28,10 @@
 	    </service>
 	    
 	    <!-- sorters... -->
-	    <service id="sylius_assortment.sorter.default" class="%sylius_assortment.sorter.default.class%">
+	    <service id="sylius_assortment.sorter.product" class="%sylius_assortment.sorter.product.class%">
 	    	<call method="setContainer">
 	    		<argument type="service" id="service_container" />
 	    	</call>
-	    	<tag name="sylius_assortment.sorter" />
 	    </service>
 	</services>
 
