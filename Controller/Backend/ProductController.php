@@ -55,8 +55,9 @@ class ProductController extends ContainerAware
         $products = $paginator->getCurrentPageResults();
         
         return $this->container->get('templating')->renderResponse('SyliusAssortmentBundle:Backend/Product:list.html.' . $this->getEngine(), array(
-        	'products' => $products,
-        	'paginator' => $paginator
+        	'products'  => $products,
+        	'paginator' => $paginator,
+        	'sorter'    => $productSorter
         ));
     }
     
