@@ -23,6 +23,6 @@ class Slugizer implements SlugizerInterface
      */
     public function slugize($string)
     {
-        return preg_replace('/[^a-z0-9_\s-]/', '', preg_replace("/[\s_]/", "-", strtolower(trim($string))));
+        return preg_replace('/[^a-z0-9_\s-]/', '', preg_replace("/[\s_]/", "-", preg_replace('!\s+!', ' ', strtolower(trim($string)))));
     }
 }
