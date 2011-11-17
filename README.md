@@ -4,10 +4,26 @@ About SyliusAssortmentBundle...
 It provides basic interfaces and mechanisms for product model.
 Sorting, filters, CRUD, forms, events and more.
 
+[![Build status...](https://secure.travis-ci.org/Sylius/SyliusAssortmentBundle.png)](http://travis-ci.org/Sylius/SyliusAssortmentBundle)
+
 Sylius.
 -------
 
 **Sylius** is simple but **end-user and developer friendly** webshop engine built on top of Symfony2. Visit [sylius.org](http://sylius.org).
+
+Testing and build status.
+-------------------------
+
+This bundle uses [travis-ci.org](http://travis-ci.org/Sylius/SyliusAssortmentBundle) for CI.
+
+Before running tests, load the dependencies using [Composer](http://packagist.org).
+
+``` bash
+$ wget http://getcomposer.org/composer.phar
+$ php composer.phar install
+```
+
+Now you can test by using ```$ phpunit``` command.
 
 Examples.
 ---------
