@@ -40,6 +40,17 @@ class SyliusAssortmentExtensionTest extends \PHPUnit_Framework_TestCase
     }
     
     /**
+    * @expectedException \InvalidArgumentException
+    */
+    public function testUserLoadThrowsExceptionUnlessEngineIsValid()
+    {
+        $loader = new SyliusAssortmentExtension();
+        $config = $this->getEmptyConfig();
+        $config['engine'] = 'foo';
+        $loader->load(array($config), new ContainerBuilder());
+    }
+    
+    /**
     * @expectedException \Symfony\Component\Config\Definition\Exception\InvalidConfigurationException
     */
     public function testUserLoadThrowsExceptionUnlessProductModelClassSet()
