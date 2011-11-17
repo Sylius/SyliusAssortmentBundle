@@ -23,7 +23,11 @@ $ wget http://getcomposer.org/composer.phar
 $ php composer.phar install
 ```
 
-Now you can test by using ```$ phpunit``` command.
+Now you can test by simply using this command.
+
+``` bash
+$ phpunit
+```
 
 Examples.
 ---------
