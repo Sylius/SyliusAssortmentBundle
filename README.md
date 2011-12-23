@@ -38,7 +38,7 @@ It's open sourced github project.
 Documentation.
 --------------
 
-Docs are available [here](https://github.com/Sylius/SyliusAssortmentBundle/blob/master/Resources/doc/index.md).
+Docs are available [here](http://sylius.org/docs/bundles/SyliusAssortmentBundle.html).
 
 Dependencies.
 -------------
