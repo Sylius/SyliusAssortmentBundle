@@ -23,16 +23,16 @@ class ProductFormType extends AbstractType
 {
     /**
      * Data class.
-     * 
+     *
      * @var string
      */
     protected $dataClass;
-    
+
     public function __construct($dataClass)
     {
         $this->dataClass = $dataClass;
     }
-    
+
     /**
      * {@inheritdoc}
      */
@@ -42,7 +42,7 @@ class ProductFormType extends AbstractType
             ->add('name', 'text')
             ->add('description', 'textarea');
     }
-    
+
     /**
      * {@inheritdoc}
      */
@@ -52,7 +52,7 @@ class ProductFormType extends AbstractType
             'data_class' => $this->dataClass,
         );
     }
-    
+
     /**
      * {@inheritdoc}
      */

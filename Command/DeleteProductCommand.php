@@ -22,13 +22,13 @@ use Symfony\Component\Console\Output\Output;
 
 /**
  * Command for console that deletes product.
- * 
+ *
  * @author Paweł Jędrzejewski <pjedrzejewski@diweb.pl>
  */
 class DeleteProductCommand extends ContainerAwareCommand
 {
     /**
-     * {@inheritdoc}
+     * @see Symfony\Component\Console\Command.Command::configure()
      */
     protected function configure()
     {
@@ -47,24 +47,24 @@ EOT
     }
 
     /**
-     * {@inheritdoc}
+     * @see Symfony\Component\Console\Command.Command::execute()
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $product = $this->getContainer()->get('sylius_assortment.manager.product')->findProduct($input->getArgument('id'));
-        
+
         if (!$product) {
             throw new \InvalidArgumentException(sprintf('The product with id "%s" does not exist.', $input->getArgument('id')));
         }
-        
+
         $this->getContainer()->get('event_dispatcher')->dispatch(SyliusAssortmentEvents::PRODUCT_DELETE, new FilterProductEvent($product));
         $this->getContainer()->get('sylius_assortment.manipulator.product')->delete($product);
 
-        $output->writeln(sprintf('Deleted product with id: <comment>%s</comment>', $input->getArgument('id')));
+        $output->writeln(sprintf('<info>[Sylius:Assortment]</info> Deleted product with id: <comment>%s</comment>', $input->getArgument('id')));
     }
 
     /**
-     * {@inheritdoc}
+     * @see Symfony\Component\Console\Command.Command::interact()
      */
     protected function interact(InputInterface $input, OutputInterface $output)
     {

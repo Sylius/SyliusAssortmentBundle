@@ -17,28 +17,28 @@ use Sylius\Bundle\AssortmentBundle\Inflector\SlugizerInterface;
 
 /**
  * Product manipulator.
- * 
+ *
  * @author Paweł Jędrzejewski <pjedrzejewski@diweb.pl>
  */
 class ProductManipulator implements ProductManipulatorInterface
 {
     /**
      * Product manager.
-     * 
+     *
      * @var ProductManagerInterface
      */
     protected $productManager;
-    
+
     /**
      * Slugizer inflector.
-     * 
+     *
      * @var SlugizerInterface
      */
     protected $slugizer;
-    
+
     /**
      * Constructor.
-     * 
+     *
      * @param ProductManagerInterface 	$productManager
      * @param SlugizerInterface 		$slugizer
      */
@@ -47,7 +47,7 @@ class ProductManipulator implements ProductManipulatorInterface
         $this->productManager = $productManager;
         $this->slugizer = $slugizer;
     }
-    
+
     /**
      * {@inheritdoc}
      */
@@ -55,26 +55,26 @@ class ProductManipulator implements ProductManipulatorInterface
     {
         $product->setSlug($this->slugizer->slugize($product->getName()));
         $product->incrementCreatedAt();
-        
+
         $this->productManager->persistProduct($product);
     }
-    
-	/**
+
+  	/**
      * {@inheritdoc}
      */
     public function update(ProductInterface $product)
     {
         $product->setSlug($this->slugizer->slugize($product->getName()));
         $product->incrementUpdatedAt();
-        
+
         $this->productManager->persistProduct($product);
     }
-    
-	/**
+
+  	/**
      * {@inheritdoc}
      */
     public function delete(ProductInterface $product)
-    {     
+    {
         $this->productManager->removeProduct($product);
     }
 }

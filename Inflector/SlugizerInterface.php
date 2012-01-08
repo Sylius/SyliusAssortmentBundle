@@ -13,14 +13,14 @@ namespace Sylius\Bundle\AssortmentBundle\Inflector;
 
 /**
  * Slugizer interface.
- * 
+ *
  * @author Paweł Jędrzejewski <pjedrzejewski@diweb.pl>
  */
 interface SlugizerInterface
 {
     /**
      * Slugize string.
-     * 
+     *
      * @param string $string
      * @return string
      */

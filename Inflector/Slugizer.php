@@ -13,7 +13,7 @@ namespace Sylius\Bundle\AssortmentBundle\Inflector;
 
 /**
  * Slugizer.
- * 
+ *
  * @author Paweł Jędrzejewski <pjedrzejewski@diweb.pl>
  */
 class Slugizer implements SlugizerInterface

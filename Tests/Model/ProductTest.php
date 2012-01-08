@@ -23,25 +23,25 @@ class ProductTest extends \PHPUnit_Framework_TestCase
         $product->setName('testing product');
         $this->assertEquals('testing product', $product->getName());
     }
-    
+
     public function testSlug()
     {
         $product = $this->getProduct();
         $this->assertNull($product->getSlug());
-    
+
         $product->setSlug('testing-product');
         $this->assertEquals('testing-product', $product->getSlug());
     }
-    
+
     public function testDescription()
     {
         $product = $this->getProduct();
         $this->assertNull($product->getDescription());
-    
+
         $product->setDescription('testing product...');
         $this->assertEquals('testing product...', $product->getDescription());
     }
-    
+
     public function testIncrementCreatedAt()
     {
         $product = $this->getProduct();

@@ -26,21 +26,21 @@ class ProductToIdTransformer implements DataTransformerInterface
 {
     /**
      * Product manager.
-     * 
+     *
      * @var ProductManagerInterface
      */
     protected $productManager;
-    
+
     /**
      * Constructor.
-     * 
+     *
      * @param ProductManagerInterface $productManager
      */
     public function __construct(ProductManagerInterface $productManager)
     {
         $this->productManager = $productManager;
     }
-    
+
     /**
      * {@inheritdoc}
      */
@@ -49,14 +49,14 @@ class ProductToIdTransformer implements DataTransformerInterface
         if (null == $value) {
             return null;
         }
-        
+
         if (!$value instanceof ProductInterface) {
             throw new UnexpectedTypeException($value, 'Sylius\Bundle\AssortmentBundle\Model\ProductInterface');
         }
-        
+
         return $value->getId();
     }
-    
+
     /**
      * {@inheritdoc}
      */
@@ -65,17 +65,17 @@ class ProductToIdTransformer implements DataTransformerInterface
         if ($value == null || $value == '') {
             return null;
         }
-        
+
         if (!is_numeric($value)) {
             throw new UnexpectedTypeException($value, 'numeric');
         }
-        
+
         $product = $this->productManager->findProduct($value);
-        
+
         if (!$product) {
             throw new TransformationFailedException('Product with given id does not exist.');
         }
-        
+
         return $product;
     }
 }

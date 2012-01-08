@@ -28,32 +28,32 @@ class ProductManager extends BaseProductManager
 {
     /**
      * Entity manager.
-     * 
+     *
      * @var EntityManager
      */
     protected $entityManager;
-    
+
     /**
      * Product entity repository.
-     * 
+     *
      * @var EntityRepository
      */
     protected $repository;
-    
+
     /**
      * Constructor.
-     * 
+     *
      * @param EntityManager $entityManager
      * @param string		$class
      */
     public function __construct(EntityManager $entityManager, $class)
     {
         parent::__construct($class);
-        
+
         $this->entityManager = $entityManager;
         $this->repository = $entityManager->getRepository($this->getClass());
     }
-    
+
     /**
      * {@inheritdoc}
      */
@@ -62,7 +62,7 @@ class ProductManager extends BaseProductManager
         $class = $this->getClass();
         return new $class;
     }
-    
+
     /**
      * {@inheritdoc}
      */
@@ -71,7 +71,7 @@ class ProductManager extends BaseProductManager
         $this->entityManager->persist($product);
         $this->entityManager->flush();
     }
-    
+
     /**
      * {@inheritdoc}
      */
@@ -80,7 +80,7 @@ class ProductManager extends BaseProductManager
         $this->entityManager->remove($product);
         $this->entityManager->flush();
     }
-    
+
     /**
      * {@inheritdoc}
      */
@@ -88,7 +88,7 @@ class ProductManager extends BaseProductManager
     {
         return $this->repository->find($id);
     }
-    
+
     /**
      * {@inheritdoc}
      */
@@ -96,7 +96,7 @@ class ProductManager extends BaseProductManager
     {
         return $this->repository->findOneBy($criteria);
     }
-    
+
     /**
      * {@inheritdoc}
      */
@@ -104,7 +104,7 @@ class ProductManager extends BaseProductManager
     {
         return $this->repository->findAll();
     }
-    
+
     /**
      * {@inheritdoc}
      */
@@ -112,7 +112,7 @@ class ProductManager extends BaseProductManager
     {
         return $this->repository->findBy($criteria);
     }
-    
+
     /**
      * {@inheritdoc}
      */
@@ -122,11 +122,11 @@ class ProductManager extends BaseProductManager
             ->select('p')
             ->from($this->class, 'p')
         ;
-        
+
         if (null !== $sorter) {
             $sorter->sort($queryBuilder);
         }
-            
+
         return new Pagerfanta(new DoctrineORMAdapter($queryBuilder->getQuery()));
     }
 }

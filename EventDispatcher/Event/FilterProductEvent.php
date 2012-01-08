@@ -23,16 +23,16 @@ class FilterProductEvent extends Event
 {
     /**
      * Product object.
-     * 
+     *
      * @var ProductInterface
      */
     private $product;
-    
+
     public function __construct(ProductInterface $product)
     {
         $this->product = $product;
     }
-    
+
     public function getProduct()
     {
         return $this->product;

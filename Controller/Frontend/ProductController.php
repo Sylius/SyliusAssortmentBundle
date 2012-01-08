@@ -17,7 +17,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
  * Product controller.
- * 
+ *
  * @author Paweł Jędrzejewski <pjedrzejewski@diweb.pl>
  */
 class ProductController extends ContainerAware
@@ -27,40 +27,40 @@ class ProductController extends ContainerAware
      */
     public function showAction($id, $slug)
     {
-    	$product = $this->container->get('sylius_assortment.manager.product')->findProductBy(array('id' => $id, 'slug' => $slug));
-    	
-    	if (!$product) {
-    	    throw new NotFoundHttpException('Requested product does not exist.');
-    	}	
-        
+        $product = $this->container->get('sylius_assortment.manager.product')->findProductBy(array('id' => $id, 'slug' => $slug));
+
+        if (!$product) {
+            throw new NotFoundHttpException('Requested product does not exist.');
+        }
+
         return $this->container->get('templating')->renderResponse('SyliusAssortmentBundle:Frontend/Product:show.html.' . $this->getEngine(), array(
         	'product' => $product
         ));
     }
-    
+
     /**
-     * List paginated products.
+     * Lists paginated products.
      */
     public function listAction()
     {
         $productManager = $this->container->get('sylius_assortment.manager.product');
-        
+
         $productSorter = $this->container->get('sylius_assortment.sorter.product');
-        
+
         $paginator = $productManager->createPaginator($productSorter);
         $paginator->setCurrentPage($this->container->get('request')->query->get('page', 1), true, true);
-        
+
         $products = $paginator->getCurrentPageResults();
-        
+
         return $this->container->get('templating')->renderResponse('SyliusAssortmentBundle:Frontend/Product:list.html.' . $this->getEngine(), array(
-        	'products' => $products,
-        	'paginator' => $paginator
+          	'products' => $products,
+          	'paginator' => $paginator
         ));
     }
-    
+
     /**
      * Returns templating engine name.
-     * 
+     *
      * @return string
      */
     protected function getEngine()
