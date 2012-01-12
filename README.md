@@ -1,5 +1,5 @@
 About SyliusAssortmentBundle...
-=================================
+===============================
 
 It provides basic interfaces and mechanisms for product model.
 Sorting, filters, CRUD, forms, events and more.
@@ -9,7 +9,12 @@ Sorting, filters, CRUD, forms, events and more.
 Sylius.
 -------
 
-**Sylius** is simple but **end-user and developer friendly** webshop engine built on top of Symfony2. Visit [sylius.org](http://sylius.org).
+**Sylius** is simple but **end-user and developer friendly** webshop engine built on top of Symfony2. [Sylius.org](http://sylius.org).
+
+Demo.
+-----
+
+There is a live demo of this bundle [on Sylius.org](http://sylius.org/sandbox).
 
 Testing and build status.
 -------------------------
@@ -29,7 +34,7 @@ Now you can test by simply using this command.
 $ phpunit
 ```
 
-Examples.
+Code examples.
 ---------
 
 If you want to see this and other bundles in action, try out the [Sylius sandbox application](http://github.com/Sylius/Sylius-Sandbox).
@@ -57,7 +62,7 @@ If you want to contribute, and develop this bundle, use the developers mailing l
 Sylius twitter account.
 -----------------------
 
-If you want to keep up with updates, [follow the official Sylius account on twitter](http://twitter.com/_Sylius) 
+If you want to keep up with updates, [follow the official Sylius account on twitter](http://twitter.com/_Sylius)
 or [follow me](http://twitter.com/pjedrzejewski).
 
 Bug tracking.
@@ -69,7 +74,7 @@ If you have found bug, please create an issue.
 Versioning.
 -----------
 
-Releases will be numbered with the format `<major>.<minor>.<patch>`.
+Releases will be numbered with the format `major.minor.patch`.
 
 And constructed with the following guidelines.
 
@@ -78,6 +83,7 @@ And constructed with the following guidelines.
 * Bug fixes and misc changes bump the patch.
 
 For more information on SemVer, please visit [semver.org website](http://semver.org/).
+
 This versioning method is same for all **Sylius** bundles and applications.
 
 License.
