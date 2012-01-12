@@ -13,7 +13,7 @@ namespace Sylius\Bundle\AssortmentBundle\Model;
 
 /**
  * Product interface.
- * 
+ *
  * @author Paweł Jędrzejewski <pjedrzejewski@diweb.pl>
  */
 interface ProductInterface

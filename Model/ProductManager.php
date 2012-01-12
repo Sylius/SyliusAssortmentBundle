@@ -14,31 +14,31 @@ namespace Sylius\Bundle\AssortmentBundle\Model;
 /**
  * Assortment manager.
  * Manages products.
- * 
+ *
  * @author Paweł Jędrzejewski <pjedrzejewski@diweb.pl>
  */
 abstract class ProductManager implements ProductManagerInterface
 {
     /**
      * Product class.
-     * 
+     *
      * @var string
      */
     protected $class;
-    
+
     /**
      * Constructor.
-     * 
+     *
      * @var string $class
      */
     public function __construct($class)
     {
         $this->class = $class;
     }
-    
+
     /**
      * Returns FQCN of product.
-     * 
+     *
      * @return string
      */
     public function getClass()

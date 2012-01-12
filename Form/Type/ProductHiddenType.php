@@ -24,24 +24,24 @@ class ProductHiddenType extends AbstractType
 {
     /**
      * Data class.
-     * 
+     *
      * @var string
      */
     protected $dataClass;
-    
+
     /**
      * Product to id transformer.
-     * 
+     *
      * @var ProductToIdTransformer
      */
     protected $productToIdTransformer;
-    
+
     public function __construct($dataClass, ProductToIdTransformer $productToIdTransformer)
     {
         $this->dataClass = $dataClass;
         $this->productToIdTransformer = $productToIdTransformer;
     }
-    
+
     /**
      * {@inheritdoc}
      */
@@ -50,7 +50,7 @@ class ProductHiddenType extends AbstractType
         $builder
             ->prependClientTransformer($this->productToIdTransformer);
     }
-    
+
     /**
      * {@inheritdoc}
      */
@@ -60,7 +60,7 @@ class ProductHiddenType extends AbstractType
             'data_class' => $this->dataClass,
         );
     }
-    
+
     /**
      * {@inheritdoc}
      */
@@ -68,7 +68,7 @@ class ProductHiddenType extends AbstractType
     {
         return 'hidden';
     }
-    
+
     /**
      * {@inheritdoc}
      */

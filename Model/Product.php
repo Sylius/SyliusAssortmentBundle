@@ -13,14 +13,14 @@ namespace Sylius\Bundle\AssortmentBundle\Model;
 
 /**
  * Model for products.
- * 
+ *
  * @author Paweł Jędrzejewski <pjedrzejewski@diweb.pl>
  */
 abstract class Product implements ProductInterface
 {
     protected $id;
     protected $name;
-    protected $slug;    
+    protected $slug;
     protected $description;
     protected $createdAt;
     protected $updatedAt;
@@ -29,22 +29,22 @@ abstract class Product implements ProductInterface
     {
         return $this->id;
     }
-    
+
     public function getName()
     {
-    	return $this->name;
+      return $this->name;
     }
-    
+
     public function setName($name)
-    { 
-    	$this->name = $name;
+    {
+      $this->name = $name;
     }
 
     public function getSlug()
     {
-    	return $this->slug;
+      return $this->slug;
     }
-    
+
     public function setSlug($slug)
     {
         $this->slug = $slug;
@@ -54,17 +54,17 @@ abstract class Product implements ProductInterface
     {
         return $this->description;
     }
-    
+
     public function setDescription($description)
     {
         $this->description = $description;
     }
-    
+
     public function getCreatedAt()
     {
         return $this->createdAt;
     }
-    
+
     public function incrementCreatedAt()
     {
         $this->createdAt = new \DateTime();

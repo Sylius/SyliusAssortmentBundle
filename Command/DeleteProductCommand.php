@@ -60,7 +60,7 @@ EOT
         $this->getContainer()->get('event_dispatcher')->dispatch(SyliusAssortmentEvents::PRODUCT_DELETE, new FilterProductEvent($product));
         $this->getContainer()->get('sylius_assortment.manipulator.product')->delete($product);
 
-        $output->writeln(sprintf('Deleted product with id: <comment>%s</comment>', $input->getArgument('id')));
+        $output->writeln(sprintf('<info>[Sylius:Assortment]</info> Deleted product with id: <comment>%s</comment>', $input->getArgument('id')));
     }
 
     /**

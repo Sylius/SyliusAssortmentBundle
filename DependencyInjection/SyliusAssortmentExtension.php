@@ -19,7 +19,7 @@ use Symfony\Component\Config\Definition\Processor;
 
 /**
  * Assortment dependency injection extension.
- * 
+ *
  * @author Paweł Jędrzejewski <pjedrzejewski@diweb.pl>
  */
 class SyliusAssortmentExtension extends Extension
@@ -30,51 +30,51 @@ class SyliusAssortmentExtension extends Extension
         $configuration = new Configuration();
 
         $config = $processor->processConfiguration($configuration, $config);
-        
+
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config/container'));
-         
+
         if (!in_array($config['driver'], array('ORM'))) {
             throw new \InvalidArgumentException(sprintf('Driver "%s" is unsupported for this extension.', $config['driver']));
         }
-        
+
         if (!in_array($config['engine'], array('php', 'twig'))) {
             throw new \InvalidArgumentException(sprintf('Engine "%s" is unsupported for this extension.', $config['engine']));
         }
-        
+
         $loader->load(sprintf('driver/%s.xml', $config['driver']));
         $loader->load(sprintf('engine/%s.xml', $config['engine']));
-        
+
         $container->setParameter('sylius_assortment.driver', $config['driver']);
         $container->setParameter('sylius_assortment.engine', $config['engine']);
-         
+
         $configurations = array(
             'controllers',
             'forms',
             'inflectors',
             'manipulators',
         );
-         
+
         foreach($configurations as $basename) {
             $loader->load(sprintf('%s.xml', $basename));
         }
-         
+
         $this->remapParametersNamespaces($config['classes'], $container, array(
             'model'          => 'sylius_assortment.model.%s.class',
             'inflector'      => 'sylius_assortment.inflector.%s.class',
             'manipulator'    => 'sylius_assortment.manipulator.%s.class'
         ));
-        
+
         $this->remapParametersNamespaces($config['classes']['controller'], $container, array(
             'backend'     => 'sylius_assortment.controller.backend.%s.class',
             'frontend'    => 'sylius_assortment.controller.frontend.%s.class'
         ));
-        
+
         $this->remapParametersNamespaces($config['classes']['form'], $container, array(
             'type'    => 'sylius_assortment.form.type.%s.class',
         ));
     }
-    
-	/**
+
+  	/**
      * Remap parameters.
      */
     protected function remapParameters(array $config, ContainerBuilder $container, array $map)
