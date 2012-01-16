@@ -1,20 +1,24 @@
-About SyliusAssortmentBundle...
-===============================
+SyliusAssortmentBundle.
+=======================
 
-It provides basic interfaces and mechanisms for product model.
-Sorting, filters, CRUD, forms, events and more.
+This bundle provides basic interfaces, forms, manipulators, event system and much more for product model.
+The product manager interface allows to implement any desired driver for data persistence.
+Please note that the **Doctrine ORM** is the only usable driver at the moment.
+Depdending on community contributions, more drivers should come.
 
 [![Build status...](https://secure.travis-ci.org/Sylius/SyliusAssortmentBundle.png)](http://travis-ci.org/Sylius/SyliusAssortmentBundle)
 
 Sylius.
 -------
 
-**Sylius** is simple but **end-user and developer friendly** webshop engine built on top of Symfony2. [Sylius.org](http://sylius.org).
+**Sylius** is simple but **end-user and developer friendly** webshop engine built on top of Symfony2. 
+
+Please visit [Sylius.org](http://sylius.org) for more details.
 
 Demo.
 -----
 
-There is a live demo of this bundle [on Sylius.org](http://sylius.org/sandbox).
+There is a live demo of this bundle [on our official website](http://sylius.org/sandbox).
 
 Testing and build status.
 -------------------------
@@ -28,22 +32,27 @@ $ wget http://getcomposer.org/composer.phar
 $ php composer.phar install
 ```
 
-Now you can test by simply using this command.
+Now you can run the tests by simply using this command.
 
 ``` bash
 $ phpunit
 ```
 
 Code examples.
----------
+--------------
 
-If you want to see this and other bundles in action, try out the [Sylius sandbox application](http://github.com/Sylius/Sylius-Sandbox).
+If you want to see working implementation, try out the [Sylius sandbox application](http://github.com/Sylius/Sylius-Sandbox).
 It's open sourced github project.
 
 Documentation.
 --------------
 
-Docs are available [here](http://sylius.org/docs/bundles/SyliusAssortmentBundle.html).
+Documentation is available on [Sylius.org](http://sylius.org/docs/bundles/SyliusAssortmentBundle.html).
+
+Contributing.
+-------------
+
+All informations about contributing to Sylius can be found on [this page](http://sylius.org/docs/contributing/index.html).
 
 Dependencies.
 -------------
@@ -53,8 +62,12 @@ This bundle uses the awesome [Pagerfanta library](https://github.com/whiteoctobe
 Mailing lists.
 --------------
 
+### Users.
+
 If you are using this bundle and have any questions, feel free to ask on users mailing list.
 [Mail](mailto:sylius@googlegroups.com) or [view it](http://groups.google.com/group/sylius).
+
+### Developers.
 
 If you want to contribute, and develop this bundle, use the developers mailing list.
 [Mail](mailto:sylius-dev@googlegroups.com) or [view it](http://groups.google.com/group/sylius-dev).
