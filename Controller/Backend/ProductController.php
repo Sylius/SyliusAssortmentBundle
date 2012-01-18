@@ -26,6 +26,8 @@ class ProductController extends ContainerAware
 {
     /**
      * Shows a product.
+     * 
+     * @param integer $id The product id
      */
     public function showAction($id)
     {
@@ -93,6 +95,8 @@ class ProductController extends ContainerAware
 
     /**
      * Updates a product.
+     * 
+     * @param integer $id The product id
      */
     public function updateAction($id)
     {
@@ -128,6 +132,8 @@ class ProductController extends ContainerAware
 
   	/**
      * Deletes products.
+     * 
+     * @param integer $id The product id
      */
     public function deleteAction($id)
     {

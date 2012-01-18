@@ -24,6 +24,9 @@ class ProductController extends ContainerAware
 {
     /**
      * Shows single product page.
+     * 
+     * @param integer $id   The product id
+     * @param string  $slug The product slug
      */
     public function showAction($id, $slug)
     {
