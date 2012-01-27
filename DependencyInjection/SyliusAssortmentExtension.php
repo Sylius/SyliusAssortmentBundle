@@ -51,7 +51,7 @@ class SyliusAssortmentExtension extends Extension
             'controllers',
             'forms',
             'inflectors',
-            'manipulators',
+            'manipulators'
         );
 
         foreach($configurations as $basename) {
@@ -59,22 +59,22 @@ class SyliusAssortmentExtension extends Extension
         }
 
         $this->remapParametersNamespaces($config['classes'], $container, array(
-            'model'          => 'sylius_assortment.model.%s.class',
-            'inflector'      => 'sylius_assortment.inflector.%s.class',
-            'manipulator'    => 'sylius_assortment.manipulator.%s.class'
+            'model'       => 'sylius_assortment.model.%s.class',
+            'inflector'   => 'sylius_assortment.inflector.%s.class',
+            'manipulator' => 'sylius_assortment.manipulator.%s.class'
         ));
 
         $this->remapParametersNamespaces($config['classes']['controller'], $container, array(
-            'backend'     => 'sylius_assortment.controller.backend.%s.class',
-            'frontend'    => 'sylius_assortment.controller.frontend.%s.class'
+            'backend'  => 'sylius_assortment.controller.backend.%s.class',
+            'frontend' => 'sylius_assortment.controller.frontend.%s.class'
         ));
 
         $this->remapParametersNamespaces($config['classes']['form'], $container, array(
-            'type'    => 'sylius_assortment.form.type.%s.class',
+            'type' => 'sylius_assortment.form.type.%s.class'
         ));
     }
 
-  	/**
+      /**
      * Remap parameters.
      */
     protected function remapParameters(array $config, ContainerBuilder $container, array $map)
