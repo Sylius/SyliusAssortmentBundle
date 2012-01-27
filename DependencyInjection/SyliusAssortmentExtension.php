@@ -74,8 +74,12 @@ class SyliusAssortmentExtension extends Extension
         ));
     }
 
-      /**
+    /**
      * Remap parameters.
+     *
+     * @param array            $config
+     * @param ContainerBuilder $container
+     * @param array            $map
      */
     protected function remapParameters(array $config, ContainerBuilder $container, array $map)
     {
@@ -88,6 +92,10 @@ class SyliusAssortmentExtension extends Extension
 
     /**
      * Remap parameter namespaces.
+     *
+     * @param array            $config
+     * @param ContainerBuilder $container
+     * @param array            $namespaces
      */
     protected function remapParametersNamespaces(array $config, ContainerBuilder $container, array $namespaces)
     {
