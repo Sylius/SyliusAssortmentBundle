@@ -11,11 +11,12 @@
 
 namespace Sylius\Bundle\AssortmentBundle;
 
-use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 /**
- * Assortment bundle.
+ * Product management bundle with highly flexible architecture.
+ * It handles basic product actions like CRUD and displaying.
+ * Splitted into two areas, backend and frontend.
  *
  * @author Paweł Jędrzejewski <pjedrzejewski@diweb.pl>
  */
