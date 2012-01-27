@@ -11,9 +11,9 @@
 
 namespace Sylius\Bundle\AssortmentBundle\DependencyInjection;
 
-use Symfony\Component\Config\Definition\ConfigurationInterface;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
+use Symfony\Component\Config\Definition\ConfigurationInterface;
 
 /**
  * This class contains the configuration information for the bundle.
@@ -27,6 +27,8 @@ class Configuration implements ConfigurationInterface
 {
     /**
      * Generates the configuration tree.
+     * 
+     * @return TreeBuilder
      */
     public function getConfigTreeBuilder()
     {
@@ -47,6 +49,8 @@ class Configuration implements ConfigurationInterface
 
     /**
      * Adds `classes` section.
+     * 
+     * @param ArrayNodeDefinition $node
      */
     private function addClassesSection(ArrayNodeDefinition $node)
     {
