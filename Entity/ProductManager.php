@@ -11,16 +11,16 @@
 
 namespace Sylius\Bundle\AssortmentBundle\Entity;
 
-use Pagerfanta\Pagerfanta;
-use Pagerfanta\Adapter\DoctrineORMAdapter;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityRepository;
+use Pagerfanta\Adapter\DoctrineORMAdapter;
+use Pagerfanta\Pagerfanta;
 use Sylius\Bundle\AssortmentBundle\Model\ProductInterface;
 use Sylius\Bundle\AssortmentBundle\Model\ProductManager as BaseProductManager;
 use Sylius\Bundle\AssortmentBundle\Sorting\SorterInterface;
 
 /**
- * ORM product manager.
+ * ORM driver product manager.
  *
  * @author Paweł Jędrzejewski <pjedrzejewski@diweb.pl>
  */
@@ -44,7 +44,7 @@ class ProductManager extends BaseProductManager
      * Constructor.
      *
      * @param EntityManager $entityManager
-     * @param string		$class
+     * @param string        $class
      */
     public function __construct(EntityManager $entityManager, $class)
     {
