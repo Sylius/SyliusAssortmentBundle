@@ -24,7 +24,7 @@ class ProductController extends ContainerAware
 {
     /**
      * Shows single product page.
-     * 
+     *
      * @param integer $id   The product id
      * @param string  $slug The product slug
      */
@@ -37,7 +37,7 @@ class ProductController extends ContainerAware
         }
 
         return $this->container->get('templating')->renderResponse('SyliusAssortmentBundle:Frontend/Product:show.html.' . $this->getEngine(), array(
-        	'product' => $product
+            'product' => $product
         ));
     }
 
@@ -56,8 +56,8 @@ class ProductController extends ContainerAware
         $products = $paginator->getCurrentPageResults();
 
         return $this->container->get('templating')->renderResponse('SyliusAssortmentBundle:Frontend/Product:list.html.' . $this->getEngine(), array(
-          	'products' => $products,
-          	'paginator' => $paginator
+            'products'  => $products,
+            'paginator' => $paginator
         ));
     }
 
