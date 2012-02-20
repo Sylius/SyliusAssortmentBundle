@@ -16,7 +16,9 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
- * Product controller.
+ * Product frontend controller.
+ * Provides simple actions to list paginated products and to
+ * display specific one by id and slug.
  *
  * @author Paweł Jędrzejewski <pjedrzejewski@diweb.pl>
  */
@@ -47,7 +49,6 @@ class ProductController extends ContainerAware
     public function listAction()
     {
         $productManager = $this->container->get('sylius_assortment.manager.product');
-
         $productSorter = $this->container->get('sylius_assortment.sorter.product');
 
         $paginator = $productManager->createPaginator($productSorter);

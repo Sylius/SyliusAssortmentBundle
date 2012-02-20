@@ -11,14 +11,15 @@
 
 namespace Sylius\Bundle\AssortmentBundle\Controller\Backend;
 
+use Sylius\Bundle\AssortmentBundle\EventDispatcher\Event\FilterProductEvent;
+use Sylius\Bundle\AssortmentBundle\EventDispatcher\SyliusAssortmentEvents;
 use Symfony\Component\DependencyInjection\ContainerAware;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Sylius\Bundle\AssortmentBundle\EventDispatcher\Event\FilterProductEvent;
-use Sylius\Bundle\AssortmentBundle\EventDispatcher\SyliusAssortmentEvents;
 
 /**
  * Product backend controller.
+ * Here hides the slim code behind product related actions.
  *
  * @author Paweł Jędrzejewski <pjedrzejewski@diweb.pl>
  */
@@ -26,19 +27,15 @@ class ProductController extends ContainerAware
 {
     /**
      * Shows a product.
-     * 
+     *
      * @param integer $id The product id
      */
     public function showAction($id)
     {
-        $product = $this->container->get('sylius_assortment.manager.product')->findProduct($id);
-
-        if (!$product) {
-            throw new NotFoundHttpException('Requested product does not exist.');
-        }
+        $product = $this->findProductOr404($id);
 
         return $this->container->get('templating')->renderResponse('SyliusAssortmentBundle:Backend/Product:show.html.' . $this->getEngine(), array(
-          	'product' => $product
+            'product' => $product
         ));
     }
 
@@ -57,9 +54,9 @@ class ProductController extends ContainerAware
         $products = $paginator->getCurrentPageResults();
 
         return $this->container->get('templating')->renderResponse('SyliusAssortmentBundle:Backend/Product:list.html.' . $this->getEngine(), array(
-        	'products'  => $products,
-          	'paginator' => $paginator,
-          	'sorter'    => $productSorter
+            'products'  => $products,
+            'paginator' => $paginator,
+            'sorter'    => $productSorter
         ));
     }
 
@@ -83,28 +80,24 @@ class ProductController extends ContainerAware
                 $this->container->get('sylius_assortment.manipulator.product')->create($product);
 
                 return new RedirectResponse($this->container->get('router')->generate('sylius_assortment_backend_product_show', array(
-                  	'id' => $product->getId()
+                    'id' => $product->getId()
                 )));
             }
         }
 
         return $this->container->get('templating')->renderResponse('SyliusAssortmentBundle:Backend/Product:create.html.' . $this->getEngine(), array(
-          	'form' => $form->createView()
+            'form' => $form->createView()
         ));
     }
 
     /**
      * Updates a product.
-     * 
+     *
      * @param integer $id The product id
      */
     public function updateAction($id)
     {
-        $product = $this->container->get('sylius_assortment.manager.product')->findProduct($id);
-
-        if (!$product) {
-            throw new NotFoundHttpException('Requested product does not exist.');
-        }
+        $product = $this->findProductOr404($id);
 
         $request = $this->container->get('request');
 
@@ -119,34 +112,49 @@ class ProductController extends ContainerAware
                 $this->container->get('sylius_assortment.manipulator.product')->update($product);
 
                 return new RedirectResponse($this->container->get('router')->generate('sylius_assortment_backend_product_show', array(
-                  	'id' => $product->getId()
+                    'id' => $product->getId()
                 )));
             }
         }
 
         return $this->container->get('templating')->renderResponse('SyliusAssortmentBundle:Backend/Product:update.html.' . $this->getEngine(), array(
-          	'form' => $form->createView(),
-          	'product' => $product
+            'form' => $form->createView(),
+            'product' => $product
         ));
     }
 
-  	/**
+    /**
      * Deletes products.
-     * 
+     *
      * @param integer $id The product id
      */
     public function deleteAction($id)
     {
-        $product = $this->container->get('sylius_assortment.manager.product')->findProduct($id);
-
-        if (!$product) {
-            throw new NotFoundHttpException('Requested product does not exist.');
-        }
+        $product = $this->findProductOr404($id);
 
         $this->container->get('event_dispatcher')->dispatch(SyliusAssortmentEvents::PRODUCT_DELETE, new FilterProductEvent($product));
         $this->container->get('sylius_assortment.manipulator.product')->delete($product);
 
         return new RedirectResponse($this->container->get('request')->headers->get('referer'));
+    }
+
+    /**
+     * Tries to find product with given id.
+     * Throws a special http exception with code 404 if unsuccessful.
+     *
+     * @param integer $id The product id
+     *
+     * @return ProductInterface
+     *
+     * @throws NotFoundHttpException
+     */
+    protected function findProductOr404($id)
+    {
+        if (!$product = $this->container->get('sylius_assortment.manager.product')->findProduct($id)) {
+            throw new NotFoundHttpException('Requested product does not exist.');
+        }
+
+        return $product;
     }
 
     /**
