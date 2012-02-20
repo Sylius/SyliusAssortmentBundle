@@ -11,8 +11,8 @@
 
 namespace Sylius\Bundle\AssortmentBundle\Form\Type;
 
-use Symfony\Component\Form\FormBuilder;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\FormBuilder;
 
 /**
  * Product form type.
@@ -33,9 +33,6 @@ class ProductFormType extends AbstractType
         $this->dataClass = $dataClass;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function buildForm(FormBuilder $builder, array $options)
     {
         $builder
@@ -43,9 +40,6 @@ class ProductFormType extends AbstractType
             ->add('description', 'textarea');
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getDefaultOptions(array $options)
     {
         return array(
@@ -53,9 +47,6 @@ class ProductFormType extends AbstractType
         );
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getName()
     {
         return 'sylius_assortment_product';
