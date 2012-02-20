@@ -27,7 +27,7 @@ class Configuration implements ConfigurationInterface
 {
     /**
      * Generates the configuration tree.
-     * 
+     *
      * @return TreeBuilder
      */
     public function getConfigTreeBuilder()
@@ -49,7 +49,7 @@ class Configuration implements ConfigurationInterface
 
     /**
      * Adds `classes` section.
-     * 
+     *
      * @param ArrayNodeDefinition $node
      */
     private function addClassesSection(ArrayNodeDefinition $node)
@@ -72,13 +72,13 @@ class Configuration implements ConfigurationInterface
                                 ->arrayNode('backend')
                                     ->addDefaultsIfNotSet()
                                     ->children()
-                                        ->scalarNode('product')->defaultValue('Sylius\Bundle\\AssortmentBundle\\Controller\Backend\\ProductController')->end()
+                                        ->scalarNode('product')->defaultValue('Sylius\\Bundle\\AssortmentBundle\\Controller\Backend\\ProductController')->end()
                                     ->end()
                                 ->end()
                                 ->arrayNode('frontend')
                                     ->addDefaultsIfNotSet()
                                     ->children()
-                                        ->scalarNode('product')->defaultValue('Sylius\Bundle\\AssortmentBundle\\Controller\Frontend\\ProductController')->end()
+                                        ->scalarNode('product')->defaultValue('Sylius\\Bundle\\AssortmentBundle\\Controller\Frontend\\ProductController')->end()
                                     ->end()
                                 ->end()
                             ->end()
@@ -89,7 +89,7 @@ class Configuration implements ConfigurationInterface
                                 ->arrayNode('type')
                                     ->addDefaultsIfNotSet()
                                     ->children()
-                                        ->scalarNode('product')->defaultValue('Sylius\Bundle\\AssortmentBundle\\Form\\Type\\ProductFormType')->end()
+                                        ->scalarNode('product')->defaultValue('Sylius\\Bundle\\AssortmentBundle\\Form\\Type\\ProductFormType')->end()
                                     ->end()
                                 ->end()
                             ->end()
@@ -103,11 +103,12 @@ class Configuration implements ConfigurationInterface
                         ->arrayNode('inflector')
                             ->addDefaultsIfNotSet()
                             ->children()
-                                ->scalarNode('slugizer')->defaultValue('Sylius\Bundle\\AssortmentBundle\\Inflector\\Slugizer')->end()
+                                ->scalarNode('slugizer')->defaultValue('Sylius\\Bundle\\AssortmentBundle\\Inflector\\Slugizer')->end()
                             ->end()
                         ->end()
                     ->end()
                 ->end()
-            ->end();
+            ->end()
+        ;
     }
 }
