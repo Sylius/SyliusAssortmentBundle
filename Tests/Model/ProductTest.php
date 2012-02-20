@@ -38,15 +38,8 @@ class ProductTest extends \PHPUnit_Framework_TestCase
         $product = $this->getProduct();
         $this->assertNull($product->getDescription());
 
-        $product->setDescription('testing product...');
-        $this->assertEquals('testing product...', $product->getDescription());
-    }
-
-    public function testIncrementCreatedAt()
-    {
-        $product = $this->getProduct();
-        $product->incrementCreatedAt();
-        $this->assertEquals($product->getCreatedAt(), new \DateTime);
+        $product->setDescription('testing product');
+        $this->assertEquals('testing product', $product->getDescription());
     }
 
     protected function getProduct()

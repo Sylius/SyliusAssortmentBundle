@@ -15,14 +15,23 @@ use Sylius\Bundle\AssortmentBundle\Inflector\Slugizer;
 
 class SlugizerTest extends \PHPUnit_Framework_TestCase
 {
-    public function testSlugize()
+    /**
+     * @dataProvider getStringsAndExpectedSlugs
+     */
+    public function testSlugize($expectedSlug, $string)
     {
         $slugizer = new Slugizer();
-        $string = '#example String!!!,,,...';
-        $slugizedString = 'example-string';
-        $this->assertEquals($slugizer->slugize($string), $slugizedString);
-        $string = 'example string          test';
-        $slugizedString = 'example-string-test';
-        $this->assertEquals($slugizer->slugize($string), $slugizedString);
+        $this->assertEquals($expectedSlug, $slugizer->slugize($string));
+    }
+
+    public function getStringsAndExpectedSlugs()
+    {
+        return array(
+            array('foo-bar', 'foo bar'),
+            array('foo-bar', 'FOO bAr'),
+            array('foo-bar', 'foo    bar'),
+            array('foo-bar', '   foo bar   '),
+            array('foo-bar', '@!$#@foo @#$bar@!$@#')
+        );
     }
 }

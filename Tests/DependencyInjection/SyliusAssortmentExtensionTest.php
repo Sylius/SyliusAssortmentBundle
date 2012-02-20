@@ -22,48 +22,46 @@ class SyliusAssortmentExtensionTest extends \PHPUnit_Framework_TestCase
      */
     public function testUserLoadThrowsExceptionUnlessDriverSet()
     {
-        $loader = new SyliusAssortmentExtension();
+        $extension = new SyliusAssortmentExtension();
         $config = $this->getEmptyConfig();
         unset($config['driver']);
-        $loader->load(array($config), new ContainerBuilder());
+        $extension->load(array($config), new ContainerBuilder());
     }
 
     /**
     * @expectedException \InvalidArgumentException
     */
-    public function testUserLoadThrowsExceptionUnlessDriverIsValid()
+    public function testLoadThrowsExceptionUnlessDriverIsValid()
     {
-        $loader = new SyliusAssortmentExtension();
+        $extension = new SyliusAssortmentExtension();
         $config = $this->getEmptyConfig();
         $config['driver'] = 'foo';
-        $loader->load(array($config), new ContainerBuilder());
+        $extension->load(array($config), new ContainerBuilder());
     }
 
     /**
     * @expectedException \InvalidArgumentException
     */
-    public function testUserLoadThrowsExceptionUnlessEngineIsValid()
+    public function testLoadThrowsExceptionUnlessEngineIsValid()
     {
-        $loader = new SyliusAssortmentExtension();
+        $extension = new SyliusAssortmentExtension();
         $config = $this->getEmptyConfig();
         $config['engine'] = 'foo';
-        $loader->load(array($config), new ContainerBuilder());
+        $extension->load(array($config), new ContainerBuilder());
     }
 
     /**
     * @expectedException \Symfony\Component\Config\Definition\Exception\InvalidConfigurationException
     */
-    public function testUserLoadThrowsExceptionUnlessProductModelClassSet()
+    public function testLoadThrowsExceptionUnlessProductModelClassSet()
     {
-        $loader = new SyliusAssortmentExtension();
+        $extension = new SyliusAssortmentExtension();
         $config = $this->getEmptyConfig();
         unset($config['classes']['model']['product']);
-        $loader->load(array($config), new ContainerBuilder());
+        $extension->load(array($config), new ContainerBuilder());
     }
 
     /**
-     * getEmptyConfig
-     *
      * @return array
      */
     protected function getEmptyConfig()
@@ -74,6 +72,7 @@ classes:
     model:
         product: Sylius\Bundle\AssortmentBundle\Entity\DefaultProduct
 EOF;
+
         $parser = new Parser();
 
         return $parser->parse($yaml);
