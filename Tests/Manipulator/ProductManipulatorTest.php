@@ -139,7 +139,7 @@ class ProductManipulatorTest extends \PHPUnit_Framework_TestCase
 
     private function getMockProductManager()
     {
-        $productManager =$this->getMockBuilder('Sylius\Bundle\AssortmentBundle\Model\ProductManagerInterface')
+        $productManager = $this->getMockBuilder('Sylius\Bundle\AssortmentBundle\Model\ProductManagerInterface')
             ->disableOriginalConstructor()
             ->getMock()
         ;

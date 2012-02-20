@@ -13,9 +13,9 @@ namespace Sylius\Bundle\AssortmentBundle\Form\DataTransformer;
 
 use Sylius\Bundle\AssortmentBundle\Model\ProductInterface;
 use Sylius\Bundle\AssortmentBundle\Model\ProductManagerInterface;
+use Symfony\Component\Form\DataTransformerInterface;
 use Symfony\Component\Form\Exception\TransformationFailedException;
 use Symfony\Component\Form\Exception\UnexpectedTypeException;
-use Symfony\Component\Form\DataTransformerInterface;
 
 /**
  * Product to id transformer.
@@ -32,8 +32,6 @@ class ProductToIdTransformer implements DataTransformerInterface
     protected $productManager;
 
     /**
-     * Constructor.
-     *
      * @param ProductManagerInterface $productManager
      */
     public function __construct(ProductManagerInterface $productManager)
@@ -41,12 +39,9 @@ class ProductToIdTransformer implements DataTransformerInterface
         $this->productManager = $productManager;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function transform($value)
     {
-        if (null == $value) {
+        if (null === $value) {
             return null;
         }
 
@@ -57,12 +52,9 @@ class ProductToIdTransformer implements DataTransformerInterface
         return $value->getId();
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function reverseTransform($value)
     {
-        if ($value == null || $value == '') {
+        if (null === $value || '' === $value) {
             return null;
         }
 
@@ -70,9 +62,7 @@ class ProductToIdTransformer implements DataTransformerInterface
             throw new UnexpectedTypeException($value, 'numeric');
         }
 
-        $product = $this->productManager->findProduct($value);
-
-        if (!$product) {
+        if (!$product = $this->productManager->findProduct($value)) {
             throw new TransformationFailedException('Product with given id does not exist.');
         }
 
