@@ -15,10 +15,10 @@ use Sylius\Bundle\AssortmentBundle\EventDispatcher\Event\FilterProductEvent;
 use Sylius\Bundle\AssortmentBundle\EventDispatcher\SyliusAssortmentEvents;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputArgument;
-use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\Output;
+use Symfony\Component\Console\Output\OutputInterface;
 
 /**
  * Command for console that deletes product.
@@ -28,7 +28,7 @@ use Symfony\Component\Console\Output\Output;
 class DeleteProductCommand extends ContainerAwareCommand
 {
     /**
-     * @see Symfony\Component\Console\Command.Command::configure()
+     * {@inheritdoc}
      */
     protected function configure()
     {
@@ -43,11 +43,12 @@ The <info>sylius:assortment:product:delete</info> command deletes a product.
 
     <info>php sylius/console sylius:assortment:product:delete 24</info>
 EOT
-            );
+            )
+        ;
     }
 
     /**
-     * @see Symfony\Component\Console\Command.Command::execute()
+     * {@inheritdoc}
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
@@ -64,7 +65,7 @@ EOT
     }
 
     /**
-     * @see Symfony\Component\Console\Command.Command::interact()
+     * {@inheritdoc}
      */
     protected function interact(InputInterface $input, OutputInterface $output)
     {
