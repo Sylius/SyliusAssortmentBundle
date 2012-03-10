@@ -33,7 +33,7 @@ class SyliusAssortmentExtension extends Extension
 
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config/container'));
 
-        if (!in_array($config['driver'], array('ORM'))) {
+        if (!in_array($config['driver'], array('doctrine/orm'))) {
             throw new \InvalidArgumentException(sprintf('Driver "%s" is unsupported for this extension.', $config['driver']));
         }
 
