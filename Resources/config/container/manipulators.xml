@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 
 <!--
 
@@ -12,14 +12,16 @@
 -->
 
 <container xmlns="http://symfony.com/schema/dic/services"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services
+                               http://symfony.com/schema/dic/services/services-1.0.xsd"
+>
 
     <services>
-      <service id="sylius_assortment.manipulator.product" class="%sylius_assortment.manipulator.product.class%">
-        <argument type="service" id="sylius_assortment.manager.product" />
-        <argument type="service" id="sylius_assortment.inflector.slugizer" />
-      </service>
+        <service id="sylius_assortment.manipulator.product" class="%sylius_assortment.manipulator.product.class%">
+            <argument type="service" id="sylius_assortment.manager.product" />
+            <argument type="service" id="sylius_assortment.inflector.slugizer" />
+        </service>
     </services>
 
 </container>
