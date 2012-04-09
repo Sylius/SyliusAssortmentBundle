@@ -13,6 +13,11 @@ namespace Sylius\Bundle\AssortmentBundle\Tests\Entity;
 
 use Sylius\Bundle\AssortmentBundle\Entity\ProductManager;
 
+/**
+ * Product manager test.
+ *
+ * @author Paweł Jędrzejewski <pjedrzejewski@diweb.pl>
+ */
 class ProductManagerTest extends \PHPUnit_Framework_TestCase
 {
     public function testPersistProduct()
@@ -28,7 +33,7 @@ class ProductManagerTest extends \PHPUnit_Framework_TestCase
             ->method('flush')
         ;
 
-        $productManager = new ProductManager($entityManager, 'Foo\Bar');
+        $productManager = new ProductManager($entityManager, 'Foo\\Bar');
         $productManager->persistProduct($product);
     }
 
@@ -45,7 +50,7 @@ class ProductManagerTest extends \PHPUnit_Framework_TestCase
             ->method('flush')
         ;
 
-        $productManager = new ProductManager($entityManager, 'Foo\Bar');
+        $productManager = new ProductManager($entityManager, 'Foo\\Bar');
         $productManager->removeProduct($product);
     }
 
@@ -58,12 +63,7 @@ class ProductManagerTest extends \PHPUnit_Framework_TestCase
     {
         $entityManager = $this->getMockBuilder('Doctrine\ORM\EntityManager')
             ->disableOriginalConstructor()
-            ->setMethods(array('persist', 'remove', 'flush', 'getRepository'))
             ->getMock()
-        ;
-        $entityManager->expects($this->any())
-            ->method('getRepository')
-            ->will($this->returnValue(null))
         ;
 
         return $entityManager;

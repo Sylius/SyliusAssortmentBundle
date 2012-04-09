@@ -13,6 +13,11 @@ namespace Sylius\Bundle\AssortmentBundle\Tests\Manipulator;
 
 use Sylius\Bundle\AssortmentBundle\Manipulator\ProductManipulator;
 
+/**
+ * Product manipulator test.
+ *
+ * @author Paweł Jędrzejewski <pjedrzejewski@diweb.pl>
+ */
 class ProductManipulatorTest extends \PHPUnit_Framework_TestCase
 {
     public function testCreateSetsProductSlug()
@@ -142,10 +147,6 @@ class ProductManipulatorTest extends \PHPUnit_Framework_TestCase
         $productManager = $this->getMockBuilder('Sylius\Bundle\AssortmentBundle\Model\ProductManagerInterface')
             ->disableOriginalConstructor()
             ->getMock()
-        ;
-        $productManager->expects($this->any())
-            ->method('persistProduct')
-            ->will($this->returnValue(null))
         ;
 
         return $productManager;

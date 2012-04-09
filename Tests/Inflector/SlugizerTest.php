@@ -13,6 +13,11 @@ namespace Sylius\Bundle\AssortmentBundle\Tests\Inflector;
 
 use Sylius\Bundle\AssortmentBundle\Inflector\Slugizer;
 
+/**
+ * Slugizer test.
+ *
+ * @author Paweł Jędrzejewski <pjedrzejewski@diweb.pl>
+ */
 class SlugizerTest extends \PHPUnit_Framework_TestCase
 {
     /**

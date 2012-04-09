@@ -11,10 +11,15 @@
 
 namespace Sylius\Bundle\AssortmentBundle\Tests\DependencyInjection;
 
-use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Sylius\Bundle\AssortmentBundle\DependencyInjection\SyliusAssortmentExtension;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Yaml\Parser;
 
+/**
+ * Dependency injection test.
+ *
+ * @author Paweł Jędrzejewski <pjedrzejewski@diweb.pl>
+ */
 class SyliusAssortmentExtensionTest extends \PHPUnit_Framework_TestCase
 {
     /**
@@ -29,8 +34,8 @@ class SyliusAssortmentExtensionTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-    * @expectedException \InvalidArgumentException
-    */
+     * @expectedException \InvalidArgumentException
+     */
     public function testLoadThrowsExceptionUnlessDriverIsValid()
     {
         $extension = new SyliusAssortmentExtension();
@@ -40,8 +45,8 @@ class SyliusAssortmentExtensionTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-    * @expectedException \InvalidArgumentException
-    */
+     * @expectedException \InvalidArgumentException
+     */
     public function testLoadThrowsExceptionUnlessEngineIsValid()
     {
         $extension = new SyliusAssortmentExtension();
@@ -51,8 +56,8 @@ class SyliusAssortmentExtensionTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-    * @expectedException \Symfony\Component\Config\Definition\Exception\InvalidConfigurationException
-    */
+     * @expectedException \Symfony\Component\Config\Definition\Exception\InvalidConfigurationException
+     */
     public function testLoadThrowsExceptionUnlessProductModelClassSet()
     {
         $extension = new SyliusAssortmentExtension();
@@ -62,11 +67,14 @@ class SyliusAssortmentExtensionTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * Get empty config for testing.
+     *
      * @return array
      */
     protected function getEmptyConfig()
     {
-        $yaml = <<<EOF
+        $yaml =
+<<<EOF
 driver: ORM
 classes:
     model:

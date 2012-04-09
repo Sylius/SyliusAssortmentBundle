@@ -13,6 +13,11 @@ namespace Sylius\Bundle\AssortmentBundle\Tests\EventDispatcher\Event;
 
 use Sylius\Bundle\AssortmentBundle\EventDispatcher\Event\FilterProductEvent;
 
+/**
+ * Filter product event test.
+ *
+ * @author Paweł Jędrzejewski <pjedrzejewski@diweb.pl>
+ */
 class FilterProductEventTest extends \PHPUnit_Framework_TestCase
 {
     public function testConstructor()

@@ -13,6 +13,11 @@ namespace Sylius\Bundle\AssortmentBundle\Tests\Form\DataTransformer;
 
 use Sylius\Bundle\AssortmentBundle\Form\DataTransformer\ProductToIdTransformer;
 
+/**
+ * Product to id transformer test.
+ *
+ * @author Paweł Jędrzejewski <pjedrzejewski@diweb.pl>
+ */
 class ProductToIdTransformerTest extends \PHPUnit_Framework_TestCase
 {
     public function testTransformReturnsNullWhenNullGiven()

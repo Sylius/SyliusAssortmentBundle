@@ -13,6 +13,11 @@ namespace Sylius\Bundle\AssortmentBundle\Tests\Model;
 
 use Sylius\Bundle\AssortmentBundle\Model\Product;
 
+/**
+ * Product model test.
+ *
+ * @author Paweł Jędrzejewski <pjedrzejewski@diweb.pl>
+ */
 class ProductTest extends \PHPUnit_Framework_TestCase
 {
     public function testName()
