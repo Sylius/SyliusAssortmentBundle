@@ -13,6 +13,8 @@ namespace Sylius\Bundle\AssortmentBundle\Controller\Frontend;
 
 use Symfony\Component\DependencyInjection\ContainerAware;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
@@ -29,34 +31,40 @@ class ProductController extends ContainerAware
      *
      * @param integer $id   The product id
      * @param string  $slug The product slug
+     *
+     * @return Response
      */
     public function showAction($id, $slug)
     {
         $product = $this->container->get('sylius_assortment.manager.product')->findProductBy(array('id' => $id, 'slug' => $slug));
 
         if (!$product) {
-            throw new NotFoundHttpException('Requested product does not exist.');
+            throw new NotFoundHttpException('Requested product does not exist');
         }
 
-        return $this->container->get('templating')->renderResponse('SyliusAssortmentBundle:Frontend/Product:show.html.' . $this->getEngine(), array(
+        return $this->container->get('templating')->renderResponse('SyliusAssortmentBundle:Frontend/Product:show.html.'.$this->getEngine(), array(
             'product' => $product
         ));
     }
 
     /**
      * Lists paginated products.
+     *
+     * @param Request $request
+     *
+     * @return Response
      */
-    public function listAction()
+    public function listAction(Request $request)
     {
         $productManager = $this->container->get('sylius_assortment.manager.product');
         $productSorter = $this->container->get('sylius_assortment.sorter.product');
 
         $paginator = $productManager->createPaginator($productSorter);
-        $paginator->setCurrentPage($this->container->get('request')->query->get('page', 1), true, true);
+        $paginator->setCurrentPage($request->query->get('page', 1), true, true);
 
         $products = $paginator->getCurrentPageResults();
 
-        return $this->container->get('templating')->renderResponse('SyliusAssortmentBundle:Frontend/Product:list.html.' . $this->getEngine(), array(
+        return $this->container->get('templating')->renderResponse('SyliusAssortmentBundle:Frontend/Product:list.html.'.$this->getEngine(), array(
             'products'  => $products,
             'paginator' => $paginator
         ));
