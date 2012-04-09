@@ -11,9 +11,9 @@
 
 namespace Sylius\Bundle\AssortmentBundle\Sorting\ORM;
 
-use Symfony\Component\DependencyInjection\ContainerAware;
 use Doctrine\ORM\QueryBuilder;
 use Sylius\Bundle\AssortmentBundle\Sorting\SorterInterface;
+use Symfony\Component\DependencyInjection\ContainerAware;
 
 /**
  * Default ORM sorter.
@@ -23,6 +23,9 @@ use Sylius\Bundle\AssortmentBundle\Sorting\SorterInterface;
  */
 class ProductSorter extends ContainerAware implements SorterInterface
 {
+    /**
+     * {@inheritdoc}
+     */
     public function sort($sortable)
     {
         if (!$sortable instanceof QueryBuilder) {
@@ -55,6 +58,9 @@ class ProductSorter extends ContainerAware implements SorterInterface
         $sortable->orderBy('p.' . $sortProperty, $sortOrder);
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getOrder()
     {
         $sortOrder = $this->container->get('request')->query->get('order', 'ASC');

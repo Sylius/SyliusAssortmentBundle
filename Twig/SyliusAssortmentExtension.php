@@ -11,8 +11,8 @@
 
 namespace Sylius\Bundle\AssortmentBundle\Twig;
 
-use Twig_Function_Method;
 use Twig_Extension;
+use Twig_Function_Method;
 
 /**
  * Assortment extension for twig templating engine.
@@ -22,18 +22,16 @@ use Twig_Extension;
 class SyliusAssortmentExtension extends Twig_Extension
 {
     /**
-     * Returns a list of global functions to add to the existing list.
-     *
-     * @return array An array of global functions
+     * {@inheritdoc}
      */
     public function getFunctions()
     {
         return array(
-           'sylius_assortment_cut_text'         => new Twig_Function_Method($this, 'cutText', array('is_safe' => array('html'))),
+            'sylius_assortment_cut_text'         => new Twig_Function_Method($this, 'cutText', array('is_safe' => array('html'))),
         );
     }
 
-  /**
+   /**
      * Cuts the text.
      */
     public function cutText($text, $length = 100, $ending = '...', $exact = true, $considerHtml = false)
