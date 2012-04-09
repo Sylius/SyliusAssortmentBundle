@@ -28,11 +28,23 @@ class ProductType extends AbstractType
      */
     protected $dataClass;
 
+    /**
+     * Constructor.
+     *
+     * It's important to set the data class that was configured inside 'config.yml'.
+     * This will be done automatically when using this class, but if you would like to extend it,
+     * remember to pass '%sylius_assortment.model.product.class%' as an argument inside service definition.
+     *
+     * @param string $dataClass FQCN of the product model
+     */
     public function __construct($dataClass)
     {
         $this->dataClass = $dataClass;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function buildForm(FormBuilder $builder, array $options)
     {
         $builder
@@ -40,6 +52,9 @@ class ProductType extends AbstractType
             ->add('description', 'textarea');
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getDefaultOptions(array $options)
     {
         return array(
@@ -47,6 +62,9 @@ class ProductType extends AbstractType
         );
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getName()
     {
         return 'sylius_assortment_product';

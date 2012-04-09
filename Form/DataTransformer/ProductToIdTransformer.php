@@ -32,6 +32,8 @@ class ProductToIdTransformer implements DataTransformerInterface
     protected $productManager;
 
     /**
+     * Constructor.
+     *
      * @param ProductManagerInterface $productManager
      */
     public function __construct(ProductManagerInterface $productManager)
@@ -39,6 +41,9 @@ class ProductToIdTransformer implements DataTransformerInterface
         $this->productManager = $productManager;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function transform($value)
     {
         if (null === $value) {
@@ -52,6 +57,9 @@ class ProductToIdTransformer implements DataTransformerInterface
         return $value->getId();
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function reverseTransform($value)
     {
         if (null === $value || '' === $value) {
@@ -63,7 +71,7 @@ class ProductToIdTransformer implements DataTransformerInterface
         }
 
         if (!$product = $this->productManager->findProduct($value)) {
-            throw new TransformationFailedException('Product with given id does not exist.');
+            throw new TransformationFailedException('Product with given id does not exist');
         }
 
         return $product;
