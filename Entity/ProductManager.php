@@ -56,44 +56,19 @@ class ProductManager extends BaseProductManager
         $this->repository = $entityManager->getRepository($this->getClass());
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function createProduct()
     {
         $class = $this->getClass();
+
         return new $class;
     }
 
-    public function persistProduct(ProductInterface $product)
-    {
-        $this->entityManager->persist($product);
-        $this->entityManager->flush();
-    }
-
-    public function removeProduct(ProductInterface $product)
-    {
-        $this->entityManager->remove($product);
-        $this->entityManager->flush();
-    }
-
-    public function findProduct($id)
-    {
-        return $this->repository->find($id);
-    }
-
-    public function findProductBy(array $criteria)
-    {
-        return $this->repository->findOneBy($criteria);
-    }
-
-    public function findProducts()
-    {
-        return $this->repository->findAll();
-    }
-
-    public function findProductsBy(array $criteria)
-    {
-        return $this->repository->findBy($criteria);
-    }
-
+    /**
+     * {@inheritdoc}
+     */
     public function createPaginator(SorterInterface $sorter = null)
     {
         $queryBuilder = $this->entityManager->createQueryBuilder()
@@ -106,5 +81,55 @@ class ProductManager extends BaseProductManager
         }
 
         return new Pagerfanta(new DoctrineORMAdapter($queryBuilder->getQuery()));
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function persistProduct(ProductInterface $product)
+    {
+        $this->entityManager->persist($product);
+        $this->entityManager->flush();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function removeProduct(ProductInterface $product)
+    {
+        $this->entityManager->remove($product);
+        $this->entityManager->flush();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function findProduct($id)
+    {
+        return $this->repository->find($id);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function findProductBy(array $criteria)
+    {
+        return $this->repository->findOneBy($criteria);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function findProducts()
+    {
+        return $this->repository->findAll();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function findProductsBy(array $criteria)
+    {
+        return $this->repository->findBy($criteria);
     }
 }
