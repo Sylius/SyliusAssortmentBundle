@@ -11,8 +11,8 @@
 
 namespace Sylius\Bundle\AssortmentBundle\EventDispatcher\Event;
 
-use Symfony\Component\EventDispatcher\Event;
 use Sylius\Bundle\AssortmentBundle\Model\ProductInterface;
+use Symfony\Component\EventDispatcher\Event;
 
 /**
  * Filter product event.
@@ -28,11 +28,21 @@ class FilterProductEvent extends Event
      */
     private $product;
 
+    /**
+     * Constructor.
+     *
+     * @param ProductInterface $product
+     */
     public function __construct(ProductInterface $product)
     {
         $this->product = $product;
     }
 
+    /**
+     * Get product.
+     *
+     * @return ProductInterface
+     */
     public function getProduct()
     {
         return $this->product;
