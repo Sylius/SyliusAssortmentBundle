@@ -16,12 +16,11 @@ use Sylius\Bundle\AssortmentBundle\EventDispatcher\SyliusAssortmentEvents;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Input\InputOption;
-use Symfony\Component\Console\Output\Output;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
  * Command for console that deletes product.
+ * Takes product id as an argument.
  *
  * @author Paweł Jędrzejewski <pjedrzejewski@diweb.pl>
  */
@@ -38,7 +37,8 @@ class DeleteProductCommand extends ContainerAwareCommand
             ->setDefinition(array(
                 new InputArgument('id', InputArgument::REQUIRED, 'The product id'),
             ))
-            ->setHelp(<<<EOT
+            ->setHelp(
+<<<EOT
 The <info>sylius:assortment:product:delete</info> command deletes a product.
 
     <info>php sylius/console sylius:assortment:product:delete 24</info>
@@ -55,7 +55,7 @@ EOT
         $product = $this->getContainer()->get('sylius_assortment.manager.product')->findProduct($input->getArgument('id'));
 
         if (!$product) {
-            throw new \InvalidArgumentException(sprintf('The product with id "%s" does not exist.', $input->getArgument('id')));
+            throw new \InvalidArgumentException(sprintf('The product with id "%s" does not exist', $input->getArgument('id')));
         }
 
         $this->getContainer()->get('event_dispatcher')->dispatch(SyliusAssortmentEvents::PRODUCT_DELETE, new FilterProductEvent($product));
