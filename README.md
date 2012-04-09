@@ -1,35 +1,48 @@
-SyliusAssortmentBundle.
-=======================
+SyliusAssortmentBundle
+======================
 
-This bundle provides basic interfaces, forms, manipulators, event system and much more for product model.
-The product manager interface allows to implement any desired driver for data persistence.
-Please note that the **Doctrine ORM** is the only usable driver at the moment.
-Depdending on community contributions, more drivers should come.
+Products management system for Symfony2 applications. It is heavily inspired by concepts behind the awesome [Spree products and variants engine](http://guides.spreecommerce.com/products_and_variants.html).
 
-[![Build status...](https://secure.travis-ci.org/Sylius/SyliusAssortmentBundle.png)](http://travis-ci.org/Sylius/SyliusAssortmentBundle)
+**This bundle is compatible only with 2.1.x branch of Symfony2**.
 
-Sylius.
--------
+Features
+--------
 
-**Sylius** is simple but **end-user and developer friendly** webshop engine built on top of Symfony2. 
+### Implemented
+
+* Base support for many different persistence layers. Currently only Doctrine ORM driver is implemented.
+* Default controllers, events, manipulators and models for products.
+* It uses [Pagerfanta](http://github.com/whiteoctober/Pagerfanta) to paginate over the products.
+* Thanks to awesome [Symfony2](http://symfony.com) everything is configurable and extensible.
+* Unit tested. [![Build status...](https://secure.travis-ci.org/Sylius/SyliusSalesBundle.png)](http://travis-ci.org/Sylius/SyliusSalesBundle)
+
+### Planned or in progress
+
+* Variants/Options/Properties/Prototypes support, [read more](http://guides.spreecommerce.com/products_and_variants.html).
+* Doctrine MongoDB ODM driver.
+* Doctrine CouchDB ODM driver. `*`
+* Propel driver. `*`
+
+`*` - wishlist, would love to see a contribution.
+
+Sylius
+------
+
+**Sylius** is simple but **end-user and developer friendly** webshop engine built on top of Symfony2.
 
 Please visit [Sylius.org](http://sylius.org) for more details.
 
-Demo.
------
-
-There is a live demo of this bundle [on our official website](http://sylius.org/sandbox).
-
-Testing and build status.
--------------------------
+Testing and build status
+------------------------
 
 This bundle uses [travis-ci.org](http://travis-ci.org/Sylius/SyliusAssortmentBundle) for CI.
+[![Build status...](https://secure.travis-ci.org/Sylius/SyliusAssortmentBundle.png)](http://travis-ci.org/Sylius/SyliusAssortmentBundle)
 
 Before running tests, load the dependencies using [Composer](http://packagist.org).
 
 ``` bash
 $ wget http://getcomposer.org/composer.phar
-$ php composer.phar install
+$ php composer.phar install --install-suggests
 ```
 
 Now you can run the tests by simply using this command.
@@ -38,54 +51,49 @@ Now you can run the tests by simply using this command.
 $ phpunit
 ```
 
-Code examples.
---------------
+Code examples
+-------------
 
 If you want to see working implementation, try out the [Sylius sandbox application](http://github.com/Sylius/Sylius-Sandbox).
 It's open sourced github project.
 
-Documentation.
---------------
-
-Documentation is available on [Sylius.org](http://sylius.org/docs/bundles/SyliusAssortmentBundle.html).
-
-Contributing.
+Documentation
 -------------
 
-All informations about contributing to Sylius can be found on [this page](http://sylius.org/docs/contributing/index.html).
+Documentation is available on [readthedocs.org](http://sylius.readthedocs.org/en/latest/bundles/SyliusAssortmentBundle.html).
 
-Dependencies.
+Contributing
+------------
+
+All informations about contributing to Sylius can be found on [this page](http://sylius.readthedocs.org/en/latest/contributing/index.html).
+
+Mailing lists
 -------------
 
-This bundle uses the awesome [Pagerfanta library](https://github.com/whiteoctober/Pagerfanta) and [Pagerfanta bundle](https://github.com/whiteoctober/WhiteOctoberPagerfantaBundle).
-
-Mailing lists.
---------------
-
-### Users.
+### Users
 
 If you are using this bundle and have any questions, feel free to ask on users mailing list.
 [Mail](mailto:sylius@googlegroups.com) or [view it](http://groups.google.com/group/sylius).
 
-### Developers.
+### Developers
 
 If you want to contribute, and develop this bundle, use the developers mailing list.
 [Mail](mailto:sylius-dev@googlegroups.com) or [view it](http://groups.google.com/group/sylius-dev).
 
-Sylius twitter account.
------------------------
+Sylius twitter account
+----------------------
 
 If you want to keep up with updates, [follow the official Sylius account on twitter](http://twitter.com/_Sylius)
 or [follow me](http://twitter.com/pjedrzejewski).
 
-Bug tracking.
--------------
+Bug tracking
+------------
 
 This bundle uses [GitHub issues](https://github.com/Sylius/SyliusAssortmentBundle/issues).
 If you have found bug, please create an issue.
 
-Versioning.
------------
+Versioning
+----------
 
 Releases will be numbered with the format `major.minor.patch`.
 
@@ -99,13 +107,13 @@ For more information on SemVer, please visit [semver.org website](http://semver.
 
 This versioning method is same for all **Sylius** bundles and applications.
 
-License.
---------
+License
+-------
 
 License can be found [here](https://github.com/Sylius/SyliusAssortmentBundle/blob/master/Resources/meta/LICENSE).
 
-Authors.
---------
+Authors
+-------
 
-The bundle was originally created by [Paweł Jędrzejewski](http://diweb.pl).
+The bundle was originally created by [Paweł Jędrzejewski](http://pjedrzejewski.com).
 See the list of [contributors](https://github.com/Sylius/SyliusAssortmentBundle/contributors).
