@@ -24,6 +24,9 @@ use Symfony\Component\HttpKernel\DependencyInjection\Extension;
  */
 class SyliusAssortmentExtension extends Extension
 {
+    /**
+     * {@inheritdoc}
+     */
     public function load(array $config, ContainerBuilder $container)
     {
         $processor = new Processor();
@@ -34,11 +37,11 @@ class SyliusAssortmentExtension extends Extension
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config/container'));
 
         if (!in_array($config['driver'], array('doctrine/orm'))) {
-            throw new \InvalidArgumentException(sprintf('Driver "%s" is unsupported for this extension.', $config['driver']));
+            throw new \InvalidArgumentException(sprintf('Driver "%s" is unsupported for this extension', $config['driver']));
         }
 
         if (!in_array($config['engine'], array('php', 'twig'))) {
-            throw new \InvalidArgumentException(sprintf('Engine "%s" is unsupported for this extension.', $config['engine']));
+            throw new \InvalidArgumentException(sprintf('Engine "%s" is unsupported for this extension', $config['engine']));
         }
 
         $loader->load(sprintf('driver/%s.xml', $config['driver']));
@@ -59,9 +62,9 @@ class SyliusAssortmentExtension extends Extension
         }
 
         $this->remapParametersNamespaces($config['classes'], $container, array(
-            'model'       => 'sylius_assortment.model.%s.class',
             'inflector'   => 'sylius_assortment.inflector.%s.class',
-            'manipulator' => 'sylius_assortment.manipulator.%s.class'
+            'manipulator' => 'sylius_assortment.manipulator.%s.class',
+            'model'       => 'sylius_assortment.model.%s.class'
         ));
 
         $this->remapParametersNamespaces($config['classes']['controller'], $container, array(
