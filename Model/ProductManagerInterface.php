@@ -28,6 +28,13 @@ interface ProductManagerInterface
     function createProduct();
 
     /**
+     * Creates paginator.
+     *
+     * @param SorterInterface $sorter
+     */
+    function createPaginator(SorterInterface $sorter = null);
+
+    /**
      * Persists product.
      *
      * @param ProductInterface $product
@@ -45,6 +52,7 @@ interface ProductManagerInterface
      * Finds product by id.
      *
      * @param integer $id
+     *
      * @return ProductInterface
      */
     function findProduct($id);
@@ -53,6 +61,7 @@ interface ProductManagerInterface
      * Finds product by criteria.
      *
      * @param array $criteria
+     *
      * @return ProductInterface
      */
     function findProductBy(array $criteria);
@@ -68,6 +77,7 @@ interface ProductManagerInterface
      * Finds products by criteria.
      *
      * @param array $criteria
+     *
      * @return array
      */
     function findProductsBy(array $criteria);
@@ -78,9 +88,4 @@ interface ProductManagerInterface
      * @return string
      */
     function getClass();
-
-    /**
-     * Creates paginator.
-     */
-    function createPaginator(SorterInterface $sorter = null);
 }
