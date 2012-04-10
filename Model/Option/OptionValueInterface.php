@@ -33,25 +33,18 @@ interface OptionInterface
     function setId($id);
 
     /**
-     * Get internal name.
+     * Get internal value.
      *
      * @return string
      */
-    function getName();
+    function getValue();
 
     /**
-     * Set internal name.
+     * Set internal value.
      *
-     * @param string $name
+     * @param string $value
      */
-    function setName($name);
-
-    /**
-     * The name displayed to user.
-     *
-     * @return string
-     */
-    function getPresentation();
+    function setValue($value);
 
     /**
      * Get option.

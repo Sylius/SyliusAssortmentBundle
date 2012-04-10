@@ -26,19 +26,11 @@ class OptionValue implements OptionValueInterface
     protected $id;
 
     /**
-     * Internal name.
+     * Value.
      *
      * @var string
      */
-    protected $name;
-
-    /**
-     * Presentation.
-     * Displayed to user.
-     *
-     * @var string
-     */
-    protected $presentation;
+    protected $value;
 
     /**
      * Option.
@@ -80,33 +72,17 @@ class OptionValue implements OptionValueInterface
     /**
      * {@inheritdoc}
      */
-    public function getName()
+    public function getValue()
     {
-        return $this->name;
+        return $this->value;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function setName($name)
+    public function setValue($value)
     {
-        $this->name = $name;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getPresentation()
-    {
-        return $this->presentation;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setPresentation($presentation)
-    {
-        $this->presentation = $presentation;
+        $this->value = $value;
     }
 
     /**
