@@ -19,7 +19,7 @@ use Symfony\Component\Form\FormBuilder;
  *
  * @author Paweł Jędrzejewski <pjedrzejewski@diweb.pl>
  */
-class ProductType extends AbstractType
+class VariantType extends AbstractType
 {
     /**
      * Data class.
