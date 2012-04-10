@@ -98,6 +98,6 @@ abstract class CustomizableProduct extends Product implements CustomizableProduc
      */
     public function hasVariant(VariantInterface $variant)
     {
-        return in_array($variant, $variants);
+        return in_array($variant, $this->variants);
     }
 }
