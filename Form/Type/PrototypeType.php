@@ -45,8 +45,12 @@ class PrototypeType extends AbstractType
     {
         $builder
             ->add('name', 'text')
-            ->add('properties', 'sylius_assortment_property_choice')
-            ->add('options', 'sylius_assortment_option_choice')
+            ->add('properties', 'sylius_assortment_property_choice', array(
+                'multiple' => true
+            ))
+            ->add('options', 'sylius_assortment_option_choice', array(
+                'multiple' => true
+            ))
         ;
     }
 
