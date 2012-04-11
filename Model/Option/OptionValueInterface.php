@@ -16,7 +16,7 @@ namespace Sylius\Bundle\AssortmentBundle\Model\Option;
  *
  * @author Paweł Jędrzejewski <pjedrzejewski@diweb.pl>
  */
-interface OptionInterface
+interface OptionValueInterface
 {
     /**
      * Get option id.
