@@ -40,20 +40,6 @@ class OptionValue implements OptionValueInterface
     protected $option;
 
     /**
-     * Creation time.
-     *
-     * @var DateTime
-     */
-    protected $createdAt;
-
-    /**
-     * Last update time.
-     *
-     * @var DateTime
-     */
-    protected $updatedAt;
-
-    /**
      * {@inheritdoc}
      */
     public function getId()
