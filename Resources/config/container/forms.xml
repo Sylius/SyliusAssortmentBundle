@@ -55,8 +55,7 @@
             <tag name="form.type" alias="sylius_assortment_option_choice" />
         </service>
         <service id="sylius_assortment.form.choice_list.option" class="%sylius_assortment.form.choice_list.option.class%">
-            <argument choice_list="service" id="sylius_assortment.form.choice_list.option" />
-            <tag name="form.choice_list" alias="sylius_assortment_option" />
+            <argument type="service" id="sylius_assortment.manager.option" />
         </service>
 
         <!-- prototype... -->
@@ -79,8 +78,7 @@
             <tag name="form.type" alias="sylius_assortment_property_choice" />
         </service>
         <service id="sylius_assortment.form.choice_list.property" class="%sylius_assortment.form.choice_list.property.class%">
-            <argument choice_list="service" id="sylius_assortment.form.choice_list.property" />
-            <tag name="form.choice_list" alias="sylius_assortment_property" />
+            <argument type="service" id="sylius_assortment.manager.property" />
         </service>
     </services>
 

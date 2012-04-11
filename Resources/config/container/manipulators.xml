@@ -22,6 +22,15 @@
             <argument type="service" id="sylius_assortment.manager.product" />
             <argument type="service" id="sylius_assortment.inflector.slugizer" />
         </service>
+        <service id="sylius_assortment.manipulator.option" class="%sylius_assortment.manipulator.option.class%">
+            <argument type="service" id="sylius_assortment.manager.option" />
+        </service>
+        <service id="sylius_assortment.manipulator.property" class="%sylius_assortment.manipulator.property.class%">
+            <argument type="service" id="sylius_assortment.manager.property" />
+        </service>
+        <service id="sylius_assortment.manipulator.prototype" class="%sylius_assortment.manipulator.prototype.class%">
+            <argument type="service" id="sylius_assortment.manager.prototype" />
+        </service>
     </services>
 
 </container>
