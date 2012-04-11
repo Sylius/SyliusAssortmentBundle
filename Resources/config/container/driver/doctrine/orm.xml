@@ -20,6 +20,10 @@
     <parameters>
         <parameter key="sylius_assortment.manager.product.class">Sylius\Bundle\AssortmentBundle\Entity\ProductManager</parameter>
         <parameter key="sylius_assortment.sorter.product.class">Sylius\Bundle\AssortmentBundle\Sorting\ORM\ProductSorter</parameter>
+
+        <parameter key="sylius_assortment.manager.option.class">Sylius\Bundle\AssortmentBundle\Entity\Option\OptionManager</parameter>
+        <parameter key="sylius_assortment.manager.property.class">Sylius\Bundle\AssortmentBundle\Entity\Property\PropertyManager</parameter>
+        <parameter key="sylius_assortment.manager.prototype.class">Sylius\Bundle\AssortmentBundle\Entity\Prototype\PrototypeManager</parameter>
     </parameters>
 
     <services>
@@ -31,6 +35,21 @@
             <call method="setContainer">
                 <argument type="service" id="service_container" />
             </call>
+        </service>
+
+        <service id="sylius_assortment.manager.option" class="%sylius_assortment.manager.option.class%">
+            <argument type="service" id="doctrine.orm.default_entity_manager" />
+            <argument>%sylius_assortment.model.option.class%</argument>
+        </service>
+
+        <service id="sylius_assortment.manager.property" class="%sylius_assortment.manager.property.class%">
+            <argument type="service" id="doctrine.orm.default_entity_manager" />
+            <argument>%sylius_assortment.model.property.class%</argument>
+        </service>
+
+        <service id="sylius_assortment.manager.prototype" class="%sylius_assortment.manager.prototype.class%">
+            <argument type="service" id="doctrine.orm.default_entity_manager" />
+            <argument>%sylius_assortment.model.prototype.class%</argument>
         </service>
     </services>
 
