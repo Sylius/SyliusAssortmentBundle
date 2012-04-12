@@ -65,35 +65,35 @@ interface OptionInterface
      *
      * @return array An array or collection of OptionValueInterface
      */
-    function getOptionValues();
+    function getValues();
 
     /**
      * Sets all option values.
      *
      * @param array $optionValues An array or collection of OptionValueInterface
      */
-    function setOptionValues($optionValues);
+    function setValues($optionValues);
 
     /**
      * Counts all option values.
      *
      * @return integer
      */
-    function countOptionValues();
+    function countValues();
 
     /**
      * Adds option value.
      *
      * @param OptionValueInterface $optionValue
      */
-    function addOptionValue(OptionValueInterface $optionValue);
+    function addValue(OptionValueInterface $optionValue);
 
     /**
      * Removes option value.
      *
      * @param OptionValueInterface $optionValue
      */
-    function removeOptionValue(OptionValueInterface $optionValue);
+    function removeValue(OptionValueInterface $optionValue);
 
     /**
      * Checks whether option has given value.
@@ -102,7 +102,7 @@ interface OptionInterface
      *
      * @return Boolean
      */
-    function hasOptionValue(OptionValueInterface $optionValue);
+    function hasValue(OptionValueInterface $optionValue);
 
     /**
      * Get creation time.

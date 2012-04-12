@@ -112,54 +112,54 @@ class Option implements OptionInterface
     /**
      * {@inheritdoc}
      */
-    public function getOptionValues()
+    public function getValues()
     {
-        return $this->optionValues;
+        return $this->values;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function setOptionValues($optionValues)
+    public function setValues($values)
     {
-        $this->optionValues = $optionValues;
+        $this->values = $values;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function countOptionValues()
+    public function countValues()
     {
-        return count($this->optionValues);
+        return count($this->values);
     }
 
     /**
      * {@inheritdoc}
      */
-    public function addOptionValue(OptionValueInterface $optionValue)
+    public function addValue(OptionValueInterface $value)
     {
-        if (!$this->hasOptionValue($optionValue)) {
-            $this->optionValues[] = $optionValue;
+        if (!$this->hasOptionValue($value)) {
+            $this->values[] = $value;
         }
     }
 
     /**
      * {@inheritdoc}
      */
-    public function removeOptionValue(OptionValueInterface $optionValue)
+    public function removeValue(OptionValueInterface $value)
     {
-        if ($this->hasOptionValue($optionValue)) {
-            $key = array_search($optionValue, $this->optionValues);
-            unset($this->optionValues[$key]);
+        if ($this->hasOptionValue($value)) {
+            $key = array_search($value, $this->values);
+            unset($this->values[$key]);
         }
     }
 
     /**
      * {@inheritdoc}
      */
-    public function hasOptionValue(OptionValueInterface $optionValue)
+    public function hasValue(OptionValueInterface $value)
     {
-        return in_array($optionValue, $this->optionValues);
+        return in_array($value, $this->values);
     }
 
     /**

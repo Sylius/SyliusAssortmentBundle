@@ -27,16 +27,16 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 class OptionController extends ContainerAware
 {
     /**
-     * Lists all properties.
+     * Lists all options.
      *
      * @return Reponse
      */
     public function listAction(Request $request)
     {
-        $properties = $this->container->get('sylius_assortment.manager.option')->findProperties();
+        $options = $this->container->get('sylius_assortment.manager.option')->findOptions();
 
         return $this->container->get('templating')->renderResponse('SyliusAssortmentBundle:Backend/Option:list.html.'.$this->getEngine(), array(
-            'properties'  => $properties
+            'options'  => $options
         ));
     }
 
