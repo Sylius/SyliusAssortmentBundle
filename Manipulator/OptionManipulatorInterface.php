@@ -11,7 +11,7 @@
 
 namespace Sylius\Bundle\AssortmentBundle\Manipulator;
 
-use Sylius\Bundle\AssortmentBundle\Model\OptionInterface;
+use Sylius\Bundle\AssortmentBundle\Model\Option\OptionInterface;
 
 /**
  * Option manipulator interface.

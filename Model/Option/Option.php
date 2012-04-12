@@ -62,6 +62,14 @@ class Option implements OptionInterface
     protected $updatedAt;
 
     /**
+     * Constructor.
+     */
+    public function __construct()
+    {
+        $this->values = array();
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function getId()
@@ -138,7 +146,7 @@ class Option implements OptionInterface
      */
     public function addValue(OptionValueInterface $value)
     {
-        if (!$this->hasOptionValue($value)) {
+        if (!$this->hasValue($value)) {
             $this->values[] = $value;
         }
     }
@@ -148,7 +156,7 @@ class Option implements OptionInterface
      */
     public function removeValue(OptionValueInterface $value)
     {
-        if ($this->hasOptionValue($value)) {
+        if ($this->hasValue($value)) {
             $key = array_search($value, $this->values);
             unset($this->values[$key]);
         }
