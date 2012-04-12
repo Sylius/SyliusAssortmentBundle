@@ -61,9 +61,7 @@ class PrototypeController extends ContainerAware
                 $this->container->get('event_dispatcher')->dispatch(SyliusAssortmentEvents::PROTOTYPE_CREATE, new FilterPrototypeEvent($prototype));
                 $this->container->get('sylius_assortment.manipulator.prototype')->create($prototype);
 
-                return new RedirectResponse($this->container->get('router')->generate('sylius_assortment_backend_prototype_show', array(
-                    'id' => $prototype->getId()
-                )));
+                return $this->redirectToPrototypeList();
             }
         }
 
@@ -94,9 +92,7 @@ class PrototypeController extends ContainerAware
                 $this->container->get('event_dispatcher')->dispatch(SyliusAssortmentEvents::PROTOTYPE_UPDATE, new FilterPrototypeEvent($prototype));
                 $this->container->get('sylius_assortment.manipulator.prototype')->update($prototype);
 
-                return new RedirectResponse($this->container->get('router')->generate('sylius_assortment_backend_prototype_show', array(
-                    'id' => $prototype->getId()
-                )));
+                return $this->redirectToPrototypeList();
             }
         }
 
@@ -120,7 +116,7 @@ class PrototypeController extends ContainerAware
         $this->container->get('event_dispatcher')->dispatch(SyliusAssortmentEvents::PROTOTYPE_DELETE, new FilterPrototypeEvent($prototype));
         $this->container->get('sylius_assortment.manipulator.prototype')->delete($prototype);
 
-        return new RedirectResponse($this->container->get('request')->headers->get('referer'));
+        return $this->redirectToPrototypeList();
     }
 
     /**
@@ -140,6 +136,16 @@ class PrototypeController extends ContainerAware
         }
 
         return $prototype;
+    }
+
+    /**
+     * Redirects to prototypes list.
+     *
+     * @return RedirectResponse
+     */
+    protected function redirectToPrototypeList()
+    {
+        return new RedirectResponse($this->container->get('router')->generate('sylius_assortment_backend_prototype_list'));
     }
 
     /**

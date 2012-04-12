@@ -11,7 +11,7 @@
 
 namespace Sylius\Bundle\AssortmentBundle\Manipulator;
 
-use Sylius\Bundle\AssortmentBundle\Model\PrototypeInterface;
+use Sylius\Bundle\AssortmentBundle\Model\Prototype\PrototypeInterface;
 
 /**
  * Prototype manipulator interface.

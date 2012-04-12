@@ -11,6 +11,9 @@
 
 namespace Sylius\Bundle\AssortmentBundle\Model\Prototype;
 
+use Sylius\Bundle\AssortmentBundle\Model\Property\PropertyInterface;
+use Sylius\Bundle\AssortmentBundle\Model\Option\OptionInterface;
+
 /**
  * Default prototype implementation.
  *
@@ -19,11 +22,11 @@ namespace Sylius\Bundle\AssortmentBundle\Model\Prototype;
 class Prototype implements PrototypeInterface
 {
     /**
-     * Product properties.
+     * Id.
      *
-     * @var array
+     * @var mixed
      */
-    protected $properties;
+    protected $id;
 
     /**
      * Name.
@@ -31,6 +34,20 @@ class Prototype implements PrototypeInterface
      * @var string
      */
     protected $name;
+
+    /**
+     * Product properties.
+     *
+     * @var array
+     */
+    protected $properties;
+
+    /**
+     * Product options.
+     *
+     * @var array
+     */
+    protected $options;
 
     /**
      * Creation time.
@@ -47,11 +64,12 @@ class Prototype implements PrototypeInterface
     protected $updatedAt;
 
     /**
-     * {@inheritdoc}
+     * Constructor.
      */
-    public function getProperties()
+    public function __construct()
     {
-        return $properties;
+        $this->properties = array();
+        $this->options = array();
     }
 
     /**
@@ -84,6 +102,14 @@ class Prototype implements PrototypeInterface
     public function setName($name)
     {
         $this->name = $name;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getProperties()
+    {
+        return $properties;
     }
 
     /**
@@ -129,6 +155,59 @@ class Prototype implements PrototypeInterface
     public function hasProperty(PropertyInterface $property)
     {
         return in_array($property, $this->properties);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getOptions()
+    {
+        return $options;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setOptions($options)
+    {
+        $this->options = $options;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function countOptions()
+    {
+        return count($this->options);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function addOption(OptionInterface $option)
+    {
+        if (!$this->hasOption($option)) {
+            $this->options[] = $option;
+        }
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function removeOption(OptionInterface $option)
+    {
+        if ($this->hasOption($option)) {
+            $key = array_search($option, $this->options);
+            unset($options[$key]);
+        }
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function hasOption(OptionInterface $option)
+    {
+        return in_array($option, $this->options);
     }
 
     /**
