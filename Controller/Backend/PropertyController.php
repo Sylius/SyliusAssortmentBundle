@@ -61,9 +61,7 @@ class PropertyController extends ContainerAware
                 $this->container->get('event_dispatcher')->dispatch(SyliusAssortmentEvents::PROPERTY_CREATE, new FilterPropertyEvent($property));
                 $this->container->get('sylius_assortment.manipulator.property')->create($property);
 
-                return new RedirectResponse($this->container->get('router')->generate('sylius_assortment_backend_property_show', array(
-                    'id' => $property->getId()
-                )));
+                return $this->redirectoToPropertyList();
             }
         }
 
@@ -94,9 +92,7 @@ class PropertyController extends ContainerAware
                 $this->container->get('event_dispatcher')->dispatch(SyliusAssortmentEvents::PROPERTY_UPDATE, new FilterPropertyEvent($property));
                 $this->container->get('sylius_assortment.manipulator.property')->update($property);
 
-                return new RedirectResponse($this->container->get('router')->generate('sylius_assortment_backend_property_show', array(
-                    'id' => $property->getId()
-                )));
+                return $this->redirectoToPropertyList();
             }
         }
 
@@ -120,7 +116,7 @@ class PropertyController extends ContainerAware
         $this->container->get('event_dispatcher')->dispatch(SyliusAssortmentEvents::PROPERTY_DELETE, new FilterPropertyEvent($property));
         $this->container->get('sylius_assortment.manipulator.property')->delete($property);
 
-        return new RedirectResponse($this->container->get('request')->headers->get('referer'));
+        return $this->redirectoToPropertyList();
     }
 
     /**
@@ -140,6 +136,16 @@ class PropertyController extends ContainerAware
         }
 
         return $property;
+    }
+
+    /**
+     * Redirects to property list.
+     *
+     * @return RedirectResponse
+     */
+    protected function redirectoToPropertyList()
+    {
+        return new RedirectResponse($this->container->get('router')->generate('sylius_assortment_backend_property_list'));
     }
 
     /**

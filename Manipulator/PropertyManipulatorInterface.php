@@ -11,7 +11,7 @@
 
 namespace Sylius\Bundle\AssortmentBundle\Manipulator;
 
-use Sylius\Bundle\AssortmentBundle\Model\PropertyInterface;
+use Sylius\Bundle\AssortmentBundle\Model\Property\PropertyInterface;
 
 /**
  * Property manipulator interface.
