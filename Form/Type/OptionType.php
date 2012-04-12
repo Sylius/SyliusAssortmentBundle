@@ -46,7 +46,7 @@ class OptionType extends AbstractType
         $builder
             ->add('name')
             ->add('presentation')
-            ->add('optionValues', 'collection', array(
+            ->add('values', 'collection', array(
                 'type'         => 'sylius_assortment_option_value',
                 'allow_add'    => true,
                 'allow_delete' => true

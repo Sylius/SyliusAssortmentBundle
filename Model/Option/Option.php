@@ -41,11 +41,11 @@ class Option implements OptionInterface
     protected $presentation;
 
     /**
-     * Product optionValues.
+     * Values that option can have.
      *
      * @var array
      */
-    protected $optionValues;
+    protected $values;
 
     /**
      * Creation time.
