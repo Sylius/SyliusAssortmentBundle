@@ -61,9 +61,7 @@ class OptionController extends ContainerAware
                 $this->container->get('event_dispatcher')->dispatch(SyliusAssortmentEvents::OPTION_CREATE, new FilterOptionEvent($option));
                 $this->container->get('sylius_assortment.manipulator.option')->create($option);
 
-                return new RedirectResponse($this->container->get('router')->generate('sylius_assortment_backend_option_show', array(
-                    'id' => $option->getId()
-                )));
+                return $this->redirectToOptionList();
             }
         }
 
@@ -94,9 +92,7 @@ class OptionController extends ContainerAware
                 $this->container->get('event_dispatcher')->dispatch(SyliusAssortmentEvents::OPTION_UPDATE, new FilterOptionEvent($option));
                 $this->container->get('sylius_assortment.manipulator.option')->update($option);
 
-                return new RedirectResponse($this->container->get('router')->generate('sylius_assortment_backend_option_show', array(
-                    'id' => $option->getId()
-                )));
+                return $this->redirectToOptionList();
             }
         }
 
@@ -120,7 +116,7 @@ class OptionController extends ContainerAware
         $this->container->get('event_dispatcher')->dispatch(SyliusAssortmentEvents::OPTION_DELETE, new FilterOptionEvent($option));
         $this->container->get('sylius_assortment.manipulator.option')->delete($option);
 
-        return new RedirectResponse($this->container->get('request')->headers->get('referer'));
+        return $this->redirectToOptionList();
     }
 
     /**
@@ -140,6 +136,16 @@ class OptionController extends ContainerAware
         }
 
         return $option;
+    }
+
+    /**
+     * Redirects to option list.
+     *
+     * @return RedirectResponse
+     */
+    protected function redirectToOptionList()
+    {
+        return new RedirectResponse($this->container->get('router')->generate('sylius_assortment_backend_option_list'));
     }
 
     /**
