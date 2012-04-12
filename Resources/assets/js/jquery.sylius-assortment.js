@@ -12,7 +12,9 @@
             addOptionValueForm();
         });
 
-        addOptionValueForm();
+        if ($("#sylius-assortment-option-values").children().length === 0) {
+            addOptionValueForm();
+        }
     });
 
     function addOptionValueForm() {

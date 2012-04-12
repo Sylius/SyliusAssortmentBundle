@@ -42,6 +42,14 @@ class OptionValue implements OptionValueInterface
     /**
      * {@inheritdoc}
      */
+    public function __toString()
+    {
+        return $this->value;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function getId()
     {
         return $this->id;
@@ -82,7 +90,7 @@ class OptionValue implements OptionValueInterface
     /**
      * {@inheritdoc}
      */
-    public function setOption(OptionInterface $option)
+    public function setOption(OptionInterface $option = null)
     {
         $this->option = $option;
     }

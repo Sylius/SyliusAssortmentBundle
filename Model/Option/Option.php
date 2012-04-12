@@ -147,6 +147,7 @@ class Option implements OptionInterface
     public function addValue(OptionValueInterface $value)
     {
         if (!$this->hasValue($value)) {
+            $value->setOption($this);
             $this->values[] = $value;
         }
     }
@@ -157,6 +158,7 @@ class Option implements OptionInterface
     public function removeValue(OptionValueInterface $value)
     {
         if ($this->hasValue($value)) {
+            $value->setOption(null);
             $key = array_search($value, $this->values);
             unset($this->values[$key]);
         }
