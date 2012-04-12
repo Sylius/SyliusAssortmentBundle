@@ -61,7 +61,7 @@ class PropertyChoiceType extends AbstractType
             SyliusAssortmentBundle::DRIVER_DOCTRINE_COUCHDB_ODM
         );
 
-        if (in_array($this->driver, $doctrineBasedDrivers)) {
+        if ($options['multiple'] && in_array($this->driver, $doctrineBasedDrivers)) {
             $builder->appendClientTransformer(new CollectionToArrayTransformer());
         }
     }
