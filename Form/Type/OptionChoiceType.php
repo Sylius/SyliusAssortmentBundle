@@ -69,7 +69,7 @@ class OptionChoiceType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function getDefaultOptions(array $options)
+    public function getDefaultOptions()
     {
         return array(
             'choice_list' => $this->optionChoiceList,

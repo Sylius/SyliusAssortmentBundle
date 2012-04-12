@@ -41,8 +41,8 @@ class PropertyChoiceType extends AbstractType
     /**
      * Constructor.
      *
-     * @param string           $driver           The bundle driver
-     * @param PropertyChoiceList $propertyChoiceList Choice list with all propertys
+     * @param string           $driver               The bundle driver
+     * @param PropertyChoiceList $propertyChoiceList Choice list with all properties
      */
     public function __construct($driver, PropertyChoiceList $propertyChoiceList)
     {
@@ -53,7 +53,7 @@ class PropertyChoiceType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function buildForm(FormBuilder $builder, array $propertys)
+    public function buildForm(FormBuilder $builder, array $options)
     {
         $doctrineBasedDrivers = array(
             SyliusAssortmentBundle::DRIVER_DOCTRINE_ORM,
@@ -69,7 +69,7 @@ class PropertyChoiceType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function getDefaultPropertys(array $propertys)
+    public function getDefaultOptions()
     {
         return array(
             'choice_list' => $this->propertyChoiceList,
@@ -79,7 +79,7 @@ class PropertyChoiceType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function getParent()
+    public function getParent(array $options)
     {
         return 'choice';
     }
