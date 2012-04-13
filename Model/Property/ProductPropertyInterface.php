@@ -18,7 +18,7 @@ use Sylius\Bundle\AssortmentBundle\Model\ProductInterface;
  *
  * @author Paweł Jędrzejewski <pjedrzejewski@diweb.pl>
  */
-interface PropertyInterface
+interface ProductPropertyInterface
 {
     /**
      * Get product.
