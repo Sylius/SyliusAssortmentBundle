@@ -75,4 +75,18 @@ interface ProductPropertyInterface
      * @param mixed $value
      */
     function setValue($value);
+
+    /**
+     * Proxy method to access the name from real property.
+     *
+     * @return string
+     */
+    function getName();
+
+    /**
+     * Proxy method to access the presentation from real property.
+     *
+     * @return string
+     */
+    function getPresentation();
 }

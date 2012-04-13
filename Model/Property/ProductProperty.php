@@ -111,4 +111,28 @@ class ProductProperty implements ProductPropertyInterface
     {
         $this->value = $value;
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getName()
+    {
+        if (null === $this->property) {
+            throw new \BadMethodCallException('The product property have not beencreated yet so you cannot access proxy methods');
+        }
+
+        return $this->property->getName();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getPresentation()
+    {
+        if (null === $this->property) {
+            throw new \BadMethodCallException('The product property have not beencreated yet so you cannot access proxy methods');
+        }
+
+        return $this->property->getPresentation();
+    }
 }
