@@ -27,16 +27,16 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 class PrototypeController extends ContainerAware
 {
     /**
-     * Lists all properties.
+     * Lists all prototypes.
      *
      * @return Reponse
      */
     public function listAction(Request $request)
     {
-        $properties = $this->container->get('sylius_assortment.manager.prototype')->findProperties();
+        $prototypes = $this->container->get('sylius_assortment.manager.prototype')->findPrototypes();
 
         return $this->container->get('templating')->renderResponse('SyliusAssortmentBundle:Backend/Prototype:list.html.'.$this->getEngine(), array(
-            'properties'  => $properties
+            'prototypes'  => $prototypes
         ));
     }
 
