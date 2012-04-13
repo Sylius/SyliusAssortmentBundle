@@ -62,7 +62,7 @@ class PropertyChoiceType extends AbstractType
         );
 
         if ($options['multiple'] && in_array($this->driver, $doctrineBasedDrivers)) {
-            $builder->appendClientTransformer(new CollectionToArrayTransformer());
+            $builder->prependClientTransformer(new CollectionToArrayTransformer());
         }
     }
 
@@ -72,7 +72,7 @@ class PropertyChoiceType extends AbstractType
     public function getDefaultOptions()
     {
         return array(
-            'choice_list' => $this->propertyChoiceList,
+            'choice_list' => $this->propertyChoiceList
         );
     }
 

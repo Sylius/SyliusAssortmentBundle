@@ -61,8 +61,8 @@ class OptionChoiceType extends AbstractType
             SyliusAssortmentBundle::DRIVER_DOCTRINE_COUCHDB_ODM
         );
 
-        if (in_array($this->driver, $doctrineBasedDrivers)) {
-            $builder->appendClientTransformer(new CollectionToArrayTransformer());
+        if ($options['multiple'] && in_array($this->driver, $doctrineBasedDrivers)) {
+            $builder->prependClientTransformer(new CollectionToArrayTransformer());
         }
     }
 
@@ -79,7 +79,7 @@ class OptionChoiceType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function getParent()
+    public function getParent(array $options)
     {
         return 'choice';
     }

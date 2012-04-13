@@ -109,7 +109,7 @@ class Prototype implements PrototypeInterface
      */
     public function getProperties()
     {
-        return $properties;
+        return $this->properties;
     }
 
     /**
@@ -162,7 +162,7 @@ class Prototype implements PrototypeInterface
      */
     public function getOptions()
     {
-        return $options;
+        return $this->options;
     }
 
     /**
