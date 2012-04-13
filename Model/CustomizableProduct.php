@@ -43,6 +43,13 @@ abstract class CustomizableProduct extends Product implements CustomizableProduc
     protected $options;
 
     /**
+     * Product property values.
+     *
+     * @var array An array of ProductPropertyInterface objects
+     */
+    protected $properties;
+
+    /**
      * {@inheritdoc}
      */
     public function getMasterVariant()
@@ -162,5 +169,58 @@ abstract class CustomizableProduct extends Product implements CustomizableProduc
     public function hasOption(OptionInterface $option)
     {
         return in_array($option, $this->options);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getProperties()
+    {
+        return $this->properties;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setProperties($properties)
+    {
+        $this->properties = $properties;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function countProperties()
+    {
+        return count($this->properties);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function addProperty(ProductPropertyInterface $property)
+    {
+        if (!$this->hasProperty($property)) {
+            $this->properties[] = $property;
+        }
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function removeProperty(ProductPropertyInterface $property)
+    {
+        if ($this->hasProperty($property)) {
+            $key = array_search($property, $this->properties);
+            unset($properties[$key]);
+        }
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function hasProperty(ProductPropertyInterface $property)
+    {
+        return in_array($property, $this->properties);
     }
 }

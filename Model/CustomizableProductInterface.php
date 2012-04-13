@@ -123,4 +123,48 @@ interface CustomizableProductInterface extends ProductInterface
      * @return Boolean
      */
     function hasOption(OptionInterface $option);
+
+    /**
+     * Returns all product product properties.
+     *
+     * @return array An array or collection of ProductPropertyInterface
+     */
+    function getProperties();
+
+    /**
+     * Sets all product product properties.
+     *
+     * @param array $product properties An array or collection of ProductPropertyInterface
+     */
+    function setProperties($properties);
+
+    /**
+     * Counts all product product properties.
+     *
+     * @return integer
+     */
+    function countProperties();
+
+    /**
+     * Adds product property.
+     *
+     * @param ProductPropertyInterface $property
+     */
+    function addProperty(ProductPropertyInterface $property);
+
+    /**
+     * Removes product property from product.
+     *
+     * @param ProductPropertyInterface $property
+     */
+    function removeProperty(ProductPropertyInterface $property);
+
+    /**
+     * Checks whether product has given product property.
+     *
+     * @param ProductPropertyInterface $property
+     *
+     * @return Boolean
+     */
+    function hasProperty(ProductPropertyInterface $property);
 }
