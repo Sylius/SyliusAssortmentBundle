@@ -21,6 +21,13 @@ use Sylius\Bundle\AssortmentBundle\Model\ProductInterface;
 class ProductProperty implements ProductPropertyInterface
 {
     /**
+     * Id.
+     *
+     * @var integer
+     */
+    protected $id;
+
+    /**
      * Product.
      *
      * @var ProductInterface
@@ -40,6 +47,22 @@ class ProductProperty implements ProductPropertyInterface
      * @var mixed
      */
     protected $value;
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
 
     /**
      * {@inheritdoc}
