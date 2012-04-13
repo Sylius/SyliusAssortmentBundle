@@ -11,6 +11,8 @@
 
 namespace Sylius\Bundle\AssortmentBundle\Model;
 
+use Sylius\Bundle\AssortmentBundle\Model\Variant\VariantInterface;
+
 /**
  * Default model implementation of CustomizableProductInterface.
  *
@@ -31,6 +33,13 @@ abstract class CustomizableProduct extends Product implements CustomizableProduc
      * @var array
      */
     protected $variants;
+
+    /**
+     * Product options.
+     *
+     * @var array
+     */
+    protected $options;
 
     /**
      * {@inheritdoc}
@@ -99,5 +108,58 @@ abstract class CustomizableProduct extends Product implements CustomizableProduc
     public function hasVariant(VariantInterface $variant)
     {
         return in_array($variant, $this->variants);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getOptions()
+    {
+        return $this->options;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setOptions($options)
+    {
+        $this->options = $options;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function countOptions()
+    {
+        return count($this->options);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function addOption(OptionInterface $option)
+    {
+        if (!$this->hasOption($option)) {
+            $this->options[] = $option;
+        }
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function removeOption(OptionInterface $option)
+    {
+        if ($this->hasOption($option)) {
+            $key = array_search($option, $this->options);
+            unset($options[$key]);
+        }
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function hasOption(OptionInterface $option)
+    {
+        return in_array($option, $this->options);
     }
 }

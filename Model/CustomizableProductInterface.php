@@ -78,4 +78,48 @@ interface CustomizableProductInterface extends ProductInterface
      * @return Boolean
      */
     function hasVariant(VariantInterface $variant);
+
+    /**
+     * Returns all product options.
+     *
+     * @return array An array or collection of OptionInterface
+     */
+    function getOptions();
+
+    /**
+     * Sets all product options.
+     *
+     * @param array $options An array or collection of OptionInterface
+     */
+    function setOptions($options);
+
+    /**
+     * Counts all product options.
+     *
+     * @return integer
+     */
+    function countOptions();
+
+    /**
+     * Adds option.
+     *
+     * @param OptionInterface $option
+     */
+    function addOption(OptionInterface $option);
+
+    /**
+     * Removes option from product.
+     *
+     * @param OptionInterface $option
+     */
+    function removeOption(OptionInterface $option);
+
+    /**
+     * Checks whether product has given option.
+     *
+     * @param OptionInterface $option
+     *
+     * @return Boolean
+     */
+    function hasOption(OptionInterface $option);
 }
