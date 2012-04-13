@@ -11,8 +11,9 @@
 
 namespace Sylius\Bundle\AssortmentBundle\Model;
 
-use Sylius\Bundle\AssortmentBundle\Model\Variant\VariantInterface;
 use Sylius\Bundle\AssortmentBundle\Model\Option\OptionInterface;
+use Sylius\Bundle\AssortmentBundle\Model\Property\ProductPropertyInterface;
+use Sylius\Bundle\AssortmentBundle\Model\Variant\VariantInterface;
 
 /**
  * Default model implementation of CustomizableProductInterface.

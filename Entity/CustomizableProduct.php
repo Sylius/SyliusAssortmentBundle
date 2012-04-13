@@ -11,7 +11,11 @@
 
 namespace Sylius\Bundle\AssortmentBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Sylius\Bundle\AssortmentBundle\Model\CustomizableProduct as BaseCustomizableProduct;
+use Sylius\Bundle\AssortmentBundle\Model\Option\OptionInterface;
+use Sylius\Bundle\AssortmentBundle\Model\Property\ProductPropertyInterface;
+use Sylius\Bundle\AssortmentBundle\Model\Variant\VariantInterface;
 
 /**
  * Base customizable product entity.
@@ -20,4 +24,105 @@ use Sylius\Bundle\AssortmentBundle\Model\CustomizableProduct as BaseCustomizable
  */
 class CustomizableProduct extends BaseCustomizableProduct
 {
+    /**
+     * Override constructor to initialize collections.
+     */
+    public function __construct()
+    {
+        parent::__construct();
+
+        $this->variants = new ArrayCollection();
+        $this->options = new ArrayCollection();
+        $this->properties = new ArrayCollection();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function addVariant(VariantInterface $variant)
+    {
+        if (!$this->hasVariant($variant)) {
+            $variant->setProduct($this);
+            $this->variants->add($variant);
+        }
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function removeVariant(VariantInterface $variant)
+    {
+        if ($this->hasVariant($variant)) {
+            $variant->setProduct(null);
+            $this->variants->removeElement($variant);
+        }
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function hasVariant(VariantInterface $variant)
+    {
+        return $this->variants->contains($variant);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function addOption(OptionInterface $option)
+    {
+        if (!$this->hasOption($option)) {
+            $option->setProduct($this);
+            $this->options->add($option);
+        }
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function removeOption(OptionInterface $option)
+    {
+        if ($this->hasOption($option)) {
+            $option->setProduct(null);
+            $this->options->removeElement($option);
+        }
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function hasOption(OptionInterface $option)
+    {
+        return $this->options->contains($option);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function addProperty(ProductPropertyInterface $property)
+    {
+        if (!$this->hasProperty($property)) {
+            $property->setProduct($this);
+            $this->properties->add($property);
+        }
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function removeProperty(ProductPropertyInterface $property)
+    {
+        if ($this->hasProperty($property)) {
+            $property->setProduct(null);
+            $this->properties->removeElement($property);
+        }
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function hasProperty(ProductPropertyInterface $property)
+    {
+        return $this->properties->contains($property);
+    }
 }
