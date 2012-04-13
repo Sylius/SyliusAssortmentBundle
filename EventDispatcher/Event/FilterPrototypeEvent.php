@@ -35,7 +35,7 @@ class FilterPrototypeEvent extends Event
      */
     public function __construct(PrototypeInterface $prototype)
     {
-        $this->prototype = $product;
+        $this->prototype = $prototype;
     }
 
     /**
