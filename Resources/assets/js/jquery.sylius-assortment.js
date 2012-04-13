@@ -8,12 +8,24 @@
  */
 (function ( $ ) {
     $(document).ready(function() {
-        $("#sylius-assortment-option-values-adder").click(function () {
-            addOptionValueForm();
-        });
+        if ($("#sylius-assortment-option-values").length > 0) {
+            $("#sylius-assortment-option-values-adder").click(function () {
+                addOptionValueForm();
+            });
 
-        if ($("#sylius-assortment-option-values").children().length === 0) {
-            addOptionValueForm();
+            if ($("#sylius-assortment-option-values").children().length === 0) {
+                addOptionValueForm();
+            }
+        }
+
+        if ($("#sylius-assortment-product-properties").length > 0) {
+            $("#sylius-assortment-product-property-adder").click(function () {
+                addProductPropertyForm();
+            });
+
+            if ($("#sylius-assortment-product-properties").children().length === 0) {
+                addProductPropertyForm();
+            }
         }
     });
 
@@ -22,5 +34,11 @@
         var prototype = collectionHolder.attr('data-prototype');
         var newOptionValue = prototype.replace(/__name__/g, collectionHolder.children().length);
         collectionHolder.append(newOptionValue);
+    }
+    function addProductPropertyForm() {
+        var collectionHolder = $("#sylius-assortment-product-properties");
+        var prototype = collectionHolder.attr('data-prototype');
+        var newProductPropertyForm = prototype.replace(/__name__/g, collectionHolder.children().length);
+        collectionHolder.append(newProductPropertyForm);
     }
 })( jQuery );
