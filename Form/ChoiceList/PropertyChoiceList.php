@@ -37,7 +37,7 @@ class PropertyChoiceList extends ObjectChoiceList
     {
         $this->propertyManager = $propertyManager;
 
-        parent::__construct($propertyManager->findProperties(), 'presentation', array(), null, null, 'id');
+        parent::__construct($propertyManager->findProperties(), 'name', array(), null, null, 'id');
     }
 }
 

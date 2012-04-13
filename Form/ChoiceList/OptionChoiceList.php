@@ -37,7 +37,7 @@ class OptionChoiceList extends ObjectChoiceList
     {
         $this->optionManager = $optionManager;
 
-        parent::__construct($optionManager->findOptions(), 'presentation', array(), null, null, 'id');
+        parent::__construct($optionManager->findOptions(), 'name', array(), null, null, 'id');
     }
 }
 
