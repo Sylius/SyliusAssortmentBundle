@@ -49,6 +49,14 @@ abstract class Variant implements VariantInterface
     protected $updatedAt;
 
     /**
+     * Constructor.
+     */
+    public function __construct()
+    {
+        $this->incrementCreatedAt();
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function getId()
@@ -101,7 +109,9 @@ abstract class Variant implements VariantInterface
      */
     public function incrementCreatedAt()
     {
-        $this->createdAt = new \DateTime();
+        if (null === $this->createdAt) {
+            $this->createdAt = new \DateTime();
+        }
     }
 
     /**
