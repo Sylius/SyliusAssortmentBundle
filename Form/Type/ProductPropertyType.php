@@ -44,7 +44,7 @@ class ProductPropertyType extends AbstractType
     public function buildForm(FormBuilder $builder, array $options)
     {
         $builder
-            ->add('properties', 'sylius_assortment_property_choice')
+            ->add('property', 'sylius_assortment_property_choice')
             ->add('value', 'text')
         ;
     }

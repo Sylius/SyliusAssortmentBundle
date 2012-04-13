@@ -50,6 +50,16 @@ abstract class CustomizableProduct extends Product implements CustomizableProduc
     protected $properties;
 
     /**
+     * Constructor.
+     */
+    public function __construct()
+    {
+        $this->variants = array();
+        $this->options = array();
+        $this->properties = array();
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function getMasterVariant()
