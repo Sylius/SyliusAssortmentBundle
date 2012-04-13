@@ -72,7 +72,6 @@ class CustomizableProduct extends BaseCustomizableProduct
     public function addOption(OptionInterface $option)
     {
         if (!$this->hasOption($option)) {
-            $option->setProduct($this);
             $this->options->add($option);
         }
     }
@@ -83,7 +82,6 @@ class CustomizableProduct extends BaseCustomizableProduct
     public function removeOption(OptionInterface $option)
     {
         if ($this->hasOption($option)) {
-            $option->setProduct(null);
             $this->options->removeElement($option);
         }
     }
