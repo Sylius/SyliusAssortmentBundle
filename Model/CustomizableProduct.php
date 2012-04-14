@@ -81,7 +81,7 @@ abstract class CustomizableProduct extends Product implements CustomizableProduc
      */
     public function getVariants()
     {
-        return $variants;
+        return $this->variants;
     }
 
     /**
