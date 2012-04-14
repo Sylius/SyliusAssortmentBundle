@@ -24,6 +24,7 @@
         <parameter key="sylius_assortment.manager.option.class">Sylius\Bundle\AssortmentBundle\Entity\Option\OptionManager</parameter>
         <parameter key="sylius_assortment.manager.property.class">Sylius\Bundle\AssortmentBundle\Entity\Property\PropertyManager</parameter>
         <parameter key="sylius_assortment.manager.prototype.class">Sylius\Bundle\AssortmentBundle\Entity\Prototype\PrototypeManager</parameter>
+        <parameter key="sylius_assortment.manager.variant.class">Sylius\Bundle\AssortmentBundle\Entity\Variant\VariantManager</parameter>
     </parameters>
 
     <services>
@@ -50,6 +51,11 @@
         <service id="sylius_assortment.manager.prototype" class="%sylius_assortment.manager.prototype.class%">
             <argument type="service" id="doctrine.orm.default_entity_manager" />
             <argument>%sylius_assortment.model.prototype.class%</argument>
+        </service>
+
+        <service id="sylius_assortment.manager.variant" class="%sylius_assortment.manager.variant.class%">
+            <argument type="service" id="doctrine.orm.default_entity_manager" />
+            <argument>%sylius_assortment.model.variant.class%</argument>
         </service>
     </services>
 

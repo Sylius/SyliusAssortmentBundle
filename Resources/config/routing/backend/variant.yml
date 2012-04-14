@@ -1,0 +1,22 @@
+# This file is part of the Sylius package.
+# (c) Paweł Jędrzejewski
+
+sylius_assortment_backend_variant_list:
+    pattern: /{productId}/list
+    defaults: { _controller: sylius_assortment.controller.backend.variant:listAction }
+
+sylius_assortment_backend_variant_create:
+    pattern: /{productId}/create
+    defaults: { _controller: sylius_assortment.controller.backend.variant:createAction }
+
+sylius_assortment_backend_variant_update:
+    pattern: /{id}/update
+    defaults: { _controller: sylius_assortment.controller.backend.variant:updateAction }
+
+sylius_assortment_backend_variant_delete:
+    pattern: /{id}/delete
+    defaults: { _controller: sylius_assortment.controller.backend.variant:deleteAction }
+
+sylius_assortment_backend_variant_show:
+    pattern: /{id}
+    defaults: { _controller: sylius_assortment.controller.backend.variant:showAction }
