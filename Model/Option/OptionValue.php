@@ -82,6 +82,22 @@ class OptionValue implements OptionValueInterface
     /**
      * {@inheritdoc}
      */
+    public function getName()
+    {
+        return $this->option->getName();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getPresentation()
+    {
+        return $this->option->getPresentation();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function getOption()
     {
         return $this->option;
