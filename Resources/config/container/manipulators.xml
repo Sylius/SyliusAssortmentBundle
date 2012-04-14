@@ -25,6 +25,9 @@
         <service id="sylius_assortment.manipulator.option" class="%sylius_assortment.manipulator.option.class%">
             <argument type="service" id="sylius_assortment.manager.option" />
         </service>
+        <service id="sylius_assortment.manipulator.variant" class="%sylius_assortment.manipulator.variant.class%">
+            <argument type="service" id="sylius_assortment.manager.variant" />
+        </service>
         <service id="sylius_assortment.manipulator.property" class="%sylius_assortment.manipulator.property.class%">
             <argument type="service" id="sylius_assortment.manager.property" />
         </service>

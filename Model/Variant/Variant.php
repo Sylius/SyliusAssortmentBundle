@@ -11,6 +11,7 @@
 
 namespace Sylius\Bundle\AssortmentBundle\Model\Variant;
 
+use Sylius\Bundle\AssortmentBundle\Model\Option\OptionValueInterface;
 use Sylius\Bundle\AssortmentBundle\Model\ProductInterface;
 
 /**
@@ -35,6 +36,13 @@ abstract class Variant implements VariantInterface
     protected $product;
 
     /**
+     * Option values.
+     *
+     * @var array
+     */
+    protected $options;
+
+    /**
      * Creation time.
      *
      * @var DateTime
@@ -53,6 +61,7 @@ abstract class Variant implements VariantInterface
      */
     public function __construct()
     {
+        $this->options = array();
         $this->incrementCreatedAt();
     }
 
@@ -86,6 +95,59 @@ abstract class Variant implements VariantInterface
     public function setProduct(ProductInterface $product)
     {
         $this->product = $product;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getOptions()
+    {
+        return $this->options;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setOptions($options)
+    {
+        $this->options = $options;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function countOptions()
+    {
+        return count($this->options);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function addOption(OptionValueInterface $option)
+    {
+        if (!$this->hasOption($option)) {
+            $this->options[] = $option;
+        }
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function removeOption(OptionValueInterface $option)
+    {
+        if ($this->hasOption($option)) {
+            $key = array_search($option, $this->options);
+            unset($options[$key]);
+        }
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function hasOption(OptionValueInterface $option)
+    {
+        return in_array($option, $this->options);
     }
 
     /**

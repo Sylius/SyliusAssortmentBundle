@@ -103,6 +103,7 @@ class Configuration implements ConfigurationInterface
                                         ->scalarNode('option_value')->defaultValue('Sylius\\Bundle\\AssortmentBundle\\Form\\Type\\OptionValueType')->end()
                                         ->scalarNode('option_choice')->defaultValue('Sylius\\Bundle\\AssortmentBundle\\Form\\Type\\OptionChoiceType')->end()
                                         ->scalarNode('option_value_choice')->defaultValue('Sylius\\Bundle\\AssortmentBundle\\Form\\Type\\OptionValueChoiceType')->end()
+                                        ->scalarNode('option_value_collection')->defaultValue('Sylius\\Bundle\\AssortmentBundle\\Form\\Type\\OptionValueCollectionType')->end()
                                         ->scalarNode('property')->defaultValue('Sylius\\Bundle\\AssortmentBundle\\Form\\Type\\PropertyType')->end()
                                         ->scalarNode('property_choice')->defaultValue('Sylius\\Bundle\\AssortmentBundle\\Form\\Type\\PropertyChoiceType')->end()
                                         ->scalarNode('product_property')->defaultValue('Sylius\\Bundle\\AssortmentBundle\\Form\\Type\\ProductPropertyType')->end()

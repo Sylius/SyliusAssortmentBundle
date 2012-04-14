@@ -11,6 +11,7 @@
 
 namespace Sylius\Bundle\AssortmentBundle\Model\Variant;
 
+use Sylius\Bundle\AssortmentBundle\Model\Option\OptionValueInterface;
 use Sylius\Bundle\AssortmentBundle\Model\ProductInterface;
 
 /**
@@ -50,6 +51,50 @@ interface VariantInterface
      * @param ProductInterface $product
      */
     function setProduct(ProductInterface $product);
+
+    /**
+     * Returns all option values.
+     *
+     * @return array An array or collection of OptionValueInterface
+     */
+    function getOptions();
+
+    /**
+     * Sets all variant options.
+     *
+     * @param array $options An array or collection of OptionValueInterface
+     */
+    function setOptions($options);
+
+    /**
+     * Counts all variant options.
+     *
+     * @return integer
+     */
+    function countOptions();
+
+    /**
+     * Adds option value.
+     *
+     * @param OptionValueInterface $option
+     */
+    function addOption(OptionValueInterface $option);
+
+    /**
+     * Removes option from variant.
+     *
+     * @param OptionValueInterface $option
+     */
+    function removeOption(OptionValueInterface $option);
+
+    /**
+     * Checks whether variant has given option.
+     *
+     * @param OptionValueInterface $option
+     *
+     * @return Boolean
+     */
+    function hasOption(OptionValueInterface $option);
 
     /**
      * Get creation time.
