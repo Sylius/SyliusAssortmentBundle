@@ -11,6 +11,7 @@
 
 namespace Sylius\Bundle\AssortmentBundle\Form\Type;
 
+use Sylius\Bundle\AssortmentBundle\Form\EventListener\BuildVariantSubscriber;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilder;
 
@@ -47,6 +48,7 @@ class VariantType extends AbstractType
      */
     public function buildForm(FormBuilder $builder, array $options)
     {
+        $builder->addEventSubscriber(new BuildVariantSubscriber($builder->getFormFactory()));
     }
 
     /**

@@ -11,6 +11,8 @@
 
 namespace Sylius\Bundle\AssortmentBundle\Model\Variant;
 
+use Sylius\Bundle\AssortmentBundle\Model\ProductInterface;
+
 /**
  * Variant manager interface.
  *
@@ -21,9 +23,11 @@ interface VariantManagerInterface
     /**
      * Creates new variant object.
      *
+     * @param ProductInterface $product
+     *
      * @return VariantInterface
      */
-    function createVariant();
+    function createVariant(ProductInterface $product);
 
     /**
      * Persists variant.

@@ -13,6 +13,7 @@ namespace Sylius\Bundle\AssortmentBundle\Entity\Variant;
 
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityRepository;
+use Sylius\Bundle\AssortmentBundle\Model\ProductInterface;
 use Sylius\Bundle\AssortmentBundle\Model\Variant\VariantInterface;
 use Sylius\Bundle\AssortmentBundle\Model\Variant\VariantManager as BaseVariantManager;
 
@@ -54,11 +55,14 @@ class VariantManager extends BaseVariantManager
     /**
      * {@inheritdoc}
      */
-    public function createVariant()
+    public function createVariant(ProductInterface $product)
     {
         $class = $this->getClass();
 
-        return new $class;
+        $variant = new $class;
+        $variant->setProduct($product);
+
+        return $variant;
     }
 
     /**

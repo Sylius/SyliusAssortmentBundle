@@ -46,7 +46,7 @@ class BuildVariantSubscriber implements EventSubscriberInterface
      */
     public static function getSubscribedEvents()
     {
-        return array(FormEvens::PRE_SET_DATA => 'preSetData');
+        return array(FormEvents::PRE_SET_DATA => 'preSetData');
     }
 
     /**
@@ -60,7 +60,7 @@ class BuildVariantSubscriber implements EventSubscriberInterface
         $form = $event->getForm();
 
         if (null === $variant) {
-            throw new \RuntimeException('You can not use VariantType form without setting the proper variant model with related product set');
+            return;
         }
 
         // Get related product.
