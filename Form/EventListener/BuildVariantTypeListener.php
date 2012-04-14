@@ -22,7 +22,7 @@ use Symfony\Component\Form\FormFactoryInterface;
  *
  * @author Paweł Jędrzejewski <pjedrzejewski@diweb.pl>
  */
-class BuildVariantSubscriber implements EventSubscriberInterface
+class BuildVariantTypeListener implements EventSubscriberInterface
 {
     /**
      * Form factory.
