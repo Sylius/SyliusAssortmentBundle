@@ -115,7 +115,7 @@ class VariantController extends ContainerAware
             $form->bindRequest($request);
 
             if ($form->isValid()) {
-                $this->container->get('event_dispatcher')->dispatch(SyliusAssortmentEvents::variant_UPDATE, new FilterVariantEvent($variant));
+                $this->container->get('event_dispatcher')->dispatch(SyliusAssortmentEvents::VARIANT_UPDATE, new FilterVariantEvent($variant));
                 $this->container->get('sylius_assortment.manipulator.variant')->update($variant);
 
                 return new RedirectResponse($this->container->get('router')->generate('sylius_assortment_backend_variant_show', array(
@@ -141,7 +141,7 @@ class VariantController extends ContainerAware
     {
         $variant = $this->findVariantOr404($id);
 
-        $this->container->get('event_dispatcher')->dispatch(SyliusAssortmentEvents::variant_DELETE, new FilterVariantEvent($variant));
+        $this->container->get('event_dispatcher')->dispatch(SyliusAssortmentEvents::VARIANT_DELETE, new FilterVariantEvent($variant));
         $this->container->get('sylius_assortment.manipulator.variant')->delete($variant);
 
         return new RedirectResponse($this->container->get('request')->headers->get('referer'));
