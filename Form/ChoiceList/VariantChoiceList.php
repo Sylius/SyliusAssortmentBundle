@@ -11,7 +11,7 @@
 
 namespace Sylius\Bundle\AssortmentBundle\Form\ChoiceList;
 
-use Sylius\Bundle\AssortmentBundle\Model\ProductInterface;
+use Sylius\Bundle\AssortmentBundle\Model\CustomizableProductInterface;
 use Symfony\Component\Form\Extension\Core\ChoiceList\ObjectChoiceList;
 
 /**
@@ -24,9 +24,9 @@ class VariantChoiceList extends ObjectChoiceList
     /**
      * Constructor.
      *
-     * @param ProductInterface $product
+     * @param CustmoizableProductInterface $product
      */
-    public function __construct(ProductInterface $product)
+    public function __construct(CustomizableProductInterface $product)
     {
         parent::__construct($product->getVariants(), 'name', array(), null, null, 'id');
     }
