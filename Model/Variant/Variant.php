@@ -93,13 +93,13 @@ abstract class Variant implements VariantInterface
      */
     public function getPresentation()
     {
-        if (null === $this->presentaiton) {
+        if (null === $this->presentation) {
             foreach ($this->options as $option) {
-                $this->presentaiton .= ' '.$option->getPresentation().': '.$option->getValue();
+                $this->presentation .= ' '.$option->getPresentation().': '.$option->getValue();
             }
         }
 
-        return $this->presentaiton;
+        return $this->presentation;
     }
 
     /**
