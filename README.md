@@ -1,7 +1,8 @@
 SyliusAssortmentBundle
 ======================
 
-Products management system for Symfony2 applications. It is heavily inspired by concepts behind the awesome [Spree products and variants engine](http://guides.spreecommerce.com/products_and_variants.html).
+Products management system for Symfony2 applications.  
+It is heavily inspired by concepts behind the awesome [Spree products and variants engine](http://guides.spreecommerce.com/products_and_variants.html).
 
 **This bundle is compatible only with 2.1.x branch of Symfony2**.
 
@@ -11,14 +12,18 @@ Features
 ### Implemented
 
 * Base support for many different persistence layers. Currently only Doctrine ORM driver is implemented.
-* Default controllers, events, manipulators and models for products.
+* Variants/Options/Properties support, inspired by [Spree product system](http://guides.spreecommerce.com/products_and_variants.html).
+* Sensible default controllers, events system, manipulators and forms.
 * It uses [Pagerfanta](http://github.com/whiteoctober/Pagerfanta) to paginate over the products.
 * Thanks to awesome [Symfony2](http://symfony.com) everything is configurable and extensible.
-* Unit tested. [![Build status...](https://secure.travis-ci.org/Sylius/SyliusSalesBundle.png)](http://travis-ci.org/Sylius/SyliusSalesBundle)
+* Unit tested. [![Build status...](https://secure.travis-ci.org/Sylius/SyliusAssortmentBundle.png)](http://travis-ci.org/Sylius/SyliusAssortmentBundle)
 
 ### Planned or in progress
 
-* Variants/Options/Properties/Prototypes support, [read more](http://guides.spreecommerce.com/products_and_variants.html).
+* Full documentation.
+* Product prototypes.
+* Cloning products.
+* ACL implementation inspired by [FOSCommentBundle](http://github.com/FriendsOfSymfony/FOSCommentBundle).
 * Doctrine MongoDB ODM driver.
 * Doctrine CouchDB ODM driver. `*`
 * Propel driver. `*`
