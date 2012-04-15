@@ -22,9 +22,8 @@
         "symfony/symfony":                 "2.1.*",
         "white-october/pagerfanta-bundle": "*"
     },
-    "suggest": {
-        "doctrine/doctrine-bundle": "*",
-        "doctrine/orm":             "*"
+    "require-dev": {
+        "doctrine/orm": "*"
     },
     "autoload": {
         "psr-0": { "Sylius\\Bundle\\AssortmentBundle": "" }
