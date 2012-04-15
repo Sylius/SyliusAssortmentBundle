@@ -12,11 +12,13 @@
 namespace Sylius\Bundle\AssortmentBundle\Form\Type;
 
 use Sylius\Bundle\AssortmentBundle\Form\ChoiceList\VariantChoiceList;
+use Sylius\Bundle\AssortmentBundle\Model\ProductInterface;
 use Sylius\Bundle\AssortmentBundle\SyliusAssortmentBundle;
 use Symfony\Bridge\Doctrine\Form\DataTransformer\CollectionToArrayTransformer;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Exception\FormException;
 use Symfony\Component\Form\FormBuilder;
+use Symfony\Component\Form\Options;
 
 /**
  * Variant choice form type.
@@ -57,7 +59,7 @@ class VariantChoiceType extends AbstractType
             SyliusAssortmentBundle::DRIVER_DOCTRINE_COUCHDB_ODM
         );
 
-        if ($variants['multiple'] && in_array($this->driver, $doctrineBasedDrivers)) {
+        if ($options['multiple'] && in_array($this->driver, $doctrineBasedDrivers)) {
             $builder->prependClientTransformer(new CollectionToArrayTransformer());
         }
     }
