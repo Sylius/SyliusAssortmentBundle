@@ -44,6 +44,10 @@
             <argument>%sylius_assortment.model.variant.class%</argument>
             <tag name="form.type" alias="sylius_assortment_variant" />
         </service>
+        <service id="sylius_assortment.form.type.variant_choice" class="%sylius_assortment.form.type.variant_choice.class%">
+            <argument>%sylius_assortment.driver%</argument>
+            <tag name="form.type" alias="sylius_assortment_variant_choice" />
+        </service>
 
         <!-- option... -->
         <service id="sylius_assortment.form.type.option" class="%sylius_assortment.form.type.option.class%">
