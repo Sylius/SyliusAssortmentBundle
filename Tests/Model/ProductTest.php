@@ -49,6 +49,6 @@ class ProductTest extends \PHPUnit_Framework_TestCase
 
     protected function getProduct()
     {
-        return $this->getMockForAbstractClass('Sylius\Bundle\AssortmentBundle\Model\Product');
+        return new Product();
     }
 }

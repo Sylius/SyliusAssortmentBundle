@@ -16,7 +16,7 @@ namespace Sylius\Bundle\AssortmentBundle\Model;
  *
  * @author Paweł Jędrzejewski <pjedrzejewski@diweb.pl>
  */
-abstract class Product implements ProductInterface
+class Product implements ProductInterface
 {
     /**
      * Product id.
