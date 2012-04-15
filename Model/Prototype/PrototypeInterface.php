@@ -37,7 +37,7 @@ interface PrototypeInterface
     function setId($id);
 
     /**
-     * Get name, it will be displayed by user.
+     * Get name, it will be displayed by user only in backend.
      * Can be something like 't-shirt' or 'tv'.
      *
      * @return string

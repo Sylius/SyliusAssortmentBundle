@@ -14,6 +14,10 @@ namespace Sylius\Bundle\AssortmentBundle\Model\Option;
 /**
  * Product option interface.
  *
+ * It's meant to be used with CustomizableProductInterface
+ * but can be also useful when working with your custom interface
+ * extending base ProductInterface.
+ *
  * @author Paweł Jędrzejewski <pjedrzejewski@diweb.pl>
  */
 interface OptionInterface
@@ -34,6 +38,11 @@ interface OptionInterface
 
     /**
      * Get internal name.
+     *
+     * It is used only in backend so you can easily
+     * separate similar options for different kind of products.
+     * For example "T-Shirt size" and "Box size", both may have
+     * presentation "Size", but their internal name should be different.
      *
      * @return string
      */

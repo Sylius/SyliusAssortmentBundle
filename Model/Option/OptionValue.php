@@ -82,22 +82,6 @@ class OptionValue implements OptionValueInterface
     /**
      * {@inheritdoc}
      */
-    public function getName()
-    {
-        return $this->option->getName();
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getPresentation()
-    {
-        return $this->option->getPresentation();
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function getOption()
     {
         return $this->option;
@@ -109,5 +93,29 @@ class OptionValue implements OptionValueInterface
     public function setOption(OptionInterface $option = null)
     {
         $this->option = $option;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getName()
+    {
+        if (null === $this->option) {
+            throw new \BadMethodCallException('The option have not been created yet so you cannot access proxy methods');
+        }
+
+        return $this->option->getName();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getPresentation()
+    {
+        if (null === $this->option) {
+            throw new \BadMethodCallException('The option have not been created yet so you cannot access proxy methods');
+        }
+
+        return $this->option->getPresentation();
     }
 }

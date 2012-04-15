@@ -27,6 +27,7 @@ class Option implements OptionInterface
 
     /**
      * Internal name.
+     * See description in interface.
      *
      * @var string
      */

@@ -21,14 +21,14 @@ use Sylius\Bundle\AssortmentBundle\Model\ProductInterface;
 interface ProductPropertyInterface
 {
     /**
-     * Get property id.
+     * Get product property id.
      *
      * @return mixed
      */
     function getId();
 
     /**
-     * Set property id.
+     * Set product property id.
      *
      * @param mixed $id
      */

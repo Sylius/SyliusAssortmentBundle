@@ -47,20 +47,6 @@ interface OptionValueInterface
     function setValue($value);
 
     /**
-     * Proxy method to access the name of real option object.
-     *
-     * @return string The name of option
-     */
-    function getName();
-
-    /**
-     * Proxy method to access the presentation of real option object.
-     *
-     * @return string The presentation of object
-     */
-    function getPresentation();
-
-    /**
      * Get option.
      *
      * @return OptionInterface $option
@@ -73,5 +59,21 @@ interface OptionValueInterface
      * @param OptionInterface $option
      */
     function setOption(OptionInterface $option = null);
+
+    /**
+     * Proxy method to access the name of real option object.
+     * Those methods are mostly useful in templates so you can easily
+     * display option name with their values.
+     *
+     * @return string The name of option
+     */
+    function getName();
+
+    /**
+     * Proxy method to access the presentation of real option object.
+     *
+     * @return string The presentation of object
+     */
+    function getPresentation();
 }
 

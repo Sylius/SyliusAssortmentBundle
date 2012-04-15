@@ -118,7 +118,7 @@ class ProductProperty implements ProductPropertyInterface
     public function getName()
     {
         if (null === $this->property) {
-            throw new \BadMethodCallException('The product property have not beencreated yet so you cannot access proxy methods');
+            throw new \BadMethodCallException('The property have not been created yet so you cannot access proxy methods');
         }
 
         return $this->property->getName();
@@ -130,7 +130,7 @@ class ProductProperty implements ProductPropertyInterface
     public function getPresentation()
     {
         if (null === $this->property) {
-            throw new \BadMethodCallException('The product property have not beencreated yet so you cannot access proxy methods');
+            throw new \BadMethodCallException('The property have not been created yet so you cannot access proxy methods');
         }
 
         return $this->property->getPresentation();
