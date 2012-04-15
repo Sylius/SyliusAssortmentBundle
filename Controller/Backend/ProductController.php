@@ -138,7 +138,7 @@ class ProductController extends ContainerAware
      *
      * @param integer $id The product id
      *
-     * @return Response
+     * @return RedirectResponse
      */
     public function deleteAction($id)
     {
@@ -147,7 +147,7 @@ class ProductController extends ContainerAware
         $this->container->get('event_dispatcher')->dispatch(SyliusAssortmentEvents::PRODUCT_DELETE, new FilterProductEvent($product));
         $this->container->get('sylius_assortment.manipulator.product')->delete($product);
 
-        return new RedirectResponse($this->container->get('request')->headers->get('referer'));
+        return new RedirectResponse($this->container->get('router')->generate('sylius_assortment_backend_product_list'));
     }
 
     /**
