@@ -75,6 +75,8 @@ class VariantChoiceType extends AbstractType
 
         return array(
             'product'     => null,
+            'multiple'    => false,
+            'expanded'    => true,
             'choice_list' => $choiceList
         );
     }

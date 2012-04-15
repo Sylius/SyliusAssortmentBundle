@@ -84,6 +84,20 @@ abstract class Variant implements VariantInterface
     /**
      * {@inheritdoc}
      */
+    public function getName()
+    {
+        $name = '';
+
+        foreach ($this->options as $option) {
+            $name .= ' '.$option->getPresentation().': '.$option->getValue();
+        }
+
+        return $name;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function getProduct()
     {
         return $this->product;
