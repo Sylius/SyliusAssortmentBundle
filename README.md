@@ -24,6 +24,7 @@ Features
 * Product prototypes.
 * Cloning products.
 * ACL implementation inspired by [FOSCommentBundle](http://github.com/FriendsOfSymfony/FOSCommentBundle).
+* Optional REST api with [FOSRestBundle](http://github.com/FriendsOfSymfony/FOSRestBundle).
 * Doctrine MongoDB ODM driver.
 * Doctrine CouchDB ODM driver. `*`
 * Propel driver. `*`
