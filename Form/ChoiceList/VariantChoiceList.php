@@ -28,6 +28,6 @@ class VariantChoiceList extends ObjectChoiceList
      */
     public function __construct(CustomizableProductInterface $product)
     {
-        parent::__construct($product->getVariants(), 'name', array(), null, null, 'id');
+        parent::__construct($product->getVariants(), 'presentation', array(), null, null, 'id');
     }
 }

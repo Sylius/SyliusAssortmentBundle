@@ -31,9 +31,33 @@ class VariantChoiceListTest extends \PHPUnit_Framework_TestCase
         $variantChoiceList = new VariantChoiceList($product);
     }
 
+    public function testGetChoicesReturnsProductVariants()
+    {
+        $variants = array(
+            $this->getMockVariant(),
+            $this->getMockVariant(),
+            $this->getMockVariant()
+        );
+
+        $product = $this->getMockCustmoizableProduct();
+        $product->expects($this->once())
+            ->method('getVariants')
+            ->will($this->returnValue($variants))
+        ;
+
+        $variantChoiceList = new VariantChoiceList($product);
+
+        $this->assertSame($variants, $variantChoiceList->getChoices());
+    }
+
     private function getMockCustmoizableProduct()
     {
         return $this->getMock('Sylius\Bundle\AssortmentBundle\Model\CustomizableProductInterface');
+    }
+
+    private function getMockVariant()
+    {
+        return $this->getMock('Sylius\Bundle\AssortmentBundle\Model\Variant\VariantInterface');
     }
 
 }

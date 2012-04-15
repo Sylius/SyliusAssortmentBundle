@@ -29,6 +29,13 @@ abstract class Variant implements VariantInterface
     protected $id;
 
     /**
+     * Variant presentation.
+     *
+     * @var string
+     */
+    protected $presentation;
+
+    /**
      * Product.
      *
      * @var ProductInterface
@@ -84,15 +91,23 @@ abstract class Variant implements VariantInterface
     /**
      * {@inheritdoc}
      */
-    public function getName()
+    public function getPresentation()
     {
-        $name = '';
-
-        foreach ($this->options as $option) {
-            $name .= ' '.$option->getPresentation().': '.$option->getValue();
+        if (null === $this->presentaiton) {
+            foreach ($this->options as $option) {
+                $this->presentaiton .= ' '.$option->getPresentation().': '.$option->getValue();
+            }
         }
 
-        return $name;
+        return $this->presentaiton;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setPresentation($presentation)
+    {
+        $this->presentaiton = $presentation;
     }
 
     /**

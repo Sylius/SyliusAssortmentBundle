@@ -39,6 +39,22 @@ interface VariantInterface
     function setId($id);
 
     /**
+     * Get presentation.
+     * This should be generated from option values
+     * when no other is set.
+     *
+     * @return string
+     */
+    function getPresentation();
+
+    /**
+     * Set custom presentation.
+     *
+     * @param string $presentation
+     */
+    function setPresentation($presentation);
+
+    /**
      * Get master product.
      *
      * @return ProductInterface
