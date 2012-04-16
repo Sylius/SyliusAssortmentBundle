@@ -48,8 +48,10 @@ class ProductType extends AbstractType
     public function buildForm(FormBuilder $builder, array $options)
     {
         $builder
+            ->add('sku', 'text')
             ->add('name', 'text')
-            ->add('description', 'textarea');
+            ->add('description', 'textarea')
+        ;
     }
 
     /**

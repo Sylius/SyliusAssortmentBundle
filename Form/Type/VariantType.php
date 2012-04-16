@@ -48,6 +48,13 @@ class VariantType extends AbstractType
      */
     public function buildForm(FormBuilder $builder, array $options)
     {
+        $builder
+            ->add('sku', 'text')
+            ->add('presentation', 'text', array(
+                'required' => false
+            ))
+        ;
+
         if (!$options['master']) {
             $builder->addEventSubscriber(new BuildVariantTypeListener($builder->getFormFactory()));
         }

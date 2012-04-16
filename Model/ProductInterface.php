@@ -33,6 +33,21 @@ interface ProductInterface
     function setId($id);
 
     /**
+     * Get SKU, which stands for Stock Keeping Unit.
+     * An unique identifier that identifies the product in store.
+     *
+     * @return string
+     */
+    function getSku();
+
+    /**
+     * Set product SKU.
+     *
+     * @param string $sku The product SKU
+     */
+    function setSku($sku);
+
+    /**
      * Get product name.
      *
      * @return string

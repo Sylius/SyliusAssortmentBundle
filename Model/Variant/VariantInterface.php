@@ -39,6 +39,20 @@ interface VariantInterface
     function setId($id);
 
     /**
+     * Get variant SKU.
+     *
+     * @return string
+     */
+    function getSku();
+
+    /**
+     * Set variant SKU.
+     *
+     * @param string $sku
+     */
+    function setSku($sku);
+
+    /**
      * Get presentation.
      * This should be generated from option values
      * when no other is set.

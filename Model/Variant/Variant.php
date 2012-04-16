@@ -29,6 +29,13 @@ abstract class Variant implements VariantInterface
     protected $id;
 
     /**
+     * Variant SKU.
+     *
+     * @var string
+     */
+    protected $sku;
+
+    /**
      * Variant presentation.
      *
      * @var string
@@ -86,6 +93,22 @@ abstract class Variant implements VariantInterface
     public function setId($id)
     {
         $this->id = $id;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getSku()
+    {
+        return $this->sku;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setSku($sku)
+    {
+        $this->sku = $sku;
     }
 
     /**

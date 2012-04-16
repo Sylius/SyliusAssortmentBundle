@@ -20,7 +20,7 @@ use Sylius\Bundle\AssortmentBundle\Model\Variant\VariantInterface;
  *
  * @author Paweł Jędrzejewski <pjedrzejewski@diweb.pl>
  */
-abstract class CustomizableProduct extends Product implements CustomizableProductInterface
+class CustomizableProduct extends Product implements CustomizableProductInterface
 {
     /**
      * Master product variant.
@@ -74,6 +74,30 @@ abstract class CustomizableProduct extends Product implements CustomizableProduc
     public function setMasterVariant(VariantInterface $masterVariant)
     {
         $this->masterVariant = $masterVariant;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getSku()
+    {
+        if (null === $this->masterVariant) {
+            throw new \BadMethodCallException('You cannot access SKU of product without master variant initialized');
+        }
+
+        return $this->masterVariant->getSku();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setSku($sku)
+    {
+        if (null === $this->masterVariant) {
+            throw new \BadMethodCallException('You cannot set SKU of product without master variant initialized');
+        }
+
+        $this->masterVariant->setSku($sku);
     }
 
     /**

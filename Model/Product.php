@@ -26,6 +26,13 @@ class Product implements ProductInterface
     protected $id;
 
     /**
+     * Product SKU.
+     *
+     * @var string
+     */
+    protected $sku;
+
+    /**
      * Product name.
      *
      * @var string
@@ -75,6 +82,22 @@ class Product implements ProductInterface
     public function setId($id)
     {
         $this->id = $id;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getSku()
+    {
+        return $this->sku;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setSku($sku)
+    {
+        $this->sku = $sku;
     }
 
     /**
@@ -146,7 +169,7 @@ class Product implements ProductInterface
      */
     public function incrementCreatedAt()
     {
-        $this->createdAt = new \DateTime();
+        $this->createdAt = new \DateTime("now");
     }
 
     /**
@@ -170,6 +193,6 @@ class Product implements ProductInterface
      */
     public function incrementUpdatedAt()
     {
-        $this->updatedAt = new \DateTime();
+        $this->updatedAt = new \DateTime("now");
     }
 }
