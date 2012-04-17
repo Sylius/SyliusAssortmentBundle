@@ -163,4 +163,24 @@ interface VariantInterface
      * Set last update time to now.
      */
     function incrementUpdatedAt();
+
+    /**
+     * Get the time of deletion.
+     * Used for soft removal of variant.
+     *
+     * @return DateTime
+     */
+    function getDeletedAt();
+
+    /**
+     * Set deletion time.
+     *
+     * @param DateTime $deletedAt
+     */
+    function setDeletedAt(\DateTime $deletedAt);
+
+    /**
+     * Set deletion time to now.
+     */
+    function incrementDeletedAt();
 }

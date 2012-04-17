@@ -195,4 +195,28 @@ class Product implements ProductInterface
     {
         $this->updatedAt = new \DateTime("now");
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getDeletedAt()
+    {
+        return $this->deletedAt;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setDeletedAt(\DateTime $deletedAt)
+    {
+        $this->deletedAt = $updatedAt;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function incrementDeletedAt()
+    {
+        $this->deletedAt = new \DateTime("now");
+    }
 }

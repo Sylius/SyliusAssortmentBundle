@@ -250,4 +250,28 @@ abstract class Variant implements VariantInterface
     {
         $this->updatedAt = new \DateTime();
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getDeletedAt()
+    {
+        return $this->deletedAt;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setDeletedAt(\DateTime $deletedAt)
+    {
+        $this->deletedAt = $updatedAt;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function incrementDeletedAt()
+    {
+        $this->deletedAt = new \DateTime("now");
+    }
 }
