@@ -43,8 +43,6 @@ class PrototypeManipulator implements PrototypeManipulatorInterface
      */
     public function create(PrototypeInterface $prototype)
     {
-        $prototype->incrementCreatedAt();
-
         $this->prototypeManager->persistPrototype($prototype);
     }
 
@@ -53,8 +51,6 @@ class PrototypeManipulator implements PrototypeManipulatorInterface
      */
     public function update(PrototypeInterface $prototype)
     {
-        $prototype->incrementUpdatedAt();
-
         $this->prototypeManager->persistPrototype($prototype);
     }
 

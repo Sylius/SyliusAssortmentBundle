@@ -53,7 +53,6 @@ class SyliusAssortmentExtension extends Extension
         $configurations = array(
             'controllers',
             'forms',
-            'inflectors',
             'manipulators'
         );
 
@@ -62,7 +61,6 @@ class SyliusAssortmentExtension extends Extension
         }
 
         $this->remapParametersNamespaces($config['classes'], $container, array(
-            'inflector'   => 'sylius_assortment.inflector.%s.class',
             'manipulator' => 'sylius_assortment.manipulator.%s.class',
             'model'       => 'sylius_assortment.model.%s.class'
         ));

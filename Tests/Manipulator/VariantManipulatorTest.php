@@ -20,17 +20,6 @@ use Sylius\Bundle\AssortmentBundle\Manipulator\VariantManipulator;
  */
 class VariantManipulatorTest extends \PHPUnit_Framework_TestCase
 {
-    public function testCreateIncrementsVariantCreatedAt()
-    {
-        $variant = $this->getMockVariant();
-        $variant->expects($this->once())
-            ->method('incrementCreatedAt')
-        ;
-
-        $manipulator = new VariantManipulator($this->getMockVariantManager());
-        $manipulator->create($variant);
-    }
-
     public function testCreatePersistsVariant()
     {
         $variant = $this->getMockVariant();
@@ -43,17 +32,6 @@ class VariantManipulatorTest extends \PHPUnit_Framework_TestCase
 
         $manipulator = new VariantManipulator($variantManager);
         $manipulator->create($variant);
-    }
-
-    public function testUpdateIncrementsVariantUpdatedAt()
-    {
-        $variant = $this->getMockVariant();
-        $variant->expects($this->once())
-            ->method('incrementUpdatedAt')
-        ;
-
-        $manipulator = new VariantManipulator($this->getMockVariantManager());
-        $manipulator->update($variant);
     }
 
     public function testUpdatePersistsVariant()

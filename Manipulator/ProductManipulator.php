@@ -11,7 +11,6 @@
 
 namespace Sylius\Bundle\AssortmentBundle\Manipulator;
 
-use Sylius\Bundle\AssortmentBundle\Inflector\SlugizerInterface;
 use Sylius\Bundle\AssortmentBundle\Model\ProductInterface;
 use Sylius\Bundle\AssortmentBundle\Model\ProductManagerInterface;
 
@@ -30,22 +29,13 @@ class ProductManipulator implements ProductManipulatorInterface
     protected $productManager;
 
     /**
-     * Slugizer inflector.
-     *
-     * @var SlugizerInterface
-     */
-    protected $slugizer;
-
-    /**
      * Constructor.
      *
      * @param ProductManagerInterface $productManager
-     * @param SlugizerInterface       $slugizer
      */
-    public function __construct(ProductManagerInterface $productManager, SlugizerInterface $slugizer)
+    public function __construct(ProductManagerInterface $productManager)
     {
         $this->productManager = $productManager;
-        $this->slugizer = $slugizer;
     }
 
     /**
@@ -53,9 +43,6 @@ class ProductManipulator implements ProductManipulatorInterface
      */
     public function create(ProductInterface $product)
     {
-        $product->setSlug($this->slugizer->slugize($product->getName()));
-        $product->incrementCreatedAt();
-
         $this->productManager->persistProduct($product);
     }
 
@@ -64,9 +51,6 @@ class ProductManipulator implements ProductManipulatorInterface
      */
     public function update(ProductInterface $product)
     {
-        $product->setSlug($this->slugizer->slugize($product->getName()));
-        $product->incrementUpdatedAt();
-
         $this->productManager->persistProduct($product);
     }
 

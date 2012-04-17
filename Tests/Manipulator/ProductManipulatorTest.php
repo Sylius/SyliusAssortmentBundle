@@ -20,45 +20,8 @@ use Sylius\Bundle\AssortmentBundle\Manipulator\ProductManipulator;
  */
 class ProductManipulatorTest extends \PHPUnit_Framework_TestCase
 {
-    public function testCreateSetsProductSlug()
-    {
-        $slugizer = $this->getMockSlugizer();
-        $slugizer->expects($this->once())
-            ->method('slugize')
-            ->with($this->equalTo('foo bar'))
-            ->will($this->returnValue('foo-bar'))
-        ;
-
-        $product = $this->getMockProduct();
-        $product->expects($this->once())
-            ->method('getName')
-            ->will($this->returnValue('foo bar'))
-        ;
-        $product->expects($this->once())
-            ->method('setSlug')
-            ->with($this->equalTo('foo-bar'))
-        ;
-
-        $manipulator = new ProductManipulator($this->getMockProductManager(), $slugizer);
-        $manipulator->create($product);
-    }
-
-    public function testCreateIncrementsProductCreatedAt()
-    {
-        $slugizer = $this->getMockSlugizer();
-
-        $product = $this->getMockProduct();
-        $product->expects($this->once())
-            ->method('incrementCreatedAt')
-        ;
-
-        $manipulator = new ProductManipulator($this->getMockProductManager(), $slugizer);
-        $manipulator->create($product);
-    }
-
     public function testCreatePersistsProduct()
     {
-        $slugizer = $this->getMockSlugizer();
         $product = $this->getMockProduct();
 
         $productManager = $this->getMockProductManager();
@@ -67,49 +30,12 @@ class ProductManipulatorTest extends \PHPUnit_Framework_TestCase
             ->with($this->equalTo($product))
         ;
 
-        $manipulator = new ProductManipulator($productManager, $slugizer);
+        $manipulator = new ProductManipulator($productManager);
         $manipulator->create($product);
-    }
-
-    public function testUpdateSetsProductSlug()
-    {
-        $slugizer = $this->getMockSlugizer();
-        $slugizer->expects($this->once())
-            ->method('slugize')
-            ->with($this->equalTo('foo bar'))
-            ->will($this->returnValue('foo-bar'))
-        ;
-
-        $product = $this->getMockProduct();
-        $product->expects($this->once())
-            ->method('getName')
-            ->will($this->returnValue('foo bar'))
-        ;
-        $product->expects($this->once())
-            ->method('setSlug')
-            ->with($this->equalTo('foo-bar'))
-        ;
-
-        $manipulator = new ProductManipulator($this->getMockProductManager(), $slugizer);
-        $manipulator->update($product);
-    }
-
-    public function testUpdateIncrementsProductUpdatedAt()
-    {
-        $slugizer = $this->getMockSlugizer();
-
-        $product = $this->getMockProduct();
-        $product->expects($this->once())
-            ->method('incrementUpdatedAt')
-        ;
-
-        $manipulator = new ProductManipulator($this->getMockProductManager(), $slugizer);
-        $manipulator->update($product);
     }
 
     public function testUpdatePersistsProduct()
     {
-        $slugizer = $this->getMockSlugizer();
         $product = $this->getMockProduct();
 
         $productManager = $this->getMockProductManager();
@@ -118,13 +44,12 @@ class ProductManipulatorTest extends \PHPUnit_Framework_TestCase
             ->with($this->equalTo($product))
         ;
 
-        $manipulator = new ProductManipulator($productManager, $slugizer);
+        $manipulator = new ProductManipulator($productManager);
         $manipulator->update($product);
     }
 
     public function testDeleteRemovesProduct()
     {
-        $slugizer = $this->getMockSlugizer();
         $product = $this->getMockProduct();
 
         $productManager = $this->getMockProductManager();
@@ -133,7 +58,7 @@ class ProductManipulatorTest extends \PHPUnit_Framework_TestCase
             ->with($this->equalTo($product))
         ;
 
-        $manipulator = new ProductManipulator($productManager, $slugizer);
+        $manipulator = new ProductManipulator($productManager);
         $manipulator->delete($product);
     }
 
@@ -150,10 +75,5 @@ class ProductManipulatorTest extends \PHPUnit_Framework_TestCase
         ;
 
         return $productManager;
-    }
-
-    private function getMockSlugizer()
-    {
-        return $this->getMock('Sylius\Bundle\AssortmentBundle\Inflector\SlugizerInterface');
     }
 }

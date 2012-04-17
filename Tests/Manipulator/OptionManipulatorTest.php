@@ -20,17 +20,6 @@ use Sylius\Bundle\AssortmentBundle\Manipulator\OptionManipulator;
  */
 class OptionManipulatorTest extends \PHPUnit_Framework_TestCase
 {
-    public function testCreateIncrementsOptionCreatedAt()
-    {
-        $option = $this->getMockOption();
-        $option->expects($this->once())
-            ->method('incrementCreatedAt')
-        ;
-
-        $manipulator = new OptionManipulator($this->getMockOptionManager());
-        $manipulator->create($option);
-    }
-
     public function testCreatePersistsOption()
     {
         $option = $this->getMockOption();
@@ -43,17 +32,6 @@ class OptionManipulatorTest extends \PHPUnit_Framework_TestCase
 
         $manipulator = new OptionManipulator($optionManager);
         $manipulator->create($option);
-    }
-
-    public function testUpdateIncrementsOptionUpdatedAt()
-    {
-        $option = $this->getMockOption();
-        $option->expects($this->once())
-            ->method('incrementUpdatedAt')
-        ;
-
-        $manipulator = new OptionManipulator($this->getMockOptionManager());
-        $manipulator->update($option);
     }
 
     public function testUpdatePersistsOption()

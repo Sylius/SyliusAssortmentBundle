@@ -43,8 +43,6 @@ class OptionManipulator implements OptionManipulatorInterface
      */
     public function create(OptionInterface $option)
     {
-        $option->incrementCreatedAt();
-
         $this->optionManager->persistOption($option);
     }
 
@@ -53,8 +51,6 @@ class OptionManipulator implements OptionManipulatorInterface
      */
     public function update(OptionInterface $option)
     {
-        $option->incrementUpdatedAt();
-
         $this->optionManager->persistOption($option);
     }
 

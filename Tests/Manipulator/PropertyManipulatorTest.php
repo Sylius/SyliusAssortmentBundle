@@ -20,17 +20,6 @@ use Sylius\Bundle\AssortmentBundle\Manipulator\PropertyManipulator;
  */
 class PropertyManipulatorTest extends \PHPUnit_Framework_TestCase
 {
-    public function testCreateIncrementsPropertyCreatedAt()
-    {
-        $property = $this->getMockProperty();
-        $property->expects($this->once())
-            ->method('incrementCreatedAt')
-        ;
-
-        $manipulator = new PropertyManipulator($this->getMockPropertyManager());
-        $manipulator->create($property);
-    }
-
     public function testCreatePersistsProperty()
     {
         $property = $this->getMockProperty();
@@ -43,17 +32,6 @@ class PropertyManipulatorTest extends \PHPUnit_Framework_TestCase
 
         $manipulator = new PropertyManipulator($propertyManager);
         $manipulator->create($property);
-    }
-
-    public function testUpdateIncrementsPropertyUpdatedAt()
-    {
-        $property = $this->getMockProperty();
-        $property->expects($this->once())
-            ->method('incrementUpdatedAt')
-        ;
-
-        $manipulator = new PropertyManipulator($this->getMockPropertyManager());
-        $manipulator->update($property);
     }
 
     public function testUpdatePersistsProperty()

@@ -20,17 +20,6 @@ use Sylius\Bundle\AssortmentBundle\Manipulator\PrototypeManipulator;
  */
 class PrototypeManipulatorTest extends \PHPUnit_Framework_TestCase
 {
-    public function testCreateIncrementsPrototypeCreatedAt()
-    {
-        $prototype = $this->getMockPrototype();
-        $prototype->expects($this->once())
-            ->method('incrementCreatedAt')
-        ;
-
-        $manipulator = new PrototypeManipulator($this->getMockPrototypeManager());
-        $manipulator->create($prototype);
-    }
-
     public function testCreatePersistsPrototype()
     {
         $prototype = $this->getMockPrototype();
@@ -43,17 +32,6 @@ class PrototypeManipulatorTest extends \PHPUnit_Framework_TestCase
 
         $manipulator = new PrototypeManipulator($prototypeManager);
         $manipulator->create($prototype);
-    }
-
-    public function testUpdateIncrementsPrototypeUpdatedAt()
-    {
-        $prototype = $this->getMockPrototype();
-        $prototype->expects($this->once())
-            ->method('incrementUpdatedAt')
-        ;
-
-        $manipulator = new PrototypeManipulator($this->getMockPrototypeManager());
-        $manipulator->update($prototype);
     }
 
     public function testUpdatePersistsPrototype()

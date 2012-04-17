@@ -43,8 +43,6 @@ class PropertyManipulator implements PropertyManipulatorInterface
      */
     public function create(PropertyInterface $property)
     {
-        $property->incrementCreatedAt();
-
         $this->propertyManager->persistProperty($property);
     }
 
@@ -53,8 +51,6 @@ class PropertyManipulator implements PropertyManipulatorInterface
      */
     public function update(PropertyInterface $property)
     {
-        $property->incrementUpdatedAt();
-
         $this->propertyManager->persistProperty($property);
     }
 

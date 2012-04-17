@@ -43,8 +43,6 @@ class VariantManipulator implements VariantManipulatorInterface
      */
     public function create(VariantInterface $variant)
     {
-        $variant->incrementCreatedAt();
-
         $this->variantManager->persistVariant($variant);
     }
 
@@ -53,8 +51,6 @@ class VariantManipulator implements VariantManipulatorInterface
      */
     public function update(VariantInterface $variant)
     {
-        $variant->incrementUpdatedAt();
-
         $this->variantManager->persistVariant($variant);
     }
 

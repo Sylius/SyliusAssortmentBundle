@@ -20,7 +20,6 @@
     <services>
         <service id="sylius_assortment.manipulator.product" class="%sylius_assortment.manipulator.product.class%">
             <argument type="service" id="sylius_assortment.manager.product" />
-            <argument type="service" id="sylius_assortment.inflector.slugizer" />
         </service>
         <service id="sylius_assortment.manipulator.option" class="%sylius_assortment.manipulator.option.class%">
             <argument type="service" id="sylius_assortment.manager.option" />

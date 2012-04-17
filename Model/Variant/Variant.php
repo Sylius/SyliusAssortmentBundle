@@ -76,7 +76,6 @@ abstract class Variant implements VariantInterface
     public function __construct()
     {
         $this->options = array();
-        $this->incrementCreatedAt();
     }
 
     /**

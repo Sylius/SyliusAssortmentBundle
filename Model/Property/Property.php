@@ -123,7 +123,7 @@ class Property implements PropertyInterface
      */
     public function incrementCreatedAt()
     {
-        $this->createdAt = new \DateTime();
+        $this->createdAt = new \DateTime("now");
     }
 
     /**
@@ -147,6 +147,6 @@ class Property implements PropertyInterface
      */
     public function incrementUpdatedAt()
     {
-        $this->updatedAt = new \DateTime();
+        $this->updatedAt = new \DateTime("now");
     }
 }
