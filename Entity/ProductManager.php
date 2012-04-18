@@ -69,15 +69,19 @@ class ProductManager extends BaseProductManager
     /**
      * {@inheritdoc}
      */
-    public function createPaginator(SorterInterface $sorter = null)
+    public function createPaginator(array $options = array())
     {
         $queryBuilder = $this->entityManager->createQueryBuilder()
             ->select('p')
             ->from($this->class, 'p')
         ;
 
-        if (null !== $sorter) {
-            $sorter->sort($queryBuilder);
+        if (isset($options['sorter']) && $options['sorter'] instanceof SorterInterface) {
+            $options['sorter']->sort($queryBuilder);
+        }
+
+        if (isset($options['deleted']) && $options['deleted']) {
+            $this->entityManager->getFilters()->disable('softdeleteable');
         }
 
         return new Pagerfanta(new DoctrineORMAdapter($queryBuilder->getQuery()));
@@ -104,32 +108,48 @@ class ProductManager extends BaseProductManager
     /**
      * {@inheritdoc}
      */
-    public function findProduct($id)
+    public function findProduct($id, array $options = array())
     {
+        if (isset($options['deleted']) && $options['deleted']) {
+            $this->entityManager->getFilters()->disable('softdeleteable');
+        }
+
         return $this->repository->find($id);
     }
 
     /**
      * {@inheritdoc}
      */
-    public function findProductBy(array $criteria)
+    public function findProductBy(array $criteria, array $options = array())
     {
+        if (isset($options['deleted']) && $options['deleted']) {
+            $this->entityManager->getFilters()->disable('softdeleteable');
+        }
+
         return $this->repository->findOneBy($criteria);
     }
 
     /**
      * {@inheritdoc}
      */
-    public function findProducts()
+    public function findProducts(array $options = array())
     {
+        if (isset($options['deleted']) && $options['deleted']) {
+            $this->entityManager->getFilters()->disable('softdeleteable');
+        }
+
         return $this->repository->findAll();
     }
 
     /**
      * {@inheritdoc}
      */
-    public function findProductsBy(array $criteria)
+    public function findProductsBy(array $criteria, array $options = array())
     {
+        if (isset($options['deleted']) && $options['deleted']) {
+            $this->entityManager->getFilters()->disable('softdeleteable');
+        }
+
         return $this->repository->findBy($criteria);
     }
 }

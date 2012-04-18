@@ -206,6 +206,14 @@ class Product implements ProductInterface
     /**
      * {@inheritdoc}
      */
+    public function isDeleted()
+    {
+        return null !== $this->deletedAt;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function getDeletedAt()
     {
         return $this->deletedAt;

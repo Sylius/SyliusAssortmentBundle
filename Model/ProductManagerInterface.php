@@ -11,8 +11,6 @@
 
 namespace Sylius\Bundle\AssortmentBundle\Model;
 
-use Sylius\Bundle\AssortmentBundle\Sorting\SorterInterface;
-
 /**
  * Product manager interface.
  *
@@ -30,9 +28,9 @@ interface ProductManagerInterface
     /**
      * Creates paginator.
      *
-     * @param SorterInterface $sorter
+     * @param array $options
      */
-    function createPaginator(SorterInterface $sorter = null);
+    function createPaginator(array $options = array());
 
     /**
      * Persists product.
@@ -52,35 +50,40 @@ interface ProductManagerInterface
      * Finds product by id.
      *
      * @param integer $id
+     * @param array   $options
      *
      * @return ProductInterface
      */
-    function findProduct($id);
+    function findProduct($id, array $options = array());
 
     /**
      * Finds product by criteria.
      *
      * @param array $criteria
+     * @param array $options
      *
      * @return ProductInterface
      */
-    function findProductBy(array $criteria);
+    function findProductBy(array $criteria, array $options = array());
 
     /**
      * Finds all products.
      *
+     * @param array $options
+     *
      * @return array
      */
-    function findProducts();
+    function findProducts(array $options = array());
 
     /**
      * Finds products by criteria.
      *
      * @param array $criteria
+     * @param array $options
      *
      * @return array
      */
-    function findProductsBy(array $criteria);
+    function findProductsBy(array $criteria, array $options = array());
 
     /**
      * Returns FQCN of product.

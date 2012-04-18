@@ -128,6 +128,13 @@ interface ProductInterface
     function incrementUpdatedAt();
 
     /**
+     * Is product deleted?
+     *
+     * @return Boolean
+     */
+    function isDeleted();
+
+    /**
      * Get the time of deletion.
      * Used for soft removal of product.
      *
