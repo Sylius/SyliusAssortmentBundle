@@ -27,6 +27,28 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 class PrototypeController extends ContainerAware
 {
     /**
+     * Creates a new product and displays form for it.
+     *
+     * @param Request $request
+     * @param mixed   $id      Prototype id
+     *
+     * @return Reponse
+     */
+    public function buildAction(Request $request, $id)
+    {
+        $prototype = $this->findPrototypeOr404($id);
+
+        $product = $this->container->get('sylius_assortment.manager.product')->createProduct();
+
+        $form = $this->container->get('form.factory')->create('sylius_assortment_product');
+        $form->setData($product);
+
+        return $this->container->get('templating')->renderResponse('SyliusAssortmentBundle:Backend/Product:create.html.'.$this->getEngine(), array(
+            'form' => $form->createView()
+        ));
+    }
+
+    /**
      * Lists all prototypes.
      *
      * @return Reponse

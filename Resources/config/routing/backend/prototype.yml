@@ -13,6 +13,10 @@ sylius_assortment_backend_prototype_update:
     pattern: /{id}/update
     defaults: { _controller: sylius_assortment.controller.backend.prototype:updateAction }
 
+sylius_assortment_backend_prototype_build:
+    pattern: /{id}/build
+    defaults: { _controller: sylius_assortment.controller.backend.prototype:buildAction }
+
 sylius_assortment_backend_prototype_delete:
     pattern: /{id}/delete
     defaults: { _controller: sylius_assortment.controller.backend.prototype:deleteAction }
