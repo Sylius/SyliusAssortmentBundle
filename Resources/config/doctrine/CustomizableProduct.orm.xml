@@ -16,8 +16,11 @@
 >
 
     <mapped-superclass name="Sylius\Bundle\AssortmentBundle\Entity\CustomizableProduct" table="sylius_assortment_product">
+        <field name="sku" column="sku" type="string" />
         <field name="name" column="name" type="string" />
-        <field name="slug" column="slug" type="string" />
+        <field name="slug" column="slug" type="string">
+            <gedmo:slug fields="name" />
+        </field>
         <field name="description" column="description" type="text" />
         <field name="createdAt" column="created_at" type="datetime">
             <gedmo:timestampable on="create"/>
