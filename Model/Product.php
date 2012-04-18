@@ -69,6 +69,13 @@ class Product implements ProductInterface
     protected $updatedAt;
 
     /**
+     * Deletion time.
+     *
+     * @var DateTime
+     */
+    protected $deletedAt;
+
+    /**
      * {@inheritdoc}
      */
     public function getId()

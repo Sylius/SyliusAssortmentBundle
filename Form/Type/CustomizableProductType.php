@@ -35,6 +35,7 @@ class CustomizableProductType extends ProductType
                 'multiple' => true
             ))
             ->add('properties', 'collection', array(
+                'required'     => false,
                 'type'         => 'sylius_assortment_product_property',
                 'allow_add'    => true,
                 'by_reference' => false
