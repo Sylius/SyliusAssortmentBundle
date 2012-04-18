@@ -71,6 +71,13 @@ abstract class Variant implements VariantInterface
     protected $updatedAt;
 
     /**
+     * Deletion time.
+     *
+     * @var DateTime
+     */
+    protected $deletedAt;
+
+    /**
      * Constructor.
      */
     public function __construct()
