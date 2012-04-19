@@ -69,18 +69,15 @@ class ProductManager extends BaseProductManager
     /**
      * {@inheritdoc}
      */
-    public function createPaginator(array $options = array())
+    public function createPaginator(SorterInterface $sorter, $filterDeleted = true)
     {
-        $queryBuilder = $this->entityManager->createQueryBuilder()
-            ->select('p')
-            ->from($this->class, 'p')
-        ;
+        $queryBuilder = $this->repository->createQueryBuilder('p');
 
-        if (isset($options['sorter']) && $options['sorter'] instanceof SorterInterface) {
-            $options['sorter']->sort($queryBuilder);
+        if (null !== $sorter) {
+            $sorter->sort($queryBuilder);
         }
 
-        if (isset($options['deleted']) && $options['deleted']) {
+        if (!$filterDeleted) {
             $this->entityManager->getFilters()->disable('softdeleteable');
         }
 
@@ -108,9 +105,9 @@ class ProductManager extends BaseProductManager
     /**
      * {@inheritdoc}
      */
-    public function findProduct($id, array $options = array())
+    public function findProduct($id, $filterDeleted = true)
     {
-        if (isset($options['deleted']) && $options['deleted']) {
+        if (!$filterDeleted) {
             $this->entityManager->getFilters()->disable('softdeleteable');
         }
 
@@ -120,9 +117,9 @@ class ProductManager extends BaseProductManager
     /**
      * {@inheritdoc}
      */
-    public function findProductBy(array $criteria, array $options = array())
+    public function findProductBy(array $criteria, $filterDeleted = true)
     {
-        if (isset($options['deleted']) && $options['deleted']) {
+        if (!$filterDeleted) {
             $this->entityManager->getFilters()->disable('softdeleteable');
         }
 
@@ -132,9 +129,9 @@ class ProductManager extends BaseProductManager
     /**
      * {@inheritdoc}
      */
-    public function findProducts(array $options = array())
+    public function findProducts($filterDeleted = true)
     {
-        if (isset($options['deleted']) && $options['deleted']) {
+        if (!$filterDeleted) {
             $this->entityManager->getFilters()->disable('softdeleteable');
         }
 
@@ -144,9 +141,9 @@ class ProductManager extends BaseProductManager
     /**
      * {@inheritdoc}
      */
-    public function findProductsBy(array $criteria, array $options = array())
+    public function findProductsBy(array $criteria, $filterDeleted = true)
     {
-        if (isset($options['deleted']) && $options['deleted']) {
+        if (!$filterDeleted) {
             $this->entityManager->getFilters()->disable('softdeleteable');
         }
 

@@ -11,6 +11,8 @@
 
 namespace Sylius\Bundle\AssortmentBundle\Model;
 
+use Sylius\Bundle\AssortmentBundle\Sorting\SorterInterface;
+
 /**
  * Product manager interface.
  *
@@ -28,9 +30,12 @@ interface ProductManagerInterface
     /**
      * Creates paginator.
      *
-     * @param array $options
+     * @param SorterInterface $sorter
+     * @param Boolean         $filterDeleted Whether to filter deleted products or not
+     *
+     * @return Pagerfanta
      */
-    function createPaginator(array $options = array());
+    function createPaginator(SorterInterface $sorter, $filterDeleted = true);
 
     /**
      * Persists product.
@@ -50,40 +55,40 @@ interface ProductManagerInterface
      * Finds product by id.
      *
      * @param integer $id
-     * @param array   $options
+     * @param Boolean $filterDeleted Whether to filter deleted products or not
      *
      * @return ProductInterface
      */
-    function findProduct($id, array $options = array());
+    function findProduct($id, $filterDeleted = true);
 
     /**
      * Finds product by criteria.
      *
-     * @param array $criteria
-     * @param array $options
+     * @param array   $criteria
+     * @param Boolean $filterDeleted Whether to filter deleted products or not
      *
      * @return ProductInterface
      */
-    function findProductBy(array $criteria, array $options = array());
+    function findProductBy(array $criteria, $filterDeleted = true);
 
     /**
      * Finds all products.
      *
-     * @param array $options
+     * @param Boolean $filterDeleted Whether to filter deleted products or not
      *
      * @return array
      */
-    function findProducts(array $options = array());
+    function findProducts($filterDeleted = true);
 
     /**
      * Finds products by criteria.
      *
-     * @param array $criteria
-     * @param array $options
+     * @param array   $criteria
+     * @param Boolean $filterDeleted Whether to filter deleted products or not
      *
      * @return array
      */
-    function findProductsBy(array $criteria, array $options = array());
+    function findProductsBy(array $criteria, $filterDeleted = true);
 
     /**
      * Returns FQCN of product.
