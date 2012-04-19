@@ -14,15 +14,16 @@ Features
 * Base support for many different persistence layers. Currently only Doctrine ORM driver is implemented.
 * Variants/Options/Properties support, inspired by [Spree product system](http://guides.spreecommerce.com/products_and_variants.html).
 * Sensible default controllers, events system, manipulators and forms.
+* Cloning simple products.
 * It uses [Pagerfanta](http://github.com/whiteoctober/Pagerfanta) to paginate over the products.
 * Thanks to awesome [Symfony2](http://symfony.com) everything is configurable and extensible.
-* Unit tested. [![Build status...](https://secure.travis-ci.org/Sylius/SyliusAssortmentBundle.png)](http://travis-ci.org/Sylius/SyliusAssortmentBundle)
 
 ### Planned or in progress
 
+* More unit tests. [![Build status...](https://secure.travis-ci.org/Sylius/SyliusAssortmentBundle.png)](http://travis-ci.org/Sylius/SyliusAssortmentBundle)
 * Full documentation.
 * Product prototypes.
-* Cloning products.
+* Cloning customizable products.
 * ACL implementation inspired by [FOSCommentBundle](http://github.com/FriendsOfSymfony/FOSCommentBundle).
 * Optional REST api with [FOSRestBundle](http://github.com/FriendsOfSymfony/FOSRestBundle).
 * Doctrine MongoDB ODM driver.
