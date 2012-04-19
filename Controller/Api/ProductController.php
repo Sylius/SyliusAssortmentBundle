@@ -9,15 +9,13 @@
  * file that was distributed with this source code.
  */
 
-namespace Sylius\Bundle\AssortmentBundle\Controller\Backend;
+namespace Sylius\Bundle\AssortmentBundle\Controller\Api;
 
-use Sylius\Bundle\AssortmentBundle\EventDispatcher\Event\FilterProductEvent;
-use Sylius\Bundle\AssortmentBundle\EventDispatcher\SyliusAssortmentEvents;
 use Symfony\Component\DependencyInjection\ContainerAware;
-use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use FOS\RestBundle\View\View;
 
 /**
  * Product API controller.
@@ -37,6 +35,12 @@ class ProductController extends ContainerAware
     public function getProductAction($id)
     {
         $product = $this->findProductOr404($id);
+
+        $view = View::create()
+            ->setData($product)
+        ;
+
+        return $this->handleView($view);
     }
 
     /**
@@ -49,12 +53,30 @@ class ProductController extends ContainerAware
     public function getProductsAction(Request $request)
     {
         $productManager = $this->container->get('sylius_assortment.manager.product');
-        $productSorter = $this->container->get('sylius_assortment.sorter.product');
 
-        $paginator = $productManager->createPaginator($productSorter, !$request->query->get('deleted', false));
+        $paginator = $productManager->createPaginator();
         $paginator->setCurrentPage($request->query->get('page', 1), true, true);
+        $paginator->setMaxPerPage($request->query->get('limit', 10));
 
         $products = $paginator->getCurrentPageResults();
+
+        $view = View::create()
+            ->setData($products)
+        ;
+
+        return $this->handleView($view);
+    }
+
+    /**
+     * Handles view.
+     *
+     * @param View $view
+     *
+     * @return Response
+     */
+    protected function handleView(View $view)
+    {
+        return $this->container->get('fos_rest.view_handler')->handle($view);
     }
 
     /**

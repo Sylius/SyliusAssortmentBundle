@@ -70,7 +70,7 @@ class ProductManager extends BaseProductManager
     /**
      * {@inheritdoc}
      */
-    public function createPaginator(SorterInterface $sorter, $filterDeleted = true)
+    public function createPaginator(SorterInterface $sorter = null, $filterDeleted = true)
     {
         $queryBuilder = $this->repository->createQueryBuilder('p');
 

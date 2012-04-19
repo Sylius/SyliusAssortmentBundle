@@ -53,7 +53,8 @@ class SyliusAssortmentExtension extends Extension
         $configurations = array(
             'controllers',
             'forms',
-            'manipulators'
+            'manipulators',
+            'api'
         );
 
         foreach($configurations as $basename) {
@@ -66,6 +67,7 @@ class SyliusAssortmentExtension extends Extension
         ));
 
         $this->remapParametersNamespaces($config['classes']['controller'], $container, array(
+            'api'      => 'sylius_assortment.controller.api.%s.class',
             'backend'  => 'sylius_assortment.controller.backend.%s.class',
             'frontend' => 'sylius_assortment.controller.frontend.%s.class'
         ));

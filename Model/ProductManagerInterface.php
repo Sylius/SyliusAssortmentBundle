@@ -35,7 +35,7 @@ interface ProductManagerInterface
      *
      * @return Pagerfanta
      */
-    function createPaginator(SorterInterface $sorter, $filterDeleted = true);
+    function createPaginator(SorterInterface $sorter = null, $filterDeleted = true);
 
     /**
      * Persists product.
