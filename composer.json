@@ -26,6 +26,9 @@
     "require-dev": {
         "doctrine/orm": "*"
     },
+    "suggest": {
+        "friendsofsymfony/rest-bundle": "*"
+    },
     "autoload": {
         "psr-0": { "Sylius\\Bundle\\AssortmentBundle": "" }
     },
