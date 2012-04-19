@@ -11,9 +11,11 @@ Features
 
 ### Implemented
 
+* Can be used to work with really simple, single model products, but also fully featured system.
 * Base support for many different persistence layers. Currently only Doctrine ORM driver is implemented.
 * Variants/Options/Properties support, inspired by [Spree product system](http://guides.spreecommerce.com/products_and_variants.html).
 * Sensible default controllers, events system, manipulators and forms.
+* Soft deletion of products and pretty slug generation thanks to [DoctrineExtensions](http://github.com/l3pp4rd/DoctrineExtensions).
 * Cloning simple products.
 * It uses [Pagerfanta](http://github.com/whiteoctober/Pagerfanta) to paginate over the products.
 * Thanks to awesome [Symfony2](http://symfony.com) everything is configurable and extensible.
