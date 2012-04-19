@@ -61,4 +61,12 @@ class ProductManipulator implements ProductManipulatorInterface
     {
         $this->productManager->removeProduct($product);
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function duplicate(ProductInterface $product)
+    {
+        return $this->productManager->duplicateProduct($product);
+    }
 }

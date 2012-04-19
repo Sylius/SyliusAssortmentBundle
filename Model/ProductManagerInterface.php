@@ -52,6 +52,13 @@ interface ProductManagerInterface
     function removeProduct(ProductInterface $product);
 
     /**
+     * Clones product.
+     *
+     * @param ProductInterface $product
+     */
+    function duplicateProduct(ProductInterface $product);
+
+    /**
      * Finds product by id.
      *
      * @param integer $id

@@ -40,4 +40,13 @@ interface ProductManipulatorInterface
      * @param ProductInterface $product
      */
     function delete(ProductInterface $product);
+
+    /**
+     * Clones product.
+     *
+     * @param ProductInterface $product
+     *
+     * @return ProductInterface The cloned product
+     */
+    function duplicate(ProductInterface $product);
 }

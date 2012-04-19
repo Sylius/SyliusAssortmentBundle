@@ -151,6 +151,25 @@ class ProductController extends ContainerAware
     }
 
     /**
+     * Clones product and opens it for editing.
+     *
+     * @param integer $id The product id
+     *
+     * @return RedirectResponse
+     */
+    public function duplicateAction($id)
+    {
+        $product = $this->findProductOr404($id);
+
+        $this->container->get('event_dispatcher')->dispatch(SyliusAssortmentEvents::PRODUCT_DUPLICATE, new FilterProductEvent($product));
+        $clonedProduct = $this->container->get('sylius_assortment.manipulator.product')->duplicate($product);
+
+        return new RedirectResponse($this->container->get('router')->generate('sylius_assortment_backend_product_update', array(
+            'id' => $clonedProduct->getId()
+        )));
+    }
+
+    /**
      * Tries to find product with given id.
      * Throws a special http exception with code 404 if unsuccessful.
      *

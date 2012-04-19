@@ -15,6 +15,7 @@ use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityRepository;
 use Pagerfanta\Adapter\DoctrineORMAdapter;
 use Pagerfanta\Pagerfanta;
+use Sylius\Bundle\AssortmentBundle\Model\CustomizableProductInterface;
 use Sylius\Bundle\AssortmentBundle\Model\ProductInterface;
 use Sylius\Bundle\AssortmentBundle\Model\ProductManager as BaseProductManager;
 use Sylius\Bundle\AssortmentBundle\Sorting\SorterInterface;
@@ -100,6 +101,25 @@ class ProductManager extends BaseProductManager
     {
         $this->entityManager->remove($product);
         $this->entityManager->flush();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function duplicateProduct(ProductInterface $product)
+    {
+        if ($product instanceof CustomizableProductInterface) {
+            throw new \BadMethodCall('Duplicate currently does not support customizable products');
+        }
+
+        $duplicatedProduct = clone $product;
+
+        $duplicatedProduct->setId(null);
+        $duplicatedProduct->setName('Duplicate of '.$product->getName());
+
+        $this->persistProduct($duplicatedProduct);
+
+        return $duplicatedProduct;
     }
 
     /**

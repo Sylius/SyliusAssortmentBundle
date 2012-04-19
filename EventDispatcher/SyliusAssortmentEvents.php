@@ -18,9 +18,10 @@ namespace Sylius\Bundle\AssortmentBundle\EventDispatcher;
  */
 final class SyliusAssortmentEvents
 {
-    const PRODUCT_CREATE = 'sylius_assortment.event.product.create';
-    const PRODUCT_UPDATE = 'sylius_assortment.event.product.update';
-    const PRODUCT_DELETE = 'sylius_assortment.event.product.delete';
+    const PRODUCT_CREATE     = 'sylius_assortment.event.product.create';
+    const PRODUCT_UPDATE     = 'sylius_assortment.event.product.update';
+    const PRODUCT_DELETE     = 'sylius_assortment.event.product.delete';
+    const PRODUCT_DUPLICATE  = 'sylius_assortment.event.product.duplicate';
 
     const OPTION_CREATE = 'sylius_assortment.event.option.create';
     const OPTION_UPDATE = 'sylius_assortment.event.option.update';
