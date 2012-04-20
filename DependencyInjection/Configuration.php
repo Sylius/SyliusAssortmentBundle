@@ -38,6 +38,7 @@ class Configuration implements ConfigurationInterface
             ->children()
                 ->scalarNode('driver')->cannotBeOverwritten()->isRequired()->cannotBeEmpty()->end()
                 ->scalarNode('engine')->defaultValue('twig')->end()
+                ->booleanNode('api')->defaultFalse()->end()
             ->end();
 
         $this->addClassesSection($rootNode);

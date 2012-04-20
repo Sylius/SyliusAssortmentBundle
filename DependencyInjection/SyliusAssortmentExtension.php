@@ -53,9 +53,12 @@ class SyliusAssortmentExtension extends Extension
         $configurations = array(
             'controllers',
             'forms',
-            'manipulators',
-            'api'
+            'manipulators'
         );
+
+        if ($config['api']) {
+            $configurations[] = 'api';
+        }
 
         foreach($configurations as $basename) {
             $loader->load(sprintf('%s.xml', $basename));
