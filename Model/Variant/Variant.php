@@ -29,6 +29,13 @@ abstract class Variant implements VariantInterface
     protected $id;
 
     /**
+     * Is master?
+     *
+     * @var Boolean
+     */
+    protected $master;
+
+    /**
      * Variant SKU.
      *
      * @var string
@@ -82,6 +89,7 @@ abstract class Variant implements VariantInterface
      */
     public function __construct()
     {
+        $this->master = false;
         $this->options = array();
     }
 
@@ -99,6 +107,22 @@ abstract class Variant implements VariantInterface
     public function setId($id)
     {
         $this->id = $id;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function isMaster()
+    {
+        return $this->master;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setMaster($master)
+    {
+        $this->master = (Boolean) $master;
     }
 
     /**

@@ -39,6 +39,24 @@ class CustomizableProduct extends BaseCustomizableProduct
     /**
      * {@inheritdoc}
      */
+    public function getVariants()
+    {
+        return $this->variants->filter(function (VariantInterface $variant) {
+            return !$variant->isMaster();
+        });
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function countVariants()
+    {
+        return count($this->getVariants());
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function addVariant(VariantInterface $variant)
     {
         if (!$this->hasVariant($variant)) {

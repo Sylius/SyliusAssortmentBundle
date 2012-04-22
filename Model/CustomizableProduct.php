@@ -73,6 +73,9 @@ class CustomizableProduct extends Product implements CustomizableProductInterfac
      */
     public function setMasterVariant(VariantInterface $masterVariant)
     {
+        $masterVariant->setProduct($this);
+        $masterVariant->setMaster(true);
+
         $this->masterVariant = $masterVariant;
     }
 
@@ -105,7 +108,9 @@ class CustomizableProduct extends Product implements CustomizableProductInterfac
      */
     public function getVariants()
     {
-        return $this->variants;
+        return array_filter($this->variants, function (VariantInterface $variant) {
+            return !$variant->isMaster();
+        });
     }
 
     /**

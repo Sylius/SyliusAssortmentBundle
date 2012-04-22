@@ -53,7 +53,7 @@ class VariantController extends ContainerAware
     public function listAction(Request $request, $productId)
     {
         $product = $this->findProductOr404($productId);
-        $variants = $this->container->get('sylius_assortment.manager.variant')->findVariantsBy(array('product' => $product));
+        $variants = $this->container->get('sylius_assortment.manager.variant')->findVariantsBy(array('product' => $product, 'master' => false));
 
         return $this->container->get('templating')->renderResponse('SyliusAssortmentBundle:Backend/Variant:list.html.'.$this->getEngine(), array(
             'variants' => $variants,

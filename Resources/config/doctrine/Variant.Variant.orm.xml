@@ -16,6 +16,7 @@
 >
 
     <mapped-superclass name="Sylius\Bundle\AssortmentBundle\Entity\Variant\Variant" table="sylius_assortment_variant">
+        <field name="master" column="is_master" type="boolean" />
         <field name="sku" column="sku" type="string" />
         <field name="presentation" column="presentation" type="string" nullable="true" />
         <field name="createdAt" column="created_at" type="datetime">

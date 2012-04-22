@@ -39,6 +39,20 @@ interface VariantInterface
     function setId($id);
 
     /**
+     * Checks whether variant is master.
+     *
+     * @return Boolean
+     */
+    function isMaster();
+
+    /**
+     * Defines whether variant is master.
+     *
+     * @param Boolean $master
+     */
+    function setMaster($master);
+
+    /**
      * Get variant SKU.
      *
      * @return string
