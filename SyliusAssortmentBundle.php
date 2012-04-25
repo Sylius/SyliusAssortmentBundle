@@ -36,7 +36,8 @@ class SyliusAssortmentBundle extends Bundle
     static public function getSupportedDrivers()
     {
         return array(
-            self::DRIVER_DOCTRINE_ORM
+            self::DRIVER_DOCTRINE_ORM,
+            self::DRIVER_DOCTRINE_MONGODB_ODM
         );
     }
 }
