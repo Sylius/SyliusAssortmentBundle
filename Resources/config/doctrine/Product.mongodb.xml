@@ -15,20 +15,20 @@
                         xmlns:gedmo="http://gediminasm.org/schemas/orm/doctrine-extensions-mapping"
 >
 
-    <mapped-superclass fieldName="Sylius\Bundle\AssortmentBundle\Document\Product">
+    <mapped-superclass name="Sylius\Bundle\AssortmentBundle\Document\Product">
         <field fieldName="sku" name="sku" type="string" />
         <field fieldName="name" column="name" type="string" />
         <field fieldName="slug" column="slug" type="string">
             <gedmo:slug fields="fieldName" />
         </field>
-        <field fieldName="description" column="description" type="text" />
-        <field fieldName="createdAt" column="createdAt" type="datetime">
+        <field fieldName="description" column="description" type="string" />
+        <field fieldName="createdAt" column="createdAt" type="timestamp">
             <gedmo:timestampable on="create"/>
         </field>
-        <field fieldName="updatedAt" column="updatedAt" type="datetime">
+        <field fieldName="updatedAt" column="updatedAt" type="timestamp">
             <gedmo:timestampable on="update"/>
         </field>
-        <field fieldName="deletedAt" column="deletedAt" type="datetime" />
+        <field fieldName="deletedAt" column="deletedAt" type="timestamp" />
     </mapped-superclass>
 
 </doctrine-mongo-mapping>
