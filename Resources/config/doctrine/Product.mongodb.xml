@@ -17,18 +17,18 @@
 
     <mapped-superclass name="Sylius\Bundle\AssortmentBundle\Document\Product">
         <field fieldName="sku" name="sku" type="string" />
-        <field fieldName="name" column="name" type="string" />
-        <field fieldName="slug" column="slug" type="string">
+        <field fieldName="name" name="name" type="string" />
+        <field fieldName="slug" name="slug" type="string">
             <gedmo:slug fields="name" />
         </field>
-        <field fieldName="description" column="description" type="string" />
-        <field fieldName="createdAt" column="createdAt" type="timestamp">
+        <field fieldName="description" name="description" type="string" />
+        <field fieldName="createdAt" name="createdAt" type="timestamp">
             <gedmo:timestampable on="create"/>
         </field>
-        <field fieldName="updatedAt" column="updatedAt" type="timestamp">
+        <field fieldName="updatedAt" name="updatedAt" type="timestamp">
             <gedmo:timestampable on="update"/>
         </field>
-        <field fieldName="deletedAt" column="deletedAt" type="timestamp" />
+        <field fieldName="deletedAt" name="deletedAt" type="timestamp" />
     </mapped-superclass>
 
 </doctrine-mongo-mapping>
