@@ -34,34 +34,15 @@ class SyliusAssortmentExtension extends Extension
         $configuration = new Configuration();
 
         $config = $processor->processConfiguration($configuration, $config);
-
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config/container'));
 
-        if (!in_array($config['driver'], SyliusAssortmentBundle::getSupportedDrivers())) {
-            throw new \InvalidArgumentException(sprintf('Driver "%s" is unsupported for this extension', $config['driver']));
-        }
-
-        if (!in_array($config['engine'], array('php', 'twig'))) {
-            throw new \InvalidArgumentException(sprintf('Engine "%s" is unsupported for this extension', $config['engine']));
-        }
-
-        $loader->load(sprintf('driver/%s.xml', $config['driver']));
+        $this->loadDriver($config['driver'], $config, $container, $loader);
 
         $container->setParameter('sylius_assortment.driver', $config['driver']);
         $container->setParameter('sylius_assortment.engine', $config['engine']);
 
-        $configurations = array(
-            'controllers',
-            'forms',
-            'manipulators'
-        );
-
         if ($config['api']) {
-            $configurations[] = 'api';
-        }
-
-        foreach($configurations as $basename) {
-            $loader->load(sprintf('%s.xml', $basename));
+            $loader->load('api.xml');
         }
 
         $this->remapParametersNamespaces($config['classes'], $container, array(
@@ -78,6 +59,50 @@ class SyliusAssortmentExtension extends Extension
         $this->remapParametersNamespaces($config['classes']['form'], $container, array(
             'type' => 'sylius_assortment.form.type.%s.class'
         ));
+    }
+
+    /**
+     * Load bundle driver.
+     *
+     * @param string           $driver
+     * @param array            $config
+     * @param ContainerBuilder $container
+     * @param XmlFileLoader    $loader
+     *
+     * @throws InvalidArgumentException
+     */
+    protected function loadDriver($driver, array $config, ContainerBuilder $container, XmlFileLoader $loader)
+    {
+        if (!in_array($driver, SyliusAssortmentBundle::getSupportedDrivers())) {
+            throw new \InvalidArgumentException(sprintf('Driver "%s" is unsupported for this extension', $driver));
+        }
+
+        $loader->load(sprintf('driver/%s.xml', $driver));
+
+        $loader->load('controllers/product.xml');
+        $loader->load('manipulators/product.xml');
+        $loader->load('forms/product.xml');
+
+        if (!empty($config['classes']['model']['variant'])) {
+            $loader->load('controllers/variant.xml');
+            $loader->load('manipulators/variant.xml');
+            $loader->load('forms/variant.xml');
+        }
+        if (!empty($config['classes']['model']['option'])) {
+            $loader->load('controllers/option.xml');
+            $loader->load('manipulators/option.xml');
+            $loader->load('forms/option.xml');
+        }
+        if (!empty($config['classes']['model']['property'])) {
+            $loader->load('controllers/property.xml');
+            $loader->load('manipulators/property.xml');
+            $loader->load('forms/property.xml');
+        }
+        if (!empty($config['classes']['model']['prototype'])) {
+            $loader->load('controllers/prototype.xml');
+            $loader->load('manipulators/prototype.xml');
+            $loader->load('forms/prototype.xml');
+        }
     }
 
     /**

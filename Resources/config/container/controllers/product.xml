@@ -28,26 +28,6 @@
                 <argument type="service" id="service_container" />
             </call>
         </service>
-        <service id="sylius_assortment.controller.backend.prototype" class="%sylius_assortment.controller.backend.prototype.class%">
-            <call method="setContainer">
-                <argument type="service" id="service_container" />
-            </call>
-        </service>
-        <service id="sylius_assortment.controller.backend.property" class="%sylius_assortment.controller.backend.property.class%">
-            <call method="setContainer">
-                <argument type="service" id="service_container" />
-            </call>
-        </service>
-        <service id="sylius_assortment.controller.backend.option" class="%sylius_assortment.controller.backend.option.class%">
-            <call method="setContainer">
-                <argument type="service" id="service_container" />
-            </call>
-        </service>
-        <service id="sylius_assortment.controller.backend.variant" class="%sylius_assortment.controller.backend.variant.class%">
-            <call method="setContainer">
-                <argument type="service" id="service_container" />
-            </call>
-        </service>
     </services>
 
 </container>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!--
+
+ This file is part of the Sylius package.
+
+ (c) Paweł Jędrzejewski
+
+ For the full copyright and license information, please view the LICENSE
+ file that was distributed with this source code.
+
+-->
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services
+                               http://symfony.com/schema/dic/services/services-1.0.xsd"
+>
+
+    <parameters>
+        <parameter key="sylius_assortment.form.type.product_hidden.class">Sylius\Bundle\AssortmentBundle\Form\Type\ProductHiddenType</parameter>
+        <parameter key="sylius_assortment.form.data_transformer.product_to_id.class">Sylius\Bundle\AssortmentBundle\Form\DataTransformer\ProductToIdTransformer</parameter>
+    </parameters>
+
+    <services>
+        <service id="sylius_assortment.form.type.product" class="%sylius_assortment.form.type.product.class%">
+            <argument>%sylius_assortment.model.product.class%</argument>
+            <tag name="form.type" alias="sylius_assortment_product" />
+        </service>
+        <service id="sylius_assortment.form.type.product_hidden" class="%sylius_assortment.form.type.product_hidden.class%">
+            <argument>%sylius_assortment.model.product.class%</argument>
+            <argument type="service" id="sylius_assortment.form.data_transformer.product_to_id" />
+            <tag name="form.type" alias="sylius_assortment_product_hidden" />
+        </service>
+        <service id="sylius_assortment.form.data_transformer.product_to_id" class="%sylius_assortment.form.data_transformer.product_to_id.class%">
+            <argument type="service" id="sylius_assortment.manager.product" />
+        </service>
+    </services>
+
+</container>
