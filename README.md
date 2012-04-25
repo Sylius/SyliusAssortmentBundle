@@ -12,7 +12,7 @@ Features
 ### Implemented
 
 * Can be used to work with really simple, single model products, but also fully featured system.
-* Base support for many different persistence layers. Currently only Doctrine ORM driver is implemented.
+* Base support for many different persistence layers. Full Doctrine ORM support, simple products driver for Doctrine MongoDB ODM.
 * Variants/Options/Properties support, inspired by [Spree product system](http://guides.spreecommerce.com/products_and_variants.html).
 * Sensible default controllers, events system, manipulators and forms.
 * Soft deletion of products and pretty slug generation thanks to [DoctrineExtensions](http://github.com/l3pp4rd/DoctrineExtensions).
@@ -28,7 +28,6 @@ Features
 * Cloning customizable products.
 * ACL implementation inspired by [FOSCommentBundle](http://github.com/FriendsOfSymfony/FOSCommentBundle).
 * Optional REST api with [FOSRestBundle](http://github.com/FriendsOfSymfony/FOSRestBundle).
-* Doctrine MongoDB ODM driver.
 * Doctrine CouchDB ODM driver. `*`
 * Propel driver. `*`
 
