@@ -9,79 +9,20 @@
  * file that was distributed with this source code.
  */
 
-namespace Sylius\Bundle\AssortmentBundle\Model\Variant;
+namespace Sylius\Bundle\AssortmentBundle\Model\Variation;
 
 use Sylius\Bundle\AssortmentBundle\Model\Option\OptionValueInterface;
 use Sylius\Bundle\AssortmentBundle\Model\ProductInterface;
 
 /**
- * Product variant interface.
- * It's related only to products that implement CustomizableProductInterface or FluidProductInterface.
- * Allows setting values for different variations of product options.
- * If some products don't need to have such features, they simply have only one master variant.
+ * Product variation interface.
+ * Used to represet a variation of products options.
+ * Mostly used in ODM implementations, as a snapshot of ordered product.
  *
  * @author Paweł Jędrzejewski <pjedrzejewski@diweb.pl>
  */
-interface VariantInterface
+interface VariationInterface
 {
-    /**
-     * Get variant id.
-     *
-     * @return mixed
-     */
-    function getId();
-
-    /**
-     * Set variant id.
-     *
-     * @param mixed $id
-     */
-    function setId($id);
-
-    /**
-     * Checks whether variant is master.
-     *
-     * @return Boolean
-     */
-    function isMaster();
-
-    /**
-     * Defines whether variant is master.
-     *
-     * @param Boolean $master
-     */
-    function setMaster($master);
-
-    /**
-     * Get variant SKU.
-     *
-     * @return string
-     */
-    function getSku();
-
-    /**
-     * Set variant SKU.
-     *
-     * @param string $sku
-     */
-    function setSku($sku);
-
-    /**
-     * Get presentation.
-     * This should be generated from option values
-     * when no other is set.
-     *
-     * @return string
-     */
-    function getPresentation();
-
-    /**
-     * Set custom presentation.
-     *
-     * @param string $presentation
-     */
-    function setPresentation($presentation);
-
     /**
      * Get master product.
      *
@@ -104,14 +45,14 @@ interface VariantInterface
     function getOptions();
 
     /**
-     * Sets all variant options.
+     * Sets all variation options.
      *
      * @param array $options An array or collection of OptionValueInterface
      */
     function setOptions($options);
 
     /**
-     * Counts all variant options.
+     * Counts all variation options.
      *
      * @return integer
      */
@@ -125,14 +66,14 @@ interface VariantInterface
     function addOption(OptionValueInterface $option);
 
     /**
-     * Removes option from variant.
+     * Removes option from variation.
      *
      * @param OptionValueInterface $option
      */
     function removeOption(OptionValueInterface $option);
 
     /**
-     * Checks whether variant has given option.
+     * Checks whether variation has given option.
      *
      * @param OptionValueInterface $option
      *
@@ -177,24 +118,4 @@ interface VariantInterface
      * Set last update time to now.
      */
     function incrementUpdatedAt();
-
-    /**
-     * Get the time of deletion.
-     * Used for soft removal of variant.
-     *
-     * @return DateTime
-     */
-    function getDeletedAt();
-
-    /**
-     * Set deletion time.
-     *
-     * @param DateTime $deletedAt
-     */
-    function setDeletedAt(\DateTime $deletedAt);
-
-    /**
-     * Set deletion time to now.
-     */
-    function incrementDeletedAt();
 }
