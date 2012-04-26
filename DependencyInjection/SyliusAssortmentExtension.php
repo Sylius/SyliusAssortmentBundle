@@ -103,6 +103,9 @@ class SyliusAssortmentExtension extends Extension
             $loader->load('manipulators/prototype.xml');
             $loader->load('forms/prototype.xml');
         }
+        if (!empty($config['classes']['model']['variation'])) {
+            $loader->load('forms/variation.xml');
+        }
     }
 
     /**
