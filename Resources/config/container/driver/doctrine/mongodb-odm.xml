@@ -21,7 +21,7 @@
         <parameter key="sylius_assortment.manager.product.class">Sylius\Bundle\AssortmentBundle\Document\ProductManager</parameter>
         <parameter key="sylius_assortment.sorter.product.class">Sylius\Bundle\AssortmentBundle\Sorting\MongoDB\ProductSorter</parameter>
 
-        <parameter key="sylius_assortment.manager.option.class">Sylius\Bundle\AssortmentBundle\Entity\Option\OptionManager</parameter>
+        <parameter key="sylius_assortment.manager.option.class">Sylius\Bundle\AssortmentBundle\Document\Option\OptionManager</parameter>
     </parameters>
 
     <services>
@@ -36,7 +36,7 @@
         </service>
 
         <service id="sylius_assortment.manager.option" class="%sylius_assortment.manager.option.class%">
-            <argument type="service" id="doctrine.orm.default_entity_manager" />
+            <argument type="service" id="doctrine.odm.mongodb.document_manager" />
             <argument>%sylius_assortment.model.option.class%</argument>
         </service>
     </services>
