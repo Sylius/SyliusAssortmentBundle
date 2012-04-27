@@ -19,7 +19,7 @@ use Symfony\Component\Validator\ConstraintValidator;
  *
  * @author Paweł Jędrzejewski <pjedrzejewski@diweb.pl>
  */
-class UniqueProductValidator extends ConstraintValidator
+class ProductUniqueValidator extends ConstraintValidator
 {
     /**
      * Product manager.

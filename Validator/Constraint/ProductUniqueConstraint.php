@@ -18,7 +18,7 @@ use Symfony\Component\Validator\Constraint;
  *
  * @author Paweł Jędrzejewski <pjedrzejewski@diweb.pl>
  */
-class UniqueProductConstraint extends Constraint
+class ProductUniqueConstraint extends Constraint
 {
     public $message = 'This property must be unique';
 
