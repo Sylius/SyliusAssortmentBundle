@@ -22,25 +22,8 @@ use Symfony\Component\Validator\Exception\UnexpectedTypeException;
  *
  * @author Paweł Jędrzejewski <pjedrzejewski@diweb.pl>
  */
-class UniqueOptionValuesCombinationValidator extends ConstraintValidator
+class VariantCombinationValidator extends ConstraintValidator
 {
-    /**
-     * Variant manager.
-     *
-     * @var VariantManagerInterface
-     */
-    protected $variantManager;
-
-    /**
-     * Constructor.
-     *
-     * @param VariantManagerInterface $variantManager
-     */
-    public function __construct(VariantManagerInterface $variantManager)
-    {
-        $this->variantManager = $variantManager;
-    }
-
     /**
      * {@inheritdoc}
      */
@@ -59,27 +42,22 @@ class UniqueOptionValuesCombinationValidator extends ConstraintValidator
         }
 
         $combination = array();
-
         foreach ($variant->getOptions() as $option) {
             $combination[] = $option;
         }
-
         foreach ($product->getVariants() as $existingVariant) {
             if ($variant !== $existingVariant) {
                 $matches = true;
-
                 foreach ($combination as $option) {
                     if (!$existingVariant->hasOption($option)) {
                         $matches = false;
                     }
                 }
-
                 if ($matches) {
                     break;
                 }
             }
         }
-
         if ($matches) {
             $this->setMessage($constraint->message);
 

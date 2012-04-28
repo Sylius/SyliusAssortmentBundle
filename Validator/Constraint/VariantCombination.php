@@ -20,7 +20,7 @@ use Symfony\Component\Validator\Constraint;
  *
  * @Annotation
  */
-class UniqueOptionValuesCombination extends Constraint
+class VariantCombination extends Constraint
 {
     public $message = 'Variant with this option set already exists';
 
@@ -29,7 +29,7 @@ class UniqueOptionValuesCombination extends Constraint
      */
     public function validatedBy()
     {
-        return 'sylius_assortment.validator.unique_option_values_combination';
+        return 'sylius_assortment.validator.variant.combination';
     }
 
     /**
