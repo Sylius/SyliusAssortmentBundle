@@ -11,7 +11,7 @@ Features
 
 ### Implemented
 
-* Suitable for small stores with simple product model and for stores that need fully featured product catalog.
+* Suitable for small webshop with simple product model and for stores that need fully featured product catalog.
 * Base for many different persistence layers. 
 * Full Doctrine ORM support.
 * Initial draft of Doctrine MongoDB ODM driver.
