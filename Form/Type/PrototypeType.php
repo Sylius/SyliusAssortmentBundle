@@ -44,12 +44,18 @@ class PrototypeType extends AbstractType
     public function buildForm(FormBuilder $builder, array $options)
     {
         $builder
-            ->add('name', 'text')
+            ->add('name', 'text', array(
+                'label' => 'sylius_assortment.label.prototype.name'
+            ))
             ->add('properties', 'sylius_assortment_property_choice', array(
-                'multiple' => true
+                'required' => false,
+                'multiple' => true,
+                'label'    => 'sylius_assortment.label.prototype.properties'
             ))
             ->add('options', 'sylius_assortment_option_choice', array(
-                'multiple' => true
+                'required' => false,
+                'multiple' => true,
+                'label'    => 'sylius_assortment.label.prototype.options'
             ))
         ;
     }

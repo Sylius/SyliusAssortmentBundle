@@ -44,8 +44,12 @@ class PropertyType extends AbstractType
     public function buildForm(FormBuilder $builder, array $options)
     {
         $builder
-            ->add('name')
-            ->add('presentation')
+            ->add('name', 'text', array(
+                'label' => 'sylius_assortment.label.property.name'
+            ))
+            ->add('presentation', 'text', array(
+                'label' => 'sylius_assortment.label.property.presentation'
+            ))
         ;
     }
 

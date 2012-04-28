@@ -30,7 +30,8 @@ class FluidProductType extends ProductType
         $builder
             ->add('options', 'sylius_assortment_option_choice', array(
                 'required' => false,
-                'multiple' => true
+                'multiple' => true,
+                'label'    => 'sylius_assortment.label.product.options'
             ))
             ->add('properties', 'collection', array(
                 'required'  => false,

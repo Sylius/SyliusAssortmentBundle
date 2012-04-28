@@ -11,3 +11,16 @@ sylius_assortment:
         variant:
             sku: "SKU"
             presentation: "Presentation"
+        option:
+            name: "Name"
+            presentation: "Presentation"
+            values: "Values"
+        option_value:
+            value: "•"
+        prototype:
+            name: "Name"
+            properties: "Properties"
+            options: "Options"
+        property:
+            name: "Name"
+            presentation: "Presentation"

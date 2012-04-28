@@ -44,13 +44,18 @@ class OptionType extends AbstractType
     public function buildForm(FormBuilder $builder, array $options)
     {
         $builder
-            ->add('name')
-            ->add('presentation')
+            ->add('name', 'text', array(
+                'label' => 'sylius_assortment.label.option.name'
+            ))
+            ->add('presentation', 'text', array(
+                'label' => 'sylius_assortment.label.option.presentation'
+            ))
             ->add('values', 'collection', array(
                 'type'         => 'sylius_assortment_option_value',
                 'allow_add'    => true,
                 'allow_delete' => true,
-                'by_reference' => false
+                'by_reference' => false,
+                'label'        => 'sylius_assortment.label.option.values'
             ))
         ;
     }
