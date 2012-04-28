@@ -17,3 +17,27 @@ sylius_assortment:
         sku:
             not_blank: "Please enter variant SKU"
             unique: "Variant SKU must be unique"
+    option:
+        name:
+            not_blank: "Please enter option name"
+            min_length: "Option name must be at least 2 characters long"
+            max_length: "Option name must not be longer than 255 characters"
+        presentation:
+            not_blank: "Please enter option presentation"
+            min_length: "Option presentation must be at least 2 characters long"
+            max_length: "Option presentation must not be longer than 255 characters"
+    property:
+        name:
+            not_blank: "Please enter property name"
+            min_length: "Property name must be at least 2 characters long"
+            max_length: "Property name must not be longer than 255 characters"
+        presentation:
+            not_blank: "Please enter property presentation"
+            min_length: "Property presentation must be at least 2 characters long"
+            max_length: "Property presentation must not be longer than 255 characters"
+    prototype:
+        name:
+            not_blank: "Please enter prototype name"
+            min_length: "Prototype name must be at least 2 characters long"
+            max_length: "Prototype name must not be longer than 255 characters"
+
