@@ -14,19 +14,38 @@ namespace Sylius\Bundle\AssortmentBundle\Validator\Constraint;
 use Symfony\Component\Validator\Constraint;
 
 /**
- * Unique product property constraint.
+ * Unique product variant property constraint.
  *
  * @author Paweł Jędrzejewski <pjedrzejewski@diweb.pl>
+ *
+ * @Annotation
  */
-class ProductUniqueConstraint extends Constraint
+class VariantUnique extends Constraint
 {
     public $message = 'This property must be unique';
+    public $property;
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getRequiredOptions()
+    {
+        return array('property');
+    }
 
     /**
      * {@inheritdoc}
      */
     public function validatedBy()
     {
-        return 'sylius_assortment.validator.product.unique';
+        return 'sylius_assortment.validator.variant.unique';
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getTargets()
+    {
+        return self::CLASS_CONSTRAINT;
     }
 }

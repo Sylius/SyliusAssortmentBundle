@@ -16,6 +16,7 @@ use Doctrine\ORM\EntityRepository;
 use Sylius\Bundle\AssortmentBundle\Model\ProductInterface;
 use Sylius\Bundle\AssortmentBundle\Model\Variant\VariantInterface;
 use Sylius\Bundle\AssortmentBundle\Model\Variant\VariantManager as BaseVariantManager;
+use Sylius\Bundle\AssortmentBundle\Validator\Constraint\VariantUnique as VariantUniqueConstraint;
 
 /**
  * ORM driver variant manager.
@@ -63,6 +64,28 @@ class VariantManager extends BaseVariantManager
         $variant->setProduct($product);
 
         return $variant;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function validateUnique(VariantInterface $variant, VariantUniqueConstraint $constraint)
+    {
+        $property = $constraint->property;
+        $classMetadata = $this->entityManager->getClassMetadata($this->class);
+
+        if (!$classMetadata->hasField($property)) {
+            throw new \InvalidArgumentException(sprintf('The "%s" class metadata does not have any "%s" field or association mapping', $this->class, $property));
+        }
+
+        $value = $classMetadata->getFieldValue($variant, $property);
+        $criteria = array($property => $value);
+
+        if ($conflictualVariant = $this->findVariantBy($criteria)) {
+            return false;
+        }
+
+        return true;
     }
 
     /**

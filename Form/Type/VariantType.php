@@ -49,13 +49,16 @@ class VariantType extends AbstractType
     public function buildForm(FormBuilder $builder, array $options)
     {
         $builder
-            ->add('sku', 'text')
             ->add('presentation', 'text', array(
-                'required' => false
+                'required' => false,
+                'label'    => 'sylius_assortment.label.variant.presentation'
             ))
         ;
 
         if (!$options['master']) {
+            $builder->add('sku', 'text', array(
+                'label'    => 'sylius_assortment.label.variant.sku'
+            ));
             $builder->addEventSubscriber(new BuildVariantTypeListener($builder->getFormFactory()));
         }
     }

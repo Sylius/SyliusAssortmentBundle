@@ -12,6 +12,7 @@
 namespace Sylius\Bundle\AssortmentBundle\Model;
 
 use Sylius\Bundle\AssortmentBundle\Sorting\SorterInterface;
+use Sylius\Bundle\AssortmentBundle\Validator\Constraint\ProductUnique as ProductUniqueConstraint;
 
 /**
  * Product manager interface.
@@ -36,6 +37,16 @@ interface ProductManagerInterface
      * @return Pagerfanta
      */
     function createPaginator(SorterInterface $sorter = null, $filterDeleted = true);
+
+    /**
+     * Validates uniqueness of product.
+     *
+     * @param ProductInterface        $product
+     * @param ProductUniqueConstraint $constraint
+     *
+     * @return Boolean
+     */
+    function validateUnique(ProductInterface $product, ProductUniqueConstraint $constraint);
 
     /**
      * Persists product.

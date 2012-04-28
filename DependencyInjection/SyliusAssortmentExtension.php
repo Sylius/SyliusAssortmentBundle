@@ -82,11 +82,13 @@ class SyliusAssortmentExtension extends Extension
         $loader->load('controllers/product.xml');
         $loader->load('manipulators/product.xml');
         $loader->load('forms/product.xml');
+        $loader->load('validators/product.xml');
 
         if (!empty($config['classes']['model']['variant'])) {
             $loader->load('controllers/variant.xml');
             $loader->load('manipulators/variant.xml');
             $loader->load('forms/variant.xml');
+            $loader->load('validators/variant.xml');
         }
         if (!empty($config['classes']['model']['option'])) {
             $loader->load('controllers/option.xml');

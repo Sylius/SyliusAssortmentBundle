@@ -11,35 +11,34 @@
 
 namespace Sylius\Bundle\AssortmentBundle\Validator;
 
-use Sylius\Bundle\AssortmentBundle\Model\CustomizableProductInterface;
-use Sylius\Bundle\AssortmentBundle\Model\ProductInterface;
-use Sylius\Bundle\AssortmentBundle\Model\ProductManagerInterface;
+use Sylius\Bundle\AssortmentBundle\Model\Variant\VariantInterface;
+use Sylius\Bundle\AssortmentBundle\Model\Variant\VariantManagerInterface;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 use Symfony\Component\Validator\Exception\UnexpectedTypeException;
 
 /**
- * Unique product constraint validator.
+ * Unique product variant constraint validator.
  *
  * @author Paweł Jędrzejewski <pjedrzejewski@diweb.pl>
  */
-class ProductUniqueValidator extends ConstraintValidator
+class VariantUniqueValidator extends ConstraintValidator
 {
     /**
-     * Product manager.
+     * Variant manager.
      *
-     * @var ProductManagerInterface
+     * @var VariantManagerInterface
      */
-    protected $productManager;
+    protected $variantManager;
 
     /**
      * Constructor.
      *
-     * @param ProductManagerInterface $productManager
+     * @param VariantManagerInterface $variantManager
      */
-    public function __construct(ProductManagerInterface $productManager)
+    public function __construct(VariantManagerInterface $variantManager)
     {
-        $this->productManager = $productManager;
+        $this->variantManager = $variantManager;
     }
 
     /**
@@ -47,13 +46,13 @@ class ProductUniqueValidator extends ConstraintValidator
      */
     public function isValid($value, Constraint $constraint)
     {
-        if (!$value instanceof ProductInterface) {
-            throw new UnexpectedTypeException($value, 'Sylius\Bundle\AssortmentBundle\Model\ProductInterface');
+        if (!$value instanceof VariantInterface) {
+            throw new UnexpectedTypeException($value, 'Sylius\Bundle\AssortmentBundle\Model\Variant\VariantInterface');
         }
 
-        $product = $value;
+        $variant = $value;
 
-        if (!$this->productManager->validateUnique($product, $constraint)) {
+        if (!$this->variantManager->validateUnique($variant, $constraint)) {
             $this->setMessage($constraint->message, array(
                 '%property%' => $constraint->property
             ));

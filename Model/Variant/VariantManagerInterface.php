@@ -12,6 +12,7 @@
 namespace Sylius\Bundle\AssortmentBundle\Model\Variant;
 
 use Sylius\Bundle\AssortmentBundle\Model\ProductInterface;
+use Sylius\Bundle\AssortmentBundle\Validator\Constraint\VariantUnique as VariantUniqueConstraint;
 
 /**
  * Variant manager interface.
@@ -28,6 +29,16 @@ interface VariantManagerInterface
      * @return VariantInterface
      */
     function createVariant(ProductInterface $product);
+
+    /**
+     * Validates uniqueness of product variant.
+     *
+     * @param VariantInterface        $variant
+     * @param VariantUniqueConstraint $constraint
+     *
+     * @return Boolean
+     */
+    function validateUnique(VariantInterface $variant, VariantUniqueConstraint $constraint);
 
     /**
      * Persists variant.

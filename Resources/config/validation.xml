@@ -17,29 +17,54 @@
                                         http://symfony.com/schema/dic/services/constraint-mapping-1.0.xsd"
 >
 
-<class name="Sylius\Bundle\AssortmentBundle\Model\Product">
-    <property name="name">
-        <constraint name="NotBlank">
-            <option name="message">Please enter a product name</option>
+    <class name="Sylius\Bundle\AssortmentBundle\Model\Product">
+
+        <constraint name="Sylius\Bundle\AssortmentBundle\Validator\Constraint\ProductUnique">
+            <option name="property">sku</option>
+            <option name="message">sylius_assortment.product.sku.unique</option>
         </constraint>
-        <constraint name="MinLength">
-            <option name="limit">2</option>
-            <option name="message">The product name is too short</option>
+
+        <property  name="sku">
+            <constraint name="NotBlank">
+                <option name="message">sylius_assortment.product.sku.not_blank</option>
+            </constraint>
+        </property>
+        <property name="name">
+            <constraint name="NotBlank">
+                <option name="message">sylius_assortment.product.name.not_blank</option>
+            </constraint>
+            <constraint name="MinLength">
+                <option name="limit">2</option>
+                <option name="message">sylius_assortment.product.name.min_length</option>
+            </constraint>
+            <constraint name="MaxLength">
+                <option name="limit">255</option>
+                <option name="message">sylius_assortment.product.name.max_length</option>
+            </constraint>
+        </property>
+        <property name="description">
+            <constraint name="NotBlank">
+                <option name="message">sylius_assortment.product.description.not_blank</option>
+            </constraint>
+            <constraint name="MinLength">
+                <option name="limit">3</option>
+                <option name="message">sylius_assortment.product.description.min_length</option>
+            </constraint>
+        </property>
+    </class>
+
+    <class name="Sylius\Bundle\AssortmentBundle\Model\Variant\Variant">
+
+        <constraint name="Sylius\Bundle\AssortmentBundle\Validator\Constraint\VariantUnique">
+            <option name="property">sku</option>
+            <option name="message">sylius_assortment.variant.sku.unique</option>
         </constraint>
-        <constraint name="MaxLength">
-            <option name="limit">255</option>
-            <option name="message">The product name is too long</option>
-        </constraint>
-    </property>
-    <property name="description">
-        <constraint name="NotBlank">
-            <option name="message">Please enter a product description</option>
-        </constraint>
-        <constraint name="MinLength">
-            <option name="limit">3</option>
-            <option name="message">The product description is too short</option>
-        </constraint>
-    </property>
-</class>
+
+        <property  name="sku">
+            <constraint name="NotBlank">
+                <option name="message">sylius_assortment.variant.sku.not_blank</option>
+            </constraint>
+        </property>
+    </class>
 
 </constraint-mapping>

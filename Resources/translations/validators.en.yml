@@ -1,0 +1,19 @@
+# This file is part of the Sylius package.
+# (c) Paweł Jędrzejewski
+
+sylius_assortment:
+    product:
+        sku:
+            not_blank: "Please enter product SKU"
+            unique: "Product SKU must be unique"
+        name:
+            not_blank: "Please enter product name"
+            min_length: "Product name must be at least 2 characters long"
+            max_length: "Product name must not be longer than 255 characters"
+        description:
+            not_blank: "Please enter product description"
+            min_length: "Product description must be at least 2 characters long"
+    variant:
+        sku:
+            not_blank: "Please enter variant SKU"
+            unique: "Variant SKU must be unique"

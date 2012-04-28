@@ -1,0 +1,13 @@
+# This file is part of the Sylius package.
+# (c) Paweł Jędrzejewski
+
+sylius_assortment:
+    label:
+        product:
+            sku: "SKU"
+            name: "Name"
+            description: "Description"
+            options: "Options"
+        variant:
+            sku: "SKU"
+            presentation: "Presentation"

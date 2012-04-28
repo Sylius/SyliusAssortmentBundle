@@ -48,9 +48,15 @@ class ProductType extends AbstractType
     public function buildForm(FormBuilder $builder, array $options)
     {
         $builder
-            ->add('sku', 'text')
-            ->add('name', 'text')
-            ->add('description', 'textarea')
+            ->add('sku', 'text', array(
+                'label' => 'sylius_assortment.label.product.sku'
+            ))
+            ->add('name', 'text', array(
+                'label' => 'sylius_assortment.label.product.name'
+            ))
+            ->add('description', 'textarea', array(
+                'label' => 'sylius_assortment.label.product.description'
+            ))
         ;
     }
 

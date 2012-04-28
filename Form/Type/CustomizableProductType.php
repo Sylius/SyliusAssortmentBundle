@@ -28,11 +28,11 @@ class CustomizableProductType extends ProductType
         parent::buildForm($builder, $options);
 
         $builder
-            ->remove('sku') // We remove the SKU field from parent form, it will be handled in master variant.
             ->add('masterVariant', 'sylius_assortment_variant', array('master' => true))
             ->add('options', 'sylius_assortment_option_choice', array(
                 'required' => false,
-                'multiple' => true
+                'multiple' => true,
+                'label'    => 'sylius_assortment.label.product.options'
             ))
             ->add('properties', 'collection', array(
                 'required'     => false,

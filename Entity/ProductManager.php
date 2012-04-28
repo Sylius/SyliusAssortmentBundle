@@ -19,6 +19,7 @@ use Sylius\Bundle\AssortmentBundle\Model\CustomizableProductInterface;
 use Sylius\Bundle\AssortmentBundle\Model\ProductInterface;
 use Sylius\Bundle\AssortmentBundle\Model\ProductManager as BaseProductManager;
 use Sylius\Bundle\AssortmentBundle\Sorting\SorterInterface;
+use Sylius\Bundle\AssortmentBundle\Validator\Constraint\ProductUnique as ProductUniqueConstraint;
 
 /**
  * ORM driver product manager.
@@ -83,6 +84,28 @@ class ProductManager extends BaseProductManager
         }
 
         return new Pagerfanta(new DoctrineORMAdapter($queryBuilder->getQuery()));
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function validateUnique(ProductInterface $product, ProductUniqueConstraint $constraint)
+    {
+        $property = $constraint->property;
+        $classMetadata = $this->entityManager->getClassMetadata($this->class);
+
+        if (!$classMetadata->hasField($property)) {
+            throw new \InvalidArgumentException(sprintf('The "%s" class metadata does not have any "%s" field or association mapping', $this->class, $property));
+        }
+
+        $value = $classMetadata->getFieldValue($product, $property);
+        $criteria = array($property => $value);
+
+        if ($conflictualProduct = $this->findProductBy($criteria)) {
+            return false;
+        }
+
+        return true;
     }
 
     /**
