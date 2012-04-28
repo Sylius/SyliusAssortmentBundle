@@ -20,7 +20,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 /**
  * Product frontend controller.
  * Provides simple actions to list paginated products and to
- * display specific one by id and slug.
+ * display specific one by slug.
  *
  * @author Paweł Jędrzejewski <pjedrzejewski@diweb.pl>
  */
@@ -29,14 +29,13 @@ class ProductController extends ContainerAware
     /**
      * Shows single product page.
      *
-     * @param integer $id   The product id
      * @param string  $slug The product slug
      *
      * @return Response
      */
-    public function showAction($id, $slug)
+    public function showAction($slug)
     {
-        $product = $this->container->get('sylius_assortment.manager.product')->findProductBy(array('id' => $id, 'slug' => $slug));
+        $product = $this->container->get('sylius_assortment.manager.product')->findProductBy(array('slug' => $slug));
 
         if (!$product) {
             throw new NotFoundHttpException('Requested product does not exist');

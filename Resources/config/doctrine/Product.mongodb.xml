@@ -18,8 +18,8 @@
     <mapped-superclass name="Sylius\Bundle\AssortmentBundle\Document\Product">
         <field fieldName="sku" name="sku" type="string" />
         <field fieldName="name" name="name" type="string" />
-        <field fieldName="slug" name="slug" type="string">
-            <gedmo:slug fields="name" />
+        <field fieldName="slug" name="slug" type="string" unique="true">
+            <gedmo:slug fields="name" unique="true" />
         </field>
         <field fieldName="description" name="description" type="string" />
         <field fieldName="createdAt" name="createdAt" type="timestamp">
