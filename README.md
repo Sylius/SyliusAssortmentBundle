@@ -11,9 +11,11 @@ Features
 
 ### Implemented
 
-* Can be used to work with really simple, single model products, but also fully featured system.
-* Base support for many different persistence layers. Full Doctrine ORM support, simple products driver for Doctrine MongoDB ODM.
-* Variants/Options/Properties support, inspired by [Spree product system](http://guides.spreecommerce.com/products_and_variants.html).
+* Suitable for small stores with simple product model and for stores that need fully featured product catalog.
+* Base for many different persistence layers. 
+* Full Doctrine ORM support.
+* Initial draft of Doctrine MongoDB ODM driver.
+* Product Variants/Options/Properties support, inspired by [Spree product system](http://guides.spreecommerce.com/products_and_variants.html).
 * Sensible default controllers, events system, manipulators and forms.
 * Soft deletion of products and pretty slug generation thanks to [DoctrineExtensions](http://github.com/l3pp4rd/DoctrineExtensions).
 * Cloning simple products.
