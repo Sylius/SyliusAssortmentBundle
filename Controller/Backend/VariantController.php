@@ -52,7 +52,10 @@ class VariantController extends Controller
      */
     public function listAction(Request $request, $productId)
     {
-        $product = $this->findProductOr404($productId);
+        if (!$product = $this->container->get('sylius_assortment.manager.product')->findProduct($productId)) {
+            throw new NotFoundHttpException('Requested product does not exist');
+        }
+
         $variants = $this->container->get('sylius_assortment.manager.variant')->findVariantsBy(array('product' => $product, 'master' => false));
 
         return $this->container->get('templating')->renderResponse('SyliusAssortmentBundle:Backend/Variant:list.html.'.$this->getEngine(), array(
@@ -71,7 +74,7 @@ class VariantController extends Controller
      */
     public function createAction(Request $request, $productId)
     {
-        if (!$product = $this->container->get('sylius_assortment.manager.product')->findProduct($id)) {
+        if (!$product = $this->container->get('sylius_assortment.manager.product')->findProduct($productId)) {
             throw new NotFoundHttpException('Requested product does not exist');
         }
 
@@ -86,7 +89,7 @@ class VariantController extends Controller
             if ($form->isValid()) {
                 $this->container->get('event_dispatcher')->dispatch(SyliusAssortmentEvents::VARIANT_CREATE, new FilterVariantEvent($variant));
                 $this->container->get('sylius_assortment.manipulator.variant')->create($variant);
-                $this->setFlash('sylius_assortment.flash.variant.created');
+                $this->setFlash('success', 'sylius_assortment.flash.variant.created');
 
                 return new RedirectResponse($this->container->get('router')->generate('sylius_assortment_backend_variant_show', array(
                     'id' => $variant->getId()
@@ -121,7 +124,7 @@ class VariantController extends Controller
             if ($form->isValid()) {
                 $this->container->get('event_dispatcher')->dispatch(SyliusAssortmentEvents::VARIANT_UPDATE, new FilterVariantEvent($variant));
                 $this->container->get('sylius_assortment.manipulator.variant')->update($variant);
-                $this->setFlash('sylius_assortment.flash.variant.updated');
+                $this->setFlash('success', 'sylius_assortment.flash.variant.updated');
 
                 return new RedirectResponse($this->container->get('router')->generate('sylius_assortment_backend_variant_show', array(
                     'id' => $variant->getId()
@@ -148,7 +151,7 @@ class VariantController extends Controller
 
         $this->container->get('event_dispatcher')->dispatch(SyliusAssortmentEvents::VARIANT_DELETE, new FilterVariantEvent($variant));
         $this->container->get('sylius_assortment.manipulator.variant')->delete($variant);
-        $this->setFlash('sylius_assortment.flash.variant.deleted');
+        $this->setFlash('success', 'sylius_assortment.flash.variant.deleted');
 
         return new RedirectResponse($this->container->get('request')->headers->get('referer'));
     }

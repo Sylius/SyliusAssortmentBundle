@@ -61,6 +61,8 @@
 
     <class name="Sylius\Bundle\AssortmentBundle\Model\Variant\Variant">
 
+        <constraint name="Sylius\Bundle\AssortmentBundle\Validator\Constraint\UniqueOptionValuesCombination" />
+
         <constraint name="Sylius\Bundle\AssortmentBundle\Validator\Constraint\VariantUnique">
             <option name="property">sku</option>
             <option name="message">sylius_assortment.variant.sku.unique</option>
