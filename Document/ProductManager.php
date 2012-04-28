@@ -18,6 +18,7 @@ use Pagerfanta\Pagerfanta;
 use Sylius\Bundle\AssortmentBundle\Model\ProductInterface;
 use Sylius\Bundle\AssortmentBundle\Model\ProductManager as BaseProductManager;
 use Sylius\Bundle\AssortmentBundle\Sorting\SorterInterface;
+use Sylius\Bundle\AssortmentBundle\Validator\Constraint\ProductUnique as ProductUniqueConstraint;
 
 /**
  * Doctrine MongoDB ODM driver for assortment bundle.
@@ -76,6 +77,28 @@ class ProductManager extends BaseProductManager
         }
 
         return new Pagerfanta(new DoctrineODMMongoDBAdapter($queryBuilder));
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function validateUnique(ProductInterface $product, ProductUniqueConstraint $constraint)
+    {
+        $property = $constraint->property;
+        $classMetadata = $this->documentManager->getClassMetadata($this->class);
+
+        if (!$classMetadata->hasField($property)) {
+            throw new \InvalidArgumentException(sprintf('The "%s" class metadata does not have any "%s" field or association mapping', $this->class, $property));
+        }
+
+        $value = $classMetadata->getFieldValue($product, $property);
+        $criteria = array($property => $value);
+
+        if ($conflictualProduct = $this->findProductBy($criteria)) {
+            return false;
+        }
+
+        return true;
     }
 
     /**
