@@ -11,9 +11,9 @@
 
 namespace Sylius\Bundle\AssortmentBundle\Controller\Backend;
 
+use Sylius\Bundle\AssortmentBundle\Controller\Controller;
 use Sylius\Bundle\AssortmentBundle\EventDispatcher\Event\FilterVariantEvent;
 use Sylius\Bundle\AssortmentBundle\EventDispatcher\SyliusAssortmentEvents;
-use Symfony\Component\DependencyInjection\ContainerAware;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -24,7 +24,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
  *
  * @author Paweł Jędrzejewski <pjedrzejewski@diweb.pl>
  */
-class VariantController extends ContainerAware
+class VariantController extends Controller
 {
     /**
      * Shows a variant.
@@ -71,7 +71,10 @@ class VariantController extends ContainerAware
      */
     public function createAction(Request $request, $productId)
     {
-        $product = $this->findProductOr404($productId);
+        if (!$product = $this->container->get('sylius_assortment.manager.product')->findProduct($id)) {
+            throw new NotFoundHttpException('Requested product does not exist');
+        }
+
         $variant = $this->container->get('sylius_assortment.manager.variant')->createVariant($product);
 
         $form = $this->container->get('form.factory')->create('sylius_assortment_variant');
@@ -83,6 +86,7 @@ class VariantController extends ContainerAware
             if ($form->isValid()) {
                 $this->container->get('event_dispatcher')->dispatch(SyliusAssortmentEvents::VARIANT_CREATE, new FilterVariantEvent($variant));
                 $this->container->get('sylius_assortment.manipulator.variant')->create($variant);
+                $this->setFlash('sylius_assortment.flash.variant.created');
 
                 return new RedirectResponse($this->container->get('router')->generate('sylius_assortment_backend_variant_show', array(
                     'id' => $variant->getId()
@@ -117,6 +121,7 @@ class VariantController extends ContainerAware
             if ($form->isValid()) {
                 $this->container->get('event_dispatcher')->dispatch(SyliusAssortmentEvents::VARIANT_UPDATE, new FilterVariantEvent($variant));
                 $this->container->get('sylius_assortment.manipulator.variant')->update($variant);
+                $this->setFlash('sylius_assortment.flash.variant.updated');
 
                 return new RedirectResponse($this->container->get('router')->generate('sylius_assortment_backend_variant_show', array(
                     'id' => $variant->getId()
@@ -143,27 +148,9 @@ class VariantController extends ContainerAware
 
         $this->container->get('event_dispatcher')->dispatch(SyliusAssortmentEvents::VARIANT_DELETE, new FilterVariantEvent($variant));
         $this->container->get('sylius_assortment.manipulator.variant')->delete($variant);
+        $this->setFlash('sylius_assortment.flash.variant.deleted');
 
         return new RedirectResponse($this->container->get('request')->headers->get('referer'));
-    }
-
-    /**
-     * Tries to find product with given id.
-     * Throws a special http exception with code 404 if unsuccessful.
-     *
-     * @param integer $id The product id
-     *
-     * @return ProductInterface
-     *
-     * @throws NotFoundHttpException
-     */
-    protected function findProductOr404($id)
-    {
-        if (!$product = $this->container->get('sylius_assortment.manager.product')->findProduct($id)) {
-            throw new NotFoundHttpException('Requested product does not exist');
-        }
-
-        return $product;
     }
 
     /**
@@ -183,15 +170,5 @@ class VariantController extends ContainerAware
         }
 
         return $variant;
-    }
-
-    /**
-     * Returns templating engine name.
-     *
-     * @return string
-     */
-    protected function getEngine()
-    {
-        return $this->container->getParameter('sylius_assortment.engine');
     }
 }

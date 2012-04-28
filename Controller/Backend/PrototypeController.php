@@ -11,9 +11,9 @@
 
 namespace Sylius\Bundle\AssortmentBundle\Controller\Backend;
 
+use Sylius\Bundle\AssortmentBundle\Controller\Controller;
 use Sylius\Bundle\AssortmentBundle\EventDispatcher\Event\FilterPrototypeEvent;
 use Sylius\Bundle\AssortmentBundle\EventDispatcher\SyliusAssortmentEvents;
-use Symfony\Component\DependencyInjection\ContainerAware;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -24,7 +24,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
  *
  * @author Paweł Jędrzejewski <pjedrzejewski@diweb.pl>
  */
-class PrototypeController extends ContainerAware
+class PrototypeController extends Controller
 {
     /**
      * Creates a new product and displays form for it.
@@ -82,6 +82,7 @@ class PrototypeController extends ContainerAware
             if ($form->isValid()) {
                 $this->container->get('event_dispatcher')->dispatch(SyliusAssortmentEvents::PROTOTYPE_CREATE, new FilterPrototypeEvent($prototype));
                 $this->container->get('sylius_assortment.manipulator.prototype')->create($prototype);
+                $this->setFlash('success', 'sylius_assortment.flash.prototype.created');
 
                 return $this->redirectToPrototypeList();
             }
@@ -113,6 +114,7 @@ class PrototypeController extends ContainerAware
             if ($form->isValid()) {
                 $this->container->get('event_dispatcher')->dispatch(SyliusAssortmentEvents::PROTOTYPE_UPDATE, new FilterPrototypeEvent($prototype));
                 $this->container->get('sylius_assortment.manipulator.prototype')->update($prototype);
+                $this->setFlash('success', 'sylius_assortment.flash.prototype.updated');
 
                 return $this->redirectToPrototypeList();
             }
@@ -137,6 +139,7 @@ class PrototypeController extends ContainerAware
 
         $this->container->get('event_dispatcher')->dispatch(SyliusAssortmentEvents::PROTOTYPE_DELETE, new FilterPrototypeEvent($prototype));
         $this->container->get('sylius_assortment.manipulator.prototype')->delete($prototype);
+        $this->setFlash('success', 'sylius_assortment.flash.prototype.deleted');
 
         return $this->redirectToPrototypeList();
     }
@@ -168,15 +171,5 @@ class PrototypeController extends ContainerAware
     protected function redirectToPrototypeList()
     {
         return new RedirectResponse($this->container->get('router')->generate('sylius_assortment_backend_prototype_list'));
-    }
-
-    /**
-     * Returns templating engine name.
-     *
-     * @return string
-     */
-    protected function getEngine()
-    {
-        return $this->container->getParameter('sylius_assortment.engine');
     }
 }

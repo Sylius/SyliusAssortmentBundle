@@ -81,7 +81,8 @@ class VariantManager extends BaseVariantManager
         $value = $classMetadata->getFieldValue($variant, $property);
         $criteria = array($property => $value);
 
-        if ($conflictualVariant = $this->findVariantBy($criteria)) {
+        $conflictualVariant = $this->findVariantBy($criteria);
+        if ($conflictualVariant && $variant !== $conflictualVariant) {
             return false;
         }
 

@@ -11,9 +11,9 @@
 
 namespace Sylius\Bundle\AssortmentBundle\Controller\Backend;
 
+use Sylius\Bundle\AssortmentBundle\Controller\Controller;
 use Sylius\Bundle\AssortmentBundle\EventDispatcher\Event\FilterOptionEvent;
 use Sylius\Bundle\AssortmentBundle\EventDispatcher\SyliusAssortmentEvents;
-use Symfony\Component\DependencyInjection\ContainerAware;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -24,7 +24,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
  *
  * @author Paweł Jędrzejewski <pjedrzejewski@diweb.pl>
  */
-class OptionController extends ContainerAware
+class OptionController extends Controller
 {
     /**
      * Lists all options.
@@ -60,6 +60,7 @@ class OptionController extends ContainerAware
             if ($form->isValid()) {
                 $this->container->get('event_dispatcher')->dispatch(SyliusAssortmentEvents::OPTION_CREATE, new FilterOptionEvent($option));
                 $this->container->get('sylius_assortment.manipulator.option')->create($option);
+                $this->setFlash('success', 'sylius_assortment.flash.option.created');
 
                 return $this->redirectToOptionList();
             }
@@ -91,6 +92,7 @@ class OptionController extends ContainerAware
             if ($form->isValid()) {
                 $this->container->get('event_dispatcher')->dispatch(SyliusAssortmentEvents::OPTION_UPDATE, new FilterOptionEvent($option));
                 $this->container->get('sylius_assortment.manipulator.option')->update($option);
+                $this->setFlash('success', 'sylius_assortment.flash.option.updated');
 
                 return $this->redirectToOptionList();
             }
@@ -115,6 +117,7 @@ class OptionController extends ContainerAware
 
         $this->container->get('event_dispatcher')->dispatch(SyliusAssortmentEvents::OPTION_DELETE, new FilterOptionEvent($option));
         $this->container->get('sylius_assortment.manipulator.option')->delete($option);
+        $this->setFlash('success', 'sylius_assortment.flash.option.deleted');
 
         return $this->redirectToOptionList();
     }
@@ -147,15 +150,4 @@ class OptionController extends ContainerAware
     {
         return new RedirectResponse($this->container->get('router')->generate('sylius_assortment_backend_option_list'));
     }
-
-    /**
-     * Returns templating engine name.
-     *
-     * @return string
-     */
-    protected function getEngine()
-    {
-        return $this->container->getParameter('sylius_assortment.engine');
-    }
 }
-

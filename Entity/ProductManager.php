@@ -101,7 +101,8 @@ class ProductManager extends BaseProductManager
         $value = $classMetadata->getFieldValue($product, $property);
         $criteria = array($property => $value);
 
-        if ($conflictualProduct = $this->findProductBy($criteria)) {
+        $conflictualProduct = $this->findProductBy($criteria);
+        if ($conflictualProduct && $product !== $conflictualProduct) {
             return false;
         }
 

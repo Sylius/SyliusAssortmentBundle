@@ -11,9 +11,9 @@
 
 namespace Sylius\Bundle\AssortmentBundle\Controller\Backend;
 
+use Sylius\Bundle\AssortmentBundle\Controller\Controller;
 use Sylius\Bundle\AssortmentBundle\EventDispatcher\Event\FilterPropertyEvent;
 use Sylius\Bundle\AssortmentBundle\EventDispatcher\SyliusAssortmentEvents;
-use Symfony\Component\DependencyInjection\ContainerAware;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -24,7 +24,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
  *
  * @author Paweł Jędrzejewski <pjedrzejewski@diweb.pl>
  */
-class PropertyController extends ContainerAware
+class PropertyController extends Controller
 {
     /**
      * Lists all properties.
@@ -60,6 +60,7 @@ class PropertyController extends ContainerAware
             if ($form->isValid()) {
                 $this->container->get('event_dispatcher')->dispatch(SyliusAssortmentEvents::PROPERTY_CREATE, new FilterPropertyEvent($property));
                 $this->container->get('sylius_assortment.manipulator.property')->create($property);
+                $this->setFlash('success', 'sylius_assortment.flash.property.created');
 
                 return $this->redirectoToPropertyList();
             }
@@ -91,6 +92,7 @@ class PropertyController extends ContainerAware
             if ($form->isValid()) {
                 $this->container->get('event_dispatcher')->dispatch(SyliusAssortmentEvents::PROPERTY_UPDATE, new FilterPropertyEvent($property));
                 $this->container->get('sylius_assortment.manipulator.property')->update($property);
+                $this->setFlash('success', 'sylius_assortment.flash.property.updated');
 
                 return $this->redirectoToPropertyList();
             }
@@ -115,6 +117,7 @@ class PropertyController extends ContainerAware
 
         $this->container->get('event_dispatcher')->dispatch(SyliusAssortmentEvents::PROPERTY_DELETE, new FilterPropertyEvent($property));
         $this->container->get('sylius_assortment.manipulator.property')->delete($property);
+        $this->setFlash('success', 'sylius_assortment.flash.property.deleted');
 
         return $this->redirectoToPropertyList();
     }
@@ -146,15 +149,5 @@ class PropertyController extends ContainerAware
     protected function redirectoToPropertyList()
     {
         return new RedirectResponse($this->container->get('router')->generate('sylius_assortment_backend_property_list'));
-    }
-
-    /**
-     * Returns templating engine name.
-     *
-     * @return string
-     */
-    protected function getEngine()
-    {
-        return $this->container->getParameter('sylius_assortment.engine');
     }
 }

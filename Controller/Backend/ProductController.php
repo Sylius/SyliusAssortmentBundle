@@ -11,9 +11,9 @@
 
 namespace Sylius\Bundle\AssortmentBundle\Controller\Backend;
 
+use Sylius\Bundle\AssortmentBundle\Controller\Controller;
 use Sylius\Bundle\AssortmentBundle\EventDispatcher\Event\FilterProductEvent;
 use Sylius\Bundle\AssortmentBundle\EventDispatcher\SyliusAssortmentEvents;
-use Symfony\Component\DependencyInjection\ContainerAware;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -25,7 +25,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
  *
  * @author Paweł Jędrzejewski <pjedrzejewski@diweb.pl>
  */
-class ProductController extends ContainerAware
+class ProductController extends Controller
 {
     /**
      * Shows a product.
@@ -87,6 +87,7 @@ class ProductController extends ContainerAware
             if ($form->isValid()) {
                 $this->container->get('event_dispatcher')->dispatch(SyliusAssortmentEvents::PRODUCT_CREATE, new FilterProductEvent($product));
                 $this->container->get('sylius_assortment.manipulator.product')->create($product);
+                $this->setFlash('success', 'sylius_assortment.flash.product.created');
 
                 return new RedirectResponse($this->container->get('router')->generate('sylius_assortment_backend_product_show', array(
                     'id' => $product->getId()
@@ -120,6 +121,7 @@ class ProductController extends ContainerAware
             if ($form->isValid()) {
                 $this->container->get('event_dispatcher')->dispatch(SyliusAssortmentEvents::PRODUCT_UPDATE, new FilterProductEvent($product));
                 $this->container->get('sylius_assortment.manipulator.product')->update($product);
+                $this->setFlash('success', 'sylius_assortment.flash.product.updated');
 
                 return new RedirectResponse($this->container->get('router')->generate('sylius_assortment_backend_product_show', array(
                     'id' => $product->getId()
@@ -146,6 +148,7 @@ class ProductController extends ContainerAware
 
         $this->container->get('event_dispatcher')->dispatch(SyliusAssortmentEvents::PRODUCT_DELETE, new FilterProductEvent($product));
         $this->container->get('sylius_assortment.manipulator.product')->delete($product);
+        $this->setFlash('success', 'sylius_assortment.flash.product.deleted');
 
         return new RedirectResponse($this->container->get('router')->generate('sylius_assortment_backend_product_list'));
     }
@@ -163,6 +166,7 @@ class ProductController extends ContainerAware
 
         $this->container->get('event_dispatcher')->dispatch(SyliusAssortmentEvents::PRODUCT_DUPLICATE, new FilterProductEvent($product));
         $clonedProduct = $this->container->get('sylius_assortment.manipulator.product')->duplicate($product);
+        $this->setFlash('success', 'sylius_assortment.flash.product.duplicated');
 
         return new RedirectResponse($this->container->get('router')->generate('sylius_assortment_backend_product_update', array(
             'id' => $clonedProduct->getId()
@@ -186,15 +190,5 @@ class ProductController extends ContainerAware
         }
 
         return $product;
-    }
-
-    /**
-     * Returns templating engine name.
-     *
-     * @return string
-     */
-    protected function getEngine()
-    {
-        return $this->container->getParameter('sylius_assortment.engine');
     }
 }
