@@ -53,6 +53,12 @@
         </property>
     </class>
 
+    <class name="Sylius\Bundle\AssortmentBundle\Model\CustomizableProduct">
+        <property name="properties">
+            <constraint name="Valid" />
+        </property>
+    </class>
+
     <class name="Sylius\Bundle\AssortmentBundle\Model\Variant\Variant">
 
         <constraint name="Sylius\Bundle\AssortmentBundle\Validator\Constraint\VariantUnique">
