@@ -54,6 +54,9 @@
     </class>
 
     <class name="Sylius\Bundle\AssortmentBundle\Model\CustomizableProduct">
+        <property name="masterVariant">
+            <constraint name="Valid" />
+        </property>
         <property name="properties">
             <constraint name="Valid" />
         </property>
