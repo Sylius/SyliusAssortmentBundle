@@ -83,6 +83,13 @@ interface VariantInterface
     function setPresentation($presentation);
 
     /**
+     * Get generated label for variant choice forms.
+     *
+     * @return string
+     */
+    function getLabel();
+
+    /**
      * Get master product.
      *
      * @return ProductInterface

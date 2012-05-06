@@ -146,12 +146,6 @@ abstract class Variant implements VariantInterface
      */
     public function getPresentation()
     {
-        if (null === $this->presentation) {
-            foreach ($this->options as $option) {
-                $this->presentation .= ' '.$option->getPresentation().': '.$option->getValue();
-            }
-        }
-
         return $this->presentation;
     }
 
@@ -161,6 +155,24 @@ abstract class Variant implements VariantInterface
     public function setPresentation($presentation)
     {
         $this->presentaiton = $presentation;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getLabel()
+    {
+        if (null !== $this->presentation) {
+            return $this->presentation;
+        }
+
+        $label = '';
+
+        foreach ($this->options as $option) {
+            $label = ' '.$option->getPresentation().': '.$option->getValue();
+        }
+
+        return $label;
     }
 
     /**
