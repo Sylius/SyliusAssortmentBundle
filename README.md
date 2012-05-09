@@ -17,7 +17,7 @@ Features
 * Sensible default controllers, events, manipulators and flexible forms.
 * Soft deletion of products and pretty slug generation thanks to [DoctrineExtensions](http://github.com/l3pp4rd/DoctrineExtensions).
 * Cloning simple products.
-* It uses [Pagerfanta](http://github.com/whiteoctober/Pagerfanta) to paginate over the products.
+* It uses [Pagerfanta](http://github.com/whiteoctober/Pagerfanta) for pagination.
 * Thanks to awesome [Symfony2](http://symfony.com) everything is configurable and extensible.
 
 Sylius
