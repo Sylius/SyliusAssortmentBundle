@@ -1,39 +1,24 @@
-SyliusAssortmentBundle
+SyliusAssortmentBundle [![Build status...](https://secure.travis-ci.org/Sylius/SyliusAssortmentBundle.png)](http://travis-ci.org/Sylius/SyliusAssortmentBundle)
 ======================
 
 Products management system for Symfony2 applications.  
 It is heavily inspired by concepts behind the awesome [Spree products and variants engine](http://guides.spreecommerce.com/products_and_variants.html).
+Suitable for small shops with simple product model and for stores that need fully featured product catalog.
 
 **This bundle is compatible only with 2.1.x branch of Symfony2**.
 
 Features
 --------
 
-### Implemented
-
-* Suitable for small webshop with simple product model and for stores that need fully featured product catalog.
-* Base for many different persistence layers. 
-* Full Doctrine ORM support.
-* Initial draft of Doctrine MongoDB ODM driver.
+* Base for supporting different persistence layers. 
+* Rich Doctrine ORM implementation.
 * Product Variants/Options/Properties support, inspired by [Spree product system](http://guides.spreecommerce.com/products_and_variants.html).
-* Sensible default controllers, events system, manipulators and forms.
+* Initial draft of Doctrine MongoDB ODM driver.
+* Sensible default controllers, events, manipulators and flexible forms.
 * Soft deletion of products and pretty slug generation thanks to [DoctrineExtensions](http://github.com/l3pp4rd/DoctrineExtensions).
 * Cloning simple products.
 * It uses [Pagerfanta](http://github.com/whiteoctober/Pagerfanta) to paginate over the products.
 * Thanks to awesome [Symfony2](http://symfony.com) everything is configurable and extensible.
-
-### Planned or in progress
-
-* More unit tests. [![Build status...](https://secure.travis-ci.org/Sylius/SyliusAssortmentBundle.png)](http://travis-ci.org/Sylius/SyliusAssortmentBundle)
-* Full documentation.
-* Product prototypes.
-* Cloning customizable products.
-* ACL implementation inspired by [FOSCommentBundle](http://github.com/FriendsOfSymfony/FOSCommentBundle).
-* Optional REST api with [FOSRestBundle](http://github.com/FriendsOfSymfony/FOSRestBundle).
-* Doctrine CouchDB ODM driver. `*`
-* Propel driver. `*`
-
-`*` - wishlist, would love to see a contribution.
 
 Sylius
 ------
@@ -65,7 +50,6 @@ Code examples
 -------------
 
 If you want to see working implementation, try out the [Sylius sandbox application](http://github.com/Sylius/Sylius-Sandbox).
-It's open sourced github project.
 
 Documentation
 -------------
@@ -87,7 +71,7 @@ If you are using this bundle and have any questions, feel free to ask on users m
 
 ### Developers
 
-If you want to contribute, and develop this bundle, use the developers mailing list.
+If you want to contribute and develop this bundle, use the developers mailing list.
 [Mail](mailto:sylius-dev@googlegroups.com) or [view it](http://groups.google.com/group/sylius-dev).
 
 Sylius twitter account
