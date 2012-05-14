@@ -10,10 +10,9 @@ Suitable for small shops with simple product model and for stores that need full
 Features
 --------
 
-* Base for supporting different persistence layers. 
-* Rich Doctrine ORM implementation.
+* Base for supporting different persistence layers.
+* Rich Doctrine2 ORM implementation.
 * Product Variants/Options/Properties support, inspired by [Spree product system](http://guides.spreecommerce.com/products_and_variants.html).
-* Initial draft of Doctrine MongoDB ODM driver.
 * Sensible default controllers, events, manipulators and flexible forms.
 * Soft deletion of products and pretty slug generation thanks to [DoctrineExtensions](http://github.com/l3pp4rd/DoctrineExtensions).
 * Cloning simple products.

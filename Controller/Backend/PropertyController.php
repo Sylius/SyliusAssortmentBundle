@@ -29,7 +29,7 @@ class PropertyController extends Controller
     /**
      * Lists all properties.
      *
-     * @return Reponse
+     * @return Response
      */
     public function listAction(Request $request)
     {
@@ -45,14 +45,12 @@ class PropertyController extends Controller
      *
      * @param Request $request
      *
-     * @return Reponse
+     * @return Response
      */
     public function createAction(Request $request)
     {
         $property = $this->container->get('sylius_assortment.manager.property')->createProperty();
-
-        $form = $this->container->get('form.factory')->create('sylius_assortment_property');
-        $form->setData($property);
+        $form = $this->container->get('form.factory')->create('sylius_assortment_property', $property);
 
         if ('POST' === $request->getMethod()) {
             $form->bindRequest($request);
@@ -82,9 +80,7 @@ class PropertyController extends Controller
     public function updateAction(Request $request, $id)
     {
         $property = $this->findPropertyOr404($id);
-
-        $form = $this->container->get('form.factory')->create('sylius_assortment_property');
-        $form->setData($property);
+        $form = $this->container->get('form.factory')->create('sylius_assortment_property', $property);
 
         if ('POST' === $request->getMethod()) {
             $form->bindRequest($request);

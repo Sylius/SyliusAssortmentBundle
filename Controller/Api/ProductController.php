@@ -30,7 +30,7 @@ class ProductController extends ContainerAware
      *
      * @param integer $id The product id
      *
-     * @return Reponse
+     * @return Response
      */
     public function getProductAction($id)
     {
@@ -48,7 +48,7 @@ class ProductController extends ContainerAware
      *
      * @param Request $request
      *
-     * @return Reponse
+     * @return Response
      */
     public function getProductsAction(Request $request)
     {

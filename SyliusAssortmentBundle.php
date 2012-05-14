@@ -18,15 +18,15 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
  * It handles basic product actions like CRUD and displaying.
  * Splitted into two areas, backend and frontend.
  *
+ * Suitable only for ORM based stores.
+ *
  * @author Paweł Jędrzejewski <pjedrzejewski@diweb.pl>
  */
 class SyliusAssortmentBundle extends Bundle
 {
     // Bundle driver list.
-    const DRIVER_DOCTRINE_ORM         = 'doctrine/orm';
-    const DRIVER_DOCTRINE_MONGODB_ODM = 'doctrine/mongodb-odm';
-    const DRIVER_DOCTRINE_COUCHDB_ODM = 'doctrine/couchdb-odm';
-    const DRIVER_PROPEL               = 'propel';
+    const DRIVER_DOCTRINE_ORM = 'doctrine/orm';
+    const DRIVER_PROPEL2      = 'propel2';
 
     /**
      * Return array with currently supported drivers.
@@ -36,8 +36,7 @@ class SyliusAssortmentBundle extends Bundle
     static public function getSupportedDrivers()
     {
         return array(
-            self::DRIVER_DOCTRINE_ORM,
-            self::DRIVER_DOCTRINE_MONGODB_ODM
+            self::DRIVER_DOCTRINE_ORM
         );
     }
 }

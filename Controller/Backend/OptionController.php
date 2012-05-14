@@ -29,7 +29,7 @@ class OptionController extends Controller
     /**
      * Lists all options.
      *
-     * @return Reponse
+     * @return Response
      */
     public function listAction(Request $request)
     {
@@ -45,14 +45,12 @@ class OptionController extends Controller
      *
      * @param Request $request
      *
-     * @return Reponse
+     * @return Response
      */
     public function createAction(Request $request)
     {
         $option = $this->container->get('sylius_assortment.manager.option')->createOption();
-
-        $form = $this->container->get('form.factory')->create('sylius_assortment_option');
-        $form->setData($option);
+        $form = $this->container->get('form.factory')->create('sylius_assortment_option', $option);
 
         if ('POST' === $request->getMethod()) {
             $form->bindRequest($request);
@@ -82,9 +80,7 @@ class OptionController extends Controller
     public function updateAction(Request $request, $id)
     {
         $option = $this->findOptionOr404($id);
-
-        $form = $this->container->get('form.factory')->create('sylius_assortment_option');
-        $form->setData($option);
+        $form = $this->container->get('form.factory')->create('sylius_assortment_option', $option);
 
         if ('POST' === $request->getMethod()) {
             $form->bindRequest($request);
@@ -99,7 +95,7 @@ class OptionController extends Controller
         }
 
         return $this->container->get('templating')->renderResponse('SyliusAssortmentBundle:Backend/Option:update.html.'.$this->getEngine(), array(
-            'form'     => $form->createView(),
+            'form'   => $form->createView(),
             'option' => $option
         ));
     }

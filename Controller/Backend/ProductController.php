@@ -32,7 +32,7 @@ class ProductController extends Controller
      *
      * @param integer $id The product id
      *
-     * @return Reponse
+     * @return Response
      */
     public function showAction($id)
     {
@@ -48,7 +48,7 @@ class ProductController extends Controller
      *
      * @param Request $request
      *
-     * @return Reponse
+     * @return Response
      */
     public function listAction(Request $request)
     {
@@ -72,14 +72,12 @@ class ProductController extends Controller
      *
      * @param Request $request
      *
-     * @return Reponse
+     * @return Response
      */
     public function createAction(Request $request)
     {
         $product = $this->container->get('sylius_assortment.manager.product')->createProduct();
-
-        $form = $this->container->get('form.factory')->create('sylius_assortment_product');
-        $form->setData($product);
+        $form = $this->container->get('form.factory')->create('sylius_assortment_product', $product);
 
         if ('POST' === $request->getMethod()) {
             $form->bindRequest($request);
@@ -111,9 +109,7 @@ class ProductController extends Controller
     public function updateAction(Request $request, $id)
     {
         $product = $this->findProductOr404($id);
-
-        $form = $this->container->get('form.factory')->create('sylius_assortment_product');
-        $form->setData($product);
+        $form = $this->container->get('form.factory')->create('sylius_assortment_product', $product);
 
         if ('POST' === $request->getMethod()) {
             $form->bindRequest($request);
@@ -165,11 +161,11 @@ class ProductController extends Controller
         $product = $this->findProductOr404($id);
 
         $this->container->get('event_dispatcher')->dispatch(SyliusAssortmentEvents::PRODUCT_DUPLICATE, new FilterProductEvent($product));
-        $clonedProduct = $this->container->get('sylius_assortment.manipulator.product')->duplicate($product);
+        $duplicatedProduct = $this->container->get('sylius_assortment.manipulator.product')->duplicate($product);
         $this->setFlash('success', 'sylius_assortment.flash.product.duplicated');
 
         return new RedirectResponse($this->container->get('router')->generate('sylius_assortment_backend_product_update', array(
-            'id' => $clonedProduct->getId()
+            'id' => $duplicatedProduct->getId()
         )));
     }
 

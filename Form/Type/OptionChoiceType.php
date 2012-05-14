@@ -57,8 +57,6 @@ class OptionChoiceType extends AbstractType
     {
         $doctrineBasedDrivers = array(
             SyliusAssortmentBundle::DRIVER_DOCTRINE_ORM,
-            SyliusAssortmentBundle::DRIVER_DOCTRINE_MONGODB_ODM,
-            SyliusAssortmentBundle::DRIVER_DOCTRINE_COUCHDB_ODM
         );
 
         if ($options['multiple'] && in_array($this->driver, $doctrineBasedDrivers)) {

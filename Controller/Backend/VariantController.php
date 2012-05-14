@@ -31,7 +31,7 @@ class VariantController extends Controller
      *
      * @param integer $id The variant id
      *
-     * @return Reponse
+     * @return Response
      */
     public function showAction($id)
     {
@@ -48,7 +48,7 @@ class VariantController extends Controller
      * @param Request $request
      * @param mixed   $productId
      *
-     * @return Reponse
+     * @return Response
      */
     public function listAction(Request $request, $productId)
     {
@@ -56,7 +56,10 @@ class VariantController extends Controller
             throw new NotFoundHttpException('Requested product does not exist');
         }
 
-        $variants = $this->container->get('sylius_assortment.manager.variant')->findVariantsBy(array('product' => $product, 'master' => false));
+        $variants = $this->container->get('sylius_assortment.manager.variant')->findVariantsBy(array(
+            'product' => $product,
+            'master'  => false
+        ));
 
         return $this->container->get('templating')->renderResponse('SyliusAssortmentBundle:Backend/Variant:list.html.'.$this->getEngine(), array(
             'variants' => $variants,
@@ -70,7 +73,7 @@ class VariantController extends Controller
      * @param Request $request
      * @param mixed   $productId
      *
-     * @return Reponse
+     * @return Response
      */
     public function createAction(Request $request, $productId)
     {
@@ -79,9 +82,7 @@ class VariantController extends Controller
         }
 
         $variant = $this->container->get('sylius_assortment.manager.variant')->createVariant($product);
-
-        $form = $this->container->get('form.factory')->create('sylius_assortment_variant');
-        $form->setData($variant);
+        $form = $this->container->get('form.factory')->create('sylius_assortment_variant', $variant);
 
         if ('POST' === $request->getMethod()) {
             $form->bindRequest($request);
@@ -114,9 +115,7 @@ class VariantController extends Controller
     public function updateAction(Request $request, $id)
     {
         $variant = $this->findVariantOr404($id);
-
-        $form = $this->container->get('form.factory')->create('sylius_assortment_variant');
-        $form->setData($variant);
+        $form = $this->container->get('form.factory')->create('sylius_assortment_variant', $variant);
 
         if ('POST' === $request->getMethod()) {
             $form->bindRequest($request);

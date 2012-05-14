@@ -27,21 +27,18 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 class PrototypeController extends Controller
 {
     /**
-     * Creates a new product and displays form for it.
+     * Creates a new product based on given prototype, displays creation form.
      *
      * @param Request $request
      * @param mixed   $id      Prototype id
      *
-     * @return Reponse
+     * @return Response
      */
     public function buildAction(Request $request, $id)
     {
         $prototype = $this->findPrototypeOr404($id);
-
         $product = $this->container->get('sylius_assortment.manager.product')->createProduct();
-
-        $form = $this->container->get('form.factory')->create('sylius_assortment_product');
-        $form->setData($product);
+        $form = $this->container->get('form.factory')->create('sylius_assortment_product', $product);
 
         return $this->container->get('templating')->renderResponse('SyliusAssortmentBundle:Backend/Product:create.html.'.$this->getEngine(), array(
             'form' => $form->createView()
@@ -51,7 +48,7 @@ class PrototypeController extends Controller
     /**
      * Lists all prototypes.
      *
-     * @return Reponse
+     * @return Response
      */
     public function listAction(Request $request)
     {
@@ -67,14 +64,12 @@ class PrototypeController extends Controller
      *
      * @param Request $request
      *
-     * @return Reponse
+     * @return Response
      */
     public function createAction(Request $request)
     {
         $prototype = $this->container->get('sylius_assortment.manager.prototype')->createPrototype();
-
-        $form = $this->container->get('form.factory')->create('sylius_assortment_prototype');
-        $form->setData($prototype);
+        $form = $this->container->get('form.factory')->create('sylius_assortment_prototype', $prototype);
 
         if ('POST' === $request->getMethod()) {
             $form->bindRequest($request);
@@ -104,9 +99,7 @@ class PrototypeController extends Controller
     public function updateAction(Request $request, $id)
     {
         $prototype = $this->findPrototypeOr404($id);
-
-        $form = $this->container->get('form.factory')->create('sylius_assortment_prototype');
-        $form->setData($prototype);
+        $form = $this->container->get('form.factory')->create('sylius_assortment_prototype', $prototype);
 
         if ('POST' === $request->getMethod()) {
             $form->bindRequest($request);
