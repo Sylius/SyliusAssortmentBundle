@@ -11,8 +11,8 @@
 
 namespace Sylius\Bundle\AssortmentBundle\Form\DataTransformer;
 
+use Sylius\Bundle\AssortmentBundle\Model\CustomizableProductInterface;
 use Sylius\Bundle\AssortmentBundle\Model\Variant\VariantInterface;
-use Sylius\Bundle\AssortmentBundle\Model\Variant\VariantManagerInterface;
 use Symfony\Component\Form\DataTransformerInterface;
 use Symfony\Component\Form\Exception\TransformationFailedException;
 use Symfony\Component\Form\Exception\UnexpectedTypeException;
@@ -25,20 +25,20 @@ use Symfony\Component\Form\Exception\UnexpectedTypeException;
 class VariantToCombinationTransformer implements DataTransformerInterface
 {
     /**
-     * Variant manager.
+     * Currently matching product.
      *
-     * @var VariantManagerInterface
+     * @var CustomizableProductInterface
      */
-    protected $variantManager;
+    protected $product;
 
     /**
      * Constructor.
      *
-     * @param VariantManagerInterface $variantManager
+     * @param CustomizableProductInterface $product
      */
-    public function __construct(VariantManagerInterface $variantManager)
+    public function __construct(CustomizableProductInterface $product)
     {
-        $this->variantManager = $variantManager;
+        $this->product = $product;
     }
 
     /**
@@ -47,7 +47,7 @@ class VariantToCombinationTransformer implements DataTransformerInterface
     public function transform($value)
     {
         if (null === $value) {
-            return '';
+            return array();
         }
 
         if (!$value instanceof VariantInterface) {
@@ -66,19 +66,25 @@ class VariantToCombinationTransformer implements DataTransformerInterface
             return null;
         }
 
-        if (!$value instanceof \Traversable || !$values instanceof \ArrayAccess) {
+        if (!is_array($value) && !$value instanceof \Traversable && !$value instanceof \ArrayAccess) {
             throw new UnexpectedTypeException($value, '\Traversable or \ArrayAccess');
         }
 
-        $criteria = array(
-            'master'  => false,
-            'options' => $value
-        );
+        foreach ($this->product->getVariants() as $variant) {
+            $matches = true;
 
-        if (!$variant = $this->variantManager->findVariantBy($criteria)) {
-            return null;
+            foreach ($value as $option) {
+                if (!$variant->hasOption($option)) {
+                    $matches = false;
+                }
+            }
+
+            if ($matches) {
+
+                return $variant;
+            }
         }
 
-        return $variant;
+        return null;
     }
 }

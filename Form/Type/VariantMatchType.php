@@ -19,29 +19,12 @@ use Symfony\Component\Form\FormBuilder;
 use Symfony\Component\Form\Options;
 
 /**
- * Variant choice form type.
+ * Variant match form type.
  *
  * @author Paweł Jędrzejewski <pjedrzejewski@diweb.pl>
  */
-class VariantChoiceType extends AbstractType
+class VariantMatchType extends AbstractType
 {
-    /**
-     * Option values combination to variant transformer.
-     *
-     * @var VariantToCombinationTransformer
-     */
-    protected $variantToCombinationTransformer;
-
-    /**
-     * Constructor.
-     *
-     * @param VariantToCombinationTransformer $variantToCombinationTransformer
-     */
-    public function __construct(VariantToCombinationTransformer $variantToCombinationTransformer)
-    {
-        $this->VariantToCombinationTransformer = $variantToCombinationTransformer;
-    }
-
     /**
      * {@inheritdoc}
      */
@@ -51,7 +34,7 @@ class VariantChoiceType extends AbstractType
             throw new FormException('You have to pass "Sylius\Bundle\AssortmentBundle\Model\CustomizableProductInterface" as "product" option to variant choice type');
         }
 
-        foreach ($product->getOptions() as $i => $option) {
+        foreach ($options['product']->getOptions() as $i => $option) {
             $builder->add((string) $i, 'sylius_assortment_option_value_choice', array(
                 'label'         => $option->getPresentation(),
                 'option'        => $option,
@@ -59,7 +42,7 @@ class VariantChoiceType extends AbstractType
             ));
         }
 
-        $builder->prependClientTransformer($this->variantToCombinationTransformer);
+        $builder->prependClientTransformer(new VariantToCombinationTransformer($options['product']));
     }
 
     /**

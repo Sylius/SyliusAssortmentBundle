@@ -17,10 +17,6 @@
                                http://symfony.com/schema/dic/services/services-1.0.xsd"
 >
 
-    <parameters>
-        <parameter key="sylius_assortment.form.data_transformer.variant_to_combination.class">Sylius\Bundle\AssortmentBundle\Form\DataTransformer\VariantToCombinationTransformer</parameter>
-    </parameters>
-
     <services>
         <service id="sylius_assortment.form.type.variant" class="%sylius_assortment.form.type.variant.class%">
             <argument>%sylius_assortment.model.variant.class%</argument>
@@ -31,11 +27,7 @@
             <tag name="form.type" alias="sylius_assortment_variant_choice" />
         </service>
         <service id="sylius_assortment.form.type.variant_match" class="%sylius_assortment.form.type.variant_match.class%">
-            <argument type="service" id="sylius_assortment.form.data_transformer.variant_to_combination" />
             <tag name="form.type" alias="sylius_assortment_variant_match" />
-        </service>
-        <service id="sylius_assortment.form.data_transformer.variant_to_combination" class="%sylius_assortment.form.data_transformer.variant_to_combination.class%">
-            <argument type="service" id="sylius_assortment.manager.variant" />
         </service>
     </services>
 
