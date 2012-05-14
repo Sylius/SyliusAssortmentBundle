@@ -84,7 +84,14 @@ class OptionManager extends BaseOptionManager
      */
     public function findOption($id)
     {
-        return $this->repository->find($id);
+        return $this->repository
+            ->createQueryBuilder('o')
+            ->select('o, v')
+            ->innerJoin('o.values', 'v')
+            ->where('o.id = :id')
+            ->setParameter('id', $id)
+            ->getQuery()
+            ->getOneOrNullResult();
     }
 
     /**
@@ -100,7 +107,12 @@ class OptionManager extends BaseOptionManager
      */
     public function findOptions()
     {
-        return $this->repository->findAll();
+        return $this->repository
+            ->createQueryBuilder('o')
+            ->select('o, v')
+            ->innerJoin('o.values', 'v')
+            ->getQuery()
+            ->execute();
     }
 
     /**
