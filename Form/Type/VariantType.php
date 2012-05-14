@@ -53,12 +53,12 @@ class VariantType extends AbstractType
                 'required' => false,
                 'label'    => 'sylius_assortment.label.variant.presentation'
             ))
+            ->add('sku', 'text', array(
+                'label'    => 'sylius_assortment.label.variant.sku'
+            ))
         ;
 
         if (!$options['master']) {
-            $builder->add('sku', 'text', array(
-                'label'    => 'sylius_assortment.label.variant.sku'
-            ));
             $builder->addEventSubscriber(new BuildVariantTypeListener($builder->getFormFactory()));
         }
     }

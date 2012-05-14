@@ -28,6 +28,7 @@ class CustomizableProductType extends ProductType
         parent::buildForm($builder, $options);
 
         $builder
+            ->remove('sku')
             ->add('masterVariant', 'sylius_assortment_variant', array('master' => true))
             ->add('options', 'sylius_assortment_option_choice', array(
                 'required' => false,

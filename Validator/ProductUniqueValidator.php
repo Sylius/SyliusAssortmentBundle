@@ -51,6 +51,10 @@ class ProductUniqueValidator extends ConstraintValidator
             throw new UnexpectedTypeException($value, 'Sylius\Bundle\AssortmentBundle\Model\ProductInterface');
         }
 
+        if ($value instanceof CustomizableProductInterface && 'sku' === $constraint->property) {
+            return true;
+        }
+
         $product = $value;
 
         if (!$this->productManager->validateUnique($product, $constraint)) {

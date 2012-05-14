@@ -63,6 +63,23 @@ class CustomizableProduct extends Product implements CustomizableProductInterfac
     /**
      * {@inheritdoc}
      */
+    public function getSku()
+    {
+        return $this->masterVariant->getSku();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setSku($sku)
+    {
+        $this->sku = $sku;
+        $this->masterVariant->setSku($sku);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function getMasterVariant()
     {
         return $this->masterVariant;
@@ -75,7 +92,6 @@ class CustomizableProduct extends Product implements CustomizableProductInterfac
     {
         $masterVariant->setProduct($this);
         $masterVariant->setMaster(true);
-        $masterVariant->setSku($this->sku);
 
         $this->masterVariant = $masterVariant;
     }

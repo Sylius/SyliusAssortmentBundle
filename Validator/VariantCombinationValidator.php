@@ -36,7 +36,7 @@ class VariantCombinationValidator extends ConstraintValidator
         $variant = $value;
         $product = $variant->getProduct();
 
-        if (0 === $product->countVariants()) {
+        if (0 === $product->countVariants() || $variant->isMaster()) {
 
             return true;
         }
