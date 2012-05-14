@@ -116,6 +116,7 @@ class Configuration implements ConfigurationInterface
                                         ->scalarNode('prototype')->defaultValue('Sylius\\Bundle\\AssortmentBundle\\Form\\Type\\PrototypeType')->end()
                                         ->scalarNode('variant')->defaultValue('Sylius\\Bundle\\AssortmentBundle\\Form\\Type\\VariantType')->end()
                                         ->scalarNode('variant_choice')->defaultValue('Sylius\\Bundle\\AssortmentBundle\\Form\\Type\\VariantChoiceType')->end()
+                                        ->scalarNode('variant_match')->defaultValue('Sylius\\Bundle\\AssortmentBundle\\Form\\Type\\VariantMatchType')->end()
                                     ->end()
                                 ->end()
                             ->end()
