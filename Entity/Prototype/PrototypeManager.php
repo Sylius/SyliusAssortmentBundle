@@ -73,6 +73,8 @@ class PrototypeManager extends BasePrototypeManager
             $product->addProperty($productProperty);
         }
 
+        $product->setOptions($prototype->getOptions());
+
         return $product;
     }
 
