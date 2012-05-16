@@ -66,6 +66,7 @@ class ProductType extends AbstractType
     public function getDefaultOptions()
     {
         return array(
+            'prototype' => null,
             'data_class' => $this->dataClass,
         );
     }
