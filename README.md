@@ -13,11 +13,13 @@ Features
 * Base for supporting different persistence layers.
 * Rich Doctrine2 ORM implementation.
 * Product Variants/Options/Properties support, inspired by [Spree product system](http://guides.spreecommerce.com/products_and_variants.html).
+* Product prototypes for fast creation of similar products.
 * Sensible default controllers, events, manipulators and flexible forms.
+* A lot of handy form types that are useful when integrating product system with carts, orders and more.
 * Soft deletion of products and pretty slug generation thanks to [DoctrineExtensions](http://github.com/l3pp4rd/DoctrineExtensions).
 * Cloning simple products.
 * It uses [Pagerfanta](http://github.com/whiteoctober/Pagerfanta) for pagination.
-* Thanks to awesome [Symfony2](http://symfony.com) everything is configurable and extensible.
+* Thanks to awesome [Symfony2](http://symfony.com) everything is easily configurable and extensible.
 
 Sylius
 ------

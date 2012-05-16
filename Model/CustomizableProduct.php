@@ -65,6 +65,10 @@ class CustomizableProduct extends Product implements CustomizableProductInterfac
      */
     public function getSku()
     {
+        if (null === $this->masterVariant) {
+            throw new \BadMethodCallException('You can\'t access product SKU without master variant being set');
+        }
+
         return $this->masterVariant->getSku();
     }
 
@@ -73,7 +77,10 @@ class CustomizableProduct extends Product implements CustomizableProductInterfac
      */
     public function setSku($sku)
     {
-        $this->sku = $sku;
+        if (null === $this->masterVariant) {
+            throw new \BadMethodCallException('You can\'t access product SKU without master variant being set');
+        }
+
         $this->masterVariant->setSku($sku);
     }
 
