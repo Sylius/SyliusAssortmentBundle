@@ -56,6 +56,10 @@ class VariantType extends AbstractType
             ->add('sku', 'text', array(
                 'label'    => 'sylius_assortment.label.variant.sku'
             ))
+            ->add('availableOn', 'datetime', array(
+                'time_widget' => 'single_text',
+                'label'       => 'sylius_assortment.label.variant.available_on'
+            ))
         ;
 
         if (!$options['master']) {

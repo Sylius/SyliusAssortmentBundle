@@ -31,6 +31,7 @@ class CustomizableProductType extends ProductType
 
         $builder
             ->remove('sku')
+            ->remove('availableOn')
             ->add('masterVariant', 'sylius_assortment_variant', array('master' => true))
             ->add('options', 'sylius_assortment_option_choice', array(
                 'required' => false,

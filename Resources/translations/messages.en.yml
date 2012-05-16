@@ -26,9 +26,11 @@ sylius_assortment:
             name: "Name"
             description: "Description"
             options: "Options"
+            available_on: "Available on"
         variant:
             sku: "SKU"
             presentation: "Presentation"
+            available_on: "Available on"
         option:
             name: "Name"
             presentation: "Presentation"

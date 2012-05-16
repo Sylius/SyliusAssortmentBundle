@@ -45,6 +45,13 @@ interface CustomizableProductInterface extends ProductInterface
     function getVariants();
 
     /**
+     * Return product variants that are available currently.
+     *
+     * @return array An array or collection of VariantInterface
+     */
+    function getAvailableVariants();
+
+    /**
      * Sets all product variants.
      *
      * @param array $variants An array or collection of VariantInterface

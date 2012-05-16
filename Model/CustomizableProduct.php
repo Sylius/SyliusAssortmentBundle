@@ -118,6 +118,17 @@ class CustomizableProduct extends Product implements CustomizableProductInterfac
     /**
      * {@inheritdoc}
      */
+    public function getAvailableVariants()
+    {
+        return array_filter($this->variants, function (VariantInterface $variant) {
+            return !$variant->isMaster() && $variant->isAvailable();
+        });
+    }
+
+
+    /**
+     * {@inheritdoc}
+     */
     public function setVariants($variants)
     {
         $this->variants = $variants;

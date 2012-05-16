@@ -37,7 +37,7 @@ class ProductController extends ContainerAware
     {
         $product = $this->container->get('sylius_assortment.manager.product')->findProductBy(array('slug' => $slug));
 
-        if (!$product) {
+        if (!$product || !$product->isAvailable()) {
             throw new NotFoundHttpException('Requested product does not exist');
         }
 

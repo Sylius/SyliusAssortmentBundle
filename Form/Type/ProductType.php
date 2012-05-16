@@ -57,6 +57,10 @@ class ProductType extends AbstractType
             ->add('description', 'textarea', array(
                 'label' => 'sylius_assortment.label.product.description'
             ))
+            ->add('availableOn', 'date', array(
+                'widget' => 'single_text',
+                'label'  => 'sylius_assortment.label.product.available_on'
+            ))
         ;
     }
 
