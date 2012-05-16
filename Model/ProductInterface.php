@@ -90,6 +90,30 @@ interface ProductInterface
     function setDescription($description);
 
     /**
+     * Check whether the product is available.
+     */
+    function isAvailable();
+
+    /**
+     * Return available on.
+     *
+     * @return \DateTime
+     */
+    function getAvailableOn();
+
+    /**
+     * Set available on.
+     *
+     * @param \DateTime $availableOn
+     */
+    function setAvailableOn(\DateTime $availableOn);
+
+    /**
+     * Make available now.
+     */
+    function incrementAvailableOn();
+
+    /**
      * Get creation time.
      *
      * @return DateTime

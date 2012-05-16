@@ -100,6 +100,8 @@ class CustomizableProduct extends Product implements CustomizableProductInterfac
         $masterVariant->setProduct($this);
         $masterVariant->setMaster(true);
 
+        $this->sku = $masterVariant->getSku();
+
         $this->masterVariant = $masterVariant;
     }
 
@@ -262,5 +264,37 @@ class CustomizableProduct extends Product implements CustomizableProductInterfac
     public function hasProperty(ProductPropertyInterface $property)
     {
         return in_array($property, $this->properties);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function isAvailable()
+    {
+        return $this->masterVariant->isAvailable();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getAvailableOn()
+    {
+        return $this->masterVariant->getAvailableOn();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setAvailableOn(\DateTime $availableOn)
+    {
+        $this->masterVariant->setAvailableOn($availableOn);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function incrementAvailableOn()
+    {
+        $this->availableOn = new \DateTime("now");
     }
 }

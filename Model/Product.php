@@ -55,6 +55,13 @@ class Product implements ProductInterface
     protected $description;
 
     /**
+     * Available on.
+     *
+     * @var DateTime
+     */
+    protected $availableOn;
+
+    /**
      * Creation time.
      *
      * @var DateTime
@@ -74,6 +81,14 @@ class Product implements ProductInterface
      * @var DateTime
      */
     protected $deletedAt;
+
+    /**
+     * Constructor.
+     */
+    public function __construct()
+    {
+        $this->availableOn = new \DateTime("now");
+    }
 
     /**
      * {@inheritdoc}
@@ -153,6 +168,40 @@ class Product implements ProductInterface
     public function setDescription($description)
     {
         $this->description = $description;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function isAvailable()
+    {
+        $now = new \DateTime("now");
+
+        return $now > $this->availableOn;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getAvailableOn()
+    {
+        return $this->availableOn;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setAvailableOn(\DateTime $availableOn)
+    {
+        $this->availableOn = $availableOn;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function incrementAvailableOn()
+    {
+        $this->availableOn = new \DateTime("now");
     }
 
     /**

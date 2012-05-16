@@ -19,6 +19,7 @@
         <field name="master" column="is_master" type="boolean" />
         <field name="sku" column="sku" type="string" nullable="true" />
         <field name="presentation" column="presentation" type="string" nullable="true" />
+        <field name="availableOn" column="available_on" type="datetime" />
         <field name="createdAt" column="created_at" type="datetime">
             <gedmo:timestampable on="create"/>
         </field>

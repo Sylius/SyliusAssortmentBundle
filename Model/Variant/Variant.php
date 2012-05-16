@@ -64,6 +64,13 @@ abstract class Variant implements VariantInterface
     protected $options;
 
     /**
+     * Available on.
+     *
+     * @var DateTime
+     */
+    protected $availableOn;
+
+    /**
      * Creation time.
      *
      * @var DateTime
@@ -91,6 +98,7 @@ abstract class Variant implements VariantInterface
     {
         $this->master = false;
         $this->options = array();
+        $this->availableOn = new \DateTime("now");
     }
 
     /**
@@ -242,6 +250,40 @@ abstract class Variant implements VariantInterface
     public function hasOption(OptionValueInterface $option)
     {
         return in_array($option, $this->options);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function isAvailable()
+    {
+        $now = new \DateTime("now");
+
+        return $now > $this->availableOn;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getAvailableOn()
+    {
+        return $this->availableOn;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setAvailableOn(\DateTime $availableOn)
+    {
+        $this->availableOn = $availableOn;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function incrementAvailableOn()
+    {
+        $this->availableOn = new \DateTime("now");
     }
 
     /**
