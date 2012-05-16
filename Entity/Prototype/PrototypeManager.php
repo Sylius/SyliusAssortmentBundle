@@ -15,6 +15,7 @@ use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityRepository;
 use Sylius\Bundle\AssortmentBundle\Model\Prototype\PrototypeInterface;
 use Sylius\Bundle\AssortmentBundle\Model\Prototype\PrototypeManager as BasePrototypeManager;
+use Sylius\Bundle\AssortmentBundle\Model\ProductInterface;
 
 /**
  * ORM driver prototype manager.
@@ -59,6 +60,22 @@ class PrototypeManager extends BasePrototypeManager
         $class = $this->getClass();
 
         return new $class;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function buildPrototype(PrototypeInterface $prototype, ProductInterface $product, $productPropertyClass)
+    {
+        foreach ($prototype->getProperties() as $property) {
+            $productProperty = new $productPropertyClass();
+            $productProperty->setProperty($property);
+            $product->addProperty($productProperty);
+        }
+
+        $product->setOptions($prototype->getOptions());
+
+        return $product;
     }
 
     /**

@@ -38,7 +38,8 @@ class PrototypeController extends Controller
     {
         $prototype = $this->findPrototypeOr404($id);
         $product = $this->container->get('sylius_assortment.manager.product')->createProduct();
-        $form = $this->container->get('form.factory')->create('sylius_assortment_product', $product);
+        $product = $this->container->get('sylius_assortment.manager.prototype')->buildPrototype($prototype, $product, $this->container->getParameter('sylius_assortment.model.product_property.class'));
+        $form = $this->container->get('form.factory')->create('sylius_assortment_product', $product, array('prototype' => $prototype));
 
         return $this->container->get('templating')->renderResponse('SyliusAssortmentBundle:Backend/Product:create.html.'.$this->getEngine(), array(
             'form' => $form->createView()

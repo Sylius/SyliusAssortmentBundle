@@ -11,6 +11,8 @@
 
 namespace Sylius\Bundle\AssortmentBundle\Model\Prototype;
 
+use Sylius\Bundle\AssortmentBundle\Model\ProductInterface;
+
 /**
  * Prototype manager interface.
  *
@@ -24,6 +26,16 @@ interface PrototypeManagerInterface
      * @return PrototypeInterface
      */
     function createPrototype();
+
+    /**
+     * Builds product based on prototype.
+     *
+     * @param PrototypeInterface    $prototype
+     * @param ProductInterface      $product
+     * @param string                $productPropertyClass
+     * @return ProductInterface
+     */
+    function buildPrototype(PrototypeInterface $prototype, ProductInterface $product, $productPropertyClass);
 
     /**
      * Persists prototype.
