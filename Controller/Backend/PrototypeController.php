@@ -43,7 +43,8 @@ class PrototypeController extends Controller
         $form = $this->container->get('form.factory')->create('sylius_assortment_product', $product, array('prototype' => $prototype));
 
         return $this->container->get('templating')->renderResponse('SyliusAssortmentBundle:Backend/Product:create.html.'.$this->getEngine(), array(
-            'form' => $form->createView()
+            'form'    => $form->createView(),
+            'product' => $product
         ));
     }
 

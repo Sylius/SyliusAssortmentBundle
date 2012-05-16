@@ -94,7 +94,8 @@ class ProductController extends Controller
         }
 
         return $this->container->get('templating')->renderResponse('SyliusAssortmentBundle:Backend/Product:create.html.'.$this->getEngine(), array(
-            'form' => $form->createView()
+            'form'    => $form->createView(),
+            'product' => $product
         ));
     }
 
