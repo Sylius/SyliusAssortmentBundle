@@ -65,8 +65,12 @@ class PrototypeManager extends BasePrototypeManager
     /**
      * {@inheritdoc}
      */
-    public function buildPrototype(PrototypeInterface $prototype, ProductInterface $product, $productPropertyClass)
+    public function buildPrototype(PrototypeInterface $prototype, ProductInterface $product)
     {
+        $metadata = $this->entityManager->getClassMetadata(get_class($product));
+        $propertyAssociationMapping = $metadata->getAssociationMapping('properties');
+        $productPropertyClass = $propertyAssociationMapping['targetEntity'];
+
         foreach ($prototype->getProperties() as $property) {
             $productProperty = new $productPropertyClass();
             $productProperty->setProperty($property);

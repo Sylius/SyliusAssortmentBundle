@@ -30,12 +30,12 @@ interface PrototypeManagerInterface
     /**
      * Builds product based on prototype.
      *
-     * @param PrototypeInterface    $prototype
-     * @param ProductInterface      $product
-     * @param string                $productPropertyClass
+     * @param PrototypeInterface $prototype
+     * @param ProductInterface   $product
+     *
      * @return ProductInterface
      */
-    function buildPrototype(PrototypeInterface $prototype, ProductInterface $product, $productPropertyClass);
+    function buildPrototype(PrototypeInterface $prototype, ProductInterface $product);
 
     /**
      * Persists prototype.

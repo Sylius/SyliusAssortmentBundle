@@ -11,6 +11,7 @@
 
 namespace Sylius\Bundle\AssortmentBundle\Form\Type;
 
+use Sylius\Bundle\AssortmentBundle\Model\Prototype\PrototypeInterface;
 use Symfony\Component\Form\FormBuilder;
 use Symfony\Component\Form\Extension\Core\ChoiceList\ObjectChoiceList;
 
@@ -31,28 +32,38 @@ class CustomizableProductType extends ProductType
         $builder
             ->remove('sku')
             ->add('masterVariant', 'sylius_assortment_variant', array('master' => true))
+            ->add('options', 'sylius_assortment_option_choice', array(
+                'required' => false,
+                'multiple' => true,
+                'label'    => 'sylius_assortment.label.product.options'
+            ))
+            ->add('properties', 'collection', array(
+                'required'     => false,
+                'type'         => 'sylius_assortment_product_property',
+                'allow_add'    => true,
+                'by_reference' => false
+            ))
         ;
 
-        if (null === $options['prototype']) {
-            $builder->add('options', 'sylius_assortment_option_choice', array(
-                'required' => false,
-                'multiple' => true,
-                'label'    => 'sylius_assortment.label.product.options'
-            ));
-        } else {
-            $builder->add('options', 'sylius_assortment_option_choice', array(
-                'choice_list' => new ObjectChoiceList($options['prototype']->getOptions(), 'name', array(), array(), 'id'),
-                'required' => false,
-                'multiple' => true,
-                'label'    => 'sylius_assortment.label.product.options'
-            ));
+
+        if (null !== $options['prototype']) {
+            if (!$options['prototype'] instanceof PrototypeInterface) {
+                throw new \InvalidArgumentException(
+                    'If you pass "prototype" option to product form type,
+                     it has to implement "Sylius\Bundle\AssortmentBundle\Model\Prototype\PrototypeInterface"'
+                );
+            }
+
+            $builder
+                ->remove('options')
+                ->add('options', 'sylius_assortment_option_choice', array(
+                    'choice_list' => new ObjectChoiceList($options['prototype']->getOptions(), 'name', array(), array(), 'id'),
+                    'required'    => false,
+                    'multiple'    => true,
+                    'label'       => 'sylius_assortment.label.product.options'
+                ))
+            ;
         }
 
-        $builder->add('properties', 'collection', array(
-            'required'     => false,
-            'type'         => 'sylius_assortment_product_property',
-            'allow_add'    => true,
-            'by_reference' => false
-        ));
     }
 }
