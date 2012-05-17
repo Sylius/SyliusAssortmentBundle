@@ -13,6 +13,7 @@ namespace Sylius\Bundle\AssortmentBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilder;
+use Sylius\Bundle\AssortmentBundle\Form\EventListener\BuildProductPropertyTypeListener;
 
 /**
  * Product property form type.
@@ -46,6 +47,7 @@ class ProductPropertyType extends AbstractType
         $builder
             ->add('property', 'sylius_assortment_property_choice')
             ->add('value', 'text')
+            ->addEventSubscriber(new BuildProductPropertyTypeListener($builder->getFormFactory()))
         ;
     }
 
