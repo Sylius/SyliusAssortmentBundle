@@ -49,7 +49,7 @@ class CustomizableProductTest extends \PHPUnit_Framework_TestCase
         $product = $this->getProduct();
 
         $masterVariant = $this->getMockVariant();
-        $masterVariant->expects($this->once())
+        $masterVariant->expects($this->exactly(2))
             ->method('getSku')
             ->will($this->returnValue('ABC123EEE'))
         ;

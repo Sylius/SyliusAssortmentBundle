@@ -53,11 +53,7 @@ class VariantChoiceType extends AbstractType
             throw new FormException('You have to pass "Sylius\Bundle\AssortmentBundle\Model\ProductInterface" as "product" option to variant choice type');
         }
 
-        $doctrineBasedDrivers = array(
-            SyliusAssortmentBundle::DRIVER_DOCTRINE_ORM,
-        );
-
-        if ($options['multiple'] && in_array($this->driver, $doctrineBasedDrivers)) {
+        if ($options['multiple'] && SyliusAssortmentBundle::DRIVER_DOCTRINE_ORM === $this->driver) {
             $builder->prependClientTransformer(new CollectionToArrayTransformer());
         }
     }
@@ -68,13 +64,14 @@ class VariantChoiceType extends AbstractType
     public function getDefaultOptions()
     {
         $choiceList = function (Options $options) {
-            return new VariantChoiceList($options['product']);
+            return new VariantChoiceList($options['product'], $options['availables']);
         };
 
         return array(
             'product'     => null,
             'multiple'    => false,
             'expanded'    => true,
+            'availables'  => true,
             'choice_list' => $choiceList
         );
     }

@@ -20,15 +20,17 @@ use Sylius\Bundle\AssortmentBundle\Form\ChoiceList\VariantChoiceList;
  */
 class VariantChoiceListTest extends \PHPUnit_Framework_TestCase
 {
-    public function testConstructor()
+    public function testConstructorReturnsOnlyAvailableVariantsByDefault()
     {
-        $product = $this->getMockCustmoizableProduct();
+        $product = $this->getMockCustomizableProduct();
         $product->expects($this->once())
-            ->method('getVariants')
+            ->method('getAvailableVariants')
             ->will($this->returnValue(array()))
         ;
 
         $variantChoiceList = new VariantChoiceList($product);
+
+        $this->assertEquals(array(), $variantChoiceList->getChoices());
     }
 
     public function testGetChoicesReturnsProductVariants()
@@ -39,18 +41,47 @@ class VariantChoiceListTest extends \PHPUnit_Framework_TestCase
             $this->getMockVariant()
         );
 
-        $product = $this->getMockCustmoizableProduct();
+        $product = $this->getMockCustomizableProduct();
         $product->expects($this->once())
-            ->method('getVariants')
+            ->method('getAvailableVariants')
             ->will($this->returnValue($variants))
         ;
 
         $variantChoiceList = new VariantChoiceList($product);
 
-        $this->assertSame($variants, $variantChoiceList->getChoices());
+        $this->assertEquals($variants, $variantChoiceList->getChoices());
     }
 
-    private function getMockCustmoizableProduct()
+    public function testGetChoicesReturnsAllProductVariantsWhenOptionPassed()
+    {
+        $availableVariants = array(
+            $this->getMockVariant(),
+            $this->getMockVariant(),
+            $this->getMockVariant()
+        );
+
+        $allVariants = array_merge($availableVariants, array(
+            $this->getMockVariant()
+        ));
+
+        $product = $this->getMockCustomizableProduct();
+        $product->expects($this->once())
+            ->method('getAvailableVariants')
+            ->will($this->returnValue($availableVariants))
+        ;
+        $product->expects($this->once())
+            ->method('getVariants')
+            ->will($this->returnValue($allVariants))
+        ;
+
+        $variantChoiceList = new VariantChoiceList($product);
+        $this->assertEquals($availableVariants, $variantChoiceList->getChoices());
+
+        $variantChoiceList = new VariantChoiceList($product, false);
+        $this->assertEquals($allVariants, $variantChoiceList->getChoices());
+    }
+
+    private function getMockCustomizableProduct()
     {
         return $this->getMock('Sylius\Bundle\AssortmentBundle\Model\CustomizableProductInterface');
     }
