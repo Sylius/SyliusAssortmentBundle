@@ -40,6 +40,7 @@ class PrototypeController extends Controller
         $prototype = $this->findPrototypeOr404($id);
         $product = $this->container->get('sylius_assortment.manager.product')->createProduct();
 
+        $this->container->get('event_dispatcher')->dispatch(SyliusAssortmentEvents::PROTOTYPE_BUILD, new FilterPrototypeEvent($prototype));
         $this->container->get('sylius_assortment.manager.prototype')->buildPrototype($prototype, $product);
         $form = $this->container->get('form.factory')->create('sylius_assortment_product', $product, array('prototype' => $prototype));
 

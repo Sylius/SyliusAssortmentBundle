@@ -31,6 +31,7 @@ final class SyliusAssortmentEvents
     const PROPERTY_UPDATE = 'sylius_assortment.event.property.update';
     const PROPERTY_DELETE = 'sylius_assortment.event.property.delete';
 
+    const PROTOTYPE_BUILD  = 'sylius_assortment.event.prototype.build';
     const PROTOTYPE_CREATE = 'sylius_assortment.event.prototype.create';
     const PROTOTYPE_UPDATE = 'sylius_assortment.event.prototype.update';
     const PROTOTYPE_DELETE = 'sylius_assortment.event.prototype.delete';
