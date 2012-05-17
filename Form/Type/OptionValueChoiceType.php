@@ -16,7 +16,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Exception\FormException;
 use Symfony\Component\Form\Extension\Core\ChoiceList\ObjectChoiceList;
 use Symfony\Component\Form\FormBuilder;
-use Symfony\Component\Form\Options;
+use Symfony\Component\OptionsResolver\Options;
 
 /**
  * Option value choice form type.

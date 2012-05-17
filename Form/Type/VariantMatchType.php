@@ -16,7 +16,6 @@ use Sylius\Bundle\AssortmentBundle\Model\CustomizableProductInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Exception\FormException;
 use Symfony\Component\Form\FormBuilder;
-use Symfony\Component\Form\Options;
 
 /**
  * Variant match form type.

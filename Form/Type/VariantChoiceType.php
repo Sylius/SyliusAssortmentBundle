@@ -18,7 +18,7 @@ use Symfony\Bridge\Doctrine\Form\DataTransformer\CollectionToArrayTransformer;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Exception\FormException;
 use Symfony\Component\Form\FormBuilder;
-use Symfony\Component\Form\Options;
+use Symfony\Component\OptionsResolver\Options;
 
 /**
  * Variant choice form type.
