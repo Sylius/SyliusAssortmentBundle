@@ -13,6 +13,7 @@ namespace Sylius\Bundle\AssortmentBundle\Controller\Backend;
 
 use Sylius\Bundle\AssortmentBundle\Controller\Controller;
 use Sylius\Bundle\AssortmentBundle\EventDispatcher\Event\FilterPrototypeEvent;
+use Sylius\Bundle\AssortmentBundle\EventDispatcher\Event\FilterProductEvent;
 use Sylius\Bundle\AssortmentBundle\EventDispatcher\SyliusAssortmentEvents;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -42,9 +43,24 @@ class PrototypeController extends Controller
         $this->container->get('sylius_assortment.manager.prototype')->buildPrototype($prototype, $product);
         $form = $this->container->get('form.factory')->create('sylius_assortment_product', $product, array('prototype' => $prototype));
 
-        return $this->container->get('templating')->renderResponse('SyliusAssortmentBundle:Backend/Product:create.html.'.$this->getEngine(), array(
-            'form'    => $form->createView(),
-            'product' => $product
+        if ('POST' === $request->getMethod()) {
+            $form->bindRequest($request);
+
+            if ($form->isValid()) {
+                $this->container->get('event_dispatcher')->dispatch(SyliusAssortmentEvents::PRODUCT_CREATE, new FilterProductEvent($product));
+                $this->container->get('sylius_assortment.manipulator.product')->create($product);
+                $this->setFlash('success', 'sylius_assortment.flash.product.created');
+
+                return new RedirectResponse($this->container->get('router')->generate('sylius_assortment_backend_product_show', array(
+                    'id' => $product->getId()
+                )));
+            }
+        }
+
+        return $this->container->get('templating')->renderResponse('SyliusAssortmentBundle:Backend/Prototype:build.html.'.$this->getEngine(), array(
+            'form'      => $form->createView(),
+            'product'   => $product,
+            'prototype' => $prototype
         ));
     }
 
