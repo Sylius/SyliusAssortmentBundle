@@ -32,7 +32,7 @@ interface ProductManagerInterface
      * Creates paginator.
      *
      * @param SorterInterface $sorter
-     * @param Boolean         $filterDeleted Whether to filter deleted products or not
+     * @param Boolean $filterDeleted Whether to filter deleted products or not
      *
      * @return Pagerfanta
      */

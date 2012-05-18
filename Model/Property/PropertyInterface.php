@@ -11,8 +11,6 @@
 
 namespace Sylius\Bundle\AssortmentBundle\Model\Property;
 
-use Sylius\Bundle\AssortmentBundle\Model\ProductInterface;
-
 /**
  * Product property interface.
  *

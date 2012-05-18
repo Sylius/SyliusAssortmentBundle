@@ -108,7 +108,7 @@ class VariantController extends Controller
      * Updates a variant.
      *
      * @param Request $request
-     * @param integer $id      The variant id
+     * @param integer $id The variant id
      *
      * @return Response
      */

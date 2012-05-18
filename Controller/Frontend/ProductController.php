@@ -12,7 +12,6 @@
 namespace Sylius\Bundle\AssortmentBundle\Controller\Frontend;
 
 use Symfony\Component\DependencyInjection\ContainerAware;
-use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -29,7 +28,7 @@ class ProductController extends ContainerAware
     /**
      * Shows single product page.
      *
-     * @param string  $slug The product slug
+     * @param string $slug The product slug
      *
      * @return Response
      */

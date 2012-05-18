@@ -31,7 +31,7 @@ class PrototypeController extends Controller
      * Creates a new product based on given prototype, displays creation form.
      *
      * @param Request $request
-     * @param mixed   $id      Prototype id
+     * @param mixed $id Prototype id
      *
      * @return Response
      */
@@ -112,7 +112,7 @@ class PrototypeController extends Controller
      * Updates a prototype.
      *
      * @param Request $request
-     * @param integer $id      The prototype id
+     * @param integer $id The prototype id
      *
      * @return Response
      */
