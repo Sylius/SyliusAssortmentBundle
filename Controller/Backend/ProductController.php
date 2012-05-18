@@ -103,7 +103,7 @@ class ProductController extends Controller
      * Updates a product.
      *
      * @param Request $request
-     * @param integer $id      The product id
+     * @param integer $id The product id
      *
      * @return Response
      */

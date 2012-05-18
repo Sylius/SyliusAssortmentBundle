@@ -41,7 +41,7 @@ class PropertyChoiceType extends AbstractType
     /**
      * Constructor.
      *
-     * @param string           $driver               The bundle driver
+     * @param string             $driver             The bundle driver
      * @param PropertyChoiceList $propertyChoiceList Choice list with all properties
      */
     public function __construct($driver, PropertyChoiceList $propertyChoiceList)

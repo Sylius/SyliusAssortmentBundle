@@ -73,7 +73,7 @@ class OptionController extends Controller
      * Updates a option.
      *
      * @param Request $request
-     * @param integer $id      The option id
+     * @param integer $id The option id
      *
      * @return Response
      */

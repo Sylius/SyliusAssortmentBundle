@@ -81,6 +81,7 @@ EOT
                     if (!is_numeric($id)) {
                         throw new \Exception('Product id must be integer.');
                     }
+
                     return $id;
                 }
             );

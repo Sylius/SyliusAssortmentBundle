@@ -12,7 +12,6 @@
 namespace Sylius\Bundle\AssortmentBundle\Validator;
 
 use Sylius\Bundle\AssortmentBundle\Model\Variant\VariantInterface;
-use Sylius\Bundle\AssortmentBundle\Model\Variant\VariantManagerInterface;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 use Symfony\Component\Validator\Exception\UnexpectedTypeException;

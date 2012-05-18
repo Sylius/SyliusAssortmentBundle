@@ -1,7 +1,7 @@
 SyliusAssortmentBundle [![Build status...](https://secure.travis-ci.org/Sylius/SyliusAssortmentBundle.png)](http://travis-ci.org/Sylius/SyliusAssortmentBundle)
 ======================
 
-Products management system for Symfony2 applications.  
+Products management system for Symfony2 applications.
 It is heavily inspired by concepts behind the awesome [Spree products and variants engine](http://guides.spreecommerce.com/products_and_variants.html).
 Suitable for small shops with simple product model and for stores that need fully featured product catalog.
 

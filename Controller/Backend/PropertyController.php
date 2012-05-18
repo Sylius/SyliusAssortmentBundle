@@ -73,7 +73,7 @@ class PropertyController extends Controller
      * Updates a property.
      *
      * @param Request $request
-     * @param integer $id      The property id
+     * @param integer $id The property id
      *
      * @return Response
      */
