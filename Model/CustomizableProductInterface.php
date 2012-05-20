@@ -38,6 +38,13 @@ interface CustomizableProductInterface extends ProductInterface
     function setMasterVariant(VariantInterface $variant);
 
     /**
+     * Has any variants?
+     *
+     * @return Boolean
+     */
+    function isVaried();
+
+    /**
      * Returns all product variants.
      *
      * @return array An array or collection of VariantInterface

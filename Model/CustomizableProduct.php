@@ -108,6 +108,14 @@ class CustomizableProduct extends Product implements CustomizableProductInterfac
     /**
      * {@inheritdoc}
      */
+    public function isVaried()
+    {
+        return 0 !== $this->countVariants();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function getVariants()
     {
         return array_filter($this->variants, function (VariantInterface $variant) {
