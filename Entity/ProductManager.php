@@ -133,7 +133,7 @@ class ProductManager extends BaseProductManager
     public function duplicateProduct(ProductInterface $product)
     {
         if ($product instanceof CustomizableProductInterface) {
-            throw new \BadMethodCall('Duplicate currently does not support customizable products');
+            throw new \BadMethodCallException('Duplicate currently does not support customizable products');
         }
 
         $duplicatedProduct = clone $product;
