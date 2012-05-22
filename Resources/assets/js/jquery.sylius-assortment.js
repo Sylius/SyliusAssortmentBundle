@@ -18,16 +18,6 @@
             }
         }
 
-        if ($("#sylius_assortment_product_images").length > 0) {
-            $("#sylius-assortment-product-image-adder").click(function () {
-                addProductImageForm();
-            });
-
-            if ($("#sylius_assortment_product_images").children().length === 0) {
-                addProductImageForm();
-            }
-        }
-
         if ($("#sylius-assortment-product-properties").length > 0) {
             $("#sylius-assortment-product-property-adder").click(function () {
                 addProductPropertyForm();
@@ -41,9 +31,6 @@
 
     function addOptionValueForm() {
         addEntityForm($("#sylius-assortment-option-values"));
-    }
-    function addProductImageForm() {
-        addEntityForm($("#sylius_assortment_product_images"));
     }
     function addProductPropertyForm() {
         addEntityForm($("#sylius-assortment-product-properties"));
