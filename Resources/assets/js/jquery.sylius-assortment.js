@@ -30,15 +30,15 @@
     });
 
     function addOptionValueForm() {
-        var collectionHolder = $("#sylius-assortment-option-values");
-        var prototype = collectionHolder.attr('data-prototype');
-        var newOptionValue = prototype.replace(/__name__/g, collectionHolder.children().length);
-        collectionHolder.append(newOptionValue);
+        addEntityForm($("#sylius-assortment-option-values"));
     }
     function addProductPropertyForm() {
-        var collectionHolder = $("#sylius-assortment-product-properties");
-        var prototype = collectionHolder.attr('data-prototype');
-        var newProductPropertyForm = prototype.replace(/__name__/g, collectionHolder.children().length);
-        collectionHolder.append(newProductPropertyForm);
+        addEntityForm($("#sylius-assortment-product-properties"));
+    }
+    function addEntityForm(collectionHolder) {
+        collectionHolder.append(collectionHolder
+            .attr('data-prototype')
+            .replace(/__name__/g, collectionHolder.children().length)
+        );
     }
 })( jQuery );
