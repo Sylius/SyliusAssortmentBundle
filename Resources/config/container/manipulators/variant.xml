@@ -17,8 +17,16 @@
                                http://symfony.com/schema/dic/services/services-1.0.xsd"
 >
 
+    <parameters>
+        <parameter key="sylius_assortment.generator.variant.class">Sylius\Bundle\AssortmentBundle\Generator\VariantGenerator</parameter>
+    </parameters>
+
     <services>
         <service id="sylius_assortment.manipulator.variant" class="%sylius_assortment.manipulator.variant.class%">
+            <argument type="service" id="sylius_assortment.manager.variant" />
+        </service>
+        <service id="sylius_assortment.generator.variant" class="%sylius_assortment.generator.variant.class%">
+            <argument type="service" id="validator" />
             <argument type="service" id="sylius_assortment.manager.variant" />
         </service>
     </services>

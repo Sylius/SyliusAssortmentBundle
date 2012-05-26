@@ -52,9 +52,7 @@ class VariantController extends Controller
      */
     public function listAction(Request $request, $productId)
     {
-        if (!$product = $this->container->get('sylius_assortment.manager.product')->findProduct($productId)) {
-            throw new NotFoundHttpException('Requested product does not exist');
-        }
+        $product = $this->findProductOr404($productId);
 
         $variants = $this->container->get('sylius_assortment.manager.variant')->findVariantsBy(array(
             'product' => $product,
@@ -156,6 +154,26 @@ class VariantController extends Controller
     }
 
     /**
+     * Generates all possible variants for given product.
+     *
+     * @param Request $request
+     * @param mixed   $productId
+     *
+     * @return Response
+     */
+    public function generateAction(Request $request, $productId)
+    {
+        $product = $this->findProductOr404($productId);
+
+        $this->container->get('sylius_assortment.generator.variant')->generate($product);
+        $this->container->get('sylius_assortment.manipulator.product')->update($product);
+
+        return new RedirectResponse($this->container->get('router')->generate('sylius_assortment_backend_product_show', array(
+            'id' => $product->getId()
+        )));
+    }
+
+    /**
      * Tries to find variant with given id.
      * Throws a special http exception with code 404 if unsuccessful.
      *
@@ -172,5 +190,24 @@ class VariantController extends Controller
         }
 
         return $variant;
+    }
+
+    /**
+     * Tries to find product with given id.
+     * Throws a special http exception with code 404 if unsuccessful.
+     *
+     * @param integer $id The product id
+     *
+     * @return ProductInterface
+     *
+     * @throws NotFoundHttpException
+     */
+    protected function findProductOr404($id)
+    {
+        if (!$product = $this->container->get('sylius_assortment.manager.product')->findProduct($id)) {
+            throw new NotFoundHttpException('Requested product does not exist');
+        }
+
+        return $product;
     }
 }

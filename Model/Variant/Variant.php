@@ -194,7 +194,7 @@ abstract class Variant implements VariantInterface
     /**
      * {@inheritdoc}
      */
-    public function setProduct(ProductInterface $product)
+    public function setProduct(ProductInterface $product = null)
     {
         $this->product = $product;
     }

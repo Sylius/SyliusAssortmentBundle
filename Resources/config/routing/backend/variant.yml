@@ -17,6 +17,10 @@ sylius_assortment_backend_variant_delete:
     pattern: /{id}/delete
     defaults: { _controller: sylius_assortment.controller.backend.variant:deleteAction }
 
+sylius_assortment_backend_variant_generate:
+    pattern: /{productId}/generate
+    defaults: { _controller: sylius_assortment.controller.backend.variant:generateAction }
+
 sylius_assortment_backend_variant_show:
     pattern: /{id}
     defaults: { _controller: sylius_assortment.controller.backend.variant:showAction }
