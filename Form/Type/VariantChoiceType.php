@@ -18,6 +18,7 @@ use Symfony\Bridge\Doctrine\Form\DataTransformer\CollectionToArrayTransformer;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Exception\FormException;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
@@ -63,7 +64,7 @@ class VariantChoiceType extends AbstractType
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
-        $choiceList = function (OptionsResolverInterface $options) {
+        $choiceList = function (Options $options) {
             return new VariantChoiceList($options['product'], $options['availables']);
         };
 
