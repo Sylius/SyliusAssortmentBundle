@@ -12,8 +12,9 @@
 namespace Sylius\Bundle\AssortmentBundle\Form\Type;
 
 use Sylius\Bundle\AssortmentBundle\Model\Prototype\PrototypeInterface;
-use Symfony\Component\Form\FormBuilder;
 use Symfony\Component\Form\Extension\Core\ChoiceList\ObjectChoiceList;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * Customizable product form type.
@@ -25,7 +26,7 @@ class CustomizableProductType extends ProductType
     /**
      * {@inheritdoc}
      */
-    public function buildForm(FormBuilder $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options)
     {
         parent::buildForm($builder, $options);
 
@@ -45,26 +46,5 @@ class CustomizableProductType extends ProductType
                 'by_reference' => false
             ))
         ;
-
-
-        if (null !== $options['prototype']) {
-            if (!$options['prototype'] instanceof PrototypeInterface) {
-                throw new \InvalidArgumentException(
-                    'If you pass "prototype" option to product form type,
-                     it has to implement "Sylius\Bundle\AssortmentBundle\Model\Prototype\PrototypeInterface"'
-                );
-            }
-
-            $builder
-                ->remove('options')
-                ->add('options', 'sylius_assortment_option_choice', array(
-                    'choice_list' => new ObjectChoiceList($options['prototype']->getOptions(), 'name', array(), array(), 'id'),
-                    'required'    => false,
-                    'multiple'    => true,
-                    'label'       => 'sylius_assortment.label.product.options'
-                ))
-            ;
-        }
-
     }
 }

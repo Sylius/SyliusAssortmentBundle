@@ -15,7 +15,8 @@ use Sylius\Bundle\AssortmentBundle\Form\ChoiceList\OptionChoiceList;
 use Sylius\Bundle\AssortmentBundle\SyliusAssortmentBundle;
 use Symfony\Bridge\Doctrine\Form\DataTransformer\CollectionToArrayTransformer;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\FormBuilder;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
  * Option choice form type.
@@ -53,7 +54,7 @@ class OptionChoiceType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function buildForm(FormBuilder $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $doctrineBasedDrivers = array(
             SyliusAssortmentBundle::DRIVER_DOCTRINE_ORM,
@@ -67,17 +68,19 @@ class OptionChoiceType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function getDefaultOptions()
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
-        return array(
-            'choice_list' => $this->optionChoiceList,
-        );
+        $resolver
+            ->setDefaults(array(
+                'choice_list' => $this->optionChoiceList,
+            ))
+        ;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getParent(array $options)
+    public function getParent()
     {
         return 'choice';
     }

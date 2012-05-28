@@ -15,8 +15,8 @@ use Sylius\Bundle\AssortmentBundle\Model\Option\OptionInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Exception\FormException;
 use Symfony\Component\Form\Extension\Core\ChoiceList\ObjectChoiceList;
-use Symfony\Component\Form\FormBuilder;
 use Symfony\Component\OptionsResolver\Options;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
  * Option value choice form type.
@@ -28,32 +28,29 @@ class OptionValueChoiceType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function buildForm(FormBuilder $builder, array $options)
-    {
-        if (!isset($options['option']) || !$options['option'] instanceof OptionInterface) {
-            throw new FormException('The "option" must be instance of "Sylius\Bundle\AssortmentBundle\Model\Option\OptionInterface"');
-        }
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getDefaultOptions()
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $choiceList = function (Options $options) {
             return new ObjectChoiceList($options['option']->getValues(), 'value', array(), null, null, 'id');
         };
 
-        return array(
-            'option'      => null,
-            'choice_list' => $choiceList
-        );
+        $resolver
+            ->setDefaults(array(
+                'choice_list' => $choiceList
+            ))
+            ->setRequired(array(
+                'option'
+            ))
+            ->addAllowedTypes(array(
+                'option' => 'Sylius\Bundle\AssortmentBundle\Model\Option\OptionInterface'
+            ))
+        ;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getParent(array $options)
+    public function getParent()
     {
         return 'choice';
     }

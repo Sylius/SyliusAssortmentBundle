@@ -65,7 +65,7 @@ class BuildProductPropertyTypeListener implements EventSubscriberInterface
         $form
             ->remove('property')
             ->remove('value')
-            ->add($this->factory->createNamed('text', 'value', null, array('label' => $productProperty->getName())))
+            ->add($this->factory->createNamed('value', 'text', null, array('label' => $productProperty->getName())))
         ;
     }
 }

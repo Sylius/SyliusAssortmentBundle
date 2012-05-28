@@ -67,7 +67,7 @@ class BuildVariantTypeListener implements EventSubscriberInterface
         $product = $variant->getProduct();
 
         if (0 < $product->countOptions()) {
-            $form->add($this->factory->createNamed('sylius_assortment_option_value_collection', 'options', $variant->getOptions(), array(
+            $form->add($this->factory->createNamed('options', 'sylius_assortment_option_value_collection', $variant->getOptions(), array(
                 'options' => $product->getOptions()
             )));
         }

@@ -12,7 +12,8 @@
 namespace Sylius\Bundle\AssortmentBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\FormBuilder;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
  * Product form type.
@@ -45,7 +46,7 @@ class ProductType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function buildForm(FormBuilder $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add('sku', 'text', array(
@@ -67,12 +68,14 @@ class ProductType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function getDefaultOptions()
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
-        return array(
-            'prototype'  => null,
-            'data_class' => $this->dataClass,
-        );
+        $resolver
+            ->setDefaults(array(
+                'prototype'  => null,
+                'data_class' => $this->dataClass,
+            ))
+        ;
     }
 
     /**

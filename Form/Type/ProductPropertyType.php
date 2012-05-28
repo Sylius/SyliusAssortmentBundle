@@ -11,9 +11,10 @@
 
 namespace Sylius\Bundle\AssortmentBundle\Form\Type;
 
-use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\FormBuilder;
 use Sylius\Bundle\AssortmentBundle\Form\EventListener\BuildProductPropertyTypeListener;
+use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
  * Product property form type.
@@ -42,7 +43,7 @@ class ProductPropertyType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function buildForm(FormBuilder $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add('property', 'sylius_assortment_property_choice')
@@ -54,11 +55,13 @@ class ProductPropertyType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function getDefaultOptions()
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
-        return array(
-            'data_class' => $this->dataClass,
-        );
+        $resolver
+            ->setDefaults(array(
+                'data_class' => $this->dataClass,
+            ))
+        ;
     }
 
     /**

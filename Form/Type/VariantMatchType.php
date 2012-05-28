@@ -15,7 +15,8 @@ use Sylius\Bundle\AssortmentBundle\Form\DataTransformer\VariantToCombinationTran
 use Sylius\Bundle\AssortmentBundle\Model\CustomizableProductInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Exception\FormException;
-use Symfony\Component\Form\FormBuilder;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
  * Variant match form type.
@@ -27,7 +28,7 @@ class VariantMatchType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function buildForm(FormBuilder $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options)
     {
         if (!isset($options['product']) || !$options['product'] instanceof CustomizableProductInterface) {
             throw new FormException('You have to pass "Sylius\Bundle\AssortmentBundle\Model\CustomizableProductInterface" as "product" option to variant choice type');
@@ -47,13 +48,15 @@ class VariantMatchType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function getDefaultOptions()
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
-        return array(
-            'product'     => null,
-            'multiple'    => false,
-            'expanded'    => true,
-        );
+        $resolver
+            ->setDefaults(array(
+                'product'     => null,
+                'multiple'    => false,
+                'expanded'    => true,
+            ))
+        ;
     }
 
     /**

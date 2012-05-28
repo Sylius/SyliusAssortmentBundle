@@ -13,7 +13,8 @@ namespace Sylius\Bundle\AssortmentBundle\Form\Type;
 
 use Sylius\Bundle\AssortmentBundle\Form\DataTransformer\ProductToIdTransformer;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\FormBuilder;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
  * Product hidden type.
@@ -51,7 +52,7 @@ class ProductHiddenType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function buildForm(FormBuilder $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->prependClientTransformer($this->productToIdTransformer);
     }
@@ -59,17 +60,19 @@ class ProductHiddenType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function getDefaultOptions()
+    public function setDefaultOptions(OptionResolverInterface $resolver)
     {
-        return array(
-            'data_class' => $this->dataClass,
-        );
+        $resolver
+            ->setDefaults(array(
+                'data_class' => $this->dataClass,
+            ))
+        ;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getParent(array $options)
+    public function getParent()
     {
         return 'hidden';
     }

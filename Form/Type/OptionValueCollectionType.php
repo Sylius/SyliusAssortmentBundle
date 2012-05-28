@@ -14,7 +14,8 @@ namespace Sylius\Bundle\AssortmentBundle\Form\Type;
 use Sylius\Bundle\AssortmentBundle\Model\Option\OptionInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Exception\FormException;
-use Symfony\Component\Form\FormBuilder;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
  * This is special collection type, inspired by original 'collection' type
@@ -29,7 +30,7 @@ class OptionValueCollectionType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function buildForm(FormBuilder $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options)
     {
         if (!isset($options['options']) ||
             !is_array($options['options']) &&
@@ -55,11 +56,13 @@ class OptionValueCollectionType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function getDefaultOptions()
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
-        return array(
-            'options' => null
-        );
+        $resolver
+            ->setDefaults(array(
+                'options' => null
+            ))
+        ;
     }
 
     /**
