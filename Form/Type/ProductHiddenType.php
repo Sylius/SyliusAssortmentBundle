@@ -60,7 +60,7 @@ class ProductHiddenType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function setDefaultOptions(OptionResolverInterface $resolver)
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver
             ->setDefaults(array(
