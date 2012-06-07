@@ -16,13 +16,27 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services
                                http://symfony.com/schema/dic/services/services-1.0.xsd"
 >
-
     <parameters>
         <parameter key="sylius_assortment.form.type.product_hidden.class">Sylius\Bundle\AssortmentBundle\Form\Type\ProductHiddenType</parameter>
         <parameter key="sylius_assortment.form.type.product_to_identifier.class">Sylius\Bundle\AssortmentBundle\Form\Type\ProductToIdentifierType</parameter>
+
+        <parameter key="sylius_assortment.validator.product.unique.class">Sylius\Bundle\AssortmentBundle\Validator\ProductUniqueValidator</parameter>
     </parameters>
 
     <services>
+        <!-- controllers. -->
+        <service id="sylius_assortment.controller.frontend.product" class="%sylius_assortment.controller.frontend.product.class%">
+            <call method="setContainer">
+                <argument type="service" id="service_container" />
+            </call>
+        </service>
+        <service id="sylius_assortment.controller.backend.product" class="%sylius_assortment.controller.backend.product.class%">
+            <call method="setContainer">
+                <argument type="service" id="service_container" />
+            </call>
+        </service>
+
+        <!-- forms. -->
         <service id="sylius_assortment.form.type.product" class="%sylius_assortment.form.type.product.class%">
             <argument>%sylius_assortment.model.product.class%</argument>
             <tag name="form.type" alias="sylius_assortment_product" />
@@ -34,6 +48,17 @@
         <service id="sylius_assortment.form.type.product_hidden" class="%sylius_assortment.form.type.product_hidden.class%">
             <argument type="service" id="sylius_assortment.manager.product" />
             <tag name="form.type" alias="sylius_assortment_product_hidden" />
+        </service>
+
+        <!-- manipulators -->
+        <service id="sylius_assortment.manipulator.product" class="%sylius_assortment.manipulator.product.class%">
+            <argument type="service" id="sylius_assortment.manager.product" />
+        </service>
+
+        <!-- validators. -->
+        <service id="sylius_assortment.validator.product.unique" class="%sylius_assortment.validator.product.unique.class%">
+            <argument type="service" id="sylius_assortment.manager.product" />
+            <tag name="validator.constraint_validator" alias="sylius_assortment.validator.product.unique" />
         </service>
     </services>
 

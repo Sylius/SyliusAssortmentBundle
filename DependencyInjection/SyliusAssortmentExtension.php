@@ -78,32 +78,19 @@ class SyliusAssortmentExtension extends Extension
         }
 
         $loader->load(sprintf('driver/%s.xml', $driver));
-
-        $loader->load('controllers/product.xml');
-        $loader->load('manipulators/product.xml');
-        $loader->load('forms/product.xml');
-        $loader->load('validators/product.xml');
+        $loader->load('products.xml');
 
         if (!empty($config['classes']['model']['variant'])) {
-            $loader->load('controllers/variant.xml');
-            $loader->load('manipulators/variant.xml');
-            $loader->load('forms/variant.xml');
-            $loader->load('validators/variant.xml');
+            $loader->load('variants.xml');
         }
         if (!empty($config['classes']['model']['option'])) {
-            $loader->load('controllers/option.xml');
-            $loader->load('manipulators/option.xml');
-            $loader->load('forms/option.xml');
+            $loader->load('options.xml');
         }
         if (!empty($config['classes']['model']['property'])) {
-            $loader->load('controllers/property.xml');
-            $loader->load('manipulators/property.xml');
-            $loader->load('forms/property.xml');
+            $loader->load('properties.xml');
         }
         if (!empty($config['classes']['model']['prototype'])) {
-            $loader->load('controllers/prototype.xml');
-            $loader->load('manipulators/prototype.xml');
-            $loader->load('forms/prototype.xml');
+            $loader->load('prototypes.xml');
         }
     }
 
