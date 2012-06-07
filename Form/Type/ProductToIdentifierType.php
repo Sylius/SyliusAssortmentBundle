@@ -14,15 +14,16 @@ namespace Sylius\Bundle\AssortmentBundle\Form\Type;
 use Sylius\Bundle\AssortmentBundle\Model\ProductManagerInterface;
 use Sylius\Bundle\AssortmentBundle\Form\DataTransformer\ProductToIdentifierTransformer;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Exception\FormException;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
- * Product hidden type.
+ * Product to identifier type.
  *
  * @author Paweł Jędrzejewski <pjedrzejewski@diweb.pl>
  */
-class ProductHiddenType extends AbstractType
+class ProductToIdentifierType extends AbstractType
 {
     /**
      * Product manager.
@@ -46,7 +47,22 @@ class ProductHiddenType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->addModelTransformer(new ProductToIdentifierTransformer($this->productManager, 'id'));
+        $builder->addModelTransformer(new ProductToIdentifierTransformer($this->productManager, $options['identifier']));
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    {
+        $resolver
+            ->setRequired(array(
+                'identifier'
+            ))
+            ->setAllowedTypes(array(
+                'identifier' => array('string')
+            ))
+        ;
     }
 
     /**
@@ -54,7 +70,7 @@ class ProductHiddenType extends AbstractType
      */
     public function getParent()
     {
-        return 'hidden';
+        return 'text';
     }
 
     /**
@@ -62,6 +78,6 @@ class ProductHiddenType extends AbstractType
      */
     public function getName()
     {
-        return 'sylius_assortment_product_hidden';
+        return 'sylius_assortment_product_to_identifier';
     }
 }

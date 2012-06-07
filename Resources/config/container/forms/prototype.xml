@@ -17,84 +17,10 @@
                                http://symfony.com/schema/dic/services/services-1.0.xsd"
 >
 
-    <parameters>
-        <parameter key="sylius_assortment.form.type.product_hidden.class">Sylius\Bundle\AssortmentBundle\Form\Type\ProductHiddenType</parameter>
-        <parameter key="sylius_assortment.form.data_transformer.product_to_id.class">Sylius\Bundle\AssortmentBundle\Form\DataTransformer\ProductToIdTransformer</parameter>
-        <parameter key="sylius_assortment.form.choice_list.option.class">Sylius\Bundle\AssortmentBundle\Form\ChoiceList\OptionChoiceList</parameter>
-        <parameter key="sylius_assortment.form.choice_list.property.class">Sylius\Bundle\AssortmentBundle\Form\ChoiceList\PropertyChoiceList</parameter>
-    </parameters>
-
     <services>
-        <!-- product... -->
-        <service id="sylius_assortment.form.type.product" class="%sylius_assortment.form.type.product.class%">
-            <argument>%sylius_assortment.model.product.class%</argument>
-            <tag name="form.type" alias="sylius_assortment_product" />
-        </service>
-        <service id="sylius_assortment.form.type.product_hidden" class="%sylius_assortment.form.type.product_hidden.class%">
-            <argument>%sylius_assortment.model.product.class%</argument>
-            <argument type="service" id="sylius_assortment.form.data_transformer.product_to_id" />
-            <tag name="form.type" alias="sylius_assortment_product_hidden" />
-        </service>
-        <service id="sylius_assortment.form.data_transformer.product_to_id" class="%sylius_assortment.form.data_transformer.product_to_id.class%">
-            <argument type="service" id="sylius_assortment.manager.product" />
-        </service>
-
-        <!-- variant... -->
-        <service id="sylius_assortment.form.type.variant" class="%sylius_assortment.form.type.variant.class%">
-            <argument>%sylius_assortment.model.variant.class%</argument>
-            <tag name="form.type" alias="sylius_assortment_variant" />
-        </service>
-        <service id="sylius_assortment.form.type.variant_choice" class="%sylius_assortment.form.type.variant_choice.class%">
-            <argument>%sylius_assortment.driver%</argument>
-            <tag name="form.type" alias="sylius_assortment_variant_choice" />
-        </service>
-
-        <!-- option... -->
-        <service id="sylius_assortment.form.type.option" class="%sylius_assortment.form.type.option.class%">
-            <argument>%sylius_assortment.model.option.class%</argument>
-            <tag name="form.type" alias="sylius_assortment_option" />
-        </service>
-        <service id="sylius_assortment.form.type.option_value" class="%sylius_assortment.form.type.option_value.class%">
-            <argument>%sylius_assortment.model.option_value.class%</argument>
-            <tag name="form.type" alias="sylius_assortment_option_value" />
-        </service>
-        <service id="sylius_assortment.form.type.option_choice" class="%sylius_assortment.form.type.option_choice.class%">
-            <argument>%sylius_assortment.driver%</argument>
-            <argument type="service" id="sylius_assortment.form.choice_list.option" />
-            <tag name="form.type" alias="sylius_assortment_option_choice" />
-        </service>
-        <service id="sylius_assortment.form.type.option_value_choice" class="%sylius_assortment.form.type.option_value_choice.class%">
-            <tag name="form.type" alias="sylius_assortment_option_value_choice" />
-        </service>
-        <service id="sylius_assortment.form.type.option_value_collection" class="%sylius_assortment.form.type.option_value_collection.class%">
-            <tag name="form.type" alias="sylius_assortment_option_value_collection" />
-        </service>
-        <service id="sylius_assortment.form.choice_list.option" class="%sylius_assortment.form.choice_list.option.class%">
-            <argument type="service" id="sylius_assortment.manager.option" />
-        </service>
-
-        <!-- prototype... -->
         <service id="sylius_assortment.form.type.prototype" class="%sylius_assortment.form.type.prototype.class%">
             <argument>%sylius_assortment.model.prototype.class%</argument>
             <tag name="form.type" alias="sylius_assortment_prototype" />
-        </service>
-
-        <!-- property... -->
-        <service id="sylius_assortment.form.type.property" class="%sylius_assortment.form.type.property.class%">
-            <argument>%sylius_assortment.model.property.class%</argument>
-            <tag name="form.type" alias="sylius_assortment_property" />
-        </service>
-        <service id="sylius_assortment.form.type.product_property" class="%sylius_assortment.form.type.product_property.class%">
-            <argument>%sylius_assortment.model.product_property.class%</argument>
-            <tag name="form.type" alias="sylius_assortment_product_property" />
-        </service>
-        <service id="sylius_assortment.form.type.property_choice" class="%sylius_assortment.form.type.property_choice.class%">
-            <argument>%sylius_assortment.driver%</argument>
-            <argument type="service" id="sylius_assortment.form.choice_list.property" />
-            <tag name="form.type" alias="sylius_assortment_property_choice" />
-        </service>
-        <service id="sylius_assortment.form.choice_list.property" class="%sylius_assortment.form.choice_list.property.class%">
-            <argument type="service" id="sylius_assortment.manager.property" />
         </service>
     </services>
 

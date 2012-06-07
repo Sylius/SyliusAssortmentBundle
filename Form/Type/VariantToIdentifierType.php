@@ -11,34 +11,43 @@
 
 namespace Sylius\Bundle\AssortmentBundle\Form\Type;
 
-use Sylius\Bundle\AssortmentBundle\Form\DataTransformer\VariantToCombinationTransformer;
-use Sylius\Bundle\AssortmentBundle\Model\CustomizableProductInterface;
+use Sylius\Bundle\AssortmentBundle\Model\Variant\VariantManagerInterface;
+use Sylius\Bundle\AssortmentBundle\Form\DataTransformer\VariantToIdentifierTransformer;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Exception\FormException;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
- * Variant match form type.
+ * Variant to identifier type.
  *
  * @author Paweł Jędrzejewski <pjedrzejewski@diweb.pl>
  */
-class VariantMatchType extends AbstractType
+class VariantToIdentifierType extends AbstractType
 {
+    /**
+     * Variant manager.
+     *
+     * @var VariantManagerInterface
+     */
+    private $variantManager;
+
+    /**
+     * See VariantType description for information about data class.
+     *
+     * @param VariantManagerInterface $variantManager
+     */
+    public function __construct(VariantManagerInterface $variantManager)
+    {
+        $this->variantManager = $variantManager;
+    }
+
     /**
      * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        foreach ($options['product']->getOptions() as $i => $option) {
-            $builder->add((string) $i, 'sylius_assortment_option_value_choice', array(
-                'label'         => $option->getPresentation(),
-                'option'        => $option,
-                'property_path' => '['.$i.']'
-            ));
-        }
-
-        $builder->addModelTransformer(new VariantToCombinationTransformer($options['product']));
+        $builder->addModelTransformer(new VariantToIdentifierTransformer($this->variantManager, $options['identifier']));
     }
 
     /**
@@ -48,10 +57,10 @@ class VariantMatchType extends AbstractType
     {
         $resolver
             ->setRequired(array(
-                'product'
+                'identifier'
             ))
             ->setAllowedTypes(array(
-                'product' => 'Sylius\Bundle\AssortmentBundle\Model\CustomizableProductInterface'
+                'identifier' => array('string')
             ))
         ;
     }
@@ -59,8 +68,16 @@ class VariantMatchType extends AbstractType
     /**
      * {@inheritdoc}
      */
+    public function getParent()
+    {
+        return 'text';
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function getName()
     {
-        return 'sylius_assortment_variant_match';
+        return 'sylius_assortment_variant_to_identifier';
     }
 }

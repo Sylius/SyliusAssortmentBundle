@@ -22,23 +22,32 @@ use Symfony\Component\Form\Exception\UnexpectedTypeException;
  *
  * @author Paweł Jędrzejewski <pjedrzejewski@diweb.pl>
  */
-class ProductToIdTransformer implements DataTransformerInterface
+class ProductToIdentifierTransformer implements DataTransformerInterface
 {
     /**
      * Product manager.
      *
      * @var ProductManagerInterface
      */
-    protected $productManager;
+    private $productManager;
+
+    /**
+     * Identifier.
+     *
+     * @var string
+     */
+    private $identifier;
 
     /**
      * Constructor.
      *
      * @param ProductManagerInterface $productManager
+     * @param string                  $identifier
      */
-    public function __construct(ProductManagerInterface $productManager)
+    public function __construct(ProductManagerInterface $productManager, $identifier)
     {
         $this->productManager = $productManager;
+        $this->identifier = $identifier;
     }
 
     /**
@@ -47,14 +56,14 @@ class ProductToIdTransformer implements DataTransformerInterface
     public function transform($value)
     {
         if (null === $value) {
-            return null;
+            return '';
         }
 
         if (!$value instanceof ProductInterface) {
             throw new UnexpectedTypeException($value, 'Sylius\Bundle\AssortmentBundle\Model\ProductInterface');
         }
 
-        return $value->getId();
+        return $value->{'get'.ucfirst($this->identifier)}();
     }
 
     /**
@@ -66,14 +75,6 @@ class ProductToIdTransformer implements DataTransformerInterface
             return null;
         }
 
-        if (!is_numeric($value)) {
-            throw new UnexpectedTypeException($value, 'numeric');
-        }
-
-        if (!$product = $this->productManager->findProduct($value)) {
-            throw new TransformationFailedException('Product with given id does not exist');
-        }
-
-        return $product;
+        return $this->productManager->findProductBy(array($this->identifier => $value));
     }
 }
