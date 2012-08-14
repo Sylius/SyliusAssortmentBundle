@@ -20,4 +20,11 @@ use Sylius\Bundle\AssortmentBundle\Model\Property\ProductProperty as BaseProduct
  */
 class ProductProperty extends BaseProductProperty
 {
+    /**
+     * Method used to detach property from product
+     */
+    public function detachFromProduct()
+    {
+        $this->product = null;
+    }
 }
