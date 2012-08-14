@@ -81,7 +81,7 @@ class CustomizableProduct extends BaseCustomizableProduct
     public function removeVariant(VariantInterface $variant)
     {
         if ($this->hasVariant($variant)) {
-            $variant->setProduct(null);
+            $variant->detachFromProduct();
             $this->variants->removeElement($variant);
         }
     }
@@ -139,7 +139,7 @@ class CustomizableProduct extends BaseCustomizableProduct
     public function removeProperty(ProductPropertyInterface $property)
     {
         if ($this->hasProperty($property)) {
-            $property->setProduct(null);
+            $property->detachFromProduct();
             $this->properties->removeElement($property);
         }
     }
