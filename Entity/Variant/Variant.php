@@ -39,12 +39,4 @@ class Variant extends BaseVariant
     {
         return $this->options->contains($option);
     }
-    
-    /**
-     * Method used to detach property from product
-     */
-    public function detachFromProduct()
-    {
-        $this->product = null;
-    }
 }
