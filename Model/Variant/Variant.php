@@ -162,7 +162,7 @@ abstract class Variant implements VariantInterface
      */
     public function setPresentation($presentation)
     {
-        $this->presentaiton = $presentation;
+        $this->presentation = $presentation;
     }
 
     /**
