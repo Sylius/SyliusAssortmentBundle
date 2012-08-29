@@ -99,9 +99,9 @@ interface VariantInterface
     /**
      * Set product.
      *
-     * @param ProductInterface $product
+     * @param ProductInterface or null $product
      */
-    function setProduct(ProductInterface $product);
+    function setProduct($product);
 
     /**
      * Returns all option values.

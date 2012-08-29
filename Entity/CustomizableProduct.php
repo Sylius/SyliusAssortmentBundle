@@ -81,7 +81,7 @@ class CustomizableProduct extends BaseCustomizableProduct
     public function removeVariant(VariantInterface $variant)
     {
         if ($this->hasVariant($variant)) {
-            $variant->setProduct(null);
+            $property->setProduct(null);
             $this->variants->removeElement($variant);
         }
     }
