@@ -1,7 +1,0 @@
-# This file is part of the Sylius package.
-# (c) Paweł Jędrzejewski
-
-sylius_assortment_api_product:
-    type:     rest
-    resource: sylius_assortment.controller.api.product
-    name_prefix: sylius_assortment_api_

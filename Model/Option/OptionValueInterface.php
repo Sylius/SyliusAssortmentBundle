@@ -11,6 +11,8 @@
 
 namespace Sylius\Bundle\AssortmentBundle\Model\Option;
 
+use Sylius\Bundle\ResourceBundle\Model\ResourceInterface;
+
 /**
  * Option value interface.
  *
@@ -18,20 +20,6 @@ namespace Sylius\Bundle\AssortmentBundle\Model\Option;
  */
 interface OptionValueInterface
 {
-    /**
-     * Get option id.
-     *
-     * @return mixed
-     */
-    function getId();
-
-    /**
-     * Set option id.
-     *
-     * @param mixed $id
-     */
-    function setId($id);
-
     /**
      * Get internal value.
      *

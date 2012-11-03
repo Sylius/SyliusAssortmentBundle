@@ -12,28 +12,15 @@
 namespace Sylius\Bundle\AssortmentBundle\Model\Property;
 
 use Sylius\Bundle\AssortmentBundle\Model\ProductInterface;
+use Sylius\Bundle\ResourceBundle\Model\ResourceInterface;
 
 /**
  * Product property interface.
  *
  * @author Paweł Jędrzejewski <pjedrzejewski@diweb.pl>
  */
-interface PropertyInterface
+interface PropertyInterface extends ResourceInterface
 {
-    /**
-     * Get property id.
-     *
-     * @return mixed
-     */
-    function getId();
-
-    /**
-     * Set property id.
-     *
-     * @param mixed $id
-     */
-    function setId($id);
-
     /**
      * Get internal name.
      * It's used when editing product.

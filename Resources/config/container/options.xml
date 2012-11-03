@@ -22,16 +22,10 @@
     </parameters>
 
     <services>
-        <!-- controllers. -->
-        <service id="sylius_assortment.controller.backend.option" class="%sylius_assortment.controller.backend.option.class%">
+        <service id="sylius_assortment.controller.option" class="%sylius_assortment.controller.option.class%">
             <call method="setContainer">
                 <argument type="service" id="service_container" />
             </call>
-        </service>
-
-        <!-- manipulators. -->
-        <service id="sylius_assortment.manipulator.option" class="%sylius_assortment.manipulator.option.class%">
-            <argument type="service" id="sylius_assortment.manager.option" />
         </service>
 
         <!-- forms. -->

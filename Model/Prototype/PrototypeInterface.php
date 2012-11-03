@@ -11,8 +11,9 @@
 
 namespace Sylius\Bundle\AssortmentBundle\Model\Prototype;
 
-use Sylius\Bundle\AssortmentBundle\Model\Property\PropertyInterface;
 use Sylius\Bundle\AssortmentBundle\Model\Option\OptionInterface;
+use Sylius\Bundle\AssortmentBundle\Model\Property\PropertyInterface;
+use Sylius\Bundle\ResourceBundle\Model\ResourceInterface;
 
 /**
  * Used to generate full product form.
@@ -20,22 +21,8 @@ use Sylius\Bundle\AssortmentBundle\Model\Option\OptionInterface;
  *
  * @author Paweł Jędrzejewski <pjedrzejewski@diweb.pl>
  */
-interface PrototypeInterface
+interface PrototypeInterface extends ResourceInterface
 {
-    /**
-     * Get prototype id.
-     *
-     * @return mixed
-     */
-    function getId();
-
-    /**
-     * Set prototype id.
-     *
-     * @param mixed $id
-     */
-    function setId($id);
-
     /**
      * Get name, it will be displayed by user only in backend.
      * Can be something like 't-shirt' or 'tv'.
@@ -61,9 +48,9 @@ interface PrototypeInterface
     /**
      * Sets all prototype properties.
      *
-     * @param array $properties An array or collection of PropertyInterface
+     * @param Collection $properties
      */
-    function setProperties($properties);
+    function setProperties(Collection $properties);
 
     /**
      * Counts all prototype properties.
@@ -98,14 +85,14 @@ interface PrototypeInterface
     /**
      * Returns all prototype options.
      *
-     * @return array An array or collection of OptionInterface
+     * @return Collection
      */
     function getOptions();
 
     /**
      * Sets all prototype options.
      *
-     * @param array $options An array or collection of OptionInterface
+     * @param Collection $options
      */
     function setOptions($options);
 

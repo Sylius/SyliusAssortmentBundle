@@ -27,7 +27,7 @@
 
     <services>
         <!-- controllers. -->
-        <service id="sylius_assortment.controller.backend.variant" class="%sylius_assortment.controller.backend.variant.class%">
+        <service id="sylius_assortment.controller.variant" class="%sylius_assortment.controller.variant.class%">
             <call method="setContainer">
                 <argument type="service" id="service_container" />
             </call>
@@ -48,11 +48,6 @@
         <service id="sylius_assortment.form.type.variant_to_identifier" class="%sylius_assortment.form.type.variant_to_identifier.class%">
             <argument type="service" id="sylius_assortment.manager.variant" />
             <tag name="form.type" alias="sylius_assortment_variant_to_identifier" />
-        </service>
-
-        <!-- manipulators. -->
-        <service id="sylius_assortment.manipulator.variant" class="%sylius_assortment.manipulator.variant.class%">
-            <argument type="service" id="sylius_assortment.manager.variant" />
         </service>
 
         <!-- generators. -->

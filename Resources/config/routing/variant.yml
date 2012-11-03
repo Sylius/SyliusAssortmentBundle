@@ -1,0 +1,60 @@
+# This file is part of the Sylius package.
+# (c) Paweł Jędrzejewski
+
+sylius_assortment_variant_new:
+    pattern: /new
+    defaults:
+        _controller: sylius_assortment.controller.variant:newAction
+    requirements:
+
+sylius_assortment_variant_post:
+    pattern: /
+    defaults:
+        _controller: sylius_assortment.controller.variant:postAction
+        _sylius.redirect: sylius_assortment_variant
+    requirements:
+        _method: POST
+
+sylius_assortment_variant_edit:
+    pattern: /{id}/edit
+    defaults:
+        _controller: sylius_assortment.controller.variant:editAction
+    requirements:
+        _method: GET
+
+sylius_assortment_variant_put:
+    pattern: /{id}
+    defaults:
+        _controller: sylius_assortment.controller.variant:putAction
+        _sylius.redirect: sylius_assortment_variant
+    requirements:
+        _method: PUT|POST
+
+sylius_assortment_variant_delete:
+    pattern: /{id}/delete
+    defaults:
+        _controller: sylius_assortment.controller.variant:deleteAction
+        _sylius.redirect: sylius_assortment_variants
+    requirements:
+        _method: GET
+
+sylius_assortment_variants:
+    pattern: /
+    defaults:
+        _controller: sylius_assortment.controller.variant:getCollectionAction
+    requirements:
+        _method: GET
+
+sylius_assortment_variant_generate:
+    pattern: /{productId}/generate
+    defaults:
+        _controller: sylius_assortment.controller.variant:generateAction
+    requirements:
+        _method: GET
+
+sylius_assortment_variant:
+    pattern: /{id}
+    defaults:
+        _controller: sylius_assortment.controller.variant:getAction
+    requirements:
+        _method: GET

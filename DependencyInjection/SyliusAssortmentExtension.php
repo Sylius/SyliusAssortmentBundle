@@ -41,19 +41,10 @@ class SyliusAssortmentExtension extends Extension
         $container->setParameter('sylius_assortment.driver', $config['driver']);
         $container->setParameter('sylius_assortment.engine', $config['engine']);
 
-        if ($config['api']) {
-            $loader->load('api.xml');
-        }
-
         $this->remapParametersNamespaces($config['classes'], $container, array(
+            'controller'  => 'sylius_assortment.controller.%s.class',
             'manipulator' => 'sylius_assortment.manipulator.%s.class',
-            'model'       => 'sylius_assortment.model.%s.class'
-        ));
-
-        $this->remapParametersNamespaces($config['classes']['controller'], $container, array(
-            'api'      => 'sylius_assortment.controller.api.%s.class',
-            'backend'  => 'sylius_assortment.controller.backend.%s.class',
-            'frontend' => 'sylius_assortment.controller.frontend.%s.class'
+            'model'       => 'sylius_assortment.model.%s.class',
         ));
 
         $this->remapParametersNamespaces($config['classes']['form'], $container, array(

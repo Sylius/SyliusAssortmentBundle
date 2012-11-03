@@ -101,14 +101,6 @@ class Product implements ProductInterface
     /**
      * {@inheritdoc}
      */
-    public function setId($id)
-    {
-        $this->id = $id;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function getSku()
     {
         return $this->sku;

@@ -112,14 +112,6 @@ abstract class Variant implements VariantInterface
     /**
      * {@inheritdoc}
      */
-    public function setId($id)
-    {
-        $this->id = $id;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function isMaster()
     {
         return $this->master;

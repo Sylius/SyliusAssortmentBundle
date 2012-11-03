@@ -11,6 +11,7 @@
 
 namespace Sylius\Bundle\AssortmentBundle\Model;
 
+use Doctrine\Common\Collections\Collection;
 use Sylius\Bundle\AssortmentBundle\Model\Option\OptionInterface;
 use Sylius\Bundle\AssortmentBundle\Model\Property\ProductPropertyInterface;
 use Sylius\Bundle\AssortmentBundle\Model\Variant\VariantInterface;
@@ -55,9 +56,9 @@ class CustomizableProduct extends Product implements CustomizableProductInterfac
      */
     public function __construct()
     {
-        $this->variants = array();
-        $this->options = array();
-        $this->properties = array();
+        $this->variants = new ArrayCollection();
+        $this->options = new ArrayCollection();
+        $this->properties = new ArrayCollection();
     }
 
     /**
@@ -118,7 +119,7 @@ class CustomizableProduct extends Product implements CustomizableProductInterfac
      */
     public function getVariants()
     {
-        return array_filter($this->variants, function (VariantInterface $variant) {
+        return $this->variants->filter(function (VariantInterface $variant) {
             return !$variant->isMaster();
         });
     }
@@ -128,18 +129,9 @@ class CustomizableProduct extends Product implements CustomizableProductInterfac
      */
     public function getAvailableVariants()
     {
-        return array_filter($this->variants, function (VariantInterface $variant) {
+        return $this->variants->filter(function (VariantInterface $variant) {
             return !$variant->isMaster() && $variant->isAvailable();
         });
-    }
-
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setVariants($variants)
-    {
-        $this->variants = $variants;
     }
 
     /**
@@ -147,7 +139,7 @@ class CustomizableProduct extends Product implements CustomizableProductInterfac
      */
     public function countVariants()
     {
-        return count($this->variants);
+        return count($this->getVariants());
     }
 
     /**
@@ -156,7 +148,8 @@ class CustomizableProduct extends Product implements CustomizableProductInterfac
     public function addVariant(VariantInterface $variant)
     {
         if (!$this->hasVariant($variant)) {
-            $this->variants[] = $variant;
+            $variant->setProduct($this);
+            $this->variants->add($variant);
         }
     }
 
@@ -166,8 +159,8 @@ class CustomizableProduct extends Product implements CustomizableProductInterfac
     public function removeVariant(VariantInterface $variant)
     {
         if ($this->hasVariant($variant)) {
-            $key = array_search($variant, $this->variants);
-            unset($variants[$key]);
+            $variant->setProduct(null);
+            $this->variants->removeElement($variant);
         }
     }
 
@@ -176,31 +169,7 @@ class CustomizableProduct extends Product implements CustomizableProductInterfac
      */
     public function hasVariant(VariantInterface $variant)
     {
-        return in_array($variant, $this->variants);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getOptions()
-    {
-        return $this->options;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setOptions($options)
-    {
-        $this->options = $options;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function countOptions()
-    {
-        return count($this->options);
+        return $this->variants->contains($variant);
     }
 
     /**
@@ -209,7 +178,7 @@ class CustomizableProduct extends Product implements CustomizableProductInterfac
     public function addOption(OptionInterface $option)
     {
         if (!$this->hasOption($option)) {
-            $this->options[] = $option;
+            $this->options->add($option);
         }
     }
 
@@ -219,8 +188,7 @@ class CustomizableProduct extends Product implements CustomizableProductInterfac
     public function removeOption(OptionInterface $option)
     {
         if ($this->hasOption($option)) {
-            $key = array_search($option, $this->options);
-            unset($options[$key]);
+            $this->options->removeElement($option);
         }
     }
 
@@ -229,31 +197,7 @@ class CustomizableProduct extends Product implements CustomizableProductInterfac
      */
     public function hasOption(OptionInterface $option)
     {
-        return in_array($option, $this->options);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getProperties()
-    {
-        return $this->properties;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setProperties($properties)
-    {
-        $this->properties = $properties;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function countProperties()
-    {
-        return count($this->properties);
+        return $this->options->contains($option);
     }
 
     /**
@@ -262,7 +206,8 @@ class CustomizableProduct extends Product implements CustomizableProductInterfac
     public function addProperty(ProductPropertyInterface $property)
     {
         if (!$this->hasProperty($property)) {
-            $this->properties[] = $property;
+            $property->setProduct($this);
+            $this->properties->add($property);
         }
     }
 
@@ -272,8 +217,8 @@ class CustomizableProduct extends Product implements CustomizableProductInterfac
     public function removeProperty(ProductPropertyInterface $property)
     {
         if ($this->hasProperty($property)) {
-            $key = array_search($property, $this->properties);
-            unset($properties[$key]);
+            $property->setProduct(null);
+            $this->properties->removeElement($property);
         }
     }
 
@@ -282,7 +227,7 @@ class CustomizableProduct extends Product implements CustomizableProductInterfac
      */
     public function hasProperty(ProductPropertyInterface $property)
     {
-        return in_array($property, $this->properties);
+        return $this->properties->contains($property);
     }
 
     /**

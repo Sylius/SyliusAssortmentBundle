@@ -59,14 +59,6 @@ class ProductProperty implements ProductPropertyInterface
     /**
      * {@inheritdoc}
      */
-    public function setId($id)
-    {
-        $this->id = $id;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function getProduct()
     {
         return $this->product;

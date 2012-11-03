@@ -11,8 +11,10 @@
 
 namespace Sylius\Bundle\AssortmentBundle\Model\Prototype;
 
-use Sylius\Bundle\AssortmentBundle\Model\Property\PropertyInterface;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Sylius\Bundle\AssortmentBundle\Model\Option\OptionInterface;
+use Sylius\Bundle\AssortmentBundle\Model\Property\PropertyInterface;
 
 /**
  * Default prototype implementation.
@@ -68,8 +70,8 @@ class Prototype implements PrototypeInterface
      */
     public function __construct()
     {
-        $this->properties = array();
-        $this->options = array();
+        $this->properties = new ArrayCollection();
+        $this->options = new ArrayCollection();
     }
 
     /**
@@ -78,14 +80,6 @@ class Prototype implements PrototypeInterface
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
     }
 
     /**
@@ -115,17 +109,9 @@ class Prototype implements PrototypeInterface
     /**
      * {@inheritdoc}
      */
-    public function setProperties($properties)
+    public function setProperties(Collection $properties)
     {
         $this->properties = $properties;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function countProperties()
-    {
-        return count($this->properties);
     }
 
     /**
@@ -134,7 +120,7 @@ class Prototype implements PrototypeInterface
     public function addProperty(PropertyInterface $property)
     {
         if (!$this->hasProperty($property)) {
-            $this->properties[] = $property;
+            $this->properties->add($property);
         }
     }
 
@@ -144,8 +130,7 @@ class Prototype implements PrototypeInterface
     public function removeProperty(PropertyInterface $property)
     {
         if ($this->hasProperty($property)) {
-            $key = array_search($property, $this->properties);
-            unset($properties[$key]);
+            $this->properties->removeElement($property);
         }
     }
 
@@ -154,7 +139,7 @@ class Prototype implements PrototypeInterface
      */
     public function hasProperty(PropertyInterface $property)
     {
-        return in_array($property, $this->properties);
+        return $this->properties->contains($property);
     }
 
     /**
@@ -168,17 +153,9 @@ class Prototype implements PrototypeInterface
     /**
      * {@inheritdoc}
      */
-    public function setOptions($options)
+    public function setOptions(Collection $options)
     {
-        $this->options = $options;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function countOptions()
-    {
-        return count($this->options);
+        return $this->options;
     }
 
     /**
@@ -187,7 +164,7 @@ class Prototype implements PrototypeInterface
     public function addOption(OptionInterface $option)
     {
         if (!$this->hasOption($option)) {
-            $this->options[] = $option;
+            $this->options->add($option);
         }
     }
 
@@ -197,8 +174,7 @@ class Prototype implements PrototypeInterface
     public function removeOption(OptionInterface $option)
     {
         if ($this->hasOption($option)) {
-            $key = array_search($option, $this->options);
-            unset($options[$key]);
+            $this->options->removeElement($option);
         }
     }
 
@@ -207,7 +183,7 @@ class Prototype implements PrototypeInterface
      */
     public function hasOption(OptionInterface $option)
     {
-        return in_array($option, $this->options);
+        return $this->options->contains($option);
     }
 
     /**

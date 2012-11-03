@@ -11,27 +11,15 @@
 
 namespace Sylius\Bundle\AssortmentBundle\Model;
 
+use Sylius\Bundle\ResourceBundle\Model\ResourceInterface;
+
 /**
  * Product interface.
  *
  * @author Paweł Jędrzejewski <pjedrzejewski@diweb.pl>
  */
-interface ProductInterface
+interface ProductInterface extends ResourceInterface
 {
-    /**
-     * Get product id.
-     *
-     * @return mixed
-     */
-    function getId();
-
-    /**
-     * Set product id.
-     *
-     * @param mixed $id
-     */
-    function setId($id);
-
     /**
      * Get SKU, which stands for Stock Keeping Unit.
      * An unique identifier that identifies the product in store.

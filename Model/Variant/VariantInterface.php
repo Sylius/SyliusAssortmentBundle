@@ -13,6 +13,7 @@ namespace Sylius\Bundle\AssortmentBundle\Model\Variant;
 
 use Sylius\Bundle\AssortmentBundle\Model\Option\OptionValueInterface;
 use Sylius\Bundle\AssortmentBundle\Model\ProductInterface;
+use Sylius\Bundle\ResourceBundle\Model\ResourceInterface;
 
 /**
  * Product variant interface.
@@ -22,22 +23,8 @@ use Sylius\Bundle\AssortmentBundle\Model\ProductInterface;
  *
  * @author Paweł Jędrzejewski <pjedrzejewski@diweb.pl>
  */
-interface VariantInterface
+interface VariantInterface extends ResourceInterface
 {
-    /**
-     * Get variant id.
-     *
-     * @return mixed
-     */
-    function getId();
-
-    /**
-     * Set variant id.
-     *
-     * @param mixed $id
-     */
-    function setId($id);
-
     /**
      * Checks whether variant is master.
      *
@@ -106,16 +93,16 @@ interface VariantInterface
     /**
      * Returns all option values.
      *
-     * @return array An array or collection of OptionValueInterface
+     * @return Collection of OptionValueInterface
      */
     function getOptions();
 
     /**
      * Sets all variant options.
      *
-     * @param array $options An array or collection of OptionValueInterface
+     * @param Collection $options
      */
-    function setOptions($options);
+    function setOptions(Collection $options);
 
     /**
      * Counts all variant options.

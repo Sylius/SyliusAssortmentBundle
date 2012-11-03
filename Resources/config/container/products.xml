@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 
 <!--
 
@@ -25,12 +25,7 @@
 
     <services>
         <!-- controllers. -->
-        <service id="sylius_assortment.controller.frontend.product" class="%sylius_assortment.controller.frontend.product.class%">
-            <call method="setContainer">
-                <argument type="service" id="service_container" />
-            </call>
-        </service>
-        <service id="sylius_assortment.controller.backend.product" class="%sylius_assortment.controller.backend.product.class%">
+        <service id="sylius_assortment.controller.product" class="%sylius_assortment.controller.product.class%">
             <call method="setContainer">
                 <argument type="service" id="service_container" />
             </call>
@@ -48,11 +43,6 @@
         <service id="sylius_assortment.form.type.product_hidden" class="%sylius_assortment.form.type.product_hidden.class%">
             <argument type="service" id="sylius_assortment.manager.product" />
             <tag name="form.type" alias="sylius_assortment_product_hidden" />
-        </service>
-
-        <!-- manipulators -->
-        <service id="sylius_assortment.manipulator.product" class="%sylius_assortment.manipulator.product.class%">
-            <argument type="service" id="sylius_assortment.manager.product" />
         </service>
 
         <!-- validators. -->

@@ -12,7 +12,7 @@
 namespace Sylius\Bundle\AssortmentBundle\Generator;
 
 use Sylius\Bundle\AssortmentBundle\Model\CustomizableProductInterface;
-use Sylius\Bundle\AssortmentBundle\Model\Variant\VariantManagerInterface;
+use Sylius\Bundle\ResourceBundle\Manager\ResourceManagerInterface;
 use Symfony\Component\Validator\ValidatorInterface;
 
 /**
@@ -32,7 +32,7 @@ class VariantGenerator implements VariantGeneratorInterface
     /**
      * Variant manager.
      *
-     * @var VariantManagerInterface
+     * @var ResourceManagerInterface
      */
     protected $variantManager;
 
@@ -40,9 +40,9 @@ class VariantGenerator implements VariantGeneratorInterface
      * Constructor.
      *
      * @param ValidatorInterface      $validator
-     * @param VariantManagerInterface $variantManager
+     * @param ResourceManagerInterface $variantManager
      */
-    public function __construct(ValidatorInterface $validator, VariantManagerInterface $variantManager)
+    public function __construct(ValidatorInterface $validator, ResourceManagerInterface $variantManager)
     {
         $this->validator = $validator;
         $this->variantManager = $variantManager;

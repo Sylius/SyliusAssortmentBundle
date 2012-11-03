@@ -11,6 +11,8 @@
 
 namespace Sylius\Bundle\AssortmentBundle\Model\Option;
 
+use Sylius\Bundle\ResourceBundle\Model\ResourceInterface;
+
 /**
  * Product option interface.
  *
@@ -20,22 +22,8 @@ namespace Sylius\Bundle\AssortmentBundle\Model\Option;
  *
  * @author Paweł Jędrzejewski <pjedrzejewski@diweb.pl>
  */
-interface OptionInterface
+interface OptionInterface extends ResourceInterface
 {
-    /**
-     * Get option id.
-     *
-     * @return mixed
-     */
-    function getId();
-
-    /**
-     * Set option id.
-     *
-     * @param mixed $id
-     */
-    function setId($id);
-
     /**
      * Get internal name.
      *
@@ -72,16 +60,16 @@ interface OptionInterface
     /**
      * Returns all option values.
      *
-     * @return array An array or collection of OptionValueInterface
+     * @return Collection of OptionValueInterface
      */
     function getValues();
 
     /**
      * Sets all option values.
      *
-     * @param array $optionValues An array or collection of OptionValueInterface
+     * @param Collection $optionValues
      */
-    function setValues($optionValues);
+    function setValues(Collection $optionValues);
 
     /**
      * Counts all option values.

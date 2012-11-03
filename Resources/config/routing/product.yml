@@ -1,0 +1,61 @@
+# This file is part of the Sylius package.
+# (c) Paweł Jędrzejewski
+
+sylius_assortment_product_new:
+    pattern: /new
+    defaults:
+        _controller: sylius_assortment.controller.product:newAction
+    requirements:
+
+sylius_assortment_product_post:
+    pattern: /
+    defaults:
+        _controller: sylius_assortment.controller.product:postAction
+        _sylius.redirect: sylius_assortment_product
+    requirements:
+        _method: POST
+
+sylius_assortment_product_edit:
+    pattern: /{id}/edit
+    defaults:
+        _controller: sylius_assortment.controller.product:editAction
+    requirements:
+        _method: GET
+
+sylius_assortment_product_put:
+    pattern: /{id}
+    defaults:
+        _controller: sylius_assortment.controller.product:putAction
+        _sylius.redirect: sylius_assortment_product
+    requirements:
+        _method: PUT|POST
+
+sylius_assortment_product_delete:
+    pattern: /{id}/delete
+    defaults:
+        _controller: sylius_assortment.controller.product:deleteAction
+        _sylius.redirect: sylius_assortment_products
+    requirements:
+        _method: GET
+
+sylius_assortment_products:
+    pattern: /
+    defaults:
+        _controller: sylius_assortment.controller.product:getCollectionAction
+    requirements:
+        _method: GET
+
+sylius_assortment_product_duplicate:
+    pattern: /{id}/duplicate
+    defaults:
+        _controller: sylius_assortment.controller.product:duplicateAction
+    requirements:
+        _method: GET
+
+sylius_assortment_product:
+    pattern: /{id}
+    defaults:
+        _controller: sylius_assortment.controller.product:getAction
+    requirements:
+        _method: GET
+# (c) Paweł Jędrzejewski

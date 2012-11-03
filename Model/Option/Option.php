@@ -11,6 +11,9 @@
 
 namespace Sylius\Bundle\AssortmentBundle\Model\Option;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
+
 /**
  * Product option default implementation.
  *
@@ -67,7 +70,7 @@ class Option implements OptionInterface
      */
     public function __construct()
     {
-        $this->values = array();
+        $this->values = new ArrayCollection();
     }
 
     /**
@@ -76,14 +79,6 @@ class Option implements OptionInterface
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
     }
 
     /**
@@ -129,7 +124,7 @@ class Option implements OptionInterface
     /**
      * {@inheritdoc}
      */
-    public function setValues($values)
+    public function setValues(Collection $values)
     {
         $this->values = $values;
     }
@@ -149,7 +144,7 @@ class Option implements OptionInterface
     {
         if (!$this->hasValue($value)) {
             $value->setOption($this);
-            $this->values[] = $value;
+            $this->values->add($value);
         }
     }
 
@@ -159,9 +154,8 @@ class Option implements OptionInterface
     public function removeValue(OptionValueInterface $value)
     {
         if ($this->hasValue($value)) {
+            $this->values->removeElement($value);
             $value->setOption(null);
-            $key = array_search($value, $this->values);
-            unset($this->values[$key]);
         }
     }
 
@@ -170,7 +164,7 @@ class Option implements OptionInterface
      */
     public function hasValue(OptionValueInterface $value)
     {
-        return in_array($value, $this->values);
+        return $this->values->contains($value);
     }
 
     /**

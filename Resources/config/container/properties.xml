@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 
 <!--
 
@@ -23,7 +23,7 @@
 
     <services>
         <!-- controllers. -->
-        <service id="sylius_assortment.controller.backend.property" class="%sylius_assortment.controller.backend.property.class%">
+        <service id="sylius_assortment.controller.property" class="%sylius_assortment.controller.property.class%">
             <call method="setContainer">
                 <argument type="service" id="service_container" />
             </call>
@@ -44,11 +44,6 @@
             <tag name="form.type" alias="sylius_assortment_property_choice" />
         </service>
         <service id="sylius_assortment.form.choice_list.property" class="%sylius_assortment.form.choice_list.property.class%">
-            <argument type="service" id="sylius_assortment.manager.property" />
-        </service>
-
-        <!-- manipulators. -->
-        <service id="sylius_assortment.manipulator.property" class="%sylius_assortment.manipulator.property.class%">
             <argument type="service" id="sylius_assortment.manager.property" />
         </service>
     </services>

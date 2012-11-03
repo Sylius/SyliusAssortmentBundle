@@ -13,7 +13,7 @@ namespace Sylius\Bundle\AssortmentBundle\Validator;
 
 use Sylius\Bundle\AssortmentBundle\Model\CustomizableProductInterface;
 use Sylius\Bundle\AssortmentBundle\Model\ProductInterface;
-use Sylius\Bundle\AssortmentBundle\Model\ProductManagerInterface;
+use Sylius\Bundle\ResourceBundle\Manager\ResourceManagerInterface;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 use Symfony\Component\Validator\Exception\UnexpectedTypeException;
@@ -28,16 +28,16 @@ class ProductUniqueValidator extends ConstraintValidator
     /**
      * Product manager.
      *
-     * @var ProductManagerInterface
+     * @var ResourceManagerInterface
      */
     protected $productManager;
 
     /**
      * Constructor.
      *
-     * @param ProductManagerInterface $productManager
+     * @param ResourceManagerInterface $productManager
      */
-    public function __construct(ProductManagerInterface $productManager)
+    public function __construct(ResourceManagerInterface $productManager)
     {
         $this->productManager = $productManager;
     }
@@ -57,7 +57,7 @@ class ProductUniqueValidator extends ConstraintValidator
             return true;
         }
 
-        if (!$this->productManager->validateUnique($product, $constraint)) {
+        if (!$this->productManager->isUnique($product, $constraint->property)) {
             $this->setMessage($constraint->message, array(
                 '%property%' => $constraint->property
             ));

@@ -58,14 +58,6 @@ class OptionValue implements OptionValueInterface
     /**
      * {@inheritdoc}
      */
-    public function setId($id)
-    {
-        $this->id = $id;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function getValue()
     {
         return $this->value;

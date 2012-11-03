@@ -1,7 +1,7 @@
 {
     "name": "sylius/assortment-bundle",
     "type": "symfony-bundle",
-    "description": "Manage products, their variants, properties and more in your Symfony2 application.",
+    "description": "Manage products, their variants, properties and options in your Symfony2 application.",
     "keywords": ["shop", "ecommerce", "products", "product"],
     "homepage": "http://sylius.org",
     "license": "MIT",
@@ -16,16 +16,20 @@
             "homepage": "https://github.com/Sylius/SyliusAssortmentBundle/contributors"
         }
     ],
+    "minimum-stability": "dev",
     "require": {
         "php": ">=5.3.2",
 
-        "symfony/symfony":                 ">=2.1",
-        "doctrine/orm":                    "*",
+        "doctrine/common":                 "*",
         "stof/doctrine-extensions-bundle": "*",
-        "white-october/pagerfanta-bundle": "*"
+        "sylius/resource-bundle":          "*",
+        "symfony/framework-bundle":        ">=2.1.0,<2.2.0"
     },
-    "suggest": {
-        "friendsofsymfony/rest-bundle": "*"
+    "require-dev": {
+        "phpspec/phpspec2": "*"
+    },
+    "config": {
+        "bin-dir": "bin"
     },
     "autoload": {
         "psr-0": { "Sylius\\Bundle\\AssortmentBundle": "" }

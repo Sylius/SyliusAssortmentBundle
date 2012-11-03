@@ -11,6 +11,7 @@
 
 namespace Sylius\Bundle\AssortmentBundle;
 
+use Sylius\Bundle\ResourceBundle\SyliusResourceBundle;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 /**
@@ -24,10 +25,6 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
  */
 class SyliusAssortmentBundle extends Bundle
 {
-    // Bundle driver list.
-    const DRIVER_DOCTRINE_ORM = 'doctrine/orm';
-    const DRIVER_PROPEL2      = 'propel2';
-
     /**
      * Return array with currently supported drivers.
      *
@@ -36,7 +33,7 @@ class SyliusAssortmentBundle extends Bundle
     static public function getSupportedDrivers()
     {
         return array(
-            self::DRIVER_DOCTRINE_ORM
+            SyliusResourceBundle::DRIVER_DOCTRINE_ORM
         );
     }
 }

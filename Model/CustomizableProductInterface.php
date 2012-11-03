@@ -11,6 +11,7 @@
 
 namespace Sylius\Bundle\AssortmentBundle\Model;
 
+use Doctrine\Common\Collections\Collection;
 use Sylius\Bundle\AssortmentBundle\Model\Option\OptionInterface;
 use Sylius\Bundle\AssortmentBundle\Model\Property\ProductPropertyInterface;
 use Sylius\Bundle\AssortmentBundle\Model\Variant\VariantInterface;
@@ -47,7 +48,7 @@ interface CustomizableProductInterface extends ProductInterface
     /**
      * Returns all product variants.
      *
-     * @return array An array or collection of VariantInterface
+     * @return Collection of VariantInterface
      */
     function getVariants();
 
@@ -61,9 +62,9 @@ interface CustomizableProductInterface extends ProductInterface
     /**
      * Sets all product variants.
      *
-     * @param array $variants An array or collection of VariantInterface
+     * @param Collection
      */
-    function setVariants($variants);
+    function setVariants(Collection $variants);
 
     /**
      * Counts all product variants.
@@ -98,16 +99,16 @@ interface CustomizableProductInterface extends ProductInterface
     /**
      * Returns all product options.
      *
-     * @return array An array or collection of OptionInterface
+     * @return Collection
      */
     function getOptions();
 
     /**
      * Sets all product options.
      *
-     * @param array $options An array or collection of OptionInterface
+     * @param Collection $options
      */
-    function setOptions($options);
+    function setOptions(Collection $options);
 
     /**
      * Counts all product options.
@@ -142,16 +143,16 @@ interface CustomizableProductInterface extends ProductInterface
     /**
      * Returns all product product properties.
      *
-     * @return array An array or collection of ProductPropertyInterface
+     * @return Collection of ProductPropertyInterface
      */
     function getProperties();
 
     /**
      * Sets all product product properties.
      *
-     * @param array $product properties An array or collection of ProductPropertyInterface
+     * @param Collection of ProductPropertyInterface
      */
-    function setProperties($properties);
+    function setProperties(Collection $properties);
 
     /**
      * Counts all product product properties.
