@@ -11,6 +11,7 @@
 
 namespace Sylius\Bundle\AssortmentBundle\Model\Variant;
 
+use Doctrine\Common\Collections\Collection;
 use Sylius\Bundle\AssortmentBundle\Model\Option\OptionValueInterface;
 use Sylius\Bundle\AssortmentBundle\Model\ProductInterface;
 use Sylius\Bundle\ResourceBundle\Model\ResourceInterface;

@@ -11,6 +11,8 @@
 
 namespace Sylius\Bundle\AssortmentBundle\Model\Variant;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Sylius\Bundle\AssortmentBundle\Model\Option\OptionValueInterface;
 use Sylius\Bundle\AssortmentBundle\Model\ProductInterface;
 
@@ -202,7 +204,7 @@ abstract class Variant implements VariantInterface
     /**
      * {@inheritdoc}
      */
-    public function setOptions($options)
+    public function setOptions(Collection $options)
     {
         $this->options = $options;
     }
@@ -221,7 +223,7 @@ abstract class Variant implements VariantInterface
     public function addOption(OptionValueInterface $option)
     {
         if (!$this->hasOption($option)) {
-            $this->options[] = $option;
+            $this->options->add($option);
         }
     }
 
@@ -231,8 +233,7 @@ abstract class Variant implements VariantInterface
     public function removeOption(OptionValueInterface $option)
     {
         if ($this->hasOption($option)) {
-            $key = array_search($option, $this->options);
-            unset($options[$key]);
+            $this->options->removeElement($option);
         }
     }
 
@@ -241,7 +242,7 @@ abstract class Variant implements VariantInterface
      */
     public function hasOption(OptionValueInterface $option)
     {
-        return in_array($option, $this->options);
+        return $this->options->contains($option);
     }
 
     /**
