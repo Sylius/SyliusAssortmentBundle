@@ -11,7 +11,7 @@
 
 namespace Sylius\Bundle\AssortmentBundle\Form\ChoiceList;
 
-use Sylius\Bundle\AssortmentBundle\Model\Option\OptionManagerInterface;
+use Sylius\Bundle\ResourceBundle\Manager\ResourceManagerInterface;
 use Symfony\Component\Form\Extension\Core\ChoiceList\ObjectChoiceList;
 
 /**
@@ -22,22 +22,12 @@ use Symfony\Component\Form\Extension\Core\ChoiceList\ObjectChoiceList;
 class OptionChoiceList extends ObjectChoiceList
 {
     /**
-     * Option manager.
-     *
-     * @var OptionManagerInterface
-     */
-    protected $optionManager;
-
-    /**
      * Constructor.
      *
-     * @param $optionManager
+     * @param ResourceManagerInterface $optionManager
      */
-    public function __construct(OptionManagerInterface $optionManager)
+    public function __construct(ResourceManagerInterface $optionManager)
     {
-        $this->optionManager = $optionManager;
-
-        parent::__construct($optionManager->findOptions(), 'name', array(), null, null, 'id');
+        parent::__construct($optionManager->findAll(), 'name', array(), null, null, 'id');
     }
 }
-

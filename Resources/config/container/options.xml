@@ -38,7 +38,6 @@
             <tag name="form.type" alias="sylius_assortment_option_value" />
         </service>
         <service id="sylius_assortment.form.type.option_choice" class="%sylius_assortment.form.type.option_choice.class%">
-            <argument>%sylius_assortment.driver%</argument>
             <argument type="service" id="sylius_assortment.form.choice_list.option" />
             <tag name="form.type" alias="sylius_assortment_option_choice" />
         </service>

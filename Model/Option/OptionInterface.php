@@ -11,6 +11,7 @@
 
 namespace Sylius\Bundle\AssortmentBundle\Model\Option;
 
+use Doctrine\Common\Collections\Collection;
 use Sylius\Bundle\ResourceBundle\Model\ResourceInterface;
 
 /**

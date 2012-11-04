@@ -52,7 +52,9 @@ class VariantUniqueValidator extends ConstraintValidator
 
         $variant = $value;
 
-        if (!$this->variantManager->isUnique($variant, $constraint->property)) {
+        $criteria = array($constraint->property => $variant->{'get'.ucfirst($constraint->property)}());
+
+        if (null !== $this->variantManager->findOneBy($criteria)) {
             $this->setMessage($constraint->message, array(
                 '%property%' => $constraint->property
             ));

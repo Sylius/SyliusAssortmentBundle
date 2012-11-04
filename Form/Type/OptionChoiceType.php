@@ -12,7 +12,6 @@
 namespace Sylius\Bundle\AssortmentBundle\Form\Type;
 
 use Sylius\Bundle\AssortmentBundle\Form\ChoiceList\OptionChoiceList;
-use Sylius\Bundle\AssortmentBundle\SyliusAssortmentBundle;
 use Symfony\Bridge\Doctrine\Form\DataTransformer\CollectionToArrayTransformer;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -26,13 +25,6 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 class OptionChoiceType extends AbstractType
 {
     /**
-     * Bundle driver.
-     *
-     * @var string
-     */
-    protected $driver;
-
-    /**
      * Option choice list.
      *
      * @var OptionChoiceList
@@ -42,12 +34,10 @@ class OptionChoiceType extends AbstractType
     /**
      * Constructor.
      *
-     * @param string           $driver           The bundle driver
      * @param OptionChoiceList $optionChoiceList Choice list with all options
      */
-    public function __construct($driver, OptionChoiceList $optionChoiceList)
+    public function __construct(OptionChoiceList $optionChoiceList)
     {
-        $this->driver = $driver;
         $this->optionChoiceList = $optionChoiceList;
     }
 
@@ -56,11 +46,7 @@ class OptionChoiceType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $doctrineBasedDrivers = array(
-            SyliusAssortmentBundle::DRIVER_DOCTRINE_ORM,
-        );
-
-        if ($options['multiple'] && in_array($this->driver, $doctrineBasedDrivers)) {
+        if ($options['multiple']) {
             $builder->prependClientTransformer(new CollectionToArrayTransformer());
         }
     }

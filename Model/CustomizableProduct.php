@@ -11,6 +11,7 @@
 
 namespace Sylius\Bundle\AssortmentBundle\Model;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Sylius\Bundle\AssortmentBundle\Model\Option\OptionInterface;
 use Sylius\Bundle\AssortmentBundle\Model\Property\ProductPropertyInterface;
@@ -137,6 +138,14 @@ class CustomizableProduct extends Product implements CustomizableProductInterfac
     /**
      * {@inheritdoc}
      */
+    public function setVariants(Collection $variants)
+    {
+        $this->variants = $variants;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function countVariants()
     {
         return count($this->getVariants());
@@ -170,6 +179,27 @@ class CustomizableProduct extends Product implements CustomizableProductInterfac
     public function hasVariant(VariantInterface $variant)
     {
         return $this->variants->contains($variant);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getOptions()
+    {
+        return $this->options;
+    }
+
+    public function countOptions()
+    {
+        return $this->options->count();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setOptions(Collection $options)
+    {
+        $this->options = $options;
     }
 
     /**
@@ -209,6 +239,27 @@ class CustomizableProduct extends Product implements CustomizableProductInterfac
             $property->setProduct($this);
             $this->properties->add($property);
         }
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getProperties()
+    {
+        return $this->properties;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setProperties(Collection $properties)
+    {
+        $this->properties = $properties;
+    }
+
+    public function countProperties()
+    {
+        return $this->properties->count();
     }
 
     /**
