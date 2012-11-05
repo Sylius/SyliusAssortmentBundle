@@ -13,7 +13,7 @@ namespace Sylius\Bundle\AssortmentBundle\Validator;
 
 use Sylius\Bundle\AssortmentBundle\Model\CustomizableProductInterface;
 use Sylius\Bundle\AssortmentBundle\Model\ProductInterface;
-use Sylius\Bundle\ResourceBundle\Manager\ResourceManagerInterface;
+use Sylius\Bundle\ResourceBundle\Repository\ResourceRepositoryInterface;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 use Symfony\Component\Validator\Exception\UnexpectedTypeException;
@@ -28,18 +28,18 @@ class ProductUniqueValidator extends ConstraintValidator
     /**
      * Product manager.
      *
-     * @var ResourceManagerInterface
+     * @var ResourceRepositoryInterface
      */
-    protected $productManager;
+    protected $repository;
 
     /**
      * Constructor.
      *
-     * @param ResourceManagerInterface $productManager
+     * @param ResourceRepositoryInterface $repository
      */
-    public function __construct(ResourceManagerInterface $productManager)
+    public function __construct(ResourceRepositoryInterface $repository)
     {
-        $this->productManager = $productManager;
+        $this->repository = $repository;
     }
 
     /**
@@ -59,7 +59,7 @@ class ProductUniqueValidator extends ConstraintValidator
 
         $criteria = array($constraint->property => $product->{'get'.ucfirst($constraint->property)}());
 
-        if (null !== $this->productManager->findOneBy($criteria)) {
+        if (!in_array($this->repository->get($criteria), array(null, $product))) {
             $this->setMessage($constraint->message, array(
                 '%property%' => $constraint->property
             ));

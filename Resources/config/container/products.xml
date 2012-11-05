@@ -50,7 +50,7 @@
 
         <!-- validators. -->
         <service id="sylius_assortment.validator.product.unique" class="%sylius_assortment.validator.product.unique.class%">
-            <argument type="service" id="sylius_assortment.manager.product" />
+            <argument type="service" id="sylius_assortment.repository.product" />
             <tag name="validator.constraint_validator" alias="sylius_assortment.validator.product.unique" />
         </service>
     </services>
