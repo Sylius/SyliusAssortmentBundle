@@ -117,6 +117,14 @@ class Prototype implements PrototypeInterface
     /**
      * {@inheritdoc}
      */
+    public function countProperties()
+    {
+        return $this->properties->count();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function addProperty(PropertyInterface $property)
     {
         if (!$this->hasProperty($property)) {
@@ -156,6 +164,14 @@ class Prototype implements PrototypeInterface
     public function setOptions(Collection $options)
     {
         return $this->options;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function countOptions()
+    {
+        return $this->options->count();
     }
 
     /**

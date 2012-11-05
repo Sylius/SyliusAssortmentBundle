@@ -11,6 +11,7 @@
 
 namespace Sylius\Bundle\AssortmentBundle\Model\Prototype;
 
+use Doctrine\Common\Collections\Collection;
 use Sylius\Bundle\AssortmentBundle\Model\Option\OptionInterface;
 use Sylius\Bundle\AssortmentBundle\Model\Property\PropertyInterface;
 use Sylius\Bundle\ResourceBundle\Model\ResourceInterface;
@@ -94,7 +95,7 @@ interface PrototypeInterface extends ResourceInterface
      *
      * @param Collection $options
      */
-    function setOptions($options);
+    function setOptions(Collection $options);
 
     /**
      * Counts all prototype options.

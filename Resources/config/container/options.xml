@@ -23,6 +23,9 @@
 
     <services>
         <service id="sylius_assortment.controller.option" class="%sylius_assortment.controller.option.class%">
+            <argument>sylius_assortment</argument>
+            <argument>option</argument>
+            <argument>SyliusAssortmentBundle:Option</argument>
             <call method="setContainer">
                 <argument type="service" id="service_container" />
             </call>
