@@ -27,6 +27,8 @@ sylius_assortment:
             description: "Description"
             options: "Options"
             available_on: "Available on"
+            meta_keywords: "Meta keywords"
+            meta_description: "Meta description"
         variant:
             sku: "SKU"
             presentation: "Presentation"
