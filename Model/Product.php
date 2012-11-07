@@ -62,6 +62,20 @@ class Product implements ProductInterface
     protected $availableOn;
 
     /**
+     * Meta keywords.
+     *
+     * @var string
+     */
+    protected $metaKeywords;
+
+    /**
+     * Meta description.
+     *
+     * @var string
+     */
+    protected $metaDescription;
+
+    /**
      * Creation time.
      *
      * @var DateTime
@@ -194,6 +208,38 @@ class Product implements ProductInterface
     public function incrementAvailableOn()
     {
         $this->availableOn = new \DateTime("now");
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getMetaKeywords()
+    {
+        return $this->metaKeywords;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setMetaKeywords($metaKeywords)
+    {
+        $this->metaKeywords = $metaKeywords;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getMetaDescription()
+    {
+        return $this->metaDescription;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setMetaDescription($metaDescription)
+    {
+        $this->metaDescription = $metaDescription;
     }
 
     /**

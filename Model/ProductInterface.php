@@ -96,6 +96,11 @@ interface ProductInterface extends ResourceInterface
      */
     function setAvailableOn(\DateTime $availableOn);
 
+    function getMetaKeywords();
+    function setMetaKeywords($metaKeywords);
+    function getMetaDescription();
+    function setMetaDescription($metaDescription);
+
     /**
      * Make available now.
      */

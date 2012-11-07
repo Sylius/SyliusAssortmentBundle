@@ -62,6 +62,14 @@ class ProductType extends AbstractType
                 'widget' => 'single_text',
                 'label'  => 'sylius_assortment.label.product.available_on'
             ))
+            ->add('metaKeywords', 'text', array(
+                'required' => false,
+                'label'    => 'sylius_assortment.label.product.meta_keywords'
+            ))
+            ->add('metaDescription', 'text', array(
+                'required' => false,
+                'label'    => 'sylius_assortment.label.product.meta_description'
+            ))
         ;
     }
 

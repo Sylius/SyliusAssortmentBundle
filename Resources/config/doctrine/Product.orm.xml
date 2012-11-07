@@ -23,6 +23,8 @@
         </field>
         <field name="description" column="description" type="text" />
         <field name="availableOn" column="available_on" type="datetime" />
+        <field name="metaKeywords" column="meta_keywords" type="string" nullable="true" />
+        <field name="metaDescription" column="meta_description" type="string" nullable="true" />
         <field name="createdAt" column="created_at" type="datetime">
             <gedmo:timestampable on="create"/>
         </field>
