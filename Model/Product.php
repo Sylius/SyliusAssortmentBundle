@@ -311,7 +311,7 @@ class Product implements ProductInterface
      */
     public function setDeletedAt(\DateTime $deletedAt)
     {
-        $this->deletedAt = $updatedAt;
+        $this->deletedAt = $deletedAt;
     }
 
     /**
