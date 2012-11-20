@@ -59,7 +59,7 @@ class ProductUniqueValidator extends ConstraintValidator
 
         $criteria = array($constraint->property => $product->{'get'.ucfirst($constraint->property)}());
 
-        if (!in_array($this->repository->get($criteria), array(null, $product))) {
+        if (!in_array($this->repository->findOneBy($criteria), array(null, $product))) {
             $this->setMessage($constraint->message, array(
                 '%property%' => $constraint->property
             ));
