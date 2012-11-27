@@ -69,7 +69,7 @@ class BuildVariantTypeListener implements EventSubscriberInterface
         // If we edit variant, disable option selection.
         $disabled = null !== $variant->getId();
 
-        if (0 < $product->countOptions()) {
+        if ($product->isVaried()) {
             $form->add($this->factory->createNamed('options', 'sylius_assortment_option_value_collection', $variant->getOptions(), array(
                 'options'  => $product->getOptions(),
                 'disabled' => $disabled

@@ -12,7 +12,7 @@
 namespace Sylius\Bundle\AssortmentBundle\Validator;
 
 use Sylius\Bundle\AssortmentBundle\Model\Variant\VariantInterface;
-use Sylius\Bundle\ResourceBundle\Manager\ResourceManagerInterface;
+use Sylius\Bundle\ResourceBundle\Repository\ResourceRepositoryInterface;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 use Symfony\Component\Validator\Exception\UnexpectedTypeException;
@@ -27,18 +27,18 @@ class VariantUniqueValidator extends ConstraintValidator
     /**
      * Variant manager.
      *
-     * @var ResourceManagerInterface
+     * @var ResourceRepositoryInterface
      */
-    protected $variantManager;
+    protected $variantRepository;
 
     /**
      * Constructor.
      *
-     * @param ResourceManagerInterface $variantManager
+     * @param ResourceRepositoryInterface $variantRepository
      */
-    public function __construct(ResourceManagerInterface $variantManager)
+    public function __construct(ResourceRepositoryInterface $variantRepository)
     {
-        $this->variantManager = $variantManager;
+        $this->variantRepository = $variantRepository;
     }
 
     /**
@@ -54,7 +54,7 @@ class VariantUniqueValidator extends ConstraintValidator
 
         $criteria = array($constraint->property => $variant->{'get'.ucfirst($constraint->property)}());
 
-        if (null !== $this->variantManager->findOneBy($criteria)) {
+        if (!in_array($this->variantRepository->findOneBy($criteria), array(null, $variant))) {
             $this->setMessage($constraint->message, array(
                 '%property%' => $constraint->property
             ));

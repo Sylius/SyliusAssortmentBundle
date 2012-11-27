@@ -11,7 +11,7 @@
 
 namespace Sylius\Bundle\AssortmentBundle\Form\ChoiceList;
 
-use Sylius\Bundle\ResourceBundle\Manager\ResourceManagerInterface;
+use Sylius\Bundle\ResourceBundle\Repository\ResourceRepositoryInterface;
 use Symfony\Component\Form\Extension\Core\ChoiceList\ObjectChoiceList;
 
 /**
@@ -24,10 +24,10 @@ class PropertyChoiceList extends ObjectChoiceList
     /**
      * Constructor.
      *
-     * @param ResourceManagerInterface $propertyManager
+     * @param ResourceRepositoryInterface $propertyRepository
      */
-    public function __construct(ResourceManagerInterface $propertyManager)
+    public function __construct(ResourceRepositoryInterface $propertyRepository)
     {
-        parent::__construct($propertyManager->findAll(), 'name', array(), null, null, 'id');
+        parent::__construct($propertyRepository->findAll(), 'name', array(), null, null, 'id');
     }
 }

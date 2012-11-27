@@ -99,7 +99,7 @@ abstract class Variant implements VariantInterface
     public function __construct()
     {
         $this->master = false;
-        $this->options = array();
+        $this->options = new ArrayCollection();
         $this->availableOn = new \DateTime("now");
     }
 

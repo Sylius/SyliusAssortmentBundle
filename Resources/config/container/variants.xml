@@ -58,11 +58,10 @@
 
         <!-- validators. -->
         <service id="sylius_assortment.validator.variant.unique" class="%sylius_assortment.validator.variant.unique.class%">
-            <argument type="service" id="sylius_assortment.manager.variant" />
+            <argument type="service" id="sylius_assortment.repository.variant" />
             <tag name="validator.constraint_validator" alias="sylius_assortment.validator.variant.unique" />
         </service>
         <service id="sylius_assortment.validator.variant.combination" class="%sylius_assortment.validator.variant.combination.class%">
-            <argument type="service" id="sylius_assortment.manager.variant" />
             <tag name="validator.constraint_validator" alias="sylius_assortment.validator.variant.combination" />
         </service>
     </services>

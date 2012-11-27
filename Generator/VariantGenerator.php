@@ -66,7 +66,8 @@ class VariantGenerator implements VariantGeneratorInterface
         $permutations = $this->getPermutations($optionSet);
 
         foreach ($permutations as $i => $permutation) {
-            $variant = $this->variantManager->createVariant($product);
+            $variant = $this->variantManager->create();
+            $variant->setProduct($product);
 
             $variant->setSku($product->getSku().'-'.($i + 1));
             $variant->setAvailableOn(new \DateTime('+1 hour'));

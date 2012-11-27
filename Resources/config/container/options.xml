@@ -51,7 +51,7 @@
             <tag name="form.type" alias="sylius_assortment_option_value_collection" />
         </service>
         <service id="sylius_assortment.form.choice_list.option" class="%sylius_assortment.form.choice_list.option.class%">
-            <argument type="service" id="sylius_assortment.manager.option" />
+            <argument type="service" id="sylius_assortment.repository.option" />
         </service>
     </services>
 
