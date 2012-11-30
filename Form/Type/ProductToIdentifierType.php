@@ -11,7 +11,7 @@
 
 namespace Sylius\Bundle\AssortmentBundle\Form\Type;
 
-use Sylius\Bundle\AssortmentBundle\Model\ProductManagerInterface;
+use Sylius\Bundle\ResourceBundle\Manager\ResourceManagerInterface;
 use Sylius\Bundle\AssortmentBundle\Form\DataTransformer\ProductToIdentifierTransformer;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Exception\FormException;
@@ -28,16 +28,16 @@ class ProductToIdentifierType extends AbstractType
     /**
      * Product manager.
      *
-     * @var ProductManagerInterface
+     * @var ResourceManagerInterface
      */
     private $productManager;
 
     /**
      * See ProductType description for information about data class.
      *
-     * @param ProductManagerInterface $productManager
+     * @param ResourceManagerInterface $productManager
      */
-    public function __construct(ProductManagerInterface $productManager)
+    public function __construct(ResourceManagerInterface $productManager)
     {
         $this->productManager = $productManager;
     }

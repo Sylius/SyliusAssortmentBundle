@@ -11,8 +11,8 @@
 
 namespace Sylius\Bundle\AssortmentBundle\Form\Type;
 
-use Sylius\Bundle\AssortmentBundle\Model\Variant\VariantManagerInterface;
 use Sylius\Bundle\AssortmentBundle\Form\DataTransformer\VariantToIdentifierTransformer;
+use Sylius\Bundle\ResourceBundle\Manager\ResourceManagerInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Exception\FormException;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -28,16 +28,16 @@ class VariantToIdentifierType extends AbstractType
     /**
      * Variant manager.
      *
-     * @var VariantManagerInterface
+     * @var ResourceManagerInterface
      */
     private $variantManager;
 
     /**
      * See VariantType description for information about data class.
      *
-     * @param VariantManagerInterface $variantManager
+     * @param ResourceManagerInterface $variantManager
      */
-    public function __construct(VariantManagerInterface $variantManager)
+    public function __construct(ResourceManagerInterface $variantManager)
     {
         $this->variantManager = $variantManager;
     }

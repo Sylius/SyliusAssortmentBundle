@@ -12,7 +12,7 @@
 namespace Sylius\Bundle\AssortmentBundle\Form\DataTransformer;
 
 use Sylius\Bundle\AssortmentBundle\Model\Variant\VariantInterface;
-use Sylius\Bundle\AssortmentBundle\Model\Variant\VariantManagerInterface;
+use Sylius\Bundle\ResourceBundle\Manager\ResourceManagerInterface;
 use Symfony\Component\Form\DataTransformerInterface;
 use Symfony\Component\Form\Exception\TransformationFailedException;
 use Symfony\Component\Form\Exception\UnexpectedTypeException;
@@ -27,7 +27,7 @@ class VariantToIdentifierTransformer implements DataTransformerInterface
     /**
      * Variant manager.
      *
-     * @var VariantManagerInterface
+     * @var ResourceManagerInterface
      */
     private $variantManager;
 
@@ -41,10 +41,10 @@ class VariantToIdentifierTransformer implements DataTransformerInterface
     /**
      * Constructor.
      *
-     * @param VariantManagerInterface $variantManager
+     * @param ResourceManagerInterface $variantManager
      * @param string                  $identifier
      */
-    public function __construct(VariantManagerInterface $variantManager, $identifier)
+    public function __construct(ResourceManagerInterface $variantManager, $identifier)
     {
         $this->variantManager = $variantManager;
         $this->identifier = $identifier;
@@ -75,6 +75,6 @@ class VariantToIdentifierTransformer implements DataTransformerInterface
             return null;
         }
 
-        return $this->variantManager->findVariantBy(array($this->identifier => $value));
+        return $this->variantManager->findOneBy(array($this->identifier => $value));
     }
 }
