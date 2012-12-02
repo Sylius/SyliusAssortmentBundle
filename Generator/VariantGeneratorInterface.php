@@ -26,5 +26,5 @@ interface VariantGeneratorInterface
      *
      * @param CustomizableProductInterface $product
      */
-    function generate(CustomizableProductInterface $product);
+    public function generate(CustomizableProductInterface $product);
 }

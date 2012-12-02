@@ -15,7 +15,6 @@ use Sylius\Bundle\AssortmentBundle\Model\ProductManagerInterface;
 use Sylius\Bundle\AssortmentBundle\Form\DataTransformer\ProductToIdentifierTransformer;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
  * Product hidden type.

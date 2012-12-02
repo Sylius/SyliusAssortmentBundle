@@ -11,8 +11,6 @@
 
 namespace Sylius\Bundle\AssortmentBundle\Model\Property;
 
-use Sylius\Bundle\AssortmentBundle\Model\ProductInterface;
-
 /**
  * Product property interface.
  *
@@ -26,64 +24,64 @@ interface PropertyInterface
      *
      * @return string
      */
-    function getName();
+    public function getName();
 
     /**
      * Set internal name.
      *
      * @param string $name
      */
-    function setName($name);
+    public function setName($name);
 
     /**
      * The name displayed to user.
      *
      * @return string
      */
-    function getPresentation();
+    public function getPresentation();
 
     /**
      * Set presentation.
      *
      * @param string $presentation
      */
-    function setPresentation($presentation);
+    public function setPresentation($presentation);
 
     /**
      * Get creation time.
      *
      * @return DateTime
      */
-    function getCreatedAt();
+    public function getCreatedAt();
 
     /**
      * Set creation time.
      *
      * @param DateTime $createdAt
      */
-    function setCreatedAt(\DateTime $createdAt);
+    public function setCreatedAt(\DateTime $createdAt);
 
     /**
      * Set creation time to now.
      */
-    function incrementCreatedAt();
+    public function incrementCreatedAt();
 
     /**
      * Get the time of last update.
      *
      * @return DateTime
      */
-    function getUpdatedAt();
+    public function getUpdatedAt();
 
     /**
      * Set last time update.
      *
      * @param DateTime $updatedAt
      */
-    function setUpdatedAt(\DateTime $updatedAt);
+    public function setUpdatedAt(\DateTime $updatedAt);
 
     /**
      * Set last update time to now.
      */
-    function incrementUpdatedAt();
+    public function incrementUpdatedAt();
 }

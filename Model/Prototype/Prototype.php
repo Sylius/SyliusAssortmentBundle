@@ -250,4 +250,3 @@ class Prototype implements PrototypeInterface
         $this->updatedAt = new \DateTime();
     }
 }
-

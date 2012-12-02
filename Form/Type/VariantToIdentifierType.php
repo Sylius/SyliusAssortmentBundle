@@ -14,7 +14,6 @@ namespace Sylius\Bundle\AssortmentBundle\Form\Type;
 use Sylius\Bundle\AssortmentBundle\Form\DataTransformer\VariantToIdentifierTransformer;
 use Doctrine\Common\Persistence\ObjectRepository;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Exception\FormException;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 

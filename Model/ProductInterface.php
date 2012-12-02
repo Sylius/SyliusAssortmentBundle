@@ -24,130 +24,130 @@ interface ProductInterface
      *
      * @return string
      */
-    function getSku();
+    public function getSku();
 
     /**
      * Set product SKU.
      *
      * @param string $sku The product SKU
      */
-    function setSku($sku);
+    public function setSku($sku);
 
     /**
      * Get product name.
      *
      * @return string
      */
-    function getName();
+    public function getName();
 
     /**
      * Set product name.
      *
      * @param string $name
      */
-    function setName($name);
+    public function setName($name);
 
     /**
      * Get permalink/slug.
      *
      * @return string
      */
-    function getSlug();
+    public function getSlug();
 
     /**
      * Set the permalink.
      *
      * @param string $slug
      */
-    function setSlug($slug);
+    public function setSlug($slug);
 
     /**
      * Get product name.
      *
      * @return string
      */
-    function getDescription();
+    public function getDescription();
 
     /**
      * Set product description.
      *
      * @param string $description
      */
-    function setDescription($description);
+    public function setDescription($description);
 
     /**
      * Check whether the product is available.
      */
-    function isAvailable();
+    public function isAvailable();
 
     /**
      * Return available on.
      *
      * @return \DateTime
      */
-    function getAvailableOn();
+    public function getAvailableOn();
 
     /**
      * Set available on.
      *
      * @param \DateTime $availableOn
      */
-    function setAvailableOn(\DateTime $availableOn);
+    public function setAvailableOn(\DateTime $availableOn);
 
-    function getMetaKeywords();
-    function setMetaKeywords($metaKeywords);
-    function getMetaDescription();
-    function setMetaDescription($metaDescription);
+    public function getMetaKeywords();
+    public function setMetaKeywords($metaKeywords);
+    public function getMetaDescription();
+    public function setMetaDescription($metaDescription);
 
     /**
      * Make available now.
      */
-    function incrementAvailableOn();
+    public function incrementAvailableOn();
 
     /**
      * Get creation time.
      *
      * @return DateTime
      */
-    function getCreatedAt();
+    public function getCreatedAt();
 
     /**
      * Set creation time.
      *
      * @param DateTime $createdAt
      */
-    function setCreatedAt(\DateTime $createdAt);
+    public function setCreatedAt(\DateTime $createdAt);
 
     /**
      * Set creation time to now.
      */
-    function incrementCreatedAt();
+    public function incrementCreatedAt();
 
     /**
      * Get the time of last update.
      *
      * @return DateTime
      */
-    function getUpdatedAt();
+    public function getUpdatedAt();
 
     /**
      * Set last time update.
      *
      * @param DateTime $updatedAt
      */
-    function setUpdatedAt(\DateTime $updatedAt);
+    public function setUpdatedAt(\DateTime $updatedAt);
 
     /**
      * Set last update time to now.
      */
-    function incrementUpdatedAt();
+    public function incrementUpdatedAt();
 
     /**
      * Is product deleted?
      *
      * @return Boolean
      */
-    function isDeleted();
+    public function isDeleted();
 
     /**
      * Get the time of deletion.
@@ -155,17 +155,17 @@ interface ProductInterface
      *
      * @return DateTime
      */
-    function getDeletedAt();
+    public function getDeletedAt();
 
     /**
      * Set deletion time.
      *
      * @param DateTime $deletedAt
      */
-    function setDeletedAt(\DateTime $deletedAt);
+    public function setDeletedAt(\DateTime $deletedAt);
 
     /**
      * Set deletion time to now.
      */
-    function incrementDeletedAt();
+    public function incrementDeletedAt();
 }

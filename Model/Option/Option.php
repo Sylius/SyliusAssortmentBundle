@@ -215,4 +215,3 @@ class Option implements OptionInterface
         $this->updatedAt = new \DateTime();
     }
 }
-

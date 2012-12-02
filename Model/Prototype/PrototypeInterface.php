@@ -29,49 +29,49 @@ interface PrototypeInterface
      *
      * @return string
      */
-    function getName();
+    public function getName();
 
     /**
      * Set name.
      *
      * @param string $name
      */
-    function setName($name);
+    public function setName($name);
 
     /**
      * Returns all prototype properties.
      *
      * @return array An array or collection of PropertyInterface
      */
-    function getProperties();
+    public function getProperties();
 
     /**
      * Sets all prototype properties.
      *
      * @param Collection $properties
      */
-    function setProperties(Collection $properties);
+    public function setProperties(Collection $properties);
 
     /**
      * Counts all prototype properties.
      *
      * @return integer
      */
-    function countProperties();
+    public function countProperties();
 
     /**
      * Adds property.
      *
      * @param PropertyInterface $property
      */
-    function addProperty(PropertyInterface $property);
+    public function addProperty(PropertyInterface $property);
 
     /**
      * Removes property from prototype.
      *
      * @param PropertyInterface $property
      */
-    function removeProperty(PropertyInterface $property);
+    public function removeProperty(PropertyInterface $property);
 
     /**
      * Checks whether prototype has given property.
@@ -80,42 +80,42 @@ interface PrototypeInterface
      *
      * @return Boolean
      */
-    function hasProperty(PropertyInterface $property);
+    public function hasProperty(PropertyInterface $property);
 
     /**
      * Returns all prototype options.
      *
      * @return Collection
      */
-    function getOptions();
+    public function getOptions();
 
     /**
      * Sets all prototype options.
      *
      * @param Collection $options
      */
-    function setOptions(Collection $options);
+    public function setOptions(Collection $options);
 
     /**
      * Counts all prototype options.
      *
      * @return integer
      */
-    function countOptions();
+    public function countOptions();
 
     /**
      * Adds option.
      *
      * @param OptionInterface $option
      */
-    function addOption(OptionInterface $option);
+    public function addOption(OptionInterface $option);
 
     /**
      * Removes option from prototype.
      *
      * @param OptionInterface $option
      */
-    function removeOption(OptionInterface $option);
+    public function removeOption(OptionInterface $option);
 
     /**
      * Checks whether prototype has given option.
@@ -124,44 +124,43 @@ interface PrototypeInterface
      *
      * @return Boolean
      */
-    function hasOption(OptionInterface $option);
+    public function hasOption(OptionInterface $option);
 
     /**
      * Get creation time.
      *
      * @return DateTime
      */
-    function getCreatedAt();
+    public function getCreatedAt();
 
     /**
      * Set creation time.
      *
      * @param DateTime $createdAt
      */
-    function setCreatedAt(\DateTime $createdAt);
+    public function setCreatedAt(\DateTime $createdAt);
 
     /**
      * Set creation time to now.
      */
-    function incrementCreatedAt();
+    public function incrementCreatedAt();
 
     /**
      * Get the time of last update.
      *
      * @return DateTime
      */
-    function getUpdatedAt();
+    public function getUpdatedAt();
 
     /**
      * Set last time update.
      *
      * @param DateTime $updatedAt
      */
-    function setUpdatedAt(\DateTime $updatedAt);
+    public function setUpdatedAt(\DateTime $updatedAt);
 
     /**
      * Set last update time to now.
      */
-    function incrementUpdatedAt();
+    public function incrementUpdatedAt();
 }
-

@@ -102,7 +102,6 @@ class VariantGenerator implements VariantGeneratorInterface
         $countArrays = count($array);
 
         if (1 === $countArrays) {
-
             return reset($array);
         } elseif (0 === $countArrays) {
             throw new \InvalidArgumentException('At least one array is required');

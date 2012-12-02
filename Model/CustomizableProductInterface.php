@@ -29,63 +29,63 @@ interface CustomizableProductInterface extends ProductInterface
      *
      * @return VariantInterface
      */
-    function getMasterVariant();
+    public function getMasterVariant();
 
     /**
      * Sets master variant.
      *
      * @param VariantInterface $variant
      */
-    function setMasterVariant(VariantInterface $variant);
+    public function setMasterVariant(VariantInterface $variant);
 
     /**
      * Has any variants?
      *
      * @return Boolean
      */
-    function isVaried();
+    public function isVaried();
 
     /**
      * Returns all product variants.
      *
      * @return Collection of VariantInterface
      */
-    function getVariants();
+    public function getVariants();
 
     /**
      * Return product variants that are available currently.
      *
      * @return array An array or collection of VariantInterface
      */
-    function getAvailableVariants();
+    public function getAvailableVariants();
 
     /**
      * Sets all product variants.
      *
      * @param Collection
      */
-    function setVariants(Collection $variants);
+    public function setVariants(Collection $variants);
 
     /**
      * Counts all product variants.
      *
      * @return integer
      */
-    function countVariants();
+    public function countVariants();
 
     /**
      * Adds variant.
      *
      * @param VariantInterface $variant
      */
-    function addVariant(VariantInterface $variant);
+    public function addVariant(VariantInterface $variant);
 
     /**
      * Removes variant from product.
      *
      * @param VariantInterface $variant
      */
-    function removeVariant(VariantInterface $variant);
+    public function removeVariant(VariantInterface $variant);
 
     /**
      * Checks whether product has given variant.
@@ -94,42 +94,42 @@ interface CustomizableProductInterface extends ProductInterface
      *
      * @return Boolean
      */
-    function hasVariant(VariantInterface $variant);
+    public function hasVariant(VariantInterface $variant);
 
     /**
      * Returns all product options.
      *
      * @return Collection
      */
-    function getOptions();
+    public function getOptions();
 
     /**
      * Sets all product options.
      *
      * @param Collection $options
      */
-    function setOptions(Collection $options);
+    public function setOptions(Collection $options);
 
     /**
      * Counts all product options.
      *
      * @return integer
      */
-    function countOptions();
+    public function countOptions();
 
     /**
      * Adds option.
      *
      * @param OptionInterface $option
      */
-    function addOption(OptionInterface $option);
+    public function addOption(OptionInterface $option);
 
     /**
      * Removes option from product.
      *
      * @param OptionInterface $option
      */
-    function removeOption(OptionInterface $option);
+    public function removeOption(OptionInterface $option);
 
     /**
      * Checks whether product has given option.
@@ -138,42 +138,42 @@ interface CustomizableProductInterface extends ProductInterface
      *
      * @return Boolean
      */
-    function hasOption(OptionInterface $option);
+    public function hasOption(OptionInterface $option);
 
     /**
      * Returns all product product properties.
      *
      * @return Collection of ProductPropertyInterface
      */
-    function getProperties();
+    public function getProperties();
 
     /**
      * Sets all product product properties.
      *
      * @param Collection of ProductPropertyInterface
      */
-    function setProperties(Collection $properties);
+    public function setProperties(Collection $properties);
 
     /**
      * Counts all product product properties.
      *
      * @return integer
      */
-    function countProperties();
+    public function countProperties();
 
     /**
      * Adds product property.
      *
      * @param ProductPropertyInterface $property
      */
-    function addProperty(ProductPropertyInterface $property);
+    public function addProperty(ProductPropertyInterface $property);
 
     /**
      * Removes product property from product.
      *
      * @param ProductPropertyInterface $property
      */
-    function removeProperty(ProductPropertyInterface $property);
+    public function removeProperty(ProductPropertyInterface $property);
 
     /**
      * Checks whether product has given product property.
@@ -182,5 +182,5 @@ interface CustomizableProductInterface extends ProductInterface
      *
      * @return Boolean
      */
-    function hasProperty(ProductPropertyInterface $property);
+    public function hasProperty(ProductPropertyInterface $property);
 }

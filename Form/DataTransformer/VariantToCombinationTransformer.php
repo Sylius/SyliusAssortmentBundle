@@ -14,7 +14,6 @@ namespace Sylius\Bundle\AssortmentBundle\Form\DataTransformer;
 use Sylius\Bundle\AssortmentBundle\Model\CustomizableProductInterface;
 use Sylius\Bundle\AssortmentBundle\Model\Variant\VariantInterface;
 use Symfony\Component\Form\DataTransformerInterface;
-use Symfony\Component\Form\Exception\TransformationFailedException;
 use Symfony\Component\Form\Exception\UnexpectedTypeException;
 
 /**
@@ -80,7 +79,6 @@ class VariantToCombinationTransformer implements DataTransformerInterface
             }
 
             if ($matches) {
-
                 return $variant;
             }
         }

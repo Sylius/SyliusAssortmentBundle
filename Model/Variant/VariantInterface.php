@@ -30,28 +30,28 @@ interface VariantInterface
      *
      * @return Boolean
      */
-    function isMaster();
+    public function isMaster();
 
     /**
      * Defines whether variant is master.
      *
      * @param Boolean $master
      */
-    function setMaster($master);
+    public function setMaster($master);
 
     /**
      * Get variant SKU.
      *
      * @return string
      */
-    function getSku();
+    public function getSku();
 
     /**
      * Set variant SKU.
      *
      * @param string $sku
      */
-    function setSku($sku);
+    public function setSku($sku);
 
     /**
      * Get presentation.
@@ -60,70 +60,70 @@ interface VariantInterface
      *
      * @return string
      */
-    function getPresentation();
+    public function getPresentation();
 
     /**
      * Set custom presentation.
      *
      * @param string $presentation
      */
-    function setPresentation($presentation);
+    public function setPresentation($presentation);
 
     /**
      * Get generated label for variant choice forms.
      *
      * @return string
      */
-    function getLabel();
+    public function getLabel();
 
     /**
      * Get master product.
      *
      * @return ProductInterface
      */
-    function getProduct();
+    public function getProduct();
 
     /**
      * Set product.
      *
      * @param ProductInterface or null $product
      */
-    function setProduct(ProductInterface $product = null);
+    public function setProduct(ProductInterface $product = null);
 
     /**
      * Returns all option values.
      *
      * @return Collection of OptionValueInterface
      */
-    function getOptions();
+    public function getOptions();
 
     /**
      * Sets all variant options.
      *
      * @param Collection $options
      */
-    function setOptions(Collection $options);
+    public function setOptions(Collection $options);
 
     /**
      * Counts all variant options.
      *
      * @return integer
      */
-    function countOptions();
+    public function countOptions();
 
     /**
      * Adds option value.
      *
      * @param OptionValueInterface $option
      */
-    function addOption(OptionValueInterface $option);
+    public function addOption(OptionValueInterface $option);
 
     /**
      * Removes option from variant.
      *
      * @param OptionValueInterface $option
      */
-    function removeOption(OptionValueInterface $option);
+    public function removeOption(OptionValueInterface $option);
 
     /**
      * Checks whether variant has given option.
@@ -132,69 +132,69 @@ interface VariantInterface
      *
      * @return Boolean
      */
-    function hasOption(OptionValueInterface $option);
+    public function hasOption(OptionValueInterface $option);
 
     /**
      * Check whether the product is available.
      */
-    function isAvailable();
+    public function isAvailable();
 
     /**
      * Return available on.
      *
      * @return \DateTime
      */
-    function getAvailableOn();
+    public function getAvailableOn();
 
     /**
      * Set available on.
      *
      * @param \DateTime $availableOn
      */
-    function setAvailableOn(\DateTime $availableOn);
+    public function setAvailableOn(\DateTime $availableOn);
 
     /**
      * Make available now.
      */
-    function incrementAvailableOn();
+    public function incrementAvailableOn();
 
     /**
      * Get creation time.
      *
      * @return DateTime
      */
-    function getCreatedAt();
+    public function getCreatedAt();
 
     /**
      * Set creation time.
      *
      * @param DateTime $createdAt
      */
-    function setCreatedAt(\DateTime $createdAt);
+    public function setCreatedAt(\DateTime $createdAt);
 
     /**
      * Set creation time to now.
      */
-    function incrementCreatedAt();
+    public function incrementCreatedAt();
 
     /**
      * Get the time of last update.
      *
      * @return DateTime
      */
-    function getUpdatedAt();
+    public function getUpdatedAt();
 
     /**
      * Set last time update.
      *
      * @param DateTime $updatedAt
      */
-    function setUpdatedAt(\DateTime $updatedAt);
+    public function setUpdatedAt(\DateTime $updatedAt);
 
     /**
      * Set last update time to now.
      */
-    function incrementUpdatedAt();
+    public function incrementUpdatedAt();
 
     /**
      * Get the time of deletion.
@@ -202,17 +202,17 @@ interface VariantInterface
      *
      * @return DateTime
      */
-    function getDeletedAt();
+    public function getDeletedAt();
 
     /**
      * Set deletion time.
      *
      * @param DateTime $deletedAt
      */
-    function setDeletedAt(\DateTime $deletedAt);
+    public function setDeletedAt(\DateTime $deletedAt);
 
     /**
      * Set deletion time to now.
      */
-    function incrementDeletedAt();
+    public function incrementDeletedAt();
 }

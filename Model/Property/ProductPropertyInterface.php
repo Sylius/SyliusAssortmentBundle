@@ -25,54 +25,54 @@ interface ProductPropertyInterface
      *
      * @return ProductInterface
      */
-    function getProduct();
+    public function getProduct();
 
     /**
      * Set product.
      *
      * @param ProductInterface or null $product
      */
-    function setProduct(ProductInterface $product = null);
+    public function setProduct(ProductInterface $product = null);
 
     /**
      * Get property.
      *
      * @return PropertyInterface
      */
-    function getProperty();
+    public function getProperty();
 
     /**
      * Set property.
      *
      * @param PropertyInterface $property
      */
-    function setProperty(PropertyInterface $property);
+    public function setProperty(PropertyInterface $property);
 
     /**
      * Get property value.
      *
      * @return mixed
      */
-    function getValue();
+    public function getValue();
 
     /**
      * Set property value.
      *
      * @param mixed $value
      */
-    function setValue($value);
+    public function setValue($value);
 
     /**
      * Proxy method to access the name from real property.
      *
      * @return string
      */
-    function getName();
+    public function getName();
 
     /**
      * Proxy method to access the presentation from real property.
      *
      * @return string
      */
-    function getPresentation();
+    public function getPresentation();
 }

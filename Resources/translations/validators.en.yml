@@ -40,4 +40,3 @@ sylius_assortment:
             not_blank: "Please enter prototype name"
             min_length: "Prototype name must be at least 2 characters long"
             max_length: "Prototype name must not be longer than 255 characters"
-

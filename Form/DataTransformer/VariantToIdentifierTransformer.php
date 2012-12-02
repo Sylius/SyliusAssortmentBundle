@@ -14,7 +14,6 @@ namespace Sylius\Bundle\AssortmentBundle\Form\DataTransformer;
 use Doctrine\Common\Persistence\ObjectRepository;
 use Sylius\Bundle\AssortmentBundle\Model\Variant\VariantInterface;
 use Symfony\Component\Form\DataTransformerInterface;
-use Symfony\Component\Form\Exception\TransformationFailedException;
 use Symfony\Component\Form\Exception\UnexpectedTypeException;
 
 /**
@@ -42,7 +41,7 @@ class VariantToIdentifierTransformer implements DataTransformerInterface
      * Constructor.
      *
      * @param ObjectRepository $variantRepository
-     * @param string                  $identifier
+     * @param string           $identifier
      */
     public function __construct(ObjectRepository $variantRepository, $identifier)
     {

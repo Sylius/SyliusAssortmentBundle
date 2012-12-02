@@ -11,8 +11,6 @@
 
 namespace Sylius\Bundle\AssortmentBundle\Model\Option;
 
-use Sylius\Bundle\ResourceBundle\Model\ResourceInterface;
-
 /**
  * Option value interface.
  *
@@ -25,28 +23,28 @@ interface OptionValueInterface
      *
      * @return string
      */
-    function getValue();
+    public function getValue();
 
     /**
      * Set internal value.
      *
      * @param string $value
      */
-    function setValue($value);
+    public function setValue($value);
 
     /**
      * Get option.
      *
      * @return OptionInterface $option
      */
-    function getOption();
+    public function getOption();
 
     /**
      * Set option.
      *
      * @param OptionInterface $option
      */
-    function setOption(OptionInterface $option = null);
+    public function setOption(OptionInterface $option = null);
 
     /**
      * Proxy method to access the name of real option object.
@@ -55,13 +53,12 @@ interface OptionValueInterface
      *
      * @return string The name of option
      */
-    function getName();
+    public function getName();
 
     /**
      * Proxy method to access the presentation of real option object.
      *
      * @return string The presentation of object
      */
-    function getPresentation();
+    public function getPresentation();
 }
-
