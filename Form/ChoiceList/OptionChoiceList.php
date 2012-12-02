@@ -11,7 +11,7 @@
 
 namespace Sylius\Bundle\AssortmentBundle\Form\ChoiceList;
 
-use Sylius\Bundle\ResourceBundle\Repository\ResourceRepositoryInterface;
+use Doctrine\Common\Persistence\ObjectRepository;
 use Symfony\Component\Form\Extension\Core\ChoiceList\ObjectChoiceList;
 
 /**
@@ -24,9 +24,9 @@ class OptionChoiceList extends ObjectChoiceList
     /**
      * Constructor.
      *
-     * @param ResourceRepositoryInterface $optionRepository
+     * @param ObjectRepository $optionRepository
      */
-    public function __construct(ResourceRepositoryInterface $optionRepository)
+    public function __construct(ObjectRepository $optionRepository)
     {
         parent::__construct($optionRepository->findAll(), 'name', array(), null, null, 'id');
     }

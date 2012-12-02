@@ -11,9 +11,9 @@
 
 namespace Sylius\Bundle\AssortmentBundle\Validator;
 
+use Doctrine\Common\Persistence\ObjectRepository;
 use Sylius\Bundle\AssortmentBundle\Model\CustomizableProductInterface;
 use Sylius\Bundle\AssortmentBundle\Model\ProductInterface;
-use Sylius\Bundle\ResourceBundle\Repository\ResourceRepositoryInterface;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 use Symfony\Component\Validator\Exception\UnexpectedTypeException;
@@ -28,16 +28,16 @@ class ProductUniqueValidator extends ConstraintValidator
     /**
      * Product manager.
      *
-     * @var ResourceRepositoryInterface
+     * @var ObjectRepository
      */
     protected $repository;
 
     /**
      * Constructor.
      *
-     * @param ResourceRepositoryInterface $repository
+     * @param ObjectRepository $repository
      */
-    public function __construct(ResourceRepositoryInterface $repository)
+    public function __construct(ObjectRepository $repository)
     {
         $this->repository = $repository;
     }

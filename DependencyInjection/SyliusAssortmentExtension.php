@@ -12,7 +12,6 @@
 namespace Sylius\Bundle\AssortmentBundle\DependencyInjection;
 
 use Sylius\Bundle\AssortmentBundle\SyliusAssortmentBundle;
-use Sylius\Bundle\ResourceBundle\DependencyInjection\ServiceGenerator;
 use Symfony\Component\Config\Definition\Processor;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -43,9 +42,9 @@ class SyliusAssortmentExtension extends Extension
         $container->setParameter('sylius_assortment.engine', $config['engine']);
 
         $this->remapParametersNamespaces($config['classes'], $container, array(
-            'controller'  => 'sylius_assortment.controller.%s.class',
-            'manipulator' => 'sylius_assortment.manipulator.%s.class',
-            'model'       => 'sylius_assortment.model.%s.class',
+            'controller' => 'sylius_assortment.controller.%s.class',
+            'repository' => 'sylius_assortment.repository.%s.class',
+            'model'      => 'sylius_assortment.model.%s.class',
         ));
 
         $this->remapParametersNamespaces($config['classes']['form'], $container, array(
@@ -70,27 +69,24 @@ class SyliusAssortmentExtension extends Extension
         }
 
         $models = $config['classes']['model'];
-
-        $serviceGenerator = new ServiceGenerator($container);
-        $serviceGenerator->generate('sylius_assortment', 'product', $driver, $models['product']);
+        $loader->load(sprintf('driver/%s.xml', $driver));
 
         $loader->load('products.xml');
 
         if (!empty($models['variant'])) {
             $loader->load('variants.xml');
-            $serviceGenerator->generate('sylius_assortment', 'variant', $driver, $models['variant']);
         }
+
         if (!empty($models['option'])) {
             $loader->load('options.xml');
-            $serviceGenerator->generate('sylius_assortment', 'option', $driver, $models['option']);
         }
+
         if (!empty($models['property'])) {
             $loader->load('properties.xml');
-            $serviceGenerator->generate('sylius_assortment', 'property', $driver, $models['property']);
         }
+
         if (!empty($models['prototype'])) {
             $loader->load('prototypes.xml');
-            $serviceGenerator->generate('sylius_assortment', 'prototype', $driver, $models['prototype']);
         }
     }
 

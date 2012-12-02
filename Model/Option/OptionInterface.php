@@ -12,7 +12,6 @@
 namespace Sylius\Bundle\AssortmentBundle\Model\Option;
 
 use Doctrine\Common\Collections\Collection;
-use Sylius\Bundle\ResourceBundle\Model\ResourceInterface;
 
 /**
  * Product option interface.
@@ -23,7 +22,7 @@ use Sylius\Bundle\ResourceBundle\Model\ResourceInterface;
  *
  * @author Paweł Jędrzejewski <pjedrzejewski@diweb.pl>
  */
-interface OptionInterface extends ResourceInterface
+interface OptionInterface
 {
     /**
      * Get internal name.

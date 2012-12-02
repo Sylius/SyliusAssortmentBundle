@@ -17,48 +17,83 @@
                                http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
-        <parameter key="sylius_assortment.manager.product.class">Sylius\Bundle\ResourceBundle\Doctrine\ResourceManager</parameter>
-        <parameter key="sylius_assortment.repository.product.class">Sylius\Bundle\ResourceBundle\Doctrine\ORM\ResourceRepository</parameter>
-        <parameter key="sylius_assortment.manager.option.class">Sylius\Bundle\ResourceBundle\Manager\Doctrine\ORM\ResourceManager</parameter>
-        <parameter key="sylius_assortment.manager.property.class">Sylius\Bundle\ResourceBundle\Manager\Doctrine\ORM\ResourceManager</parameter>
-        <parameter key="sylius_assortment.manager.prototype.class">Sylius\Bundle\ResourceBundle\Manager\Doctrine\ORM\ResourceManager</parameter>
-        <parameter key="sylius_assortment.manager.variant.class">Sylius\Bundle\ResourceBundle\Manager\Doctrine\ORM\ResourceManager</parameter>
+        <parameter key="sylius_assortment.repository.product.class">Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository</parameter>
+        <parameter key="sylius_assortment.repository.variant.class">Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository</parameter>
+        <parameter key="sylius_assortment.repository.option.class">Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository</parameter>
+        <parameter key="sylius_assortment.repository.property.class">Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository</parameter>
+        <parameter key="sylius_assortment.repository.prototype.class">Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository</parameter>
     </parameters>
 
     <services>
-        <service id="sylius_assortment.doctrine.repository.product"
+        <service id="sylius_assortment.doctrine.orm.metadata.product"
                 factory-service="doctrine.orm.default_entity_manager"
-                factory-method="getRepository"
-                class="Doctrine\ORM\EntityRepository"
+                factory-method="getClassMetadata"
+                class="Doctrine\ORM\Mapping\ClassMetadata"
                 public="false"
         >
             <argument>%sylius_assortment.model.product.class%</argument>
         </service>
         <service id="sylius_assortment.repository.product" class="%sylius_assortment.repository.product.class%">
-            <argument type="service" id="sylius_assortment.doctrine.repository.product" />
-            <argument>%sylius_assortment.model.product.class%</argument>
+            <argument type="service" id="sylius_assortment.manager.product" />
+            <argument type="service" id="sylius_assortment.doctrine.orm.metadata.product" />
         </service>
-        <service id="sylius_assortment.manager.product" class="%sylius_assortment.manager.product.class%">
-            <argument type="service" id="doctrine.orm.default_entity_manager" />
-            <argument>%sylius_assortment.model.product.class%</argument>
-        </service>
+        <service id="sylius_assortment.manager.product" alias="doctrine.orm.entity_manager" />
 
-        <service id="sylius_assortment.manager.option" class="%sylius_assortment.manager.option.class%">
-            <argument type="service" id="doctrine.orm.default_entity_manager" />
-            <argument>%sylius_assortment.model.option.class%</argument>
-        </service>
-        <service id="sylius_assortment.manager.property" class="%sylius_assortment.manager.property.class%">
-            <argument type="service" id="doctrine.orm.default_entity_manager" />
-            <argument>%sylius_assortment.model.property.class%</argument>
-        </service>
-        <service id="sylius_assortment.manager.prototype" class="%sylius_assortment.manager.prototype.class%">
-            <argument type="service" id="doctrine.orm.default_entity_manager" />
-            <argument>%sylius_assortment.model.prototype.class%</argument>
-        </service>
-        <service id="sylius_assortment.manager.variant" class="%sylius_assortment.manager.variant.class%">
-            <argument type="service" id="doctrine.orm.default_entity_manager" />
+        <service id="sylius_assortment.doctrine.orm.metadata.variant"
+                factory-service="doctrine.orm.default_entity_manager"
+                factory-method="getClassMetadata"
+                class="Doctrine\ORM\Mapping\ClassMetadata"
+                public="false"
+        >
             <argument>%sylius_assortment.model.variant.class%</argument>
         </service>
+        <service id="sylius_assortment.repository.variant" class="%sylius_assortment.repository.variant.class%">
+            <argument type="service" id="sylius_assortment.manager.variant" />
+            <argument type="service" id="sylius_assortment.doctrine.orm.metadata.variant" />
+        </service>
+        <service id="sylius_assortment.manager.variant" alias="doctrine.orm.entity_manager" />
+
+        <service id="sylius_assortment.doctrine.orm.metadata.option"
+                factory-service="doctrine.orm.default_entity_manager"
+                factory-method="getClassMetadata"
+                class="Doctrine\ORM\Mapping\ClassMetadata"
+                public="false"
+        >
+            <argument>%sylius_assortment.model.option.class%</argument>
+        </service>
+        <service id="sylius_assortment.repository.option" class="%sylius_assortment.repository.option.class%">
+            <argument type="service" id="sylius_assortment.manager.option" />
+            <argument type="service" id="sylius_assortment.doctrine.orm.metadata.option" />
+        </service>
+        <service id="sylius_assortment.manager.option" alias="doctrine.orm.entity_manager" />
+
+        <service id="sylius_assortment.doctrine.orm.metadata.property"
+                factory-service="doctrine.orm.default_entity_manager"
+                factory-method="getClassMetadata"
+                class="Doctrine\ORM\Mapping\ClassMetadata"
+                public="false"
+        >
+            <argument>%sylius_assortment.model.property.class%</argument>
+        </service>
+        <service id="sylius_assortment.repository.property" class="%sylius_assortment.repository.property.class%">
+            <argument type="service" id="sylius_assortment.manager.property" />
+            <argument type="service" id="sylius_assortment.doctrine.orm.metadata.property" />
+        </service>
+        <service id="sylius_assortment.manager.property" alias="doctrine.orm.entity_manager" />
+
+        <service id="sylius_assortment.doctrine.orm.metadata.prototype"
+                factory-service="doctrine.orm.default_entity_manager"
+                factory-method="getClassMetadata"
+                class="Doctrine\ORM\Mapping\ClassMetadata"
+                public="false"
+        >
+            <argument>%sylius_assortment.model.prototype.class%</argument>
+        </service>
+        <service id="sylius_assortment.repository.prototype" class="%sylius_assortment.repository.prototype.class%">
+            <argument type="service" id="sylius_assortment.manager.prototype" />
+            <argument type="service" id="sylius_assortment.doctrine.orm.metadata.prototype" />
+        </service>
+        <service id="sylius_assortment.manager.prototype" alias="doctrine.orm.entity_manager" />
     </services>
 
 </container>

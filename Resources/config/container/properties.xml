@@ -24,6 +24,9 @@
     <services>
         <!-- controllers. -->
         <service id="sylius_assortment.controller.property" class="%sylius_assortment.controller.property.class%">
+            <argument>sylius_assortment</argument>
+            <argument>property</argument>
+            <argument>SyliusAssortmentBundle:Property</argument>
             <call method="setContainer">
                 <argument type="service" id="service_container" />
             </call>

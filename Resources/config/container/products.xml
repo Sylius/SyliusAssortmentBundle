@@ -40,11 +40,11 @@
             <tag name="form.type" alias="sylius_assortment_product" />
         </service>
         <service id="sylius_assortment.form.type.product_to_identifier" class="%sylius_assortment.form.type.product_to_identifier.class%">
-            <argument type="service" id="sylius_assortment.manager.product" />
+            <argument type="service" id="sylius_assortment.repository.product" />
             <tag name="form.type" alias="sylius_assortment_product_to_identifier" />
         </service>
         <service id="sylius_assortment.form.type.product_hidden" class="%sylius_assortment.form.type.product_hidden.class%">
-            <argument type="service" id="sylius_assortment.manager.product" />
+            <argument type="service" id="sylius_assortment.repository.product" />
             <tag name="form.type" alias="sylius_assortment_product_hidden" />
         </service>
 

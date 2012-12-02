@@ -11,8 +11,8 @@
 
 namespace Sylius\Bundle\AssortmentBundle\Generator;
 
+use Doctrine\Common\Persistence\ObjectRepository;
 use Sylius\Bundle\AssortmentBundle\Model\CustomizableProductInterface;
-use Sylius\Bundle\ResourceBundle\Manager\ResourceManagerInterface;
 use Symfony\Component\Validator\ValidatorInterface;
 
 /**
@@ -32,20 +32,20 @@ class VariantGenerator implements VariantGeneratorInterface
     /**
      * Variant manager.
      *
-     * @var ResourceManagerInterface
+     * @var ObjectRepository
      */
-    protected $variantManager;
+    protected $variantRepository;
 
     /**
      * Constructor.
      *
-     * @param ValidatorInterface      $validator
-     * @param ResourceManagerInterface $variantManager
+     * @param ValidatorInterface $validator
+     * @param ObjectRepository   $variantRepository
      */
-    public function __construct(ValidatorInterface $validator, ResourceManagerInterface $variantManager)
+    public function __construct(ValidatorInterface $validator, ObjectRepository $variantRepository)
     {
         $this->validator = $validator;
-        $this->variantManager = $variantManager;
+        $this->variantRepository = $variantRepository;
     }
 
     /**
@@ -66,7 +66,7 @@ class VariantGenerator implements VariantGeneratorInterface
         $permutations = $this->getPermutations($optionSet);
 
         foreach ($permutations as $i => $permutation) {
-            $variant = $this->variantManager->create();
+            $variant = $this->variantRepository->createNew();
             $variant->setProduct($product);
 
             $variant->setSku($product->getSku().'-'.($i + 1));

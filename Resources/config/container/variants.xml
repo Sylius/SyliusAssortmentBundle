@@ -46,14 +46,14 @@
             <tag name="form.type" alias="sylius_assortment_variant_match" />
         </service>
         <service id="sylius_assortment.form.type.variant_to_identifier" class="%sylius_assortment.form.type.variant_to_identifier.class%">
-            <argument type="service" id="sylius_assortment.manager.variant" />
+            <argument type="service" id="sylius_assortment.repository.variant" />
             <tag name="form.type" alias="sylius_assortment_variant_to_identifier" />
         </service>
 
         <!-- generators. -->
         <service id="sylius_assortment.generator.variant" class="%sylius_assortment.generator.variant.class%">
             <argument type="service" id="validator" />
-            <argument type="service" id="sylius_assortment.manager.variant" />
+            <argument type="service" id="sylius_assortment.repository.variant" />
         </service>
 
         <!-- validators. -->

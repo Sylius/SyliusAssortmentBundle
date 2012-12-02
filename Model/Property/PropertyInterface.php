@@ -12,14 +12,13 @@
 namespace Sylius\Bundle\AssortmentBundle\Model\Property;
 
 use Sylius\Bundle\AssortmentBundle\Model\ProductInterface;
-use Sylius\Bundle\ResourceBundle\Model\ResourceInterface;
 
 /**
  * Product property interface.
  *
  * @author Paweł Jędrzejewski <pjedrzejewski@diweb.pl>
  */
-interface PropertyInterface extends ResourceInterface
+interface PropertyInterface
 {
     /**
      * Get internal name.

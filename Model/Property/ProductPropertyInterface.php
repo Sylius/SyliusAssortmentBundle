@@ -12,14 +12,13 @@
 namespace Sylius\Bundle\AssortmentBundle\Model\Property;
 
 use Sylius\Bundle\AssortmentBundle\Model\ProductInterface;
-use Sylius\Bundle\ResourceBundle\Model\ResourceInterface;
 
 /**
  * Product to property relation interface.
  *
  * @author Paweł Jędrzejewski <pjedrzejewski@diweb.pl>
  */
-interface ProductPropertyInterface extends ResourceInterface
+interface ProductPropertyInterface
 {
     /**
      * Get product.

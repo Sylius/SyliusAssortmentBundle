@@ -14,7 +14,6 @@ namespace Sylius\Bundle\AssortmentBundle\Model\Prototype;
 use Doctrine\Common\Collections\Collection;
 use Sylius\Bundle\AssortmentBundle\Model\Option\OptionInterface;
 use Sylius\Bundle\AssortmentBundle\Model\Property\PropertyInterface;
-use Sylius\Bundle\ResourceBundle\Model\ResourceInterface;
 
 /**
  * Used to generate full product form.
@@ -22,7 +21,7 @@ use Sylius\Bundle\ResourceBundle\Model\ResourceInterface;
  *
  * @author Paweł Jędrzejewski <pjedrzejewski@diweb.pl>
  */
-interface PrototypeInterface extends ResourceInterface
+interface PrototypeInterface
 {
     /**
      * Get name, it will be displayed by user only in backend.

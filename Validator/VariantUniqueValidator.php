@@ -11,8 +11,8 @@
 
 namespace Sylius\Bundle\AssortmentBundle\Validator;
 
+use Doctrine\Common\Persistence\ObjectRepository;
 use Sylius\Bundle\AssortmentBundle\Model\Variant\VariantInterface;
-use Sylius\Bundle\ResourceBundle\Repository\ResourceRepositoryInterface;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 use Symfony\Component\Validator\Exception\UnexpectedTypeException;
@@ -27,16 +27,16 @@ class VariantUniqueValidator extends ConstraintValidator
     /**
      * Variant manager.
      *
-     * @var ResourceRepositoryInterface
+     * @var ObjectRepository
      */
     protected $variantRepository;
 
     /**
      * Constructor.
      *
-     * @param ResourceRepositoryInterface $variantRepository
+     * @param ObjectRepository $variantRepository
      */
-    public function __construct(ResourceRepositoryInterface $variantRepository)
+    public function __construct(ObjectRepository $variantRepository)
     {
         $this->variantRepository = $variantRepository;
     }

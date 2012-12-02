@@ -11,7 +11,7 @@
 
 namespace Sylius\Bundle\AssortmentBundle\Form\Type;
 
-use Sylius\Bundle\ResourceBundle\Manager\ResourceManagerInterface;
+use Doctrine\Common\Persistence\ObjectRepository;
 use Sylius\Bundle\AssortmentBundle\Form\DataTransformer\ProductToIdentifierTransformer;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Exception\FormException;
@@ -28,18 +28,18 @@ class ProductToIdentifierType extends AbstractType
     /**
      * Product manager.
      *
-     * @var ResourceManagerInterface
+     * @var ObjectRepository
      */
-    private $productManager;
+    private $productRepository;
 
     /**
      * See ProductType description for information about data class.
      *
-     * @param ResourceManagerInterface $productManager
+     * @param ObjectRepository $productRepository
      */
-    public function __construct(ResourceManagerInterface $productManager)
+    public function __construct(ObjectRepository $productRepository)
     {
-        $this->productManager = $productManager;
+        $this->productRepository = $productRepository;
     }
 
     /**
@@ -47,7 +47,7 @@ class ProductToIdentifierType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->addModelTransformer(new ProductToIdentifierTransformer($this->productManager, $options['identifier']));
+        $builder->addModelTransformer(new ProductToIdentifierTransformer($this->productRepository, $options['identifier']));
     }
 
     /**

@@ -14,7 +14,6 @@ namespace Sylius\Bundle\AssortmentBundle\Model\Variant;
 use Doctrine\Common\Collections\Collection;
 use Sylius\Bundle\AssortmentBundle\Model\Option\OptionValueInterface;
 use Sylius\Bundle\AssortmentBundle\Model\ProductInterface;
-use Sylius\Bundle\ResourceBundle\Model\ResourceInterface;
 
 /**
  * Product variant interface.
@@ -24,7 +23,7 @@ use Sylius\Bundle\ResourceBundle\Model\ResourceInterface;
  *
  * @author Paweł Jędrzejewski <pjedrzejewski@diweb.pl>
  */
-interface VariantInterface extends ResourceInterface
+interface VariantInterface
 {
     /**
      * Checks whether variant is master.

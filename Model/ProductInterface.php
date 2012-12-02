@@ -11,14 +11,12 @@
 
 namespace Sylius\Bundle\AssortmentBundle\Model;
 
-use Sylius\Bundle\ResourceBundle\Model\ResourceInterface;
-
 /**
  * Product interface.
  *
  * @author Paweł Jędrzejewski <pjedrzejewski@diweb.pl>
  */
-interface ProductInterface extends ResourceInterface
+interface ProductInterface
 {
     /**
      * Get SKU, which stands for Stock Keeping Unit.

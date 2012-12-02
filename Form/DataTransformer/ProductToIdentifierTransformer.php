@@ -11,8 +11,8 @@
 
 namespace Sylius\Bundle\AssortmentBundle\Form\DataTransformer;
 
+use Doctrine\Common\Persistence\ObjectRepository;
 use Sylius\Bundle\AssortmentBundle\Model\ProductInterface;
-use Sylius\Bundle\ResourceBundle\Manager\ResourceManagerInterface;
 use Symfony\Component\Form\DataTransformerInterface;
 use Symfony\Component\Form\Exception\TransformationFailedException;
 use Symfony\Component\Form\Exception\UnexpectedTypeException;
@@ -27,9 +27,9 @@ class ProductToIdentifierTransformer implements DataTransformerInterface
     /**
      * Product manager.
      *
-     * @var ResourceManagerInterface
+     * @var ObjectRepository
      */
-    private $productManager;
+    private $productRepository;
 
     /**
      * Identifier.
@@ -41,12 +41,12 @@ class ProductToIdentifierTransformer implements DataTransformerInterface
     /**
      * Constructor.
      *
-     * @param ResourceManagerInterface $productManager
+     * @param ObjectRepository $productRepository
      * @param string                  $identifier
      */
-    public function __construct(ResourceManagerInterface $productManager, $identifier)
+    public function __construct(ObjectRepository $productRepository, $identifier)
     {
-        $this->productManager = $productManager;
+        $this->productRepository = $productRepository;
         $this->identifier = $identifier;
     }
 
@@ -75,6 +75,6 @@ class ProductToIdentifierTransformer implements DataTransformerInterface
             return null;
         }
 
-        return $this->productManager->findOneBy(array($this->identifier => $value));
+        return $this->productRepository->findOneBy(array($this->identifier => $value));
     }
 }
