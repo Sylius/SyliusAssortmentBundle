@@ -26,6 +26,9 @@ sylius_assortment:
             not_blank: "Please enter option presentation"
             min_length: "Option presentation must be at least 2 characters long"
             max_length: "Option presentation must not be longer than 255 characters"
+    option_value:
+        value:
+            not_blank: "Please enter option value"
     property:
         name:
             not_blank: "Please enter property name"
@@ -35,6 +38,11 @@ sylius_assortment:
             not_blank: "Please enter property presentation"
             min_length: "Property presentation must be at least 2 characters long"
             max_length: "Property presentation must not be longer than 255 characters"
+    product_property:
+        property:
+            not_blank: "Please enter product property"
+        value:
+            not_blank: "Please enter product property value"
     prototype:
         name:
             not_blank: "Please enter prototype name"
