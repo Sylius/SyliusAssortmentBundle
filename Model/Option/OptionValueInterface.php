@@ -19,20 +19,6 @@ namespace Sylius\Bundle\AssortmentBundle\Model\Option;
 interface OptionValueInterface
 {
     /**
-     * Get internal value.
-     *
-     * @return string
-     */
-    public function getValue();
-
-    /**
-     * Set internal value.
-     *
-     * @param string $value
-     */
-    public function setValue($value);
-
-    /**
      * Get option.
      *
      * @return OptionInterface $option
@@ -45,6 +31,20 @@ interface OptionValueInterface
      * @param OptionInterface $option
      */
     public function setOption(OptionInterface $option = null);
+
+    /**
+     * Get internal value.
+     *
+     * @return string
+     */
+    public function getValue();
+
+    /**
+     * Set internal value.
+     *
+     * @param string $value
+     */
+    public function setValue($value);
 
     /**
      * Proxy method to access the name of real option object.

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 
 <!--
 
@@ -14,10 +14,12 @@
 <container xmlns="http://symfony.com/schema/dic/services"
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xsi:schemaLocation="http://symfony.com/schema/dic/services
-                               http://symfony.com/schema/dic/services/services-1.0.xsd"
->
+                               http://symfony.com/schema/dic/services/services-1.0.xsd">
+
     <parameters>
         <parameter key="sylius_assortment.form.type.variant_to_identifier.class">Sylius\Bundle\AssortmentBundle\Form\Type\VariantToIdentifierType</parameter>
+        <parameter key="sylius_assortment.form.type.variant_choice.class">Sylius\Bundle\AssortmentBundle\Form\Type\VariantChoiceType</parameter>
+        <parameter key="sylius_assortment.form.type.variant_match.class">Sylius\Bundle\AssortmentBundle\Form\Type\VariantMatchType</parameter>
 
         <parameter key="sylius_assortment.generator.variant.class">Sylius\Bundle\AssortmentBundle\Generator\VariantGenerator</parameter>
 
@@ -26,7 +28,6 @@
     </parameters>
 
     <services>
-        <!-- controllers. -->
         <service id="sylius_assortment.controller.variant" class="%sylius_assortment.controller.variant.class%">
             <argument>sylius_assortment</argument>
             <argument>variant</argument>
@@ -36,7 +37,6 @@
             </call>
         </service>
 
-        <!-- forms. -->
         <service id="sylius_assortment.form.type.variant" class="%sylius_assortment.form.type.variant.class%">
             <argument>%sylius_assortment.model.variant.class%</argument>
             <tag name="form.type" alias="sylius_assortment_variant" />
@@ -53,13 +53,11 @@
             <tag name="form.type" alias="sylius_assortment_variant_to_identifier" />
         </service>
 
-        <!-- generators. -->
         <service id="sylius_assortment.generator.variant" class="%sylius_assortment.generator.variant.class%">
             <argument type="service" id="validator" />
             <argument type="service" id="sylius_assortment.repository.variant" />
         </service>
 
-        <!-- validators. -->
         <service id="sylius_assortment.validator.variant.unique" class="%sylius_assortment.validator.variant.unique.class%">
             <argument type="service" id="sylius_assortment.repository.variant" />
             <tag name="validator.constraint_validator" alias="sylius_assortment.validator.variant.unique" />

@@ -15,6 +15,7 @@ use Doctrine\Common\Persistence\ObjectRepository;
 use Sylius\Bundle\AssortmentBundle\Model\ProductInterface;
 use Symfony\Component\Form\DataTransformerInterface;
 use Symfony\Component\Form\Exception\UnexpectedTypeException;
+use Symfony\Component\Form\Util\PropertyPath;
 
 /**
  * Product to id transformer.
@@ -24,7 +25,7 @@ use Symfony\Component\Form\Exception\UnexpectedTypeException;
 class ProductToIdentifierTransformer implements DataTransformerInterface
 {
     /**
-     * Product manager.
+     * Product repository.
      *
      * @var ObjectRepository
      */
@@ -52,17 +53,19 @@ class ProductToIdentifierTransformer implements DataTransformerInterface
     /**
      * {@inheritdoc}
      */
-    public function transform($value)
+    public function transform($product)
     {
-        if (null === $value) {
+        if (null === $product) {
             return '';
         }
 
-        if (!$value instanceof ProductInterface) {
-            throw new UnexpectedTypeException($value, 'Sylius\Bundle\AssortmentBundle\Model\ProductInterface');
+        if (!$product instanceof ProductInterface) {
+            throw new UnexpectedTypeException($product, 'Sylius\Bundle\AssortmentBundle\Model\ProductInterface');
         }
 
-        return $value->{'get'.ucfirst($this->identifier)}();
+        $propertyPath = new PropertyPath($this->identifier);
+
+        return $propertyPath->getValue($product);
     }
 
     /**
@@ -70,7 +73,7 @@ class ProductToIdentifierTransformer implements DataTransformerInterface
      */
     public function reverseTransform($value)
     {
-        if (null === $value || '' === $value) {
+        if (!$value) {
             return null;
         }
 

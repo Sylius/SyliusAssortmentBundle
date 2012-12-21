@@ -12,7 +12,7 @@
 namespace Sylius\Bundle\AssortmentBundle\Model;
 
 /**
- * Product interface.
+ * Basic product interface.
  *
  * @author Paweł Jędrzejewski <pjedrzejewski@diweb.pl>
  */
@@ -20,7 +20,7 @@ interface ProductInterface
 {
     /**
      * Get SKU, which stands for Stock Keeping Unit.
-     * An unique identifier that identifies the product in store.
+     * An unique identifier for the product in store.
      *
      * @return string
      */
@@ -94,15 +94,33 @@ interface ProductInterface
      */
     public function setAvailableOn(\DateTime $availableOn);
 
+    /**
+     * Get meta keywords.
+     *
+     * @return string
+     */
     public function getMetaKeywords();
-    public function setMetaKeywords($metaKeywords);
-    public function getMetaDescription();
-    public function setMetaDescription($metaDescription);
 
     /**
-     * Make available now.
+     * Set meta keywords for the product.
+     *
+     * @param string $metaKeywords
      */
-    public function incrementAvailableOn();
+    public function setMetaKeywords($metaKeywords);
+
+    /**
+     * Get meta description.
+     *
+     * @return string
+     */
+    public function getMetaDescription();
+
+    /**
+     * Set meta description for the product.
+     *
+     * @param string $metaDescription
+     */
+    public function setMetaDescription($metaDescription);
 
     /**
      * Get creation time.
@@ -112,35 +130,11 @@ interface ProductInterface
     public function getCreatedAt();
 
     /**
-     * Set creation time.
-     *
-     * @param DateTime $createdAt
-     */
-    public function setCreatedAt(\DateTime $createdAt);
-
-    /**
-     * Set creation time to now.
-     */
-    public function incrementCreatedAt();
-
-    /**
      * Get the time of last update.
      *
      * @return DateTime
      */
     public function getUpdatedAt();
-
-    /**
-     * Set last time update.
-     *
-     * @param DateTime $updatedAt
-     */
-    public function setUpdatedAt(\DateTime $updatedAt);
-
-    /**
-     * Set last update time to now.
-     */
-    public function incrementUpdatedAt();
 
     /**
      * Is product deleted?
@@ -163,9 +157,4 @@ interface ProductInterface
      * @param DateTime $deletedAt
      */
     public function setDeletedAt(\DateTime $deletedAt);
-
-    /**
-     * Set deletion time to now.
-     */
-    public function incrementDeletedAt();
 }

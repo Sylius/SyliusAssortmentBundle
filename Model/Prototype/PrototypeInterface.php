@@ -24,7 +24,7 @@ use Sylius\Bundle\AssortmentBundle\Model\Property\PropertyInterface;
 interface PrototypeInterface
 {
     /**
-     * Get name, it will be displayed by user only in backend.
+     * Get name, in most cases it will be displayed by user only in backend.
      * Can be something like 't-shirt' or 'tv'.
      *
      * @return string
@@ -51,13 +51,6 @@ interface PrototypeInterface
      * @param Collection $properties
      */
     public function setProperties(Collection $properties);
-
-    /**
-     * Counts all prototype properties.
-     *
-     * @return integer
-     */
-    public function countProperties();
 
     /**
      * Adds property.
@@ -97,13 +90,6 @@ interface PrototypeInterface
     public function setOptions(Collection $options);
 
     /**
-     * Counts all prototype options.
-     *
-     * @return integer
-     */
-    public function countOptions();
-
-    /**
      * Adds option.
      *
      * @param OptionInterface $option
@@ -134,33 +120,9 @@ interface PrototypeInterface
     public function getCreatedAt();
 
     /**
-     * Set creation time.
-     *
-     * @param DateTime $createdAt
-     */
-    public function setCreatedAt(\DateTime $createdAt);
-
-    /**
-     * Set creation time to now.
-     */
-    public function incrementCreatedAt();
-
-    /**
      * Get the time of last update.
      *
      * @return DateTime
      */
     public function getUpdatedAt();
-
-    /**
-     * Set last time update.
-     *
-     * @param DateTime $updatedAt
-     */
-    public function setUpdatedAt(\DateTime $updatedAt);
-
-    /**
-     * Set last update time to now.
-     */
-    public function incrementUpdatedAt();
 }

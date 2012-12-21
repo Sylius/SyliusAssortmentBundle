@@ -40,20 +40,24 @@ interface CustomizableProductInterface extends ProductInterface
 
     /**
      * Has any variants?
+     * This method is not for checking if product is simple or customizable.
+     * It should determine if any variants (other than internal master) exist.
      *
      * @return Boolean
      */
-    public function isVaried();
+    public function hasVariants();
 
     /**
      * Returns all product variants.
+     * This collection should exclude the master variant.
      *
      * @return Collection of VariantInterface
      */
     public function getVariants();
 
     /**
-     * Return product variants that are available currently.
+     * Return product variants which are available.
+     * This collection should exclude the master variant.
      *
      * @return array An array or collection of VariantInterface
      */
@@ -65,13 +69,6 @@ interface CustomizableProductInterface extends ProductInterface
      * @param Collection
      */
     public function setVariants(Collection $variants);
-
-    /**
-     * Counts all product variants.
-     *
-     * @return integer
-     */
-    public function countVariants();
 
     /**
      * Adds variant.
@@ -97,6 +94,14 @@ interface CustomizableProductInterface extends ProductInterface
     public function hasVariant(VariantInterface $variant);
 
     /**
+     * Is customizable?
+     * This should return true only when product has options.
+     *
+     * @return Boolean
+     */
+    public function hasOptions();
+
+    /**
      * Returns all product options.
      *
      * @return Collection
@@ -109,13 +114,6 @@ interface CustomizableProductInterface extends ProductInterface
      * @param Collection $options
      */
     public function setOptions(Collection $options);
-
-    /**
-     * Counts all product options.
-     *
-     * @return integer
-     */
-    public function countOptions();
 
     /**
      * Adds option.
@@ -153,13 +151,6 @@ interface CustomizableProductInterface extends ProductInterface
      * @param Collection of ProductPropertyInterface
      */
     public function setProperties(Collection $properties);
-
-    /**
-     * Counts all product product properties.
-     *
-     * @return integer
-     */
-    public function countProperties();
 
     /**
      * Adds product property.

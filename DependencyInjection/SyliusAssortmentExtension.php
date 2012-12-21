@@ -36,20 +36,14 @@ class SyliusAssortmentExtension extends Extension
         $config = $processor->processConfiguration($configuration, $config);
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config/container'));
 
-        $this->loadDriver($config['driver'], $config, $container, $loader);
+        $driver = $config['driver'];
 
-        $container->setParameter('sylius_assortment.driver', $config['driver']);
+        $this->loadDriver($driver, $config, $container, $loader);
+
+        $container->setParameter('sylius_assortment.driver', $driver);
         $container->setParameter('sylius_assortment.engine', $config['engine']);
 
-        $this->remapParametersNamespaces($config['classes'], $container, array(
-            'controller' => 'sylius_assortment.controller.%s.class',
-            'repository' => 'sylius_assortment.repository.%s.class',
-            'model'      => 'sylius_assortment.model.%s.class',
-        ));
-
-        $this->remapParametersNamespaces($config['classes']['form'], $container, array(
-            'type' => 'sylius_assortment.form.type.%s.class'
-        ));
+        $this->mapClassParameters($config['classes'], $container);
     }
 
     /**
@@ -65,73 +59,43 @@ class SyliusAssortmentExtension extends Extension
     protected function loadDriver($driver, array $config, ContainerBuilder $container, XmlFileLoader $loader)
     {
         if (!in_array($driver, SyliusAssortmentBundle::getSupportedDrivers())) {
-            throw new \InvalidArgumentException(sprintf('Driver "%s" is unsupported for this extension', $driver));
+            throw new \InvalidArgumentException(sprintf('Driver "%s" is unsupported by SyliusAssortmentBundle', $driver));
         }
 
-        $models = $config['classes']['model'];
+        $classes = $config['classes'];
         $loader->load(sprintf('driver/%s.xml', $driver));
 
         $loader->load('products.xml');
 
-        if (!empty($models['variant'])) {
+        if (!empty($classes['variant'])) {
             $loader->load('variants.xml');
         }
 
-        if (!empty($models['option'])) {
+        if (!empty($classes['option'])) {
             $loader->load('options.xml');
         }
 
-        if (!empty($models['property'])) {
+        if (!empty($classes['property'])) {
             $loader->load('properties.xml');
         }
 
-        if (!empty($models['prototype'])) {
+        if (!empty($classes['prototype'])) {
             $loader->load('prototypes.xml');
         }
     }
 
     /**
-     * Remap parameters.
+     * Remap class parameters.
      *
-     * @param array            $config
+     * @param array            $classes
      * @param ContainerBuilder $container
-     * @param array            $map
      */
-    protected function remapParameters(array $config, ContainerBuilder $container, array $map)
+    protected function mapClassParameters(array $classes, ContainerBuilder $container)
     {
-        foreach ($map as $name => $paramName) {
-            if (isset($config[$name])) {
-                $container->setParameter($paramName, $config[$name]);
-            }
-        }
-    }
-
-    /**
-     * Remap parameter namespaces.
-     *
-     * @param array            $config
-     * @param ContainerBuilder $container
-     * @param array            $namespaces
-     */
-    protected function remapParametersNamespaces(array $config, ContainerBuilder $container, array $namespaces)
-    {
-        foreach ($namespaces as $ns => $map) {
-            if ($ns) {
-                if (!isset($config[$ns])) {
-                    continue;
-                }
-                $namespaceConfig = $config[$ns];
-            } else {
-                $namespaceConfig = $config;
-            }
-            if (is_array($map)) {
-                $this->remapParameters($namespaceConfig, $container, $map);
-            } else {
-                foreach ($namespaceConfig as $name => $value) {
-                    if (null !== $value) {
-                        $container->setParameter(sprintf($map, $name), $value);
-                    }
-                }
+        foreach ($classes as $model => $serviceClasses) {
+            foreach ($serviceClasses as $service => $class) {
+                $service = $service === 'form' ? 'form.type' : $service;
+                $container->setParameter(sprintf('sylius_assortment.%s.%s.class', $service, $model), $class);
             }
         }
     }

@@ -12,6 +12,7 @@
 namespace Sylius\Bundle\AssortmentBundle\Form\Type;
 
 use Symfony\Component\Form\FormBuilderInterface;
+use Sylius\Bundle\AssortmentBundle\Form\EventListener\BuildCustomizableProductFormListener;
 
 /**
  * Customizable product form type.
@@ -30,11 +31,8 @@ class CustomizableProductType extends ProductType
         $builder
             ->remove('sku')
             ->remove('availableOn')
-            ->add('masterVariant', 'sylius_assortment_variant', array('master' => true))
-            ->add('options', 'sylius_assortment_option_choice', array(
-                'required' => false,
-                'multiple' => true,
-                'label'    => 'sylius_assortment.label.product.options'
+            ->add('masterVariant', 'sylius_assortment_variant', array(
+                'master'       => true,
             ))
             ->add('properties', 'collection', array(
                 'required'     => false,
@@ -42,6 +40,7 @@ class CustomizableProductType extends ProductType
                 'allow_add'    => true,
                 'by_reference' => false
             ))
+            ->addEventSubscriber(new BuildCustomizableProductFormListener($builder->getFormFactory()))
         ;
     }
 }

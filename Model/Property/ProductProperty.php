@@ -48,6 +48,11 @@ class ProductProperty implements ProductPropertyInterface
      */
     protected $value;
 
+    public function __toString()
+    {
+        return $this->value;
+    }
+
     /**
      * {@inheritdoc}
      */

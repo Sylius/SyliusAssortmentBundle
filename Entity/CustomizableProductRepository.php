@@ -23,26 +23,17 @@ class CustomizableProductRepository extends EntityRepository
     protected function getQueryBuilder()
     {
         return parent::getQueryBuilder()
-            ->select('p, mv, v, o, ov, ppr, pr')
-            ->join('p.masterVariant', 'mv')
-            ->leftJoin('p.variants', 'v')
-            ->leftJoin('p.options', 'o')
-            ->leftJoin('o.values', 'ov')
-            ->leftJoin('p.properties', 'ppr')
-            ->leftJoin('ppr.property', 'pr')
-        ;
-    }
-
-    protected function getCollectionQueryBuilder()
-    {
-        return parent::getQueryBuilder()
-            ->select('p, mv')
-            ->leftJoin('p.masterVariant', 'mv')
+            ->select('product, variant, option, optionValue, productProperty, property')
+            ->leftJoin('product.variants', 'variant')
+            ->leftJoin('product.options', 'option')
+            ->leftJoin('option.values', 'optionValue')
+            ->leftJoin('product.properties', 'productProperty')
+            ->leftJoin('productProperty.property', 'property')
         ;
     }
 
     protected function getAlias()
     {
-        return 'p';
+        return 'product';
     }
 }

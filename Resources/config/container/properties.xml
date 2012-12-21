@@ -14,15 +14,16 @@
 <container xmlns="http://symfony.com/schema/dic/services"
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xsi:schemaLocation="http://symfony.com/schema/dic/services
-                               http://symfony.com/schema/dic/services/services-1.0.xsd"
->
+                               http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
+        <parameter key="sylius_assortment.form.type.product_property.class">Sylius\Bundle\AssortmentBundle\Form\Type\ProductPropertyType</parameter>
+
         <parameter key="sylius_assortment.form.choice_list.property.class">Sylius\Bundle\AssortmentBundle\Form\ChoiceList\PropertyChoiceList</parameter>
+        <parameter key="sylius_assortment.form.type.property_choice.class">Sylius\Bundle\AssortmentBundle\Form\Type\PropertyChoiceType</parameter>
     </parameters>
 
     <services>
-        <!-- controllers. -->
         <service id="sylius_assortment.controller.property" class="%sylius_assortment.controller.property.class%">
             <argument>sylius_assortment</argument>
             <argument>property</argument>
@@ -32,21 +33,20 @@
             </call>
         </service>
 
-        <!-- forms. -->
         <service id="sylius_assortment.form.type.property" class="%sylius_assortment.form.type.property.class%">
             <argument>%sylius_assortment.model.property.class%</argument>
             <tag name="form.type" alias="sylius_assortment_property" />
         </service>
-        <service id="sylius_assortment.form.type.product_property" class="%sylius_assortment.form.type.product_property.class%">
-            <argument>%sylius_assortment.model.product_property.class%</argument>
-            <tag name="form.type" alias="sylius_assortment_product_property" />
+        <service id="sylius_assortment.form.choice_list.property" class="%sylius_assortment.form.choice_list.property.class%">
+            <argument type="service" id="sylius_assortment.repository.property" />
         </service>
         <service id="sylius_assortment.form.type.property_choice" class="%sylius_assortment.form.type.property_choice.class%">
             <argument type="service" id="sylius_assortment.form.choice_list.property" />
             <tag name="form.type" alias="sylius_assortment_property_choice" />
         </service>
-        <service id="sylius_assortment.form.choice_list.property" class="%sylius_assortment.form.choice_list.property.class%">
-            <argument type="service" id="sylius_assortment.repository.property" />
+        <service id="sylius_assortment.form.type.product_property" class="%sylius_assortment.form.type.product_property.class%">
+            <argument>%sylius_assortment.model.product_property.class%</argument>
+            <tag name="form.type" alias="sylius_assortment_product_property" />
         </service>
     </services>
 

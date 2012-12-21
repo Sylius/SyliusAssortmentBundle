@@ -12,7 +12,10 @@
 namespace Sylius\Bundle\AssortmentBundle\Model;
 
 /**
- * Model for products.
+ * This is main model for simplest product.
+ * It can be used to build product catalogs showcases or even
+ * for full ecommerce application, if you do not need features
+ * such as product options, properties, variants and prototypes.
  *
  * @author Paweł Jędrzejewski <pjedrzejewski@diweb.pl>
  */
@@ -101,7 +104,8 @@ class Product implements ProductInterface
      */
     public function __construct()
     {
-        $this->availableOn = new \DateTime("now");
+        $this->availableOn = new \DateTime('now');
+        $this->createdAt = new \DateTime('now');
     }
 
     /**
@@ -181,9 +185,7 @@ class Product implements ProductInterface
      */
     public function isAvailable()
     {
-        $now = new \DateTime("now");
-
-        return $now > $this->availableOn;
+        return new \DateTime('now') >= $this->availableOn;
     }
 
     /**
@@ -200,14 +202,6 @@ class Product implements ProductInterface
     public function setAvailableOn(\DateTime $availableOn)
     {
         $this->availableOn = $availableOn;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function incrementAvailableOn()
-    {
-        $this->availableOn = new \DateTime("now");
     }
 
     /**
@@ -253,22 +247,6 @@ class Product implements ProductInterface
     /**
      * {@inheritdoc}
      */
-    public function setCreatedAt(\DateTime $createdAt)
-    {
-        $this->createdAt = $createdAt;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function incrementCreatedAt()
-    {
-        $this->createdAt = new \DateTime("now");
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function getUpdatedAt()
     {
         return $this->updatedAt;
@@ -277,25 +255,9 @@ class Product implements ProductInterface
     /**
      * {@inheritdoc}
      */
-    public function setUpdatedAt(\DateTime $updatedAt)
-    {
-        $this->updatedAt = $updatedAt;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function incrementUpdatedAt()
-    {
-        $this->updatedAt = new \DateTime("now");
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function isDeleted()
     {
-        return null !== $this->deletedAt;
+        return null !== $this->deletedAt && new \DateTime('now') >= $this->deletedAt;
     }
 
     /**
@@ -312,13 +274,5 @@ class Product implements ProductInterface
     public function setDeletedAt(\DateTime $deletedAt)
     {
         $this->deletedAt = $deletedAt;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function incrementDeletedAt()
-    {
-        $this->deletedAt = new \DateTime("now");
     }
 }

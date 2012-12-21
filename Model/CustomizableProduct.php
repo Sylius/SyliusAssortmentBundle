@@ -25,30 +25,23 @@ use Sylius\Bundle\AssortmentBundle\Model\Variant\VariantInterface;
 class CustomizableProduct extends Product implements CustomizableProductInterface
 {
     /**
-     * Master product variant.
-     *
-     * @var VariantInterface
-     */
-    protected $masterVariant;
-
-    /**
      * Product variants.
      *
-     * @var array
+     * @var Collection
      */
     protected $variants;
 
     /**
      * Product options.
      *
-     * @var array
+     * @var Collection
      */
     protected $options;
 
     /**
      * Product property values.
      *
-     * @var array An array of ProductPropertyInterface objects
+     * @var Collection
      */
     protected $properties;
 
@@ -57,6 +50,8 @@ class CustomizableProduct extends Product implements CustomizableProductInterfac
      */
     public function __construct()
     {
+        parent::__construct();
+
         $this->variants = new ArrayCollection();
         $this->options = new ArrayCollection();
         $this->properties = new ArrayCollection();
@@ -67,11 +62,16 @@ class CustomizableProduct extends Product implements CustomizableProductInterfac
      */
     public function getSku()
     {
-        if (null === $this->masterVariant) {
-            throw new \BadMethodCallException('You can\'t access product SKU without master variant being set');
+        if (null === $this->getMasterVariant()) {
+            throw new \BadMethodCallException('You cannot access product SKU without master variant being set');
         }
 
-        return $this->masterVariant->getSku();
+        $sku = $this
+            ->getMasterVariant()
+            ->getSku()
+        ;
+
+        return $this->sku = $sku;
     }
 
     /**
@@ -79,11 +79,49 @@ class CustomizableProduct extends Product implements CustomizableProductInterfac
      */
     public function setSku($sku)
     {
-        if (null === $this->masterVariant) {
-            throw new \BadMethodCallException('You can\'t access product SKU without master variant being set');
+        if (null === $this->getMasterVariant()) {
+            throw new \BadMethodCallException('You cannot access product SKU without master variant being set');
         }
 
-        $this->masterVariant->setSku($sku);
+        $this
+            ->getMasterVariant()
+            ->setSku($sku)
+        ;
+
+        $this->sku = $sku;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function isAvailable()
+    {
+        return $this
+            ->getMasterVariant()
+            ->isAvailable()
+        ;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getAvailableOn()
+    {
+        return $this
+            ->getMasterVariant()
+            ->getAvailableOn()
+        ;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setAvailableOn(\DateTime $availableOn)
+    {
+        $this
+            ->getMasterVariant()
+            ->setAvailableOn($availableOn)
+        ;
     }
 
     /**
@@ -91,7 +129,11 @@ class CustomizableProduct extends Product implements CustomizableProductInterfac
      */
     public function getMasterVariant()
     {
-        return $this->masterVariant;
+        foreach ($this->variants as $variant) {
+            if ($variant->isMaster()) {
+                return $variant;
+            }
+        }
     }
 
     /**
@@ -99,20 +141,24 @@ class CustomizableProduct extends Product implements CustomizableProductInterfac
      */
     public function setMasterVariant(VariantInterface $masterVariant)
     {
+        $this->sku = $masterVariant->getSku();
+
+        if ($this->variants->contains($masterVariant)) {
+            return;
+        }
+
         $masterVariant->setProduct($this);
         $masterVariant->setMaster(true);
 
-        $this->sku = $masterVariant->getSku();
-
-        $this->masterVariant = $masterVariant;
+        $this->variants->add($masterVariant);
     }
 
     /**
      * {@inheritdoc}
      */
-    public function isVaried()
+    public function hasVariants()
     {
-        return 0 !== $this->countVariants();
+        return 0 !== $this->getVariants()->count();
     }
 
     /**
@@ -140,15 +186,11 @@ class CustomizableProduct extends Product implements CustomizableProductInterfac
      */
     public function setVariants(Collection $variants)
     {
-        $this->variants = $variants;
-    }
+        $this->variants->clear();
 
-    /**
-     * {@inheritdoc}
-     */
-    public function countVariants()
-    {
-        return count($this->getVariants());
+        foreach ($variants as $variant) {
+            $this->addVariant($variant);
+        }
     }
 
     /**
@@ -184,14 +226,17 @@ class CustomizableProduct extends Product implements CustomizableProductInterfac
     /**
      * {@inheritdoc}
      */
+    public function hasOptions()
+    {
+        return !$this->options->isEmpty();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function getOptions()
     {
         return $this->options;
-    }
-
-    public function countOptions()
-    {
-        return $this->options->count();
     }
 
     /**
@@ -233,17 +278,6 @@ class CustomizableProduct extends Product implements CustomizableProductInterfac
     /**
      * {@inheritdoc}
      */
-    public function addProperty(ProductPropertyInterface $property)
-    {
-        if (!$this->hasProperty($property)) {
-            $property->setProduct($this);
-            $this->properties->add($property);
-        }
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function getProperties()
     {
         return $this->properties;
@@ -254,12 +288,20 @@ class CustomizableProduct extends Product implements CustomizableProductInterfac
      */
     public function setProperties(Collection $properties)
     {
-        $this->properties = $properties;
+        foreach ($properties as $property) {
+            $this->addProperty($property);
+        }
     }
 
-    public function countProperties()
+    /**
+     * {@inheritdoc}
+     */
+    public function addProperty(ProductPropertyInterface $property)
     {
-        return $this->properties->count();
+        if (!$this->hasProperty($property)) {
+            $property->setProduct($this);
+            $this->properties->add($property);
+        }
     }
 
     /**
@@ -279,37 +321,5 @@ class CustomizableProduct extends Product implements CustomizableProductInterfac
     public function hasProperty(ProductPropertyInterface $property)
     {
         return $this->properties->contains($property);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function isAvailable()
-    {
-        return $this->masterVariant->isAvailable();
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getAvailableOn()
-    {
-        return $this->masterVariant->getAvailableOn();
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setAvailableOn(\DateTime $availableOn)
-    {
-        $this->masterVariant->setAvailableOn($availableOn);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function incrementAvailableOn()
-    {
-        $this->availableOn = new \DateTime("now");
     }
 }

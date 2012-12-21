@@ -12,8 +12,8 @@
 namespace Sylius\Bundle\AssortmentBundle\Validator;
 
 use Doctrine\Common\Persistence\ObjectRepository;
-use Sylius\Bundle\AssortmentBundle\Model\CustomizableProductInterface;
 use Sylius\Bundle\AssortmentBundle\Model\ProductInterface;
+use Symfony\Component\Form\Util\PropertyPath;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 use Symfony\Component\Validator\Exception\UnexpectedTypeException;
@@ -52,21 +52,15 @@ class ProductUniqueValidator extends ConstraintValidator
         }
 
         $product = $value;
+        $propertyPath = new PropertyPath($constraint->property);
 
-        if ($product instanceof CustomizableProductInterface && 'sku' === $constraint->property) {
-            return true;
-        }
+        $criteria = array($constraint->property => $propertyPath->getValue($product));
+        $conflictualProduct = $this->repository->findOneBy($criteria);
 
-        $criteria = array($constraint->property => $product->{'get'.ucfirst($constraint->property)}());
-
-        if (!in_array($this->repository->findOneBy($criteria), array(null, $product))) {
-            $this->setMessage($constraint->message, array(
+        if (null !== $conflictualProduct && $conflictualProduct->getId() !== $product->getId()) {
+            $this->context->addViolation($constraint->message, array(
                 '%property%' => $constraint->property
             ));
-
-            return false;
         }
-
-        return true;
     }
 }

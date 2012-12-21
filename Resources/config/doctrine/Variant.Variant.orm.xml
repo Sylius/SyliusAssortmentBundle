@@ -17,9 +17,22 @@
 
     <mapped-superclass name="Sylius\Bundle\AssortmentBundle\Entity\Variant\Variant" table="sylius_assortment_variant">
         <field name="master" column="is_master" type="boolean" />
-        <field name="sku" column="sku" type="string" nullable="true" />
+        <field name="sku" column="sku" type="string" unique="true" />
         <field name="presentation" column="presentation" type="string" nullable="true" />
         <field name="availableOn" column="available_on" type="datetime" />
+        <many-to-one field="product" target-entity="Sylius\Bundle\SandboxBundle\Entity\Product" inversed-by="variants">
+            <join-column name="product_id" referenced-column-name="id" nullable="false" />
+        </many-to-one>
+        <many-to-many field="options" target-entity="Sylius\Bundle\AssortmentBundle\Model\Option\OptionValueInterface">
+            <join-table name="sylius_assortment_variant_option_value">
+                <join-columns>
+                    <join-column name="variant_id" referenced-column-name="id" nullable="false" unique="false" />
+                </join-columns>
+                <inverse-join-columns>
+                    <join-column name="option_value_id" referenced-column-name="id" nullable="false" unique="false" />
+                </inverse-join-columns>
+            </join-table>
+        </many-to-many>
         <field name="createdAt" column="created_at" type="datetime">
             <gedmo:timestampable on="create"/>
         </field>

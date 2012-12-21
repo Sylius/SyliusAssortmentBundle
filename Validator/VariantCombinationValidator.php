@@ -35,35 +35,37 @@ class VariantCombinationValidator extends ConstraintValidator
         $variant = $value;
         $product = $variant->getProduct();
 
-        if (0 === $product->countVariants() || $variant->isMaster()) {
-            return true;
+        if (!$product->hasVariants() || $variant->isMaster()) {
+            return;
         }
 
         $matches = false;
-
         $combination = array();
+
         foreach ($variant->getOptions() as $option) {
             $combination[] = $option;
         }
+
         foreach ($product->getVariants() as $existingVariant) {
-            if ($variant !== $existingVariant) {
-                $matches = true;
-                foreach ($combination as $option) {
-                    if (!$existingVariant->hasOption($option)) {
-                        $matches = false;
-                    }
-                }
-                if ($matches) {
-                    break;
+            if ($variant === $existingVariant) {
+                continue;
+            }
+
+            $matches = true;
+
+            foreach ($combination as $option) {
+                if (!$existingVariant->hasOption($option)) {
+                    $matches = false;
                 }
             }
+
+            if ($matches) {
+                break;
+            }
         }
+
         if ($matches) {
-            $this->setMessage($constraint->message);
-
-            return false;
+            $this->context->addViolation($constraint->message);
         }
-
-        return true;
     }
 }

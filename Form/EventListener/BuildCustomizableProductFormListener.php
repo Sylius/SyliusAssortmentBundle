@@ -17,12 +17,11 @@ use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\FormFactoryInterface;
 
 /**
- * Form event listener that builds variant form dynamically based on
- * product data.
+ * If product has variants, we should not be able to change its options.
  *
  * @author Paweł Jędrzejewski <pjedrzejewski@diweb.pl>
  */
-class BuildVariantTypeListener implements EventSubscriberInterface
+class BuildCustomizableProductFormListener implements EventSubscriberInterface
 {
     /**
      * Form factory.
@@ -50,30 +49,27 @@ class BuildVariantTypeListener implements EventSubscriberInterface
     }
 
     /**
-     * Builds proper variant form after setting the product.
+     * Removes some of the fields when editing the product.
      *
      * @param DataEvent $event
      */
     public function preSetData(DataEvent $event)
     {
-        $variant = $event->getData();
+        $product = $event->getData();
         $form = $event->getForm();
 
-        if (null === $variant) {
+        if (null === $product) {
             return;
         }
 
-        // Get related product.
-        $product = $variant->getProduct();
+        if (!$product->hasVariants()) {
+            $optionsField = $this->factory->createNamed('options', 'sylius_assortment_option_choice', $product->getOptions(), array(
+                'required' => false,
+                'multiple' => true,
+                'label'    => 'sylius_assortment.label.product.options'
+            ));
 
-        // If we edit variant, disable option selection.
-        $disabled = null !== $variant->getId();
-
-        if ($product->isVaried()) {
-            $form->add($this->factory->createNamed('options', 'sylius_assortment_option_value_collection', $variant->getOptions(), array(
-                'options'  => $product->getOptions(),
-                'disabled' => $disabled
-            )));
+            $form->add($optionsField);
         }
     }
 }

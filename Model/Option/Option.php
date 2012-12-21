@@ -71,6 +71,7 @@ class Option implements OptionInterface
     public function __construct()
     {
         $this->values = new ArrayCollection();
+        $this->createdAt = new \DateTime('now');
     }
 
     /**
@@ -132,14 +133,6 @@ class Option implements OptionInterface
     /**
      * {@inheritdoc}
      */
-    public function countValues()
-    {
-        return count($this->values);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function addValue(OptionValueInterface $value)
     {
         if (!$this->hasValue($value)) {
@@ -178,40 +171,8 @@ class Option implements OptionInterface
     /**
      * {@inheritdoc}
      */
-    public function setCreatedAt(\DateTime $createdAt)
-    {
-        $this->createdAt = $createdAt;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function incrementCreatedAt()
-    {
-        $this->createdAt = new \DateTime();
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function getUpdatedAt()
     {
         return $this->updatedAt;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setUpdatedAt(\DateTime $updatedAt)
-    {
-        $this->updatedAt = $updatedAt;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function incrementUpdatedAt()
-    {
-        $this->updatedAt = new \DateTime();
     }
 }

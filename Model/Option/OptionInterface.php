@@ -72,13 +72,6 @@ interface OptionInterface
     public function setValues(Collection $optionValues);
 
     /**
-     * Counts all option values.
-     *
-     * @return integer
-     */
-    public function countValues();
-
-    /**
      * Adds option value.
      *
      * @param OptionValueInterface $optionValue
@@ -109,33 +102,9 @@ interface OptionInterface
     public function getCreatedAt();
 
     /**
-     * Set creation time.
-     *
-     * @param DateTime $createdAt
-     */
-    public function setCreatedAt(\DateTime $createdAt);
-
-    /**
-     * Set creation time to now.
-     */
-    public function incrementCreatedAt();
-
-    /**
      * Get the time of last update.
      *
      * @return DateTime
      */
     public function getUpdatedAt();
-
-    /**
-     * Set last time update.
-     *
-     * @param DateTime $updatedAt
-     */
-    public function setUpdatedAt(\DateTime $updatedAt);
-
-    /**
-     * Set last update time to now.
-     */
-    public function incrementUpdatedAt();
 }

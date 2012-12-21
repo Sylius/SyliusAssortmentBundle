@@ -2,24 +2,6 @@
 # (c) Paweł Jędrzejewski
 
 sylius_assortment:
-    flash:
-        product:
-            created: "Product has been created"
-            updated: "Changes have been saved"
-            deleted: "Product has been deleted"
-            duplicated: "Product has been cloned"
-        option:
-            created: "Option has been created"
-            updated: "Changes have been saved"
-            deleted: "Option has been deleted"
-        property:
-            created: "Property has been created"
-            updated: "Changes have been saved"
-            deleted: "Property has been deleted"
-        prototype:
-            created: "Prototype has been created"
-            updated: "Changes have been saved"
-            deleted: "Prototype has been deleted"
     label:
         product:
             sku: "SKU"

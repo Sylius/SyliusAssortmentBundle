@@ -80,8 +80,7 @@ class ProductType extends AbstractType
     {
         $resolver
             ->setDefaults(array(
-                'prototype'  => null,
-                'data_class' => $this->dataClass,
+                'data_class' => $this->dataClass
             ))
         ;
     }

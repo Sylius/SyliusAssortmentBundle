@@ -40,14 +40,14 @@ class Prototype implements PrototypeInterface
     /**
      * Product properties.
      *
-     * @var array
+     * @var Collection
      */
     protected $properties;
 
     /**
      * Product options.
      *
-     * @var array
+     * @var Collection
      */
     protected $options;
 
@@ -72,6 +72,7 @@ class Prototype implements PrototypeInterface
     {
         $this->properties = new ArrayCollection();
         $this->options = new ArrayCollection();
+        $this->createdAt = new \DateTime('now');
     }
 
     /**
@@ -117,14 +118,6 @@ class Prototype implements PrototypeInterface
     /**
      * {@inheritdoc}
      */
-    public function countProperties()
-    {
-        return $this->properties->count();
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function addProperty(PropertyInterface $property)
     {
         if (!$this->hasProperty($property)) {
@@ -163,15 +156,7 @@ class Prototype implements PrototypeInterface
      */
     public function setOptions(Collection $options)
     {
-        return $this->options;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function countOptions()
-    {
-        return $this->options->count();
+        $this->options = $options;
     }
 
     /**
@@ -213,40 +198,8 @@ class Prototype implements PrototypeInterface
     /**
      * {@inheritdoc}
      */
-    public function setCreatedAt(\DateTime $createdAt)
-    {
-        $this->createdAt = $createdAt;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function incrementCreatedAt()
-    {
-        $this->createdAt = new \DateTime();
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function getUpdatedAt()
     {
         return $this->updatedAt;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setUpdatedAt(\DateTime $updatedAt)
-    {
-        $this->updatedAt = $updatedAt;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function incrementUpdatedAt()
-    {
-        $this->updatedAt = new \DateTime();
     }
 }

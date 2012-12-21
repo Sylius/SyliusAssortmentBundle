@@ -17,6 +17,7 @@ use Sylius\Bundle\AssortmentBundle\Model\ProductInterface;
 
 /**
  * Product variant interface.
+ *
  * It's related only to products that implement CustomizableProductInterface or FluidProductInterface.
  * Allows setting values for different variations of product options.
  * If some products don't need to have such features, they simply have only one master variant.
@@ -55,6 +56,7 @@ interface VariantInterface
 
     /**
      * Get presentation.
+     *
      * This should be generated from option values
      * when no other is set.
      *
@@ -70,14 +72,7 @@ interface VariantInterface
     public function setPresentation($presentation);
 
     /**
-     * Get generated label for variant choice forms.
-     *
-     * @return string
-     */
-    public function getLabel();
-
-    /**
-     * Get master product.
+     * Get product.
      *
      * @return ProductInterface
      */
@@ -103,13 +98,6 @@ interface VariantInterface
      * @param Collection $options
      */
     public function setOptions(Collection $options);
-
-    /**
-     * Counts all variant options.
-     *
-     * @return integer
-     */
-    public function countOptions();
 
     /**
      * Adds option value.
@@ -154,28 +142,11 @@ interface VariantInterface
     public function setAvailableOn(\DateTime $availableOn);
 
     /**
-     * Make available now.
-     */
-    public function incrementAvailableOn();
-
-    /**
      * Get creation time.
      *
      * @return DateTime
      */
     public function getCreatedAt();
-
-    /**
-     * Set creation time.
-     *
-     * @param DateTime $createdAt
-     */
-    public function setCreatedAt(\DateTime $createdAt);
-
-    /**
-     * Set creation time to now.
-     */
-    public function incrementCreatedAt();
 
     /**
      * Get the time of last update.
@@ -185,16 +156,11 @@ interface VariantInterface
     public function getUpdatedAt();
 
     /**
-     * Set last time update.
+     * Is variant deleted?
      *
-     * @param DateTime $updatedAt
+     * @return Boolean
      */
-    public function setUpdatedAt(\DateTime $updatedAt);
-
-    /**
-     * Set last update time to now.
-     */
-    public function incrementUpdatedAt();
+    public function isDeleted();
 
     /**
      * Get the time of deletion.
@@ -210,9 +176,4 @@ interface VariantInterface
      * @param DateTime $deletedAt
      */
     public function setDeletedAt(\DateTime $deletedAt);
-
-    /**
-     * Set deletion time to now.
-     */
-    public function incrementDeletedAt();
 }

@@ -21,7 +21,7 @@ use Sylius\Bundle\AssortmentBundle\Model\ProductInterface;
  *
  * @author Paweł Jędrzejewski <pjedrzejewski@diweb.pl>
  */
-abstract class Variant implements VariantInterface
+class Variant implements VariantInterface
 {
     /**
      * Variant id.
@@ -100,7 +100,8 @@ abstract class Variant implements VariantInterface
     {
         $this->master = false;
         $this->options = new ArrayCollection();
-        $this->availableOn = new \DateTime("now");
+        $this->availableOn = new \DateTime('now');
+        $this->createdAt = new \DateTime('now');
     }
 
     /**
@@ -162,24 +163,6 @@ abstract class Variant implements VariantInterface
     /**
      * {@inheritdoc}
      */
-    public function getLabel()
-    {
-        if (null !== $this->presentation) {
-            return $this->presentation;
-        }
-
-        $label = '';
-
-        foreach ($this->options as $option) {
-            $label = ' '.$option->getPresentation().': '.$option->getValue();
-        }
-
-        return $label;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function getProduct()
     {
         return $this->product;
@@ -207,14 +190,6 @@ abstract class Variant implements VariantInterface
     public function setOptions(Collection $options)
     {
         $this->options = $options;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function countOptions()
-    {
-        return count($this->options);
     }
 
     /**
@@ -250,9 +225,7 @@ abstract class Variant implements VariantInterface
      */
     public function isAvailable()
     {
-        $now = new \DateTime("now");
-
-        return $now > $this->availableOn;
+        return new \DateTime('now') >= $this->availableOn;
     }
 
     /**
@@ -274,35 +247,9 @@ abstract class Variant implements VariantInterface
     /**
      * {@inheritdoc}
      */
-    public function incrementAvailableOn()
-    {
-        $this->availableOn = new \DateTime("now");
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function getCreatedAt()
     {
         return $this->createdAt;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setCreatedAt(\DateTime $createdAt)
-    {
-        $this->createdAt = $createdAt;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function incrementCreatedAt()
-    {
-        if (null === $this->createdAt) {
-            $this->createdAt = new \DateTime();
-        }
     }
 
     /**
@@ -316,17 +263,9 @@ abstract class Variant implements VariantInterface
     /**
      * {@inheritdoc}
      */
-    public function setUpdatedAt(\DateTime $updatedAt)
+    public function isDeleted()
     {
-        $this->updatedAt = $updatedAt;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function incrementUpdatedAt()
-    {
-        $this->updatedAt = new \DateTime();
+        return null !== $this->deletedAt && new \DateTime('now') >= $this->deletedAt;
     }
 
     /**
@@ -342,14 +281,6 @@ abstract class Variant implements VariantInterface
      */
     public function setDeletedAt(\DateTime $deletedAt)
     {
-        $this->deletedAt = $updatedAt;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function incrementDeletedAt()
-    {
-        $this->deletedAt = new \DateTime("now");
+        $this->deletedAt = $deletedAt;
     }
 }

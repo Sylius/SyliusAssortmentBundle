@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 
 <!--
 
@@ -14,8 +14,7 @@
 <constraint-mapping xmlns="http://symfony.com/schema/dic/constraint-mapping"
                     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                     xsi:schemaLocation="http://symfony.com/schema/dic/constraint-mapping
-                                        http://symfony.com/schema/dic/services/constraint-mapping-1.0.xsd"
->
+                                        http://symfony.com/schema/dic/services/constraint-mapping-1.0.xsd">
 
     <class name="Sylius\Bundle\AssortmentBundle\Model\Product">
 
@@ -24,11 +23,11 @@
             <option name="message">sylius_assortment.product.sku.unique</option>
         </constraint>
 
-        <property  name="sku">
+        <getter property="sku">
             <constraint name="NotBlank">
                 <option name="message">sylius_assortment.product.sku.not_blank</option>
             </constraint>
-        </property>
+        </getter>
         <property name="name">
             <constraint name="NotBlank">
                 <option name="message">sylius_assortment.product.name.not_blank</option>
@@ -54,9 +53,9 @@
     </class>
 
     <class name="Sylius\Bundle\AssortmentBundle\Model\CustomizableProduct">
-        <property name="masterVariant">
+        <getter property="masterVariant">
             <constraint name="Valid" />
-        </property>
+        </getter>
         <property name="properties">
             <constraint name="Valid" />
         </property>
