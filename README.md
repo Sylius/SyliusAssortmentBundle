@@ -1,8 +1,8 @@
-SyliusAssortmentBundle [![Build status...](https://secure.travis-ci.org/Sylius/SyliusAssortmentBundle.png)](http://travis-ci.org/Sylius/SyliusAssortmentBundle)
+SyliusAssortmentBundle [![Build status...](https://secure.travis-ci.org/Sylius/SyliusAssortmentBundle.png?branch=master)](http://travis-ci.org/Sylius/SyliusAssortmentBundle)
 ======================
 
-Products system for [**Symfony2**](http://symfony.com) applications.  
-It supports simple product catalogs, as well stores with requirement for fully customizable variants, options, properties and handy prototypes.  
+Products system for [**Symfony2**](http://symfony.com) applications. 
+It supports simple product catalogs, as well as stores with requirement for fully customizable variants, options, properties and handy prototypes. 
 It was heavily inspired by [Spree product and variants system](http://guides.spreecommerce.com/products_and_variants.html).
 
 
