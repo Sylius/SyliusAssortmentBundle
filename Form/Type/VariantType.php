@@ -58,9 +58,7 @@ class VariantType extends AbstractType
                 'label'    => 'sylius_assortment.label.variant.sku'
             ))
             ->add('availableOn', 'datetime', array(
-                'empty_data'  => new \DateTime('today midnight'),
-                'time_widget' => 'single_text',
-                'label'       => 'sylius_assortment.label.variant.available_on'
+                'label' => 'sylius_assortment.label.variant.available_on'
             ))
         ;
 
