@@ -62,7 +62,6 @@
     </class>
 
     <class name="Sylius\Bundle\AssortmentBundle\Model\Variant\Variant">
-
         <constraint name="Sylius\Bundle\AssortmentBundle\Validator\Constraint\VariantCombination" />
 
         <constraint name="Sylius\Bundle\AssortmentBundle\Validator\Constraint\VariantUnique">
@@ -106,6 +105,12 @@
         </property>
         <property name="values">
             <constraint name="Valid" />
+            <constraint name="Count">
+                <option name="min">1</option>
+                <option name="max">99</option>
+                <option name="minMessage">sylius_assortment.option.values.min_count</option>
+                <option name="maxMessage">sylius_assortment.option.values.max_count</option>
+            </constraint>
         </property>
     </class>
 
