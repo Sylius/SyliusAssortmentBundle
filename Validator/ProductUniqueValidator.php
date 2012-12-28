@@ -54,11 +54,16 @@ class ProductUniqueValidator extends ConstraintValidator
         $product = $value;
         $propertyPath = new PropertyPath($constraint->property);
 
+        // Avoid double validation of SKU on customizable products.
+        if ('sku' === $constraint->property && null === $product->getId() || $product->hasVariants()) {
+            return;
+        }
+
         $criteria = array($constraint->property => $propertyPath->getValue($product));
         $conflictualProduct = $this->repository->findOneBy($criteria);
 
         if (null !== $conflictualProduct && $conflictualProduct->getId() !== $product->getId()) {
-            $this->context->addViolation($constraint->message, array(
+            $this->context->addViolationAtSubPath($constraint->property, $constraint->message, array(
                 '%property%' => $constraint->property
             ));
         }
