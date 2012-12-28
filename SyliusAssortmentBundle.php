@@ -18,7 +18,7 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 /**
  * Product management bundle with highly flexible architecture.
- * Supports simple product catalogs and complex feature-right stores
+ * Supports simple product catalogs and complex feature-rich stores
  * with options, variants, properties and prototypes.
  *
  * @author Paweł Jędrzejewski <pjedrzejewski@diweb.pl>
