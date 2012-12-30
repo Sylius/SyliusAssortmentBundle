@@ -55,7 +55,7 @@ class VariantType extends AbstractType
                 'label'    => 'sylius_assortment.label.variant.presentation'
             ))
             ->add('sku', 'text', array(
-                'label'    => 'sylius_assortment.label.variant.sku'
+                'label' => 'sylius_assortment.label.variant.sku'
             ))
             ->add('availableOn', 'datetime', array(
                 'label' => 'sylius_assortment.label.variant.available_on'

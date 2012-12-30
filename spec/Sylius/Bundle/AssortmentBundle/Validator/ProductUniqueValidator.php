@@ -39,17 +39,16 @@ class ProductUniqueValidator extends ObjectBehavior
     function it_should_add_violation_if_product_with_given_property_value_already_exists($productRepository, $product, $conflictualProduct, $context)
     {
         $constraint = new ProductUnique(array(
-            'property' => 'sku',
-            'message'  => 'Product with given sku already exists'
+            'property' => 'name',
+            'message'  => 'Product with given name already exists'
         ));
 
-        $context->addViolation('Product with given sku already exists', ANY_ARGUMENT)->shouldBeCalled();
-        $product->getSku()->willReturn('IPHONE5WHITE');
-
-        $productRepository->findOneBy(array('sku' => 'IPHONE5WHITE'))->shouldBeCalled()->willReturn($conflictualProduct);
-
+        $product->getName()->willReturn('iPhone');
+        $productRepository->findOneBy(array('name' => 'iPhone'))->shouldBeCalled()->willReturn($conflictualProduct);
         $product->getId()->willReturn(1);
         $conflictualProduct->getId()->willReturn(3);
+
+        $context->addViolationAtSubPath('name', 'Product with given name already exists', ANY_ARGUMENT)->shouldBeCalled();
 
         $this->validate($product, $constraint);
     }
@@ -61,10 +60,10 @@ class ProductUniqueValidator extends ObjectBehavior
             'message'  => 'Product with given name already exists'
         ));
 
-        $context->addViolation(ANY_ARGUMENTS)->shouldNotBeCalled();
         $product->getName()->willReturn('iPhone');
-
         $productRepository->findOneBy(array('name' => 'iPhone'))->shouldBeCalled()->willReturn(null);
+
+        $context->addViolationAtSubPath(ANY_ARGUMENTS)->shouldNotBeCalled();
 
         $this->validate($product, $constraint);
     }
@@ -79,13 +78,12 @@ class ProductUniqueValidator extends ObjectBehavior
             'message'  => 'Product with given name already exists'
         ));
 
-        $context->addViolation(ANY_ARGUMENTS)->shouldNotBeCalled();
         $product->getName()->willReturn('iPhone');
-
         $productRepository->findOneBy(array('name' => 'iPhone'))->shouldBeCalled()->willReturn($conflictualProduct);
-
         $product->getId()->willReturn(3);
         $conflictualProduct->getId()->willReturn(3);
+
+        $context->addViolationAtSubPath(ANY_ARGUMENTS)->shouldNotBeCalled();
 
         $this->validate($product, $constraint);
     }

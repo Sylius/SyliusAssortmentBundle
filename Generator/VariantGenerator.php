@@ -53,6 +53,10 @@ class VariantGenerator implements VariantGeneratorInterface
      */
     public function generate(CustomizableProductInterface $product)
     {
+        if (!$product->hasOptions()) {
+            throw new \InvalidArgumentException('Cannot generate variants for product without options');
+        }
+
         $optionSet = array();
         $optionMap = array();
 

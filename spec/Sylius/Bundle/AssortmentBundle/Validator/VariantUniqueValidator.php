@@ -43,13 +43,12 @@ class VariantUniqueValidator extends ObjectBehavior
             'message'  => 'Variant with given sku already exists'
         ));
 
-        $context->addViolation('Variant with given sku already exists', ANY_ARGUMENT)->shouldBeCalled();
         $variant->getSku()->willReturn('IPHONE5WHITE');
-
         $variantRepository->findOneBy(array('sku' => 'IPHONE5WHITE'))->shouldBeCalled()->willReturn($conflictualVariant);
-
         $variant->getId()->willReturn(1);
         $conflictualVariant->getId()->willReturn(3);
+
+        $context->addViolationAtSubPath('sku', 'Variant with given sku already exists', ANY_ARGUMENT)->shouldBeCalled();
 
         $this->validate($variant, $constraint);
     }
@@ -61,10 +60,10 @@ class VariantUniqueValidator extends ObjectBehavior
             'message'  => 'Variant with given sku already exists'
         ));
 
-        $context->addViolation(ANY_ARGUMENTS)->shouldNotBeCalled();
         $variant->getSku()->willReturn('111AAA');
-
         $variantRepository->findOneBy(array('sku' => '111AAA'))->shouldBeCalled()->willReturn(null);
+
+        $context->addViolationAtSubPath(ANY_ARGUMENTS)->shouldNotBeCalled();
 
         $this->validate($variant, $constraint);
     }
@@ -79,13 +78,12 @@ class VariantUniqueValidator extends ObjectBehavior
             'message'  => 'Variant with given sku already exists'
         ));
 
-        $context->addViolation(ANY_ARGUMENTS)->shouldNotBeCalled();
         $variant->getSku()->willReturn('111AAA');
-
         $variantRepository->findOneBy(array('sku' => '111AAA'))->shouldBeCalled()->willReturn($conflictualVariant);
-
         $variant->getId()->willReturn(3);
         $conflictualVariant->getId()->willReturn(3);
+
+        $context->addViolationAtSubPath(ANY_ARGUMENTS)->shouldNotBeCalled();
 
         $this->validate($variant, $constraint);
     }

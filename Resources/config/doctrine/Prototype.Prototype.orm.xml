@@ -17,6 +17,26 @@
 
     <mapped-superclass name="Sylius\Bundle\AssortmentBundle\Entity\Prototype\Prototype" table="sylius_assortment_prototype">
         <field name="name" column="name" type="string" />
+        <many-to-many field="options" target-entity="Sylius\Bundle\AssortmentBundle\Model\Option\OptionInterface">
+            <join-table name="sylius_assortment_prototype_option">
+                <join-columns>
+                    <join-column name="prototype_id" referenced-column-name="id" nullable="false" unique="false" />
+                </join-columns>
+                <inverse-join-columns>
+                    <join-column name="option_id" referenced-column-name="id" nullable="false" unique="false" />
+                </inverse-join-columns>
+            </join-table>
+        </many-to-many>
+        <many-to-many field="properties" target-entity="Sylius\Bundle\AssortmentBundle\Model\Property\PropertyInterface">
+            <join-table name="sylius_assortment_prototype_property">
+                <join-columns>
+                    <join-column name="prototype_id" referenced-column-name="id" nullable="false" unique="false" />
+                </join-columns>
+                <inverse-join-columns>
+                    <join-column name="property_id" referenced-column-name="id" nullable="false" unique="false" />
+                </inverse-join-columns>
+            </join-table>
+        </many-to-many>
         <field name="createdAt" column="created_at" type="datetime">
             <gedmo:timestampable on="create"/>
         </field>

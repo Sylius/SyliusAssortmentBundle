@@ -14,7 +14,7 @@ namespace Sylius\Bundle\AssortmentBundle\Entity;
 use Sylius\Bundle\AssortmentBundle\Model\CustomizableProduct as BaseCustomizableProduct;
 
 /**
- * Base customizable product entity.
+ * Customizable product mapped superclass.
  *
  * @author Paweł Jędrzejewski <pjedrzejewski@diweb.pl>
  */

@@ -9,15 +9,13 @@
  * file that was distributed with this source code.
  */
 
-namespace Sylius\Bundle\AssortmentBundle\Entity\Property;
-
-use Sylius\Bundle\AssortmentBundle\Model\Property\Property as BaseProperty;
+namespace Sylius\Bundle\AssortmentBundle\Entity\Option;
 
 /**
- * Property mapped super-class.
+ * Option default entity.
  *
  * @author Paweł Jędrzejewski <pjedrzejewski@diweb.pl>
  */
-class Property extends BaseProperty
+class DefaultOption extends Option
 {
 }

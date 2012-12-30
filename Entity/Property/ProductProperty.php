@@ -14,7 +14,7 @@ namespace Sylius\Bundle\AssortmentBundle\Entity\Property;
 use Sylius\Bundle\AssortmentBundle\Model\Property\ProductProperty as BaseProductProperty;
 
 /**
- * Product property property entity.
+ * Product property mapped superclass.
  *
  * @author Paweł Jędrzejewski <pjedrzejewski@diweb.pl>
  */

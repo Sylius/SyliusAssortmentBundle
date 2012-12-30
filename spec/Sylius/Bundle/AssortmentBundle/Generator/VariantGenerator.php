@@ -29,4 +29,17 @@ class VariantGenerator extends ObjectBehavior
     {
         $this->shouldImplement('Sylius\Bundle\AssortmentBundle\Generator\VariantGeneratorInterface');
     }
+
+    /**
+     * @param Sylius\Bundle\AssortmentBundle\Model\CustomizableProductInterface $product
+     */
+    function it_should_complain_if_product_doesnt_have_any_options($product)
+    {
+        $product->hasOptions()->willReturn(false);
+
+        $this
+            ->shouldThrow('InvalidArgumentException')
+            ->duringGenerate($product)
+        ;
+    }
 }

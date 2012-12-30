@@ -14,7 +14,7 @@ namespace Sylius\Bundle\AssortmentBundle\Entity\Option;
 use Sylius\Bundle\AssortmentBundle\Model\Option\OptionValue as BaseOptionValue;
 
 /**
- * Option value entity.
+ * Option value mapped superclass.
  *
  * @author Paweł Jędrzejewski <pjedrzejewski@diweb.pl>
  */

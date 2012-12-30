@@ -5,11 +5,11 @@ namespace spec\Sylius\Bundle\AssortmentBundle\Entity\Property;
 use PHPSpec2\ObjectBehavior;
 
 /**
- * Product property mapped superclass spec.
+ * Product property default entity spec.
  *
  * @author Paweł Jędrzejewski <pjedrzejewski@diweb.pl>
  */
-class ProductProperty extends ObjectBehavior
+class DefaultProductProperty extends ObjectBehavior
 {
     function it_should_be_initializable()
     {
@@ -21,7 +21,7 @@ class ProductProperty extends ObjectBehavior
         $this->shouldImplement('Sylius\Bundle\AssortmentBundle\Model\Property\ProductPropertyInterface');
     }
 
-    function it_should_extend_the_Sylius_product_property_model()
+    function it_should_extend_the_Sylius_product_property_mapped_superclass()
     {
         $this->shouldHaveType('Sylius\Bundle\AssortmentBundle\Model\Property\ProductProperty');
     }

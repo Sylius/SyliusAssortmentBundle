@@ -66,12 +66,10 @@ class CustomizableProduct extends Product implements CustomizableProductInterfac
             throw new \BadMethodCallException('You cannot access product SKU without master variant being set');
         }
 
-        $sku = $this
+        return $this
             ->getMasterVariant()
             ->getSku()
         ;
-
-        return $this->sku = $sku;
     }
 
     /**
@@ -87,8 +85,6 @@ class CustomizableProduct extends Product implements CustomizableProductInterfac
             ->getMasterVariant()
             ->setSku($sku)
         ;
-
-        $this->sku = $sku;
     }
 
     /**

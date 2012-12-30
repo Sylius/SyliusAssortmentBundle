@@ -13,6 +13,7 @@ namespace Sylius\Bundle\AssortmentBundle\Validator;
 
 use Doctrine\Common\Persistence\ObjectRepository;
 use Sylius\Bundle\AssortmentBundle\Model\ProductInterface;
+use Sylius\Bundle\AssortmentBundle\Model\CustomizableProductInterface;
 use Symfony\Component\Form\Util\PropertyPath;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
@@ -55,7 +56,7 @@ class ProductUniqueValidator extends ConstraintValidator
         $propertyPath = new PropertyPath($constraint->property);
 
         // Avoid double validation of SKU on customizable products.
-        if ('sku' === $constraint->property && null === $product->getId() || $product->hasVariants()) {
+        if ('sku' === $constraint->property && $product instanceof CustomizableProductInterface) {
             return;
         }
 

@@ -21,6 +21,13 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class VariantController extends ResourceController
 {
+    /**
+     * Generate all possible variants for given product id.
+     *
+     * @param Request $request
+     *
+     * @return Response
+     */
     public function generateAction(Request $request)
     {
         if (null === $productId = $request->get('productId')) {
@@ -45,6 +52,9 @@ class VariantController extends ResourceController
         ;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function createNew()
     {
         if (null === $productId = $this->getRequest()->get('productId')) {
@@ -62,11 +72,21 @@ class VariantController extends ResourceController
         return $variant;
     }
 
+    /**
+     * Get product controller.
+     *
+     * @return ResourceController
+     */
     protected function getProductController()
     {
         return $this->get('sylius_assortment.controller.product');
     }
 
+    /**
+     * Get variant generator.
+     *
+     * @return VariantGeneratorInterface
+     */
     protected function getGenerator()
     {
         return $this->getService('generator');

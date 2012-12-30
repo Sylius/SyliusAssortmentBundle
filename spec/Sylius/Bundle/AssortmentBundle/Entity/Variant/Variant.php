@@ -5,7 +5,7 @@ namespace spec\Sylius\Bundle\AssortmentBundle\Entity\Variant;
 use PHPSpec2\ObjectBehavior;
 
 /**
- * Variant entity spec.
+ * Variant mapped superclass spec.
  *
  * @author Paweł Jędrzejewski <pjedrzejewski@diweb.pl>
  */

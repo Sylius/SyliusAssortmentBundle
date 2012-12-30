@@ -9,15 +9,13 @@
  * file that was distributed with this source code.
  */
 
-namespace Sylius\Bundle\AssortmentBundle\Entity\Property;
-
-use Sylius\Bundle\AssortmentBundle\Model\Property\Property as BaseProperty;
+namespace Sylius\Bundle\AssortmentBundle\Entity\Prototype;
 
 /**
- * Property mapped super-class.
+ * Default prototype entity.
  *
  * @author Paweł Jędrzejewski <pjedrzejewski@diweb.pl>
  */
-class Property extends BaseProperty
+class DefaultPrototype extends Prototype
 {
 }

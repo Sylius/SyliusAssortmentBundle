@@ -11,13 +11,11 @@
 
 namespace Sylius\Bundle\AssortmentBundle\Entity\Property;
 
-use Sylius\Bundle\AssortmentBundle\Model\Property\Property as BaseProperty;
-
 /**
- * Property mapped super-class.
+ * Default property entity.
  *
  * @author Paweł Jędrzejewski <pjedrzejewski@diweb.pl>
  */
-class Property extends BaseProperty
+class DefaultProperty extends Property
 {
 }

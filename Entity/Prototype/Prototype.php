@@ -14,7 +14,7 @@ namespace Sylius\Bundle\AssortmentBundle\Entity\Prototype;
 use Sylius\Bundle\AssortmentBundle\Model\Prototype\Prototype as BasePrototype;
 
 /**
- * Prototype entity.
+ * Prototype mapped superclass.
  *
  * @author Paweł Jędrzejewski <pjedrzejewski@diweb.pl>
  */

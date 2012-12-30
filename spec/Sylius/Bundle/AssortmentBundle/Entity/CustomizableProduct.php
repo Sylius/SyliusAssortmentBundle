@@ -5,7 +5,7 @@ namespace spec\Sylius\Bundle\AssortmentBundle\Entity;
 use PHPSpec2\ObjectBehavior;
 
 /**
- * Customizable product entity spec.
+ * Customizable product mapped superlcass spec.
  *
  * @author Paweł Jędrzejewski <pjedrzejewski@diweb.pl>
  */

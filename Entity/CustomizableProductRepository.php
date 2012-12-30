@@ -20,6 +20,9 @@ use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
  */
 class CustomizableProductRepository extends EntityRepository
 {
+    /**
+     * {@inhertitdoc}
+     */
     protected function getQueryBuilder()
     {
         return parent::getQueryBuilder()
@@ -32,6 +35,9 @@ class CustomizableProductRepository extends EntityRepository
         ;
     }
 
+    /**
+     * {@inhertitdoc}
+     */
     protected function getAlias()
     {
         return 'product';

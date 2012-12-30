@@ -14,7 +14,7 @@ namespace Sylius\Bundle\AssortmentBundle\Entity;
 use Sylius\Bundle\AssortmentBundle\Model\Product as BaseProduct;
 
 /**
- * Product entity.
+ * Simple product entity mapped superclass.
  *
  * @author Paweł Jędrzejewski <pjedrzejewski@diweb.pl>
  */

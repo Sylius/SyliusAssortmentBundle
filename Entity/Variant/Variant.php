@@ -14,7 +14,7 @@ namespace Sylius\Bundle\AssortmentBundle\Entity\Variant;
 use Sylius\Bundle\AssortmentBundle\Model\Variant\Variant as BaseVariant;
 
 /**
- * Variant entity.
+ * Variant mapped superclass.
  *
  * @author Paweł Jędrzejewski <pjedrzejewski@diweb.pl>
  */

@@ -71,9 +71,7 @@ class SyliusAssortmentExtension extends Extension
             $loader->load('variants.xml');
         }
 
-        if (!empty($classes['option'])) {
-            $loader->load('options.xml');
-        }
+        $loader->load('options.xml');
 
         if (!empty($classes['property'])) {
             $loader->load('properties.xml');

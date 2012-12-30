@@ -44,9 +44,9 @@ class ProductToIdentifierTransformer extends ObjectBehavior
      */
     function it_should_transform_product_into_its_identifier_value($product)
     {
-        $product->getSku()->willReturn('IPHONE5BLACK');
+        $product->getSku()->willReturn('IPHONE5');
 
-        $this->transform($product)->shouldReturn('IPHONE5BLACK');
+        $this->transform($product)->shouldReturn('IPHONE5');
     }
 
     function it_should_return_null_if_empty_string_reverse_transformed()
@@ -71,11 +71,11 @@ class ProductToIdentifierTransformer extends ObjectBehavior
     function it_should_product_if_found_on_reverse_transform($productRepository, $product)
     {
         $productRepository
-            ->findOneBy(array('sku' => 'IPHONE5BLACK'))
+            ->findOneBy(array('sku' => 'IPHONE5'))
             ->shouldBeCalled()
             ->willReturn($product)
         ;
 
-        $this->reverseTransform('IPHONE5BLACK')->shouldReturn($product);
+        $this->reverseTransform('IPHONE5')->shouldReturn($product);
     }
 }
