@@ -20,7 +20,7 @@
         <field name="sku" column="sku" type="string" unique="true" />
         <field name="presentation" column="presentation" type="string" nullable="true" />
         <field name="availableOn" column="available_on" type="datetime" />
-        <many-to-one field="product" target-entity="Sylius\Bundle\SandboxBundle\Entity\Product" inversed-by="variants">
+        <many-to-one field="product" target-entity="Sylius\Bundle\AssortmentBundle\Model\ProductInterface" inversed-by="variants">
             <join-column name="product_id" referenced-column-name="id" nullable="false" />
         </many-to-one>
         <many-to-many field="options" target-entity="Sylius\Bundle\AssortmentBundle\Model\Option\OptionValueInterface">
