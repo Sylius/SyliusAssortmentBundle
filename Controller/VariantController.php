@@ -13,6 +13,7 @@ namespace Sylius\Bundle\AssortmentBundle\Controller;
 
 use Sylius\Bundle\ResourceBundle\Controller\ResourceController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
  * Variant controller.
