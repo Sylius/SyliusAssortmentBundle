@@ -1,6 +1,10 @@
 CHANGELOG
 =========
 
+### 06-01-2013
+
+* Remove the SKU from product model.
+
 ### 19-12-2012
 
 * Introduce specs with [phpspec2](http://phpspec.net).

@@ -38,12 +38,6 @@ class ProductType extends ObjectBehavior
         ;
 
         $builder
-            ->add('sku', 'text', ANY_ARGUMENT)
-            ->shouldBeCalled()
-            ->willReturn($builder)
-        ;
-
-        $builder
             ->add('description', 'textarea', ANY_ARGUMENT)
             ->shouldBeCalled()
             ->willReturn($builder)

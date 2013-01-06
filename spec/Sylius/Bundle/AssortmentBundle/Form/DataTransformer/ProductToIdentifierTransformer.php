@@ -16,7 +16,7 @@ class ProductToIdentifierTransformer extends ObjectBehavior
      */
     function let($productRepository)
     {
-        $this->beConstructedWith($productRepository, 'sku');
+        $this->beConstructedWith($productRepository, 'name');
     }
 
     function it_should_be_initializable()
@@ -31,11 +31,9 @@ class ProductToIdentifierTransformer extends ObjectBehavior
 
     function it_should_complain_if_not_Sylius_product_transformed()
     {
-        $product = new \stdClass();
-
         $this
             ->shouldThrow('Symfony\Component\Form\Exception\UnexpectedTypeException')
-            ->duringTransform($product)
+            ->duringTransform(new \stdClass())
         ;
     }
 
@@ -44,7 +42,7 @@ class ProductToIdentifierTransformer extends ObjectBehavior
      */
     function it_should_transform_product_into_its_identifier_value($product)
     {
-        $product->getSku()->willReturn('IPHONE5');
+        $product->getName()->willReturn('IPHONE5');
 
         $this->transform($product)->shouldReturn('IPHONE5');
     }
@@ -57,7 +55,7 @@ class ProductToIdentifierTransformer extends ObjectBehavior
     function it_should_return_null_if_product_not_found_on_reverse_transform($productRepository)
     {
         $productRepository
-            ->findOneBy(array('sku' => 'IPHONE5WHITE'))
+            ->findOneBy(array('name' => 'IPHONE5WHITE'))
             ->shouldBeCalled()
             ->willReturn(null)
         ;
@@ -71,7 +69,7 @@ class ProductToIdentifierTransformer extends ObjectBehavior
     function it_should_product_if_found_on_reverse_transform($productRepository, $product)
     {
         $productRepository
-            ->findOneBy(array('sku' => 'IPHONE5'))
+            ->findOneBy(array('name' => 'IPHONE5'))
             ->shouldBeCalled()
             ->willReturn($product)
         ;

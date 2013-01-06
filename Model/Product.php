@@ -29,13 +29,6 @@ class Product implements ProductInterface
     protected $id;
 
     /**
-     * Product SKU.
-     *
-     * @var string
-     */
-    protected $sku;
-
-    /**
      * Product name.
      *
      * @var string
@@ -114,22 +107,6 @@ class Product implements ProductInterface
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getSku()
-    {
-        return $this->sku;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setSku($sku)
-    {
-        $this->sku = $sku;
     }
 
     /**

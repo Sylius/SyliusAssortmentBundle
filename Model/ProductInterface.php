@@ -19,21 +19,6 @@ namespace Sylius\Bundle\AssortmentBundle\Model;
 interface ProductInterface
 {
     /**
-     * Get SKU, which stands for Stock Keeping Unit.
-     * An unique identifier for the product in store.
-     *
-     * @return string
-     */
-    public function getSku();
-
-    /**
-     * Set product SKU.
-     *
-     * @param string $sku The product SKU
-     */
-    public function setSku($sku);
-
-    /**
      * Get product name.
      *
      * @return string

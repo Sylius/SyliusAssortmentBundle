@@ -52,17 +52,6 @@ class Variant extends ObjectBehavior
         $this->getProduct()->shouldReturn(null);
     }
 
-    function it_should_not_have_sku_by_default()
-    {
-        $this->getSku()->shouldReturn(null);
-    }
-
-    function its_sku_should_be_mutable()
-    {
-        $this->setSku('PRODUCT111A');
-        $this->getSku()->shouldReturn('PRODUCT111A');
-    }
-
     function it_should_not_be_master_variant_by_default()
     {
         $this->shouldNotBeMaster();

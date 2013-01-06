@@ -26,17 +26,6 @@ class Product extends ObjectBehavior
         $this->getId()->shouldReturn(null);
     }
 
-    function it_should_not_have_sku_by_default()
-    {
-        $this->getSku()->shouldReturn(null);
-    }
-
-    function its_sku_should_be_mutable()
-    {
-        $this->setSku('PRODUCT111A');
-        $this->getSku()->shouldReturn('PRODUCT111A');
-    }
-
     function it_should_not_have_name_by_default()
     {
         $this->getName()->shouldReturn(null);

@@ -17,17 +17,6 @@
                                         http://symfony.com/schema/dic/services/constraint-mapping-1.0.xsd">
 
     <class name="Sylius\Bundle\AssortmentBundle\Model\Product">
-
-        <constraint name="Sylius\Bundle\AssortmentBundle\Validator\Constraint\ProductUnique">
-            <option name="property">sku</option>
-            <option name="message">sylius_assortment.product.sku.unique</option>
-        </constraint>
-
-        <getter property="sku">
-            <constraint name="NotBlank">
-                <option name="message">sylius_assortment.product.sku.not_blank</option>
-            </constraint>
-        </getter>
         <property name="name">
             <constraint name="NotBlank">
                 <option name="message">sylius_assortment.product.name.not_blank</option>
@@ -56,6 +45,9 @@
         <getter property="masterVariant">
             <constraint name="Valid" />
         </getter>
+        <getter property="variants">
+            <constraint name="Valid" />
+        </getter>
         <property name="properties">
             <constraint name="Valid" />
         </property>
@@ -63,17 +55,6 @@
 
     <class name="Sylius\Bundle\AssortmentBundle\Model\Variant\Variant">
         <constraint name="Sylius\Bundle\AssortmentBundle\Validator\Constraint\VariantCombination" />
-
-        <constraint name="Sylius\Bundle\AssortmentBundle\Validator\Constraint\VariantUnique">
-            <option name="property">sku</option>
-            <option name="message">sylius_assortment.variant.sku.unique</option>
-        </constraint>
-
-        <property  name="sku">
-            <constraint name="NotBlank">
-                <option name="message">sylius_assortment.variant.sku.not_blank</option>
-            </constraint>
-        </property>
     </class>
 
     <class name="Sylius\Bundle\AssortmentBundle\Model\Option\Option">

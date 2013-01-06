@@ -44,12 +44,6 @@ class CustomizableProductType extends ObjectBehavior
         ;
 
         $builder
-            ->add('sku', 'text', ANY_ARGUMENT)
-            ->shouldBeCalled()
-            ->willReturn($builder)
-        ;
-
-        $builder
             ->add('description', 'textarea', ANY_ARGUMENT)
             ->shouldBeCalled()
             ->willReturn($builder)
@@ -69,12 +63,6 @@ class CustomizableProductType extends ObjectBehavior
 
         $builder
             ->add('metaDescription', 'text', ANY_ARGUMENT)
-            ->shouldBeCalled()
-            ->willReturn($builder)
-        ;
-
-        $builder
-            ->remove('sku')
             ->shouldBeCalled()
             ->willReturn($builder)
         ;

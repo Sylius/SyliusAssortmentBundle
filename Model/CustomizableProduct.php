@@ -60,36 +60,6 @@ class CustomizableProduct extends Product implements CustomizableProductInterfac
     /**
      * {@inheritdoc}
      */
-    public function getSku()
-    {
-        if (null === $this->getMasterVariant()) {
-            throw new \BadMethodCallException('You cannot access product SKU without master variant being set');
-        }
-
-        return $this
-            ->getMasterVariant()
-            ->getSku()
-        ;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setSku($sku)
-    {
-        if (null === $this->getMasterVariant()) {
-            throw new \BadMethodCallException('You cannot access product SKU without master variant being set');
-        }
-
-        $this
-            ->getMasterVariant()
-            ->setSku($sku)
-        ;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function isAvailable()
     {
         return $this
@@ -137,8 +107,6 @@ class CustomizableProduct extends Product implements CustomizableProductInterfac
      */
     public function setMasterVariant(VariantInterface $masterVariant)
     {
-        $this->sku = $masterVariant->getSku();
-
         if ($this->variants->contains($masterVariant)) {
             return;
         }

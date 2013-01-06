@@ -16,7 +16,6 @@
 >
 
     <mapped-superclass name="Sylius\Bundle\AssortmentBundle\Entity\Product" table="sylius_assortment_product">
-        <field name="sku" column="sku" type="string" />
         <field name="name" column="name" type="string" />
         <field name="slug" column="slug" type="string" unique="true">
             <gedmo:slug fields="name" unique="true" />

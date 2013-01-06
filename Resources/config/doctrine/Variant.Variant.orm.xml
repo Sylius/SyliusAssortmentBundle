@@ -17,7 +17,6 @@
 
     <mapped-superclass name="Sylius\Bundle\AssortmentBundle\Entity\Variant\Variant" table="sylius_assortment_variant">
         <field name="master" column="is_master" type="boolean" />
-        <field name="sku" column="sku" type="string" unique="true" />
         <field name="presentation" column="presentation" type="string" nullable="true" />
         <field name="availableOn" column="available_on" type="datetime" />
         <many-to-one field="product" target-entity="Sylius\Bundle\AssortmentBundle\Model\ProductInterface" inversed-by="variants">

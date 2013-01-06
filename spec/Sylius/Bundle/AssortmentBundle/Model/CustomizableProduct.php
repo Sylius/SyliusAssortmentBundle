@@ -27,36 +27,6 @@ class CustomizableProduct extends ObjectBehavior
         $this->getMasterVariant()->shouldReturn(null);
     }
 
-    function it_should_complain_if_trying_to_obtain_sku_without_master_variant()
-    {
-        $this
-            ->shouldThrow('BadMethodCallException')
-            ->duringGetSku()
-        ;
-    }
-
-    function it_should_complain_if_trying_to_set_sku_without_master_variant()
-    {
-        $this
-            ->shouldThrow('BadMethodCallException')
-            ->duringSetSku('IPHONE5BLACK')
-        ;
-    }
-
-    /**
-     * @param Sylius\Bundle\AssortmentBundle\Model\Variant\VariantInterface $variant
-     */
-    function it_should_delegate_sku_management_to_master_variant($variant)
-    {
-        $variant->getSku()->willReturn('IPHONE4SWHITE');
-        $variant->setSku('IPHONE5WHITE')->shouldBeCalled();
-
-        $this->setMasterVariant($variant);
-
-        $this->getSku()->shouldReturn('IPHONE4SWHITE');
-        $this->setSku('IPHONE5WHITE');
-    }
-
     /**
      * @param Sylius\Bundle\AssortmentBundle\Model\Variant\VariantInterface $variant
      */
@@ -66,18 +36,6 @@ class CustomizableProduct extends ObjectBehavior
         $variant->setMaster(true)->shouldBeCalled();
 
         $this->setMasterVariant($variant);
-    }
-
-    /**
-     * @param Sylius\Bundle\AssortmentBundle\Model\Variant\VariantInterface $variant
-     */
-    function it_should_set_master_variant_sku($variant)
-    {
-        $variant->getSku()->willReturn('IPHONE4S');
-
-        $this->setMasterVariant($variant);
-
-        $this->getSku()->shouldReturn('IPHONE4S');
     }
 
     /**
@@ -194,5 +152,4 @@ class CustomizableProduct extends ObjectBehavior
         $this->removeProperty($property);
         $this->hasProperty($property)->shouldReturn(false);
     }
-
 }
