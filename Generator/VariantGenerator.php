@@ -16,7 +16,15 @@ use Sylius\Bundle\AssortmentBundle\Model\CustomizableProductInterface;
 use Symfony\Component\Validator\ValidatorInterface;
 
 /**
- * Variant generator.
+ * Default variant generator service implementation.
+ * It is used to create all possible combinations of product options
+ * and create Variant models from them, directly on the product.
+ *
+ * Example:
+ *
+ * If product has two options with 3 possible values each,
+ * this service will create 9 Variant's and assign them on the
+ * product. It ignores existing and invalid variants.
  *
  * @author Paweł Jędrzejewski <pjedrzejewski@diweb.pl>
  */

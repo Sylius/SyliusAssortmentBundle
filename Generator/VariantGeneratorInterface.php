@@ -14,7 +14,9 @@ namespace Sylius\Bundle\AssortmentBundle\Generator;
 use Sylius\Bundle\AssortmentBundle\Model\CustomizableProductInterface;
 
 /**
- * Variant generator interface.
+ * Interface for variant generating service.
+ * It is used to create all possible (non-existing) variations
+ * of given product based on the subject options.
  *
  * @author Paweł Jędrzejewski <pjedrzejewski@diweb.pl>
  */
