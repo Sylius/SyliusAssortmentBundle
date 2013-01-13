@@ -80,8 +80,6 @@ class VariantGenerator implements VariantGeneratorInterface
         foreach ($permutations as $i => $permutation) {
             $variant = $this->variantRepository->createNew();
             $variant->setProduct($product);
-
-            $variant->setSku($product->getSku().'-'.($i + 1));
             $variant->setAvailableOn(new \DateTime('+1 hour'));
 
             if (is_array($permutation)) {
