@@ -71,7 +71,7 @@ class Configuration implements ConfigurationInterface
                         ->arrayNode('variant')
                             ->addDefaultsIfNotSet()
                             ->children()
-                                ->scalarNode('model')->cannotBeEmpty()->end()
+                                ->scalarNode('model')->defaultValue('')->cannotBeEmpty()->end()
                                 ->scalarNode('controller')->defaultValue('Sylius\\Bundle\\AssortmentBundle\\Controller\\VariantController')->end()
                                 ->scalarNode('repository')->cannotBeEmpty()->end()
                                 ->scalarNode('form')->defaultValue('Sylius\\Bundle\\AssortmentBundle\\Form\\Type\\VariantType')->end()
