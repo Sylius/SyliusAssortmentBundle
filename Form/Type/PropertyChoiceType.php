@@ -76,6 +76,6 @@ class PropertyChoiceType extends AbstractType
      */
     public function getName()
     {
-        return 'sylius_assortment_property_choice';
+        return 'sylius_property_choice';
     }
 }

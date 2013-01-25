@@ -46,10 +46,10 @@ class PropertyType extends AbstractType
     {
         $builder
             ->add('name', 'text', array(
-                'label' => 'sylius_assortment.label.property.name'
+                'label' => 'sylius.label.property.name'
             ))
             ->add('presentation', 'text', array(
-                'label' => 'sylius_assortment.label.property.presentation'
+                'label' => 'sylius.label.property.presentation'
             ))
         ;
     }
@@ -71,6 +71,6 @@ class PropertyType extends AbstractType
      */
     public function getName()
     {
-        return 'sylius_assortment_property';
+        return 'sylius_property';
     }
 }

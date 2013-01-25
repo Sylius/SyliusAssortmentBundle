@@ -80,6 +80,6 @@ class ProductToIdentifierType extends AbstractType
      */
     public function getName()
     {
-        return 'sylius_assortment_product_to_identifier';
+        return 'sylius_product_to_identifier';
     }
 }

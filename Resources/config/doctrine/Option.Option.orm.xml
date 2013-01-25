@@ -14,7 +14,7 @@
 <doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
                   xmlns:gedmo="http://gediminasm.org/schemas/orm/doctrine-extensions-mapping">
 
-    <mapped-superclass name="Sylius\Bundle\AssortmentBundle\Entity\Option\Option" table="sylius_assortment_option">
+    <mapped-superclass name="Sylius\Bundle\AssortmentBundle\Entity\Option\Option" table="sylius_option">
         <field name="name" column="name" type="string" />
         <field name="presentation" column="presentation" type="string" />
         <field name="createdAt" column="created_at" type="datetime">

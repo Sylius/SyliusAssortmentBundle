@@ -38,7 +38,7 @@ class ProductUnique extends Constraint
      */
     public function validatedBy()
     {
-        return 'sylius_assortment.validator.product.unique';
+        return 'sylius.validator.product.unique';
     }
 
     /**

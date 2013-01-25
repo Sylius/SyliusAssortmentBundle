@@ -46,17 +46,17 @@ class OptionType extends AbstractType
     {
         $builder
             ->add('name', 'text', array(
-                'label' => 'sylius_assortment.label.option.name'
+                'label' => 'sylius.label.option.name'
             ))
             ->add('presentation', 'text', array(
-                'label' => 'sylius_assortment.label.option.presentation'
+                'label' => 'sylius.label.option.presentation'
             ))
             ->add('values', 'collection', array(
-                'type'         => 'sylius_assortment_option_value',
+                'type'         => 'sylius_option_value',
                 'allow_add'    => true,
                 'allow_delete' => true,
                 'by_reference' => false,
-                'label'        => 'sylius_assortment.label.option.values'
+                'label'        => 'sylius.label.option.values'
             ))
         ;
     }
@@ -78,6 +78,6 @@ class OptionType extends AbstractType
      */
     public function getName()
     {
-        return 'sylius_assortment_option';
+        return 'sylius_option';
     }
 }

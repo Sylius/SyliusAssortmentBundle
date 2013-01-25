@@ -45,7 +45,7 @@ class OptionValueCollectionType extends AbstractType
                 throw new FormException('Each object passed as option list must implement "Sylius\Bundle\AssortmentBundle\Model\Option\OptionInterface"');
             }
 
-            $builder->add((string) $i, 'sylius_assortment_option_value_choice', array(
+            $builder->add((string) $i, 'sylius_option_value_choice', array(
                 'label'         => $option->getName(),
                 'option'        => $option,
                 'property_path' => '['.$i.']'
@@ -70,6 +70,6 @@ class OptionValueCollectionType extends AbstractType
      */
     public function getName()
     {
-        return 'sylius_assortment_option_value_collection';
+        return 'sylius_option_value_collection';
     }
 }

@@ -19,24 +19,24 @@
     <class name="Sylius\Bundle\AssortmentBundle\Model\Product">
         <property name="name">
             <constraint name="NotBlank">
-                <option name="message">sylius_assortment.product.name.not_blank</option>
+                <option name="message">sylius.product.name.not_blank</option>
             </constraint>
             <constraint name="MinLength">
                 <option name="limit">2</option>
-                <option name="message">sylius_assortment.product.name.min_length</option>
+                <option name="message">sylius.product.name.min_length</option>
             </constraint>
             <constraint name="MaxLength">
                 <option name="limit">255</option>
-                <option name="message">sylius_assortment.product.name.max_length</option>
+                <option name="message">sylius.product.name.max_length</option>
             </constraint>
         </property>
         <property name="description">
             <constraint name="NotBlank">
-                <option name="message">sylius_assortment.product.description.not_blank</option>
+                <option name="message">sylius.product.description.not_blank</option>
             </constraint>
             <constraint name="MinLength">
                 <option name="limit">3</option>
-                <option name="message">sylius_assortment.product.description.min_length</option>
+                <option name="message">sylius.product.description.min_length</option>
             </constraint>
         </property>
     </class>
@@ -60,37 +60,35 @@
     <class name="Sylius\Bundle\AssortmentBundle\Model\Option\Option">
         <property name="name">
             <constraint name="NotBlank">
-                <option name="message">sylius_assortment.option.name.not_blank</option>
+                <option name="message">sylius.option.name.not_blank</option>
             </constraint>
             <constraint name="MinLength">
                 <option name="limit">2</option>
-                <option name="message">sylius_assortment.option.name.min_length</option>
+                <option name="message">sylius.option.name.min_length</option>
             </constraint>
             <constraint name="MaxLength">
                 <option name="limit">255</option>
-                <option name="message">sylius_assortment.option.name.max_length</option>
+                <option name="message">sylius.option.name.max_length</option>
             </constraint>
         </property>
         <property name="presentation">
             <constraint name="NotBlank">
-                <option name="message">sylius_assortment.option.presentation.not_blank</option>
+                <option name="message">sylius.option.presentation.not_blank</option>
             </constraint>
             <constraint name="MinLength">
                 <option name="limit">2</option>
-                <option name="message">sylius_assortment.option.presentation.min_length</option>
+                <option name="message">sylius.option.presentation.min_length</option>
             </constraint>
             <constraint name="MaxLength">
                 <option name="limit">255</option>
-                <option name="message">sylius_assortment.option.presentation.max_length</option>
+                <option name="message">sylius.option.presentation.max_length</option>
             </constraint>
         </property>
         <property name="values">
             <constraint name="Valid" />
             <constraint name="Count">
-                <option name="min">1</option>
-                <option name="max">99</option>
-                <option name="minMessage">sylius_assortment.option.values.min_count</option>
-                <option name="maxMessage">sylius_assortment.option.values.max_count</option>
+                <option name="min">2</option>
+                <option name="minMessage">sylius.option.values.min_count</option>
             </constraint>
         </property>
     </class>
@@ -98,7 +96,7 @@
     <class name="Sylius\Bundle\AssortmentBundle\Model\Option\OptionValue">
         <property name="value">
             <constraint name="NotBlank">
-                <option name="message">sylius_assortment.option_value.value.not_blank</option>
+                <option name="message">sylius.option_value.value.not_blank</option>
             </constraint>
         </property>
     </class>
@@ -106,28 +104,28 @@
     <class name="Sylius\Bundle\AssortmentBundle\Model\Property\Property">
         <property name="name">
             <constraint name="NotBlank">
-                <option name="message">sylius_assortment.property.name.not_blank</option>
+                <option name="message">sylius.property.name.not_blank</option>
             </constraint>
             <constraint name="MinLength">
                 <option name="limit">2</option>
-                <option name="message">sylius_assortment.property.name.min_length</option>
+                <option name="message">sylius.property.name.min_length</option>
             </constraint>
             <constraint name="MaxLength">
                 <option name="limit">255</option>
-                <option name="message">sylius_assortment.property.name.max_length</option>
+                <option name="message">sylius.property.name.max_length</option>
             </constraint>
         </property>
         <property name="presentation">
             <constraint name="NotBlank">
-                <option name="message">sylius_assortment.property.presentation.not_blank</option>
+                <option name="message">sylius.property.presentation.not_blank</option>
             </constraint>
             <constraint name="MinLength">
                 <option name="limit">2</option>
-                <option name="message">sylius_assortment.property.presentation.min_length</option>
+                <option name="message">sylius.property.presentation.min_length</option>
             </constraint>
             <constraint name="MaxLength">
                 <option name="limit">255</option>
-                <option name="message">sylius_assortment.property.presentation.max_length</option>
+                <option name="message">sylius.property.presentation.max_length</option>
             </constraint>
         </property>
     </class>
@@ -135,12 +133,12 @@
     <class name="Sylius\Bundle\AssortmentBundle\Model\Property\ProductProperty">
         <property name="property">
             <constraint name="NotBlank">
-                <option name="message">sylius_assortment.product_property.property.not_blank</option>
+                <option name="message">sylius.product_property.property.not_blank</option>
             </constraint>
         </property>
         <property name="value">
             <constraint name="NotBlank">
-                <option name="message">sylius_assortment.product_property.value.not_blank</option>
+                <option name="message">sylius.product_property.value.not_blank</option>
             </constraint>
         </property>
     </class>
@@ -148,15 +146,15 @@
     <class name="Sylius\Bundle\AssortmentBundle\Model\Prototype\Prototype">
         <property name="name">
             <constraint name="NotBlank">
-                <option name="message">sylius_assortment.prototype.name.not_blank</option>
+                <option name="message">sylius.prototype.name.not_blank</option>
             </constraint>
             <constraint name="MinLength">
                 <option name="limit">2</option>
-                <option name="message">sylius_assortment.prototype.name.min_length</option>
+                <option name="message">sylius.prototype.name.min_length</option>
             </constraint>
             <constraint name="MaxLength">
                 <option name="limit">255</option>
-                <option name="message">sylius_assortment.prototype.name.max_length</option>
+                <option name="message">sylius.prototype.name.max_length</option>
             </constraint>
         </property>
     </class>

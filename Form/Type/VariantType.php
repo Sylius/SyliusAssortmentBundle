@@ -35,7 +35,7 @@ class VariantType extends AbstractType
      *
      * It's important to set the data class that was configured inside 'config.yml'.
      * This will be done automatically when using this class, but if you would like to extend it,
-     * remember to pass '%sylius_assortment.model.variant.class%' as an argument inside service definition.
+     * remember to pass '%sylius.model.variant.class%' as an argument inside service definition.
      *
      * @param string $dataClass FQCN of the product variant model
      */
@@ -52,10 +52,10 @@ class VariantType extends AbstractType
         $builder
             ->add('presentation', 'text', array(
                 'required' => false,
-                'label'    => 'sylius_assortment.label.variant.presentation'
+                'label'    => 'sylius.label.variant.presentation'
             ))
             ->add('availableOn', 'datetime', array(
-                'label' => 'sylius_assortment.label.variant.available_on'
+                'label' => 'sylius.label.variant.available_on'
             ))
         ;
 
@@ -82,6 +82,6 @@ class VariantType extends AbstractType
      */
     public function getName()
     {
-        return 'sylius_assortment_variant';
+        return 'sylius_variant';
     }
 }

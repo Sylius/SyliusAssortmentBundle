@@ -15,7 +15,7 @@
                   xmlns:gedmo="http://gediminasm.org/schemas/orm/doctrine-extensions-mapping"
 >
 
-    <mapped-superclass name="Sylius\Bundle\AssortmentBundle\Entity\Variant\Variant" table="sylius_assortment_variant">
+    <mapped-superclass name="Sylius\Bundle\AssortmentBundle\Entity\Variant\Variant" table="sylius_variant">
         <field name="master" column="is_master" type="boolean" />
         <field name="presentation" column="presentation" type="string" nullable="true" />
         <field name="availableOn" column="available_on" type="datetime" />
@@ -23,7 +23,7 @@
             <join-column name="product_id" referenced-column-name="id" nullable="false" />
         </many-to-one>
         <many-to-many field="options" target-entity="Sylius\Bundle\AssortmentBundle\Model\Option\OptionValueInterface">
-            <join-table name="sylius_assortment_variant_option_value">
+            <join-table name="sylius_variant_option_value">
                 <join-columns>
                     <join-column name="variant_id" referenced-column-name="id" nullable="false" unique="false" />
                 </join-columns>

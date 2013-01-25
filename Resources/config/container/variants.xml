@@ -17,19 +17,19 @@
                                http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
-        <parameter key="sylius_assortment.form.type.variant_to_identifier.class">Sylius\Bundle\AssortmentBundle\Form\Type\VariantToIdentifierType</parameter>
-        <parameter key="sylius_assortment.form.type.variant_choice.class">Sylius\Bundle\AssortmentBundle\Form\Type\VariantChoiceType</parameter>
-        <parameter key="sylius_assortment.form.type.variant_match.class">Sylius\Bundle\AssortmentBundle\Form\Type\VariantMatchType</parameter>
+        <parameter key="sylius.form.type.variant_to_identifier.class">Sylius\Bundle\AssortmentBundle\Form\Type\VariantToIdentifierType</parameter>
+        <parameter key="sylius.form.type.variant_choice.class">Sylius\Bundle\AssortmentBundle\Form\Type\VariantChoiceType</parameter>
+        <parameter key="sylius.form.type.variant_match.class">Sylius\Bundle\AssortmentBundle\Form\Type\VariantMatchType</parameter>
 
-        <parameter key="sylius_assortment.generator.variant.class">Sylius\Bundle\AssortmentBundle\Generator\VariantGenerator</parameter>
+        <parameter key="sylius.variant_generator.class">Sylius\Bundle\AssortmentBundle\Generator\VariantGenerator</parameter>
 
-        <parameter key="sylius_assortment.validator.variant.unique.class">Sylius\Bundle\AssortmentBundle\Validator\VariantUniqueValidator</parameter>
-        <parameter key="sylius_assortment.validator.variant.combination.class">Sylius\Bundle\AssortmentBundle\Validator\VariantCombinationValidator</parameter>
+        <parameter key="sylius.validator.variant.unique.class">Sylius\Bundle\AssortmentBundle\Validator\VariantUniqueValidator</parameter>
+        <parameter key="sylius.validator.variant.combination.class">Sylius\Bundle\AssortmentBundle\Validator\VariantCombinationValidator</parameter>
     </parameters>
 
     <services>
-        <service id="sylius_assortment.controller.variant" class="%sylius_assortment.controller.variant.class%">
-            <argument>sylius_assortment</argument>
+        <service id="sylius.controller.variant" class="%sylius.controller.variant.class%">
+            <argument>sylius</argument>
             <argument>variant</argument>
             <argument>SyliusAssortmentBundle:Variant</argument>
             <call method="setContainer">
@@ -37,33 +37,32 @@
             </call>
         </service>
 
-        <service id="sylius_assortment.form.type.variant" class="%sylius_assortment.form.type.variant.class%">
-            <argument>%sylius_assortment.model.variant.class%</argument>
-            <tag name="form.type" alias="sylius_assortment_variant" />
+        <service id="sylius.form.type.variant" class="%sylius.form.type.variant.class%">
+            <argument>%sylius.model.variant.class%</argument>
+            <tag name="form.type" alias="sylius_variant" />
         </service>
-        <service id="sylius_assortment.form.type.variant_choice" class="%sylius_assortment.form.type.variant_choice.class%">
-            <argument>%sylius_assortment.driver%</argument>
-            <tag name="form.type" alias="sylius_assortment_variant_choice" />
+        <service id="sylius.form.type.variant_choice" class="%sylius.form.type.variant_choice.class%">
+            <tag name="form.type" alias="sylius_variant_choice" />
         </service>
-        <service id="sylius_assortment.form.type.variant_match" class="%sylius_assortment.form.type.variant_match.class%">
-            <tag name="form.type" alias="sylius_assortment_variant_match" />
+        <service id="sylius.form.type.variant_match" class="%sylius.form.type.variant_match.class%">
+            <tag name="form.type" alias="sylius_variant_match" />
         </service>
-        <service id="sylius_assortment.form.type.variant_to_identifier" class="%sylius_assortment.form.type.variant_to_identifier.class%">
-            <argument type="service" id="sylius_assortment.repository.variant" />
-            <tag name="form.type" alias="sylius_assortment_variant_to_identifier" />
+        <service id="sylius.form.type.variant_to_identifier" class="%sylius.form.type.variant_to_identifier.class%">
+            <argument type="service" id="sylius.repository.variant" />
+            <tag name="form.type" alias="sylius_variant_to_identifier" />
         </service>
 
-        <service id="sylius_assortment.generator.variant" class="%sylius_assortment.generator.variant.class%">
+        <service id="sylius.variant_generator" class="%sylius.variant_generator.class%">
             <argument type="service" id="validator" />
-            <argument type="service" id="sylius_assortment.repository.variant" />
+            <argument type="service" id="sylius.repository.variant" />
         </service>
 
-        <service id="sylius_assortment.validator.variant.unique" class="%sylius_assortment.validator.variant.unique.class%">
-            <argument type="service" id="sylius_assortment.repository.variant" />
-            <tag name="validator.constraint_validator" alias="sylius_assortment.validator.variant.unique" />
+        <service id="sylius.validator.variant.unique" class="%sylius.validator.variant.unique.class%">
+            <argument type="service" id="sylius.repository.variant" />
+            <tag name="validator.constraint_validator" alias="sylius.validator.variant.unique" />
         </service>
-        <service id="sylius_assortment.validator.variant.combination" class="%sylius_assortment.validator.variant.combination.class%">
-            <tag name="validator.constraint_validator" alias="sylius_assortment.validator.variant.combination" />
+        <service id="sylius.validator.variant.combination" class="%sylius.validator.variant.combination.class%">
+            <tag name="validator.constraint_validator" alias="sylius.validator.variant.combination" />
         </service>
     </services>
 

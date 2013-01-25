@@ -80,6 +80,6 @@ class VariantToIdentifierType extends AbstractType
      */
     public function getName()
     {
-        return 'sylius_assortment_variant_to_identifier';
+        return 'sylius_variant_to_identifier';
     }
 }

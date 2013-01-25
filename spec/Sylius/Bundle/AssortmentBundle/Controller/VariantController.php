@@ -13,7 +13,7 @@ class VariantController extends ObjectBehavior
 {
     function let()
     {
-        $this->beConstructedWith('sylius_assortment', 'variant', 'SyliusAssortmentBundle:Variant');
+        $this->beConstructedWith('sylius', 'variant', 'SyliusAssortmentBundle:Variant');
     }
 
     function it_should_be_initializable()

@@ -80,7 +80,7 @@ class VariantController extends ResourceController
      */
     protected function getProductController()
     {
-        return $this->get('sylius_assortment.controller.product');
+        return $this->get('sylius.controller.product');
     }
 
     /**
@@ -90,6 +90,6 @@ class VariantController extends ResourceController
      */
     protected function getGenerator()
     {
-        return $this->getService('generator');
+        return $this->get('sylius.variant_generator');
     }
 }

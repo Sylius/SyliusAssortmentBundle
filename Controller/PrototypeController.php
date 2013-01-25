@@ -68,7 +68,7 @@ class PrototypeController extends ResourceController
      */
     protected function getProductController()
     {
-        return $this->get('sylius_assortment.controller.product');
+        return $this->get('sylius.controller.product');
     }
 
     /**
@@ -78,6 +78,6 @@ class PrototypeController extends ResourceController
      */
     protected function getBuilder()
     {
-        return $this->getService('builder');
+        return $this->get('sylius.prototype_builder');
     }
 }

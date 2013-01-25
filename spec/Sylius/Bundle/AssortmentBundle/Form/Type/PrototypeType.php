@@ -38,13 +38,13 @@ class PrototypeType extends ObjectBehavior
         ;
 
         $builder
-            ->add('options', 'sylius_assortment_option_choice', ANY_ARGUMENT)
+            ->add('options', 'sylius_option_choice', ANY_ARGUMENT)
             ->shouldBeCalled()
             ->willReturn($builder)
         ;
 
         $builder
-            ->add('properties', 'sylius_assortment_property_choice', ANY_ARGUMENT)
+            ->add('properties', 'sylius_property_choice', ANY_ARGUMENT)
             ->shouldBeCalled()
             ->willReturn($builder)
         ;

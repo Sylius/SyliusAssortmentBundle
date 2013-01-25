@@ -46,7 +46,7 @@ class ProductPropertyType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('property', 'sylius_assortment_property_choice')
+            ->add('property', 'sylius_property_choice')
             ->add('value', 'text')
             ->addEventSubscriber(new BuildProductPropertyFormListener($builder->getFormFactory()))
         ;
@@ -69,6 +69,6 @@ class ProductPropertyType extends AbstractType
      */
     public function getName()
     {
-        return 'sylius_assortment_product_property';
+        return 'sylius_product_property';
     }
 }

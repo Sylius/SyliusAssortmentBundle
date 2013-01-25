@@ -63,10 +63,10 @@ class BuildCustomizableProductFormListener implements EventSubscriberInterface
         }
 
         if (!$product->hasVariants()) {
-            $optionsField = $this->factory->createNamed('options', 'sylius_assortment_option_choice', $product->getOptions(), array(
+            $optionsField = $this->factory->createNamed('options', 'sylius_option_choice', $product->getOptions(), array(
                 'required' => false,
                 'multiple' => true,
-                'label'    => 'sylius_assortment.label.product.options'
+                'label'    => 'sylius.label.product.options'
             ));
 
             $form->add($optionsField);

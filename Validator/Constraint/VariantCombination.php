@@ -29,7 +29,7 @@ class VariantCombination extends Constraint
      */
     public function validatedBy()
     {
-        return 'sylius_assortment.validator.variant.combination';
+        return 'sylius.validator.variant.combination';
     }
 
     /**

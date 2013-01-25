@@ -59,6 +59,6 @@ class OptionValueChoiceType extends AbstractType
      */
     public function getName()
     {
-        return 'sylius_assortment_option_value_choice';
+        return 'sylius_option_value_choice';
     }
 }

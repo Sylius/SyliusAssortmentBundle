@@ -93,7 +93,7 @@ class SyliusAssortmentExtension extends Extension
         foreach ($classes as $model => $serviceClasses) {
             foreach ($serviceClasses as $service => $class) {
                 $service = $service === 'form' ? 'form.type' : $service;
-                $container->setParameter(sprintf('sylius_assortment.%s.%s.class', $service, $model), $class);
+                $container->setParameter(sprintf('sylius.%s.%s.class', $service, $model), $class);
             }
         }
     }

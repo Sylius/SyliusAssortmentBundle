@@ -30,7 +30,7 @@ class VariantMatchType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         foreach ($options['product']->getOptions() as $i => $option) {
-            $builder->add((string) $i, 'sylius_assortment_option_value_choice', array(
+            $builder->add((string) $i, 'sylius_option_value_choice', array(
                 'label'         => $option->getPresentation(),
                 'option'        => $option,
                 'property_path' => '['.$i.']'
@@ -60,6 +60,6 @@ class VariantMatchType extends AbstractType
      */
     public function getName()
     {
-        return 'sylius_assortment_variant_match';
+        return 'sylius_variant_match';
     }
 }

@@ -30,12 +30,12 @@ class CustomizableProductType extends ProductType
 
         $builder
             ->remove('availableOn')
-            ->add('masterVariant', 'sylius_assortment_variant', array(
-                'master'       => true,
+            ->add('masterVariant', 'sylius_variant', array(
+                'master' => true,
             ))
             ->add('properties', 'collection', array(
                 'required'     => false,
-                'type'         => 'sylius_assortment_product_property',
+                'type'         => 'sylius_product_property',
                 'allow_add'    => true,
                 'by_reference' => false
             ))

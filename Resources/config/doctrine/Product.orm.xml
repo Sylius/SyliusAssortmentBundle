@@ -15,7 +15,7 @@
                   xmlns:gedmo="http://gediminasm.org/schemas/orm/doctrine-extensions-mapping"
 >
 
-    <mapped-superclass name="Sylius\Bundle\AssortmentBundle\Entity\Product" table="sylius_assortment_product">
+    <mapped-superclass name="Sylius\Bundle\AssortmentBundle\Entity\Product" table="sylius_product">
         <field name="name" column="name" type="string" />
         <field name="slug" column="slug" type="string" unique="true">
             <gedmo:slug fields="name" unique="true" />

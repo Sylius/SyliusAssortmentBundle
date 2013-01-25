@@ -13,7 +13,7 @@ class PrototypeController extends ObjectBehavior
 {
     function let()
     {
-        $this->beConstructedWith('sylius_assortment', 'prototype', 'SyliusAssortmentBundle:Prototype');
+        $this->beConstructedWith('sylius', 'prototype', 'SyliusAssortmentBundle:Prototype');
     }
 
     function it_should_be_initializable()

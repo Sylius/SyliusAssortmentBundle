@@ -92,6 +92,6 @@ class VariantChoiceType extends AbstractType
      */
     public function getName()
     {
-        return 'sylius_assortment_variant_choice';
+        return 'sylius_variant_choice';
     }
 }

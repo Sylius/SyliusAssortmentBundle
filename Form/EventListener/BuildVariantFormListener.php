@@ -71,7 +71,7 @@ class BuildVariantFormListener implements EventSubscriberInterface
 
         // If product has options, lets add this configuration field.
         if ($product->hasOptions()) {
-            $form->add($this->factory->createNamed('options', 'sylius_assortment_option_value_collection', $variant->getOptions(), array(
+            $form->add($this->factory->createNamed('options', 'sylius_option_value_collection', $variant->getOptions(), array(
                 'options'  => $product->getOptions(),
                 'disabled' => $disabled
             )));

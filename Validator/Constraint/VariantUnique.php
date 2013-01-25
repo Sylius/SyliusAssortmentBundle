@@ -38,7 +38,7 @@ class VariantUnique extends Constraint
      */
     public function validatedBy()
     {
-        return 'sylius_assortment.validator.variant.unique';
+        return 'sylius.validator.variant.unique';
     }
 
     /**

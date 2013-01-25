@@ -34,7 +34,7 @@ class ProductType extends AbstractType
      *
      * It's important to set the data class that was configured inside 'config.yml'.
      * This will be done automatically when using this class, but if you would like to extend it,
-     * remember to pass '%sylius_assortment.model.product.class%' as an argument inside service definition.
+     * remember to pass '%sylius.model.product.class%' as an argument inside service definition.
      *
      * @param string $dataClass FQCN of the product model
      */
@@ -50,22 +50,22 @@ class ProductType extends AbstractType
     {
         $builder
             ->add('name', 'text', array(
-                'label' => 'sylius_assortment.label.product.name'
+                'label' => 'sylius.label.product.name'
             ))
             ->add('description', 'textarea', array(
-                'label' => 'sylius_assortment.label.product.description'
+                'label' => 'sylius.label.product.description'
             ))
             ->add('availableOn', 'date', array(
                 'widget' => 'single_text',
-                'label'  => 'sylius_assortment.label.product.available_on'
+                'label'  => 'sylius.label.product.available_on'
             ))
             ->add('metaKeywords', 'text', array(
                 'required' => false,
-                'label'    => 'sylius_assortment.label.product.meta_keywords'
+                'label'    => 'sylius.label.product.meta_keywords'
             ))
             ->add('metaDescription', 'text', array(
                 'required' => false,
-                'label'    => 'sylius_assortment.label.product.meta_description'
+                'label'    => 'sylius.label.product.meta_description'
             ))
         ;
     }
@@ -87,6 +87,6 @@ class ProductType extends AbstractType
      */
     public function getName()
     {
-        return 'sylius_assortment_product';
+        return 'sylius_product';
     }
 }

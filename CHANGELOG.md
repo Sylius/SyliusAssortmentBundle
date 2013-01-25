@@ -1,6 +1,11 @@
 CHANGELOG
 =========
 
+### 24-01.2013
+
+* Remove the ``sylius_assortment`` prefix from services and models.
+* Use ``sylius`` instead.
+
 ### 06-01-2013
 
 * Remove the SKU from product model.

@@ -46,7 +46,7 @@ class OptionValueType extends AbstractType
     {
         $builder
             ->add('value', 'text', array(
-                'label' => 'sylius_assortment.label.option_value.value'
+                'label' => 'sylius.label.option_value.value'
             ))
         ;
     }
@@ -68,6 +68,6 @@ class OptionValueType extends AbstractType
      */
     public function getName()
     {
-        return 'sylius_assortment_option_value';
+        return 'sylius_option_value';
     }
 }

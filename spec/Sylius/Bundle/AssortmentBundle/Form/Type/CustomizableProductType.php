@@ -74,7 +74,7 @@ class CustomizableProductType extends ObjectBehavior
         ;
 
         $builder
-            ->add('masterVariant', 'sylius_assortment_variant', array('master' => true))
+            ->add('masterVariant', 'sylius_variant', array('master' => true))
             ->shouldBeCalled()
             ->willReturn($builder)
         ;

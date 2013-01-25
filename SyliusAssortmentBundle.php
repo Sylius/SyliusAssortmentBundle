@@ -43,13 +43,13 @@ class SyliusAssortmentBundle extends Bundle
     public function build(ContainerBuilder $container)
     {
         $interfaces = array(
-            'Sylius\Bundle\AssortmentBundle\Model\ProductInterface'                  => 'sylius_assortment.model.product.class',
-            'Sylius\Bundle\AssortmentBundle\Model\Variant\VariantInterface'          => 'sylius_assortment.model.variant.class',
-            'Sylius\Bundle\AssortmentBundle\Model\Option\OptionInterface'            => 'sylius_assortment.model.option.class',
-            'Sylius\Bundle\AssortmentBundle\Model\Option\OptionValueInterface'       => 'sylius_assortment.model.option_value.class',
-            'Sylius\Bundle\AssortmentBundle\Model\Property\PropertyInterface'        => 'sylius_assortment.model.property.class',
-            'Sylius\Bundle\AssortmentBundle\Model\Property\ProductPropertyInterface' => 'sylius_assortment.model.product_property.class',
-            'Sylius\Bundle\AssortmentBundle\Model\Prototype\PrototypeInterface'      => 'sylius_assortment.model.prototype.class',
+            'Sylius\Bundle\AssortmentBundle\Model\ProductInterface'                  => 'sylius.model.product.class',
+            'Sylius\Bundle\AssortmentBundle\Model\Variant\VariantInterface'          => 'sylius.model.variant.class',
+            'Sylius\Bundle\AssortmentBundle\Model\Option\OptionInterface'            => 'sylius.model.option.class',
+            'Sylius\Bundle\AssortmentBundle\Model\Option\OptionValueInterface'       => 'sylius.model.option_value.class',
+            'Sylius\Bundle\AssortmentBundle\Model\Property\PropertyInterface'        => 'sylius.model.property.class',
+            'Sylius\Bundle\AssortmentBundle\Model\Property\ProductPropertyInterface' => 'sylius.model.product_property.class',
+            'Sylius\Bundle\AssortmentBundle\Model\Prototype\PrototypeInterface'      => 'sylius.model.prototype.class',
         );
 
         $container->addCompilerPass(new ResolveDoctrineTargetEntitiesPass('sylius_assortment', $interfaces));
