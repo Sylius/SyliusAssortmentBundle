@@ -56,8 +56,10 @@ class ProductType extends AbstractType
                 'label' => 'sylius.label.product.description'
             ))
             ->add('availableOn', 'date', array(
-                'widget' => 'single_text',
-                'label'  => 'sylius.label.product.available_on'
+                'date_format' => 'y-M-d',
+                'date_widget' => 'choice',
+                'time_widget' => 'text',
+                'label'       => 'sylius.label.product.available_on'
             ))
             ->add('metaKeywords', 'text', array(
                 'required' => false,

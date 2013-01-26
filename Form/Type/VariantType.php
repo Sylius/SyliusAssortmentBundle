@@ -55,7 +55,10 @@ class VariantType extends AbstractType
                 'label'    => 'sylius.label.variant.presentation'
             ))
             ->add('availableOn', 'datetime', array(
-                'label' => 'sylius.label.variant.available_on'
+                'date_format' => 'y-M-d',
+                'date_widget' => 'choice',
+                'time_widget' => 'text',
+                'label'       => 'sylius.label.variant.available_on'
             ))
         ;
 
