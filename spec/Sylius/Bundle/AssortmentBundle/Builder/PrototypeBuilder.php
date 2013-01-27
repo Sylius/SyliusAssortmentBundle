@@ -1,6 +1,6 @@
 <?php
 
-namespace spec\Sylius\Bundle\AssortmentBundle\Prototypes;
+namespace spec\Sylius\Bundle\AssortmentBundle\Builder;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use PHPSpec2\ObjectBehavior;
@@ -23,7 +23,7 @@ class PrototypeBuilder extends ObjectBehavior
 
     function it_should_be_initializable()
     {
-        $this->shouldHaveType('Sylius\Bundle\AssortmentBundle\Prototypes\PrototypeBuilder');
+        $this->shouldHaveType('Sylius\Bundle\AssortmentBundle\Builder\PrototypeBuilder');
     }
 
     /**
