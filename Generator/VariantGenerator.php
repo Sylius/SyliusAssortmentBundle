@@ -81,7 +81,7 @@ class VariantGenerator implements VariantGeneratorInterface
             $variant = $this->variantRepository->createNew();
             $variant->setProduct($product);
 
-            $variant->inherit($product->getMasterVariant());
+            $variant->setDefaults($product->getMasterVariant());
 
             if (is_array($permutation)) {
                 foreach ($permutation as $id) {

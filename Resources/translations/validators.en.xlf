@@ -115,6 +115,10 @@
                 <source>sylius.prototype.name.max_length</source>
                 <target>Prototype name must not be longer than 1 character.|Prototype name must not be longer than {{ limit }} characters.</target>
             </trans-unit>
+            <trans-unit id="30">
+                <source>sylius.variant.combination</source>
+                <target>Variant with this option set already exists.</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

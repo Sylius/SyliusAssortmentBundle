@@ -22,7 +22,7 @@ use Symfony\Component\Validator\Constraint;
  */
 class VariantCombination extends Constraint
 {
-    public $message = 'Variant with this option set already exists';
+    public $message = 'sylius.variant.combination';
 
     /**
      * {@inheritdoc}
