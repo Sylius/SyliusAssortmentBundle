@@ -51,10 +51,12 @@ class PrototypeController extends ResourceController
             $manager->persist($product);
             $manager->flush();
 
+            $productController->setFlash('success', '%resource% has been successfully created.');
+
             return $productController->redirectTo($product);
         }
 
-        return $productController->renderResponse('create.html', array(
+        return $productController->renderResponse('build.html', array(
             'prototype' => $prototype,
             'product'   => $product,
             'form'      => $form->createView()

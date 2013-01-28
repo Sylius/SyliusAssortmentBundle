@@ -31,7 +31,9 @@ class PrototypeBuilder implements PrototypeBuilderInterface
 
     public function build(PrototypeInterface $prototype, CustomizableProductInterface $product)
     {
-        $product->setOptions($prototype->getOptions());
+        foreach ($prototype->getOptions() as $option) {
+            $product->addOption($option);
+        }
 
         foreach ($prototype->getProperties() as $property) {
             $productProperty = $this->productPropertyRepository->createNew();
