@@ -152,7 +152,7 @@ class Variant extends ObjectBehavior
 
         $this
             ->shouldThrow('LogicException')
-            ->duringInherit($masterVariant)
+            ->duringSetDefaults($masterVariant)
         ;
     }
 
@@ -165,7 +165,7 @@ class Variant extends ObjectBehavior
 
         $this
             ->shouldThrow('InvalidArgumentException')
-            ->duringInherit($variant)
+            ->duringSetDefaults($variant)
         ;
     }
 
@@ -179,7 +179,7 @@ class Variant extends ObjectBehavior
         $masterVariant->isMaster()->willReturn(true);
         $masterVariant->getAvailableOn()->willReturn($availableOn);
 
-        $this->inherit($masterVariant);
+        $this->setDefaults($masterVariant);
 
         $this->getAvailableOn()->shouldReturn($availableOn);
     }

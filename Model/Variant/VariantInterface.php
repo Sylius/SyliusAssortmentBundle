@@ -149,7 +149,7 @@ interface VariantInterface
      *
      * @param VariantInterface $masterVariant
      */
-    public function inherit(VariantInterface $masterVariant);
+    public function setDefaults(VariantInterface $masterVariant);
 
     /**
      * Get creation time.

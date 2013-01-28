@@ -247,7 +247,7 @@ class Variant implements VariantInterface
     /**
      * {@inheritdoc}
      */
-    public function inherit(VariantInterface $masterVariant)
+    public function setDefaults(VariantInterface $masterVariant)
     {
         if (!$masterVariant->isMaster()) {
             throw new \InvalidArgumentException('Cannot inherit values from non master variant');
