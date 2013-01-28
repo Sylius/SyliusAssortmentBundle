@@ -142,6 +142,16 @@ interface VariantInterface
     public function setAvailableOn(\DateTime $availableOn);
 
     /**
+     * This method is used by product variants to inherit values
+     * from a master variant, which is treated as a "template" for them.
+     *
+     * This is usable only when product has options.
+     *
+     * @param VariantInterface $masterVariant
+     */
+    public function inherit(VariantInterface $masterVariant);
+
+    /**
      * Get creation time.
      *
      * @return DateTime

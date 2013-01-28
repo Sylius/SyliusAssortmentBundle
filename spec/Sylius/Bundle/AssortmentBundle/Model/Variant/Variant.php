@@ -143,6 +143,47 @@ class Variant extends ObjectBehavior
         $this->shouldNotBeAvailable();
     }
 
+    /**
+     * @param Sylius\Bundle\AssortmentBundle\Model\Variant\VariantInterface $masterVariant
+     */
+    function it_should_complain_if_trying_to_inherit_values_and_being_a_master_variant($masterVariant)
+    {
+        $this->setMaster(true);
+
+        $this
+            ->shouldThrow('LogicException')
+            ->duringInherit($masterVariant)
+        ;
+    }
+
+    /**
+     * @param Sylius\Bundle\AssortmentBundle\Model\Variant\VariantInterface $variant
+     */
+    function it_should_complain_if_trying_to_inherit_values_from_non_master_variant($variant)
+    {
+        $variant->isMaster()->willReturn(false);
+
+        $this
+            ->shouldThrow('InvalidArgumentException')
+            ->duringInherit($variant)
+        ;
+    }
+
+    /**
+     * @param Sylius\Bundle\AssortmentBundle\Model\Variant\VariantInterface $masterVariant
+     */
+    function it_should_inherit_availability_time_from_master_variant($masterVariant)
+    {
+        $availableOn = new \DateTime('tomorrow');
+
+        $masterVariant->isMaster()->willReturn(true);
+        $masterVariant->getAvailableOn()->willReturn($availableOn);
+
+        $this->inherit($masterVariant);
+
+        $this->getAvailableOn()->shouldReturn($availableOn);
+    }
+
     function it_should_initialize_creation_date_by_default()
     {
         $this->getCreatedAt()->shouldHaveType('DateTime');

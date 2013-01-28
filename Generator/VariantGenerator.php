@@ -80,7 +80,8 @@ class VariantGenerator implements VariantGeneratorInterface
         foreach ($permutations as $i => $permutation) {
             $variant = $this->variantRepository->createNew();
             $variant->setProduct($product);
-            $variant->setAvailableOn(new \DateTime('+1 hour'));
+
+            $variant->inherit($product->getMasterVariant());
 
             if (is_array($permutation)) {
                 foreach ($permutation as $id) {

@@ -247,6 +247,22 @@ class Variant implements VariantInterface
     /**
      * {@inheritdoc}
      */
+    public function inherit(VariantInterface $masterVariant)
+    {
+        if (!$masterVariant->isMaster()) {
+            throw new \InvalidArgumentException('Cannot inherit values from non master variant');
+        }
+
+        if ($this->isMaster()) {
+            throw new \LogicException('Master variant cannot inherit from another master variant');
+        }
+
+        $this->setAvailableOn($masterVariant->getAvailableOn());
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function getCreatedAt()
     {
         return $this->createdAt;
