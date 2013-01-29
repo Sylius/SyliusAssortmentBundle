@@ -47,6 +47,8 @@ class VariantController extends ResourceController
 
         $this->persistAndFlush($product);
 
+        $this->getProductController()->setFlash('success', 'Variants have been successfully generated.');
+
         return $this
             ->getProductController()
             ->redirectTo($product)
