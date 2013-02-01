@@ -63,4 +63,10 @@ class Property extends ObjectBehavior
     {
         $this->getUpdatedAt()->shouldReturn(null);
     }
+
+    function its_type_should_be_mutable()
+    {
+        $this->setType('boolean');
+        $this->getType()->shouldReturn('boolean');
+    }
 }

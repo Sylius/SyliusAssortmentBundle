@@ -33,6 +33,12 @@ class Property implements PropertyInterface
     protected $name;
 
     /**
+     * Type.
+     * @var string
+     */
+    protected $type;
+
+    /**
      * Presentation.
      * Displayed to user.
      *
@@ -121,5 +127,15 @@ class Property implements PropertyInterface
     public function getUpdatedAt()
     {
         return $this->updatedAt;
+    }
+
+    public function setType($type)
+    {
+        $this->type = $type;
+    }
+
+    public function getType()
+    {
+        return $this->type;
     }
 }
