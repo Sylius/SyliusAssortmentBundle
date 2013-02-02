@@ -63,6 +63,7 @@ class Property implements PropertyInterface
     public function __construct()
     {
         $this->createdAt = new \DateTime('now');
+        $this->type = 'string';
     }
 
     /**
