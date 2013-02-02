@@ -15,7 +15,6 @@ class VariantUniqueValidator extends ObjectBehavior
     /**
      * @param Doctrine\Common\Persistence\ObjectRepository                  $variantRepository
      * @param Symfony\Component\Validator\ExecutionContextInterface         $context
-     * @param Sylius\Bundle\AssortmentBundle\Model\Variant\VariantInterface $variant
      */
     function let($variantRepository, $context)
     {

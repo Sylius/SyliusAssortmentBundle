@@ -47,13 +47,15 @@ class PropertyType extends ObjectBehavior
             ->add(
                 'type',
                 'choice',
-                \Mockery::subset(array(
-                        'choices' => array(
-                            'boolean' => 'Boolean',
-                            'string' => 'String',
-                            'number' => 'Number',
-                            'choice' => 'Choice',
-            ))))
+                array(
+                    'choices' => array(
+                        'boolean' => 'Boolean',
+                        'string' => 'String',
+                        'number' => 'Number',
+                        'choice' => 'Choice',
+                    )
+                )
+            )
             ->shouldBeCalled()
             ->willReturn($builder)
         ;

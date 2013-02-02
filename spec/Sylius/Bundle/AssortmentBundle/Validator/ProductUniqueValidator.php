@@ -13,9 +13,8 @@ use Sylius\Bundle\AssortmentBundle\Validator\Constraint\ProductUnique;
 class ProductUniqueValidator extends ObjectBehavior
 {
     /**
-     * @param Doctrine\Common\Persistence\ObjectRepository          $productRepository
-     * @param Symfony\Component\Validator\ExecutionContextInterface $context
-     * @param Sylius\Bundle\AssortmentBundle\Model\ProductInterface $product
+     * @param Doctrine\Common\Persistence\ObjectRepository $productRepository
+     * @param Symfony\Component\Validator\ExecutionContext $context
      */
     function let($productRepository, $context)
     {
@@ -35,6 +34,7 @@ class ProductUniqueValidator extends ObjectBehavior
 
     /**
      * @param Sylius\Bundle\AssortmentBundle\Model\ProductInterface $conflictualProduct
+     * @param Sylius\Bundle\AssortmentBundle\Model\ProductInterface $product
      */
     function it_should_add_violation_if_product_with_given_property_value_already_exists($productRepository, $product, $conflictualProduct, $context)
     {
@@ -53,6 +53,9 @@ class ProductUniqueValidator extends ObjectBehavior
         $this->validate($product, $constraint);
     }
 
+    /**
+     * @param Sylius\Bundle\AssortmentBundle\Model\ProductInterface $product
+     */
     function it_should_not_add_violation_if_product_with_given_property_value_does_not_exist($productRepository, $product, $context)
     {
         $constraint = new ProductUnique(array(
@@ -70,6 +73,7 @@ class ProductUniqueValidator extends ObjectBehavior
 
     /**
      * @param Sylius\Bundle\AssortmentBundle\Model\ProductInterface $conflictualProduct
+     * @param Sylius\Bundle\AssortmentBundle\Model\ProductInterface $product
      */
     function it_should_not_add_violation_if_conflictual_product_and_validated_one_are_the_same($productRepository, $product, $conflictualProduct, $context)
     {
