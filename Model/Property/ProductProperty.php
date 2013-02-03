@@ -98,6 +98,10 @@ class ProductProperty implements ProductPropertyInterface
      */
     public function getValue()
     {
+        if ($this->property && 'checkbox' === $this->property->getType()) {
+            return (boolean) $this->value;
+        }
+
         return $this->value;
     }
 
@@ -114,9 +118,7 @@ class ProductProperty implements ProductPropertyInterface
      */
     public function getName()
     {
-        if (null === $this->property) {
-            throw new \BadMethodCallException('The property have not been created yet so you cannot access proxy methods');
-        }
+        $this->assertPropertyIsSet();
 
         return $this->property->getName();
     }
@@ -126,10 +128,25 @@ class ProductProperty implements ProductPropertyInterface
      */
     public function getPresentation()
     {
+        $this->assertPropertyIsSet();
+
+        return $this->property->getPresentation();
+    }
+
+    public function getType()
+    {
+        $this->assertPropertyIsSet();
+
+        return $this->property->getType();
+    }
+
+    /**
+     * @throws \BadMethodCallException when property is not set
+     */
+    protected function assertPropertyIsSet()
+    {
         if (null === $this->property) {
             throw new \BadMethodCallException('The property have not been created yet so you cannot access proxy methods');
         }
-
-        return $this->property->getPresentation();
     }
 }

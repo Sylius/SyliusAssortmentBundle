@@ -70,8 +70,8 @@ class Property extends ObjectBehavior
         $this->getType()->shouldReturn('boolean');
     }
 
-    function it_should_have_string_type_by_default()
+    function it_should_have_text_type_by_default()
     {
-        $this->getType()->shouldReturn('string');
+        $this->getType()->shouldReturn('text');
     }
 }

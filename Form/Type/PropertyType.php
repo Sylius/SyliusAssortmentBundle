@@ -53,10 +53,10 @@ class PropertyType extends AbstractType
             ))
             ->add('type', 'choice', array(
                 'choices' => array(
-                    'boolean' => 'Boolean',
-                    'string' => 'String',
-                    'number' => 'Number',
-                    'choice' => 'Choice',
+                    'checkbox' => 'Boolean',
+                    'text'     => 'String',
+                    'number'   => 'Number',
+                    'choice'   => 'Choice',
                 )
             ))
         ;

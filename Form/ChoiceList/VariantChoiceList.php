@@ -30,6 +30,6 @@ class VariantChoiceList extends ObjectChoiceList
     {
         $variants = $onlyAvailable ? $product->getAvailableVariants() : $product->getVariants();
 
-        parent::__construct($variants, 'sku', array(), null, null, 'id');
+        parent::__construct($variants, 'sku', array(), null, 'id');
     }
 }

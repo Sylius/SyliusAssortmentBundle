@@ -20,6 +20,7 @@ use Symfony\Component\Form\FormFactoryInterface;
  * Form event listener that builds product property form dynamically based on product data.
  *
  * @author Saša Stamenković <umpirsky@gmail.com>
+ * @author Leszek Prabucki <leszek.prabucki@gmail.com>
  */
 class BuildProductPropertyFormListener implements EventSubscriberInterface
 {
@@ -45,7 +46,7 @@ class BuildProductPropertyFormListener implements EventSubscriberInterface
      */
     public static function getSubscribedEvents()
     {
-        return array(FormEvents::PRE_SET_DATA => 'preSetData');
+        return array(FormEvents::PRE_SET_DATA => 'buildForm');
     }
 
     /**
@@ -53,20 +54,21 @@ class BuildProductPropertyFormListener implements EventSubscriberInterface
      *
      * @param DataEvent $event
      */
-    public function preSetData(DataEvent $event)
+    public function buildForm(DataEvent $event)
     {
         $productProperty = $event->getData();
         $form = $event->getForm();
 
         if (null === $productProperty) {
+            $form->add($this->factory->createNamed('value', 'text'));
+
             return;
         }
 
         // If we're editing the product property, let's just render the value field, not full selection.
         $form
             ->remove('property')
-            ->remove('value')
-            ->add($this->factory->createNamed('value', 'text', null, array('label' => $productProperty->getName())))
+            ->add($this->factory->createNamed('value', $productProperty->getType(), null, array('label' => $productProperty->getName())))
         ;
     }
 }

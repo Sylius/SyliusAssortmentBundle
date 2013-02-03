@@ -77,6 +77,21 @@ class ProductProperty extends ObjectBehavior
         $this->getValue()->shouldReturn('XXL');
     }
 
+    /**
+     * @param Sylius\Bundle\AssortmentBundle\Model\Property\PropertyInterface $property
+     */
+    function it_should_convert_value_to_bool_when_property_is_checkbox_type($property)
+    {
+        $property->getType()->willReturn('checkbox');
+        $this->setProperty($property);
+
+        $this->setValue('XXL');
+        $this->getValue()->shouldReturn(true);
+
+        $this->setValue(0);
+        $this->getValue()->shouldReturn(false);
+    }
+
     function it_should_return_its_value_when_converteted_to_string()
     {
         $this->setValue('S');
@@ -119,5 +134,24 @@ class ProductProperty extends ObjectBehavior
         $this->setProperty($property);
 
         $this->getPresentation()->shouldReturn('Material');
+    }
+
+    function it_should_complain_when_trying_to_get_type_without_property_being_assigned()
+    {
+        $this
+            ->shouldThrow('BadMethodCallException')
+            ->duringGetType()
+        ;
+    }
+
+    /**
+     * @param Sylius\Bundle\AssortmentBundle\Model\Property\PropertyInterface $property
+     */
+    function it_should_return_its_property_type($property)
+    {
+        $property->getType()->willReturn('choice');
+        $this->setProperty($property);
+
+        $this->getType()->shouldReturn('choice');
     }
 }
