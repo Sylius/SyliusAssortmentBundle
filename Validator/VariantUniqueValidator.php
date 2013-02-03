@@ -13,7 +13,7 @@ namespace Sylius\Bundle\AssortmentBundle\Validator;
 
 use Doctrine\Common\Persistence\ObjectRepository;
 use Sylius\Bundle\AssortmentBundle\Model\Variant\VariantInterface;
-use Symfony\Component\Form\Util\PropertyPath;
+use Symfony\Component\PropertyAccess\PropertyAccess;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 use Symfony\Component\Validator\Exception\UnexpectedTypeException;
@@ -45,16 +45,16 @@ class VariantUniqueValidator extends ConstraintValidator
     /**
      * {@inheritdoc}
      */
-    public function isValid($value, Constraint $constraint)
+    public function validate($value, Constraint $constraint)
     {
         if (!$value instanceof VariantInterface) {
             throw new UnexpectedTypeException($value, 'Sylius\Bundle\AssortmentBundle\Model\Variant\VariantInterface');
         }
 
         $variant = $value;
-        $propertyPath = new PropertyPath($constraint->property);
+        $accessor = PropertyAccess::getPropertyAccessor();
 
-        $criteria = array($constraint->property => $propertyPath->getValue($variant));
+        $criteria = array($constraint->property => $accessor->getValue($variant, $constraint->property));
         $conflictualVariant = $this->variantRepository->findOneBy($criteria);
 
         if (null !== $conflictualVariant && $conflictualVariant->getId() !== $variant->getId()) {

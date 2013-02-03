@@ -26,7 +26,7 @@ class VariantCombinationValidator extends ConstraintValidator
     /**
      * {@inheritdoc}
      */
-    public function isValid($value, Constraint $constraint)
+    public function validate($value, Constraint $constraint)
     {
         if (!$value instanceof VariantInterface) {
             throw new UnexpectedTypeException($value, 'Sylius\Bundle\AssortmentBundle\Model\Variant\VariantInterface');

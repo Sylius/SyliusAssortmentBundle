@@ -1,6 +1,10 @@
 CHANGELOG
 =========
 
+### 03-02-2013
+
+* Upgrade to Symfony 2.2.
+
 ### 24-01.2013
 
 * Remove the ``sylius_assortment`` prefix from services and models.

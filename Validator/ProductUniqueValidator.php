@@ -12,9 +12,9 @@
 namespace Sylius\Bundle\AssortmentBundle\Validator;
 
 use Doctrine\Common\Persistence\ObjectRepository;
-use Sylius\Bundle\AssortmentBundle\Model\ProductInterface;
 use Sylius\Bundle\AssortmentBundle\Model\CustomizableProductInterface;
-use Symfony\Component\Form\Util\PropertyPath;
+use Sylius\Bundle\AssortmentBundle\Model\ProductInterface;
+use Symfony\Component\PropertyAccess\PropertyAccess;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 use Symfony\Component\Validator\Exception\UnexpectedTypeException;
@@ -46,21 +46,16 @@ class ProductUniqueValidator extends ConstraintValidator
     /**
      * {@inheritdoc}
      */
-    public function isValid($value, Constraint $constraint)
+    public function validate($value, Constraint $constraint)
     {
         if (!$value instanceof ProductInterface) {
             throw new UnexpectedTypeException($value, 'Sylius\Bundle\AssortmentBundle\Model\ProductInterface');
         }
 
         $product = $value;
-        $propertyPath = new PropertyPath($constraint->property);
+        $accessor = PropertyAccess::getPropertyAccessor();
 
-        // Avoid double validation of SKU on customizable products.
-        if ('sku' === $constraint->property && $product instanceof CustomizableProductInterface) {
-            return;
-        }
-
-        $criteria = array($constraint->property => $propertyPath->getValue($product));
+        $criteria = array($constraint->property => $accessor->getValue($product, $constraint->property));
         $conflictualProduct = $this->repository->findOneBy($criteria);
 
         if (null !== $conflictualProduct && $conflictualProduct->getId() !== $product->getId()) {

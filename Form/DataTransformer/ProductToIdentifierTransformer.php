@@ -15,7 +15,7 @@ use Doctrine\Common\Persistence\ObjectRepository;
 use Sylius\Bundle\AssortmentBundle\Model\ProductInterface;
 use Symfony\Component\Form\DataTransformerInterface;
 use Symfony\Component\Form\Exception\UnexpectedTypeException;
-use Symfony\Component\Form\Util\PropertyPath;
+use Symfony\Component\PropertyAccess\PropertyAccess;
 
 /**
  * Product to id transformer.
@@ -63,9 +63,9 @@ class ProductToIdentifierTransformer implements DataTransformerInterface
             throw new UnexpectedTypeException($product, 'Sylius\Bundle\AssortmentBundle\Model\ProductInterface');
         }
 
-        $propertyPath = new PropertyPath($this->identifier);
+        $accessor = PropertyAccess::getPropertyAccessor();
 
-        return $propertyPath->getValue($product);
+        return $accessor->getValue($product, $this->identifier);
     }
 
     /**
