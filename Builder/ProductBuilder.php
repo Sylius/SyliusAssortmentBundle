@@ -115,11 +115,7 @@ class ProductBuilder
         $property = $this->propertyRepository->findOneBy(array('name' => $name));
 
         if (null === $property) {
-            $property = $this->propertyRepository->createNew();
-            $property->setName($name);
-            $property->setPresentation(null === $presentation ? $name : $presentation);
-
-            $this->productManager->persist($property);
+            $property = $this->createMember($this->propertyRepository, $name, $presentation);
         }
 
         $productProperty = $this->productPropertyRepository->createNew();
@@ -136,11 +132,7 @@ class ProductBuilder
         $option = $this->optionRepository->findOneBy(array('name' => $name));
 
         if (null === $option) {
-            $option = $this->optionRepository->createNew();
-            $option->setName($name);
-            $option->setPresentation(null === $presentation ? $name : $presentation);
-
-            $this->productManager->persist($option);
+            $option = $this->createMember($this->optionRepository, $name, $presentation);
 
             if (empty($values)) {
                 throw new \InvalidArgumentException('Option must have at least one value.');
@@ -170,5 +162,16 @@ class ProductBuilder
     public function get()
     {
         return $this->product;
+    }
+
+    protected function createMember(ObjectRepository $repository, $name, $presentation)
+    {
+        $member = $repository->createNew();
+        $member->setName($name);
+        $member->setPresentation(null === $presentation ? $name : $presentation);
+
+        $this->productManager->persist($member);
+
+        return $member;
     }
 }
