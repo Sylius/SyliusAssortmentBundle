@@ -48,13 +48,11 @@
         </service>
 
         <service id="sylius.product_builder" class="%sylius.product_builder.class%">
-            <argument type="service" id="sylius.repository.product" />
             <argument type="service" id="sylius.manager.product" />
+            <argument type="service" id="sylius.repository.product" />
             <argument type="service" id="sylius.repository.property" />
-            <argument type="service" id="sylius.manager.property" />
             <argument type="service" id="sylius.repository.product_property" />
             <argument type="service" id="sylius.repository.option" />
-            <argument type="service" id="sylius.manager.option" />
             <argument type="service" id="sylius.repository.option_value" />
         </service>
 

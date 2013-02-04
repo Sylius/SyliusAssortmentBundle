@@ -16,7 +16,21 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Sylius\Bundle\AssortmentBundle\Model\ProductInterface;
 
 /**
- * Product builder.
+ * Product builder with fluent interface.
+ *
+ * Usage example:
+ *
+ * <code>
+ * <?php
+ * $this->get('sylius.product_builder')
+ *     ->create('Github mug')
+ *     ->setDescription("Coffee. Tea. Coke. Water. Let's face it — humans need to drink liquids")
+ *     ->setPrice(12.00)
+ *     ->addProperty('collection', 2013)
+ *     ->addOption('size', array('S', 'M', 'L'))
+ *     ->save()
+ *    ;
+ * </code>
  *
  * @author Saša Stamenković <umpirsky@gmail.com>
  */
@@ -28,11 +42,6 @@ class ProductBuilder
     protected $product;
 
     /**
-     * @var ObjectRepository
-     */
-    protected $productRepository;
-
-    /**
      * @var ObjectManager
      */
     protected $productManager;
@@ -40,12 +49,12 @@ class ProductBuilder
     /**
      * @var ObjectRepository
      */
-    protected $propertyRepository;
+    protected $productRepository;
 
     /**
-     * @var ObjectManager
+     * @var ObjectRepository
      */
-    protected $propertyManager;
+    protected $propertyRepository;
 
     /**
      * @var ObjectRepository
@@ -58,33 +67,24 @@ class ProductBuilder
     protected $optionRepository;
 
     /**
-     * @var ObjectManager
-     */
-    protected $optionManager;
-
-    /**
      * @var ObjectRepository
      */
     protected $optionValueRepository;
 
     public function __construct(
-        ObjectRepository $productRepository,
         ObjectManager $productManager,
+        ObjectRepository $productRepository,
         ObjectRepository $propertyRepository,
-        ObjectManager $propertyManager,
         ObjectRepository $productPropertyRepository,
         ObjectRepository $optionRepository,
-        ObjectManager $optionManager,
         ObjectRepository $optionValueRepository
     )
     {
-        $this->productRepository = $productRepository;
         $this->productManager = $productManager;
+        $this->productRepository = $productRepository;
         $this->propertyRepository = $propertyRepository;
-        $this->propertyManager = $propertyManager;
         $this->productPropertyRepository = $productPropertyRepository;
         $this->optionRepository = $optionRepository;
-        $this->optionManager = $optionManager;
         $this->optionValueRepository = $optionValueRepository;
     }
 
@@ -119,7 +119,7 @@ class ProductBuilder
             $property->setName($name);
             $property->setPresentation(null === $presentation ? $name : $presentation);
 
-            $this->propertyManager->persist($property);
+            $this->productManager->persist($property);
         }
 
         $productProperty = $this->productPropertyRepository->createNew();
@@ -140,7 +140,7 @@ class ProductBuilder
             $option->setName($name);
             $option->setPresentation(null === $presentation ? $name : $presentation);
 
-            $this->optionManager->persist($option);
+            $this->productManager->persist($option);
         }
 
         foreach ($values as $value) {

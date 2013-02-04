@@ -13,35 +13,29 @@ class ProductBuilder extends ObjectBehavior
 {
     /**
      * @param Sylius\Bundle\AssortmentBundle\Model\ProductInterface $product
-     * @param Doctrine\Common\Persistence\ObjectRepository          $productRepository
      * @param Doctrine\Common\Persistence\ObjectManager             $productManager
+     * @param Doctrine\Common\Persistence\ObjectRepository          $productRepository
      * @param Doctrine\Common\Persistence\ObjectRepository          $propertyRepository
-     * @param Doctrine\Common\Persistence\ObjectManager             $propertyManager
      * @param Doctrine\Common\Persistence\ObjectRepository          $productPropertyRepository
      * @param Doctrine\Common\Persistence\ObjectRepository          $optionRepository
-     * @param Doctrine\Common\Persistence\ObjectManager             $optionManager
      * @param Doctrine\Common\Persistence\ObjectRepository          $optionValueRepository
      */
     function let(
         $product,
-        $productRepository,
         $productManager,
+        $productRepository,
         $propertyRepository,
-        $propertyManager,
         $productPropertyRepository,
         $optionRepository,
-        $optionManager,
         $optionValueRepository
     )
     {
         $this->beConstructedWith(
-            $productRepository,
             $productManager,
+            $productRepository,
             $propertyRepository,
-            $propertyManager,
             $productPropertyRepository,
             $optionRepository,
-            $optionManager,
             $optionValueRepository
         );
 
@@ -92,14 +86,14 @@ class ProductBuilder extends ObjectBehavior
      * @param Sylius\Bundle\AssortmentBundle\Model\Property\PropertyInterface        $property
      * @param Sylius\Bundle\AssortmentBundle\Model\Property\ProductPropertyInterface $productProperty
      */
-    function it_should_create_property_if_it_does_not_exist($propertyRepository, $productPropertyRepository, $propertyManager, $product, $property, $productProperty)
+    function it_should_create_property_if_it_does_not_exist($propertyRepository, $productPropertyRepository, $productManager, $product, $property, $productProperty)
     {
         $propertyRepository->findOneBy(array('name' => 'collection'))->shouldBeCalled();
         $propertyRepository->createNew()->shouldBeCalled()->willReturn($property);
 
         $property->setName('collection');
         $property->setPresentation('collection');
-        $propertyManager->persist($property)->shouldBeCalled();
+        $productManager->persist($property)->shouldBeCalled();
 
         $productPropertyRepository->createNew()->shouldBeCalled()->willReturn($productProperty);
 
