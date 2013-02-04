@@ -111,7 +111,7 @@ class ProductBuilder extends ObjectBehavior
     {
         $optionRepository->findOneBy(array('name' => 'size'))->shouldBeCalled()->willReturn($option);
 
-        $optionValueRepository->createNew()->shouldBeCalled()->willReturn($optionValue);
+        $optionValueRepository->createNew()->shouldNotBeCalled();
 
         $this->addOption('size', array('S', 'M', 'L'))->shouldReturn($this);
     }

@@ -131,7 +131,7 @@ class ProductBuilder
         return $this;
     }
 
-    public function addOption($name, array $values, $presentation = null)
+    public function addOption($name, array $values = array(), $presentation = null)
     {
         $option = $this->optionRepository->findOneBy(array('name' => $name));
 
@@ -141,13 +141,17 @@ class ProductBuilder
             $option->setPresentation(null === $presentation ? $name : $presentation);
 
             $this->productManager->persist($option);
-        }
 
-        foreach ($values as $value) {
-            $optionValue = $this->optionValueRepository->createNew();
-            $optionValue->setvalue($value);
+            if (empty($values)) {
+                throw new \InvalidArgumentException('Option must have at least one value.');
+            }
 
-            $option->addValue($optionValue);
+            foreach ($values as $value) {
+                $optionValue = $this->optionValueRepository->createNew();
+                $optionValue->setvalue($value);
+
+                $option->addValue($optionValue);
+            }
         }
 
         $this->product->addOption($option);
