@@ -76,6 +76,20 @@
                 </service>
             </argument>
         </service>
+        <service id="sylius.manager.option_value" alias="doctrine.orm.entity_manager" />
+        <service id="sylius.repository.option_value" class="%sylius.repository.option_value.class%">
+            <argument type="service" id="sylius.manager.option_value" />
+            <argument type="service">
+                <service
+                        factory-service="doctrine.orm.default_entity_manager"
+                        factory-method="getClassMetadata"
+                        class="Doctrine\ORM\Mapping\ClassMetadata"
+                        public="false"
+                >
+                    <argument>%sylius.model.option_value.class%</argument>
+                </service>
+            </argument>
+        </service>
 
         <service id="sylius.manager.property" alias="doctrine.orm.entity_manager" />
         <service id="sylius.repository.property" class="%sylius.repository.property.class%">
