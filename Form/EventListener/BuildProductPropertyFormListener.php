@@ -19,7 +19,7 @@ use Symfony\Component\Form\FormFactoryInterface;
 /**
  * Form event listener that builds product property form dynamically based on product data.
  *
- * @author Саша Стаменковић <umpirsky@gmail.com>
+ * @author Saša Stamenković <umpirsky@gmail.com>
  */
 class BuildProductPropertyFormListener implements EventSubscriberInterface
 {
