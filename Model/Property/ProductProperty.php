@@ -140,6 +140,13 @@ class ProductProperty implements ProductPropertyInterface
         return $this->property->getType();
     }
 
+    public function getOptions()
+    {
+        $this->assertPropertyIsSet();
+
+        return $this->property->getOptions();
+    }
+
     /**
      * @throws \BadMethodCallException when property is not set
      */

@@ -70,6 +70,17 @@ class Property extends ObjectBehavior
         $this->getType()->shouldReturn('boolean');
     }
 
+    function its_options_should_be_mutable()
+    {
+        $this->setOptions(array('choices' => array('Red', 'Blue')));
+        $this->getOptions()->shouldReturn(array('choices' => array('Red', 'Blue')));
+    }
+
+    function it_should_have_empty_array_options_by_default()
+    {
+        $this->getOptions()->shouldReturn(array());
+    }
+
     function it_should_have_text_type_by_default()
     {
         $this->getType()->shouldReturn('text');

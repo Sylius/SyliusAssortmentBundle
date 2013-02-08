@@ -54,6 +54,11 @@ class Property implements PropertyInterface
     protected $createdAt;
 
     /**
+     * @var Array
+     */
+    protected $options;
+
+    /**
      * Last update time.
      *
      * @var DateTime
@@ -64,6 +69,7 @@ class Property implements PropertyInterface
     {
         $this->createdAt = new \DateTime('now');
         $this->type = 'text';
+        $this->options = array();
     }
 
     /**
@@ -138,5 +144,15 @@ class Property implements PropertyInterface
     public function getType()
     {
         return $this->type;
+    }
+
+    public function setOptions($options)
+    {
+        $this->options = $options;
+    }
+
+    public function getOptions()
+    {
+        return $this->options;
     }
 }

@@ -154,4 +154,23 @@ class ProductProperty extends ObjectBehavior
 
         $this->getType()->shouldReturn('choice');
     }
+
+    function it_should_complain_when_trying_to_get_options_without_property_being_assigned()
+    {
+        $this
+            ->shouldThrow('BadMethodCallException')
+            ->duringGetOptions()
+        ;
+    }
+
+    /**
+     * @param Sylius\Bundle\AssortmentBundle\Model\Property\PropertyInterface $property
+     */
+    function it_should_return_its_property_options($property)
+    {
+        $property->getOptions()->willReturn(array('choices' => array('Red')));
+        $this->setProperty($property);
+
+        $this->getOptions()->shouldReturn(array('choices' => array('Red')));
+    }
 }

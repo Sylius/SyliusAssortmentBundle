@@ -43,7 +43,7 @@ class BuildProductPropertyFormListener extends ObjectBehavior
      * @param Sylius\Bundle\AssortmentBundle\Model\ProductPropertyInterface $product
      * @param Symfony\Component\Form\Form $valueField
      */
-    function it_should_build_value_field_base_on_product_property_when_exists(
+    function it_should_build_value_field_base_on_product_property(
         $event, $form, $productProperty, $valueField, $formFactory
     )
     {
@@ -54,6 +54,45 @@ class BuildProductPropertyFormListener extends ObjectBehavior
         $event->getForm()->willReturn($form);
 
         $formFactory->createNamed('value', 'checkbox', null, array('label' => 'My name'))->willReturn($valueField)->shouldBeCalled();
+
+        $form->remove('property')->shouldBeCalled()->willReturn($form);
+        $form->add($valueField)->shouldBeCalled()->willReturn($form);
+
+        $this->buildForm($event);
+    }
+
+    /**
+     * @param Symfony\Component\Form\Event\DataEvent $event
+     * @param Symfony\Component\Form\Form $form
+     * @param Sylius\Bundle\AssortmentBundle\Model\ProductPropertyInterface $product
+     * @param Symfony\Component\Form\Form $valueField
+     */
+    function it_should_build_options_base_on_product_property(
+        $event, $form, $productProperty, $valueField, $formFactory
+    )
+    {
+        $productProperty->getType()->willReturn('choice');
+        $productProperty->getOptions()->willReturn(array(
+            'choices' => array(
+                'red' => 'Red',
+                'blue' => 'Blue'
+            ) 
+        ));
+        $productProperty->getName()->willReturn('My name');
+
+        $event->getData()->willReturn($productProperty);
+        $event->getForm()->willReturn($form);
+
+        $formFactory
+            ->createNamed(
+                'value',
+                'choice',
+                null,
+                array('label' => 'My name', 'choices' => array('red' => 'Red', 'blue' => 'Blue'))
+            )
+            ->willReturn($valueField)
+            ->shouldBeCalled()
+        ;
 
         $form->remove('property')->shouldBeCalled()->willReturn($form);
         $form->add($valueField)->shouldBeCalled()->willReturn($form);

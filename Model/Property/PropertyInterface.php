@@ -74,4 +74,14 @@ interface PropertyInterface
      * @return DateTime
      */
     public function getUpdatedAt();
+
+    /**
+     * @return array
+     */
+    public function getOptions();
+
+    /**
+     * @param array
+     */
+    public function setOptions($options);
 }

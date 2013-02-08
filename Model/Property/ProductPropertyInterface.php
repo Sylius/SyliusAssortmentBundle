@@ -82,4 +82,9 @@ interface ProductPropertyInterface
      * @return string
      */
     public function getType();
+
+    /**
+     * @return array
+     */
+    public function getOptions();
 }

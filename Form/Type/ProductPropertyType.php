@@ -54,7 +54,7 @@ class ProductPropertyType extends AbstractType
 
         $prototypes = array();
         foreach ($this->getProperties($builder) as $property) {
-            $prototypes[$property->getId()] = $builder->create('value', $property->getType())->getForm();
+            $prototypes[$property->getId()] = $builder->create('value', $property->getType(), $property->getOptions())->getForm();
         }
 
         $builder->setAttribute('prototypes', $prototypes);

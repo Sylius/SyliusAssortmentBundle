@@ -78,6 +78,7 @@ class ProductPropertyType extends ObjectBehavior
 
         $property->getId()->willReturn(1)->shouldBeCalled();
         $property->getType()->willReturn('checkbox')->shouldBeCalled();
+        $property->getOptions()->willReturn(array('label' => 'Some label'))->shouldBeCalled();
 
         $choiceList
             ->getChoices()
@@ -92,7 +93,8 @@ class ProductPropertyType extends ObjectBehavior
             ->willReturn($fieldBuilder)
         ;
         $builder
-            ->create('value', 'checkbox')
+            ->create('value', 'checkbox', array('label' => 'Some label'))
+            ->shouldBeCalled()
             ->willReturn($fieldBuilder)
         ;
         $fieldBuilder->getForm()->willReturn('form for property');

@@ -65,10 +65,15 @@ class BuildProductPropertyFormListener implements EventSubscriberInterface
             return;
         }
 
+        $options = array('label' => $productProperty->getName());
+        if (is_array($productProperty->getOptions())) {
+            $options = array_merge($options, $productProperty->getOptions());
+        }
+
         // If we're editing the product property, let's just render the value field, not full selection.
         $form
             ->remove('property')
-            ->add($this->factory->createNamed('value', $productProperty->getType(), null, array('label' => $productProperty->getName())))
+            ->add($this->factory->createNamed('value', $productProperty->getType(), null, $options))
         ;
     }
 }
