@@ -62,4 +62,3 @@ class PrototypeType extends ObjectBehavior
         $this->setDefaultOptions($resolver);
     }
 }
-

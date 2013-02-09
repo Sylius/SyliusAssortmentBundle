@@ -11,12 +11,6 @@
 
 namespace Sylius\Bundle\AssortmentBundle\Form\Type;
 
-use Sylius\Bundle\AssortmentBundle\Form\ChoiceList\OptionChoiceList;
-use Symfony\Bridge\Doctrine\Form\DataTransformer\CollectionToArrayTransformer;
-use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-
 /**
  * Option choice form type.
  *

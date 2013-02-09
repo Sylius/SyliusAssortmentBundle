@@ -29,4 +29,3 @@ interface PrototypeBuilderInterface
      */
     public function build(PrototypeInterface $prototype, CustomizableProductInterface $product);
 }
-

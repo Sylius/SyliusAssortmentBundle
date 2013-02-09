@@ -12,7 +12,6 @@
 namespace Sylius\Bundle\AssortmentBundle\Validator;
 
 use Doctrine\Common\Persistence\ObjectRepository;
-use Sylius\Bundle\AssortmentBundle\Model\CustomizableProductInterface;
 use Sylius\Bundle\AssortmentBundle\Model\ProductInterface;
 use Symfony\Component\PropertyAccess\PropertyAccess;
 use Symfony\Component\Validator\Constraint;

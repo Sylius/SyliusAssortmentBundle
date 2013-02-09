@@ -2,7 +2,6 @@
 
 namespace spec\Sylius\Bundle\AssortmentBundle\Model;
 
-use Doctrine\Common\Collections\ArrayCollection;
 use PHPSpec2\ObjectBehavior;
 
 /**

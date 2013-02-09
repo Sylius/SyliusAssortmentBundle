@@ -62,4 +62,3 @@ class OptionType extends ObjectBehavior
         $this->setDefaultOptions($resolver);
     }
 }
-

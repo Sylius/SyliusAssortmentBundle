@@ -79,4 +79,3 @@ class VariantToIdentifierTransformer extends ObjectBehavior
         $this->reverseTransform('IPHONE5BLACK')->shouldReturn($variant);
     }
 }
-

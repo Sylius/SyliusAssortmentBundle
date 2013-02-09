@@ -56,4 +56,3 @@ class PropertyType extends ObjectBehavior
         $this->setDefaultOptions($resolver);
     }
 }
-

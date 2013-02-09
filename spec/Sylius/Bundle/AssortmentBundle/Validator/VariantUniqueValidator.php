@@ -13,8 +13,8 @@ use Sylius\Bundle\AssortmentBundle\Validator\Constraint\VariantUnique;
 class VariantUniqueValidator extends ObjectBehavior
 {
     /**
-     * @param Doctrine\Common\Persistence\ObjectRepository          $variantRepository
-     * @param Symfony\Component\Validator\ExecutionContextInterface $context
+     * @param Doctrine\Common\Persistence\ObjectRepository                  $variantRepository
+     * @param Symfony\Component\Validator\ExecutionContextInterface         $context
      * @param Sylius\Bundle\AssortmentBundle\Model\Variant\VariantInterface $variant
      */
     function let($variantRepository, $context)
@@ -88,4 +88,3 @@ class VariantUniqueValidator extends ObjectBehavior
         $this->validate($variant, $constraint);
     }
 }
-

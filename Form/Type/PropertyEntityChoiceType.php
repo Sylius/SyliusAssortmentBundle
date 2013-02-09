@@ -11,12 +11,6 @@
 
 namespace Sylius\Bundle\AssortmentBundle\Form\Type;
 
-use Sylius\Bundle\AssortmentBundle\Form\ChoiceList\PropertyChoiceList;
-use Symfony\Bridge\Doctrine\Form\DataTransformer\CollectionToArrayTransformer;
-use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-
 /**
  * Property choice form type.
  *
