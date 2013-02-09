@@ -37,6 +37,12 @@ class Property extends ObjectBehavior
         $this->getName()->shouldReturn('T-Shirt size');
     }
 
+    function it_should_return_name_when_converted_to_string()
+    {
+        $this->setName('T-Shirt material');
+        $this->__toString()->shouldReturn('T-Shirt material');
+    }
+
     function it_should_not_have_presentation_by_default()
     {
         $this->getPresentation()->shouldReturn(null);

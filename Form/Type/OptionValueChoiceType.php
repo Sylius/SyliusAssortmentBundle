@@ -16,6 +16,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\ChoiceList\ObjectChoiceList;
 use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\PropertyAccess\PropertyAccess;
 
 /**
  * Option value choice form type.
@@ -30,7 +31,7 @@ class OptionValueChoiceType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $choiceList = function (Options $options) {
-            return new ObjectChoiceList($options['option']->getValues(), 'value', array(), null, null, 'id');
+            return new ObjectChoiceList($options['option']->getValues(), 'value', array(), null, null, PropertyAccess::getPropertyAccessor());
         };
 
         $resolver

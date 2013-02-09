@@ -18,9 +18,6 @@
 
     <parameters>
         <parameter key="sylius.form.type.product_property.class">Sylius\Bundle\AssortmentBundle\Form\Type\ProductPropertyType</parameter>
-
-        <parameter key="sylius.form.choice_list.property.class">Sylius\Bundle\AssortmentBundle\Form\ChoiceList\PropertyChoiceList</parameter>
-        <parameter key="sylius.form.type.property_choice.class">Sylius\Bundle\AssortmentBundle\Form\Type\PropertyChoiceType</parameter>
     </parameters>
 
     <services>
@@ -37,11 +34,8 @@
             <argument>%sylius.model.property.class%</argument>
             <tag name="form.type" alias="sylius_property" />
         </service>
-        <service id="sylius.form.choice_list.property" class="%sylius.form.choice_list.property.class%">
-            <argument type="service" id="sylius.repository.property" />
-        </service>
         <service id="sylius.form.type.property_choice" class="%sylius.form.type.property_choice.class%">
-            <argument type="service" id="sylius.form.choice_list.property" />
+            <argument>%sylius.model.property.class%</argument>
             <tag name="form.type" alias="sylius_property_choice" />
         </service>
         <service id="sylius.form.type.product_property" class="%sylius.form.type.product_property.class%">

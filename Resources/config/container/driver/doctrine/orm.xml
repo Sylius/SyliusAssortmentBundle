@@ -30,6 +30,10 @@
         <parameter key="sylius.repository.property.class">Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository</parameter>
         <parameter key="sylius.repository.product_property.class">Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository</parameter>
         <parameter key="sylius.repository.prototype.class">Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository</parameter>
+
+        <parameter key="sylius.form.type.option_choice.class">Sylius\Bundle\AssortmentBundle\Form\Type\OptionEntityChoiceType</parameter>
+        <parameter key="sylius.form.type.property_choice.class">Sylius\Bundle\AssortmentBundle\Form\Type\PropertyEntityChoiceType</parameter>
+
     </parameters>
 
     <services>

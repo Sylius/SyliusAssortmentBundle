@@ -77,6 +77,14 @@ class Option implements OptionInterface
     /**
      * {@inheritdoc}
      */
+    public function __toString()
+    {
+        return $this->name;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function getId()
     {
         return $this->id;

@@ -22,42 +22,13 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
  *
  * @author Paweł Jędrzejewski <pjedrzejewski@diweb.pl>
  */
-abstract class OptionChoiceType extends AbstractType
+class OptionEntityChoiceType extends OptionChoiceType
 {
     /**
-     * Option class name.
-     *
-     * @var string
-     */
-    protected $className;
-
-    /**
-     * Constructor.
-     *
-     * @param string $className
-     */
-    public function __construct($className)
-    {
-        $this->className = $className;
-    }
-
-    /**
      * {@inheritdoc}
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function getParent()
     {
-        $resolver
-            ->setDefaults(array(
-                'class' => $this->className
-            ))
-        ;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getName()
-    {
-        return 'sylius_option_choice';
+        return 'entity';
     }
 }

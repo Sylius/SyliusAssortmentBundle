@@ -16,7 +16,7 @@ class Option extends ObjectBehavior
         $this->shouldHaveType('Sylius\Bundle\AssortmentBundle\Model\Option\Option');
     }
 
-    function it_should_be_a_Sylius_product_option()
+    function it_implement_Sylius_option_interface()
     {
         $this->shouldImplement('Sylius\Bundle\AssortmentBundle\Model\Option\OptionInterface');
     }
@@ -37,6 +37,12 @@ class Option extends ObjectBehavior
         $this->getName()->shouldReturn('T-Shirt size');
     }
 
+    function it_should_return_name_when_converted_to_string()
+    {
+        $this->setName('T-Shirt color');
+        $this->__toString()->shouldReturn('T-Shirt color');
+    }
+
     function it_should_not_have_presentation_by_default()
     {
         $this->getPresentation()->shouldReturn(null);
@@ -54,18 +60,9 @@ class Option extends ObjectBehavior
     }
 
     /**
-     * @param Doctrine\Common\Collections\Collection $values
-     */
-    function its_values_collection_should_be_mutable($values)
-    {
-        $this->setValues($values);
-        $this->getValues()->shouldReturn($values);
-    }
-
-    /**
      * @param Sylius\Bundle\AssortmentBundle\Model\Option\OptionValueInterface $value
      */
-    function it_should_add_value_properly($value)
+    function it_should_add_value($value)
     {
         $value->setOption($this)->shouldBeCalled();
 
@@ -76,7 +73,7 @@ class Option extends ObjectBehavior
     /**
      * @param Sylius\Bundle\AssortmentBundle\Model\Option\OptionValueInterface $value
      */
-    function it_should_remove_value_properly($value)
+    function it_should_remove_value($value)
     {
         $value->setOption($this)->shouldBeCalled();
 

@@ -62,6 +62,14 @@ class Property implements PropertyInterface
     /**
      * {@inheritdoc}
      */
+    public function __toString()
+    {
+        return $this->name;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function getId()
     {
         return $this->id;
