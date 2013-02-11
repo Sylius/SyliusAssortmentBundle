@@ -173,4 +173,35 @@ class ProductProperty extends ObjectBehavior
 
         $this->getOptions()->shouldReturn(array('choices' => array('Red')));
     }
+
+    /**
+     * @param Sylius\Bundle\AssortmentBundle\Model\Property\PropertyInterface $property
+     * @param Symfony\Component\Validator\ExecutionContext $context
+     */
+    function it_should_validate_value_when_has_not_checkbox_property($property, $context)
+    {
+        $property->getType()->willReturn('text')
+        $this->setProperty($property);
+        $context->validate($this, '', array('not_boolean_value'))->shouldBeCalled();
+    }
+
+    /**
+     * @param Sylius\Bundle\AssortmentBundle\Model\Property\PropertyInterface $property
+     * @param Symfony\Component\Validator\ExecutionContext $context
+     */
+    function it_should_not_validate_value_when_has_checkbox_property($property, $context)
+    {
+        $property->getType()->willReturn('checkbox')
+        $this->setProperty($property);
+        $context->validate($this, '', array('not_boolean_value'))->shouldNotBeCalled();
+    }
+
+    /**
+     * @param Sylius\Bundle\AssortmentBundle\Model\Property\PropertyInterface $property
+     * @param Symfony\Component\Validator\ExecutionContext $context
+     */
+    function it_should_not_validate_value_when_has_not_property($property, $context)
+    {
+        $context->validate($this, '', array('not_boolean_value'))->shouldNotBeCalled();
+    }
 }

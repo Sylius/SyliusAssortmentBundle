@@ -85,4 +85,39 @@ class Property extends ObjectBehavior
     {
         $this->getType()->shouldReturn('text');
     }
+
+    function its_choices_should_be_set_when_it_is_choice_property()
+    {
+        $this->setType('choice');
+        $this->setChoices(array('Choice', 'Choice2'));
+        $this->getChoices()->shouldReturn(array('Choice', 'Choice2'));
+    }
+
+    function its_choices_should_not_be_set_when_pass_empty_choices()
+    {
+        $this->setChoices(array());
+        $this->getChoices()->shouldReturn(array());
+        $this->getOptions()->shouldReturn(array());
+    }
+
+    function its_choices_should_be_add_to_options()
+    {
+        $this->setType('choice');
+        $this->setChoices(array('Choice', 'Choice2'));
+        $this->getOptions()->shouldReturn(array('choices' => array('Choice' => 'Choice', 'Choice2' => 'Choice2')));
+    }
+
+    function its_choices_should_be_add_to_options_without_overwrite_others_options()
+    {
+        $this->setType('choice');
+        $this->setOptions(array('required' => 'true', 'choices' => array('oldChoice' => 'old', 'choice2' => 'oldChoice2')));
+        $this->setChoices(array('Choice', 'Choice2'));
+
+        $this->getOptions()->shouldReturn(array('required' => 'true', 'choices' => array('Choice' => 'Choice', 'Choice2' => 'Choice2')));
+    }
+
+    function its_choices_should_be_empty_array_by_default()
+    {
+        $this->getChoices()->shouldReturn(array());
+    }
 }

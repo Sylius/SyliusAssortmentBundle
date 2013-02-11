@@ -12,6 +12,7 @@
 namespace Sylius\Bundle\AssortmentBundle\Model\Property;
 
 use Sylius\Bundle\AssortmentBundle\Model\ProductInterface;
+use Symfony\Component\Validator\ExecutionContext;
 
 /**
  * Property to product relation.

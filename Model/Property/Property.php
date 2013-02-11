@@ -146,6 +146,20 @@ class Property implements PropertyInterface
         return $this->type;
     }
 
+    public function setChoices($choices)
+    {
+        if ($choices) {
+            $this->setOptions(array_merge($this->getOptions(), array('choices' => array_combine($choices, $choices))));
+        }
+    }
+
+    public function getChoices()
+    {
+        $options = $this->getOptions();
+
+        return isset($options['choices']) ? array_values($options['choices']) : array();
+    }
+
     public function setOptions($options)
     {
         $this->options = $options;
