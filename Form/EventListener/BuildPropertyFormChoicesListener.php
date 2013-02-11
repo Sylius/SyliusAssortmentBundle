@@ -17,12 +17,11 @@ use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\FormFactoryInterface;
 
 /**
- * Form event listener that builds product property form dynamically based on product data.
+ * Form event listener that builds choices for property form.
  *
- * @author Saša Stamenković <umpirsky@gmail.com>
  * @author Leszek Prabucki <leszek.prabucki@gmail.com>
  */
-class BuildProductPropertyFormListener implements EventSubscriberInterface
+class BuildPropertyFormChoicesListener implements EventSubscriberInterface
 {
     /**
      * Form factory.
@@ -46,34 +45,34 @@ class BuildProductPropertyFormListener implements EventSubscriberInterface
      */
     public static function getSubscribedEvents()
     {
-        return array(FormEvents::PRE_SET_DATA => 'buildForm');
+        return array(FormEvents::PRE_SET_DATA => 'buildChoices');
     }
 
     /**
-     * Builds proper product form after setting the product.
+     * Builds choices for property form
      *
      * @param DataEvent $event
      */
-    public function buildForm(DataEvent $event)
+    public function buildChoices(DataEvent $event)
     {
-        $productProperty = $event->getData();
+        $property = $event->getData();
         $form = $event->getForm();
 
-        if (null === $productProperty) {
-            $form->add($this->factory->createNamed('value', 'text'));
-
+        if (null === $property) {
             return;
         }
 
-        $options = array('label' => $productProperty->getName());
-        if (is_array($productProperty->getOptions())) {
-            $options = array_merge($options, $productProperty->getOptions());
+        if (!$property->getId() || 'choice' === $property->getType()) {
+            $form->add(
+                $this
+                ->factory
+                ->createNamed('choices', 'collection', null, array(
+                    'type'         => 'text',
+                    'allow_add'    => true,
+                    'allow_delete' => true,
+                    'by_reference' => false
+                ))
+            );
         }
-
-        // If we're editing the product property, let's just render the value field, not full selection.
-        $form
-            ->remove('property')
-            ->add($this->factory->createNamed('value', $productProperty->getType(), null, $options))
-        ;
     }
 }

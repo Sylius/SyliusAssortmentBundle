@@ -48,6 +48,20 @@ interface PropertyInterface
     public function setPresentation($presentation);
 
     /**
+     * The type of the property.
+     *
+     * @return string
+     */
+    public function getType();
+
+    /**
+     * Set type of the property.
+     *
+     * @param string $type
+     */
+    public function setType($type);
+
+    /**
      * Get creation time.
      *
      * @return DateTime
@@ -60,4 +74,14 @@ interface PropertyInterface
      * @return DateTime
      */
     public function getUpdatedAt();
+
+    /**
+     * @return array
+     */
+    public function getOptions();
+
+    /**
+     * @param array
+     */
+    public function setOptions($options);
 }

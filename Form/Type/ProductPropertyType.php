@@ -15,6 +15,8 @@ use Sylius\Bundle\AssortmentBundle\Form\EventListener\BuildProductPropertyFormLi
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\Form\FormInterface;
+use Symfony\Component\Form\FormView;
 
 /**
  * Product property form type.
@@ -47,9 +49,27 @@ class ProductPropertyType extends AbstractType
     {
         $builder
             ->add('property', 'sylius_property_choice')
-            ->add('value', 'text')
             ->addEventSubscriber(new BuildProductPropertyFormListener($builder->getFormFactory()))
         ;
+
+        $prototypes = array();
+        foreach ($this->getProperties($builder) as $property) {
+            $prototypes[$property->getId()] = $builder->create('value', $property->getType(), $property->getOptions())->getForm();
+        }
+
+        $builder->setAttribute('prototypes', $prototypes);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function buildView(FormView $view, FormInterface $form, array $options)
+    {
+        $view->vars['prototypes'] = array();
+
+        foreach ($form->getConfig()->getAttribute('prototypes', array()) as $name => $prototype) {
+            $view->vars['prototypes'][$name] = $prototype->createView($view);
+        }
     }
 
     /**
@@ -70,5 +90,10 @@ class ProductPropertyType extends AbstractType
     public function getName()
     {
         return 'sylius_product_property';
+    }
+
+    private function getProperties(FormBuilderInterface $builder)
+    {
+        return $builder->get('property')->getOption('choice_list')->getChoices();
     }
 }

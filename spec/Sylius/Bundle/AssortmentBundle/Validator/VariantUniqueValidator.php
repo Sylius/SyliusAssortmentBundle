@@ -15,7 +15,6 @@ class VariantUniqueValidator extends ObjectBehavior
     /**
      * @param Doctrine\Common\Persistence\ObjectRepository                  $variantRepository
      * @param Symfony\Component\Validator\ExecutionContextInterface         $context
-     * @param Sylius\Bundle\AssortmentBundle\Model\Variant\VariantInterface $variant
      */
     function let($variantRepository, $context)
     {
@@ -35,6 +34,7 @@ class VariantUniqueValidator extends ObjectBehavior
 
     /**
      * @param Sylius\Bundle\AssortmentBundle\Model\Variant\VariantInterface $conflictualVariant
+     * @param Sylius\Bundle\AssortmentBundle\Model\Variant\VariantInterface $variant
      */
     function it_should_add_violation_if_variant_with_given_property_value_already_exists($variantRepository, $variant, $conflictualVariant, $context)
     {
@@ -53,6 +53,9 @@ class VariantUniqueValidator extends ObjectBehavior
         $this->validate($variant, $constraint);
     }
 
+    /**
+     * @param Sylius\Bundle\AssortmentBundle\Model\Variant\VariantInterface $variant
+     */
     function it_should_not_add_violation_if_variant_with_given_property_value_does_not_exist($variantRepository, $variant, $context)
     {
         $constraint = new VariantUnique(array(
@@ -70,6 +73,7 @@ class VariantUniqueValidator extends ObjectBehavior
 
     /**
      * @param Sylius\Bundle\AssortmentBundle\Model\Variant\VariantInterface $conflictualVariant
+     * @param Sylius\Bundle\AssortmentBundle\Model\Variant\VariantInterface $variant
      */
     function it_should_not_add_violation_if_conflictual_variant_and_validated_one_are_the_same($variantRepository, $variant, $conflictualVariant, $context)
     {

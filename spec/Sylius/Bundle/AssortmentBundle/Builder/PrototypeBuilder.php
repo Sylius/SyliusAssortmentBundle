@@ -29,12 +29,14 @@ class PrototypeBuilder extends ObjectBehavior
     /**
      * @param Sylius\Bundle\AssortmentBundle\Model\Prototype\PrototypeInterface $prototype
      * @param Sylius\Bundle\AssortmentBundle\Model\CustomizableProductInterface $product
-     * @param Sylius\Bundle\AssortmentBundle\Model\Option\OptionInterface       $option
+     * @param Sylius\Bundle\AssortmentBundle\Entity\Option\Option $option1
+     * @param Sylius\Bundle\AssortmentBundle\Entity\Option\Option $option2
      */
-    function it_should_assign_prototype_options_to_product($prototype, $product, $option)
+    function it_should_assign_prototype_options_to_product($prototype, $product, $option1, $option2)
     {
-        $prototype->getOptions()->willReturn(array($option));
-        $product->addOption($option)->shouldBeCalled();
+        $prototype->getOptions()->willReturn(array($option1, $option2));
+        $product->addOption($option1)->shouldBeCalled();
+        $product->addOption($option2)->shouldBeCalled();
 
         $this->build($prototype, $product);
     }
@@ -43,15 +45,14 @@ class PrototypeBuilder extends ObjectBehavior
      * @param Sylius\Bundle\AssortmentBundle\Model\Prototype\PrototypeInterface      $prototype
      * @param Sylius\Bundle\AssortmentBundle\Model\CustomizableProductInterface      $product
      * @param Sylius\Bundle\AssortmentBundle\Model\Property\ProductPropertyInterface $productProperty
-     * @param Sylius\Bundle\AssortmentBundle\Model\Option\OptionInterface            $option
      */
     function it_should_assign_prototype_properties_to_product(
-        $productPropertyRepository, $prototype, $product, $productProperty, $option
+        $productPropertyRepository, $prototype, $product, $productProperty
     )
     {
         $property = new Property();
 
-        $prototype->getOptions()->willReturn(array($option));
+        $prototype->getOptions()->willReturn(new ArrayCollection());
         $prototype->getProperties()->willReturn(new ArrayCollection(array($property)));
 
         $productPropertyRepository->createNew()->shouldBeCalled()->willReturn($productProperty);

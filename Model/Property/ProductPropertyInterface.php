@@ -75,4 +75,16 @@ interface ProductPropertyInterface
      * @return string
      */
     public function getPresentation();
+
+    /**
+     * The type of the property.
+     *
+     * @return string
+     */
+    public function getType();
+
+    /**
+     * @return array
+     */
+    public function getOptions();
 }
