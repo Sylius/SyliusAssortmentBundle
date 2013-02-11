@@ -18,6 +18,8 @@
     <mapped-superclass name="Sylius\Bundle\AssortmentBundle\Entity\Property\Property" table="sylius_property">
         <field name="name" column="name" type="string" />
         <field name="presentation" column="presentation" type="string" />
+        <field name="type" column="type" type="string" />
+        <field name="options" column="options" type="array" />
         <field name="createdAt" column="created_at" type="datetime">
             <gedmo:timestampable on="create"/>
         </field>

@@ -33,6 +33,12 @@ class Property implements PropertyInterface
     protected $name;
 
     /**
+     * Type.
+     * @var string
+     */
+    protected $type;
+
+    /**
      * Presentation.
      * Displayed to user.
      *
@@ -48,6 +54,11 @@ class Property implements PropertyInterface
     protected $createdAt;
 
     /**
+     * @var Array
+     */
+    protected $options;
+
+    /**
      * Last update time.
      *
      * @var DateTime
@@ -57,6 +68,8 @@ class Property implements PropertyInterface
     public function __construct()
     {
         $this->createdAt = new \DateTime('now');
+        $this->type = 'text';
+        $this->options = array();
     }
 
     /**
@@ -121,5 +134,39 @@ class Property implements PropertyInterface
     public function getUpdatedAt()
     {
         return $this->updatedAt;
+    }
+
+    public function setType($type)
+    {
+        $this->type = $type;
+    }
+
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    public function setChoices($choices)
+    {
+        if ($choices) {
+            $this->setOptions(array_merge($this->getOptions(), array('choices' => array_combine($choices, $choices))));
+        }
+    }
+
+    public function getChoices()
+    {
+        $options = $this->getOptions();
+
+        return isset($options['choices']) ? array_values($options['choices']) : array();
+    }
+
+    public function setOptions($options)
+    {
+        $this->options = $options;
+    }
+
+    public function getOptions()
+    {
+        return $this->options;
     }
 }
