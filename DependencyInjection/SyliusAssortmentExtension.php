@@ -38,7 +38,7 @@ class SyliusAssortmentExtension extends Extension
 
         $driver = $config['driver'];
 
-        $this->loadDriver($driver, $config, $container, $loader);
+        $this->loadDriver($driver, $config, $loader);
 
         $container->setParameter('sylius_assortment.driver', $driver);
         $container->setParameter('sylius_assortment.engine', $config['engine']);
@@ -49,14 +49,13 @@ class SyliusAssortmentExtension extends Extension
     /**
      * Load bundle driver.
      *
-     * @param string           $driver
-     * @param array            $config
-     * @param ContainerBuilder $container
-     * @param XmlFileLoader    $loader
+     * @param string        $driver
+     * @param array         $config
+     * @param XmlFileLoader $loader
      *
-     * @throws InvalidArgumentException
+     * @throws \InvalidArgumentException
      */
-    protected function loadDriver($driver, array $config, ContainerBuilder $container, XmlFileLoader $loader)
+    protected function loadDriver($driver, array $config, XmlFileLoader $loader)
     {
         if (!in_array($driver, SyliusAssortmentBundle::getSupportedDrivers())) {
             throw new \InvalidArgumentException(sprintf('Driver "%s" is unsupported by SyliusAssortmentBundle', $driver));

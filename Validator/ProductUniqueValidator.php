@@ -58,7 +58,7 @@ class ProductUniqueValidator extends ConstraintValidator
         $conflictualProduct = $this->repository->findOneBy($criteria);
 
         if (null !== $conflictualProduct && $conflictualProduct->getId() !== $product->getId()) {
-            $this->context->addViolationAtSubPath($constraint->property, $constraint->message, array(
+            $this->context->addViolationAt($constraint->property, $constraint->message, array(
                 '%property%' => $constraint->property
             ));
         }

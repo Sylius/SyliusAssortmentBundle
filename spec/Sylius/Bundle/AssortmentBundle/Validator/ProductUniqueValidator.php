@@ -48,7 +48,7 @@ class ProductUniqueValidator extends ObjectBehavior
         $product->getId()->willReturn(1);
         $conflictualProduct->getId()->willReturn(3);
 
-        $context->addViolationAtSubPath('name', 'Product with given name already exists', ANY_ARGUMENT)->shouldBeCalled();
+        $context->addViolationAt('name', 'Product with given name already exists', ANY_ARGUMENT)->shouldBeCalled();
 
         $this->validate($product, $constraint);
     }
@@ -66,7 +66,7 @@ class ProductUniqueValidator extends ObjectBehavior
         $product->getName()->willReturn('iPhone');
         $productRepository->findOneBy(array('name' => 'iPhone'))->shouldBeCalled()->willReturn(null);
 
-        $context->addViolationAtSubPath(ANY_ARGUMENTS)->shouldNotBeCalled();
+        $context->addViolationAt(ANY_ARGUMENTS)->shouldNotBeCalled();
 
         $this->validate($product, $constraint);
     }
@@ -87,7 +87,7 @@ class ProductUniqueValidator extends ObjectBehavior
         $product->getId()->willReturn(3);
         $conflictualProduct->getId()->willReturn(3);
 
-        $context->addViolationAtSubPath(ANY_ARGUMENTS)->shouldNotBeCalled();
+        $context->addViolationAt(ANY_ARGUMENTS)->shouldNotBeCalled();
 
         $this->validate($product, $constraint);
     }
