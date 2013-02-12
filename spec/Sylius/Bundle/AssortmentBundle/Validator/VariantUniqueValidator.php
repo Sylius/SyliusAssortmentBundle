@@ -48,7 +48,7 @@ class VariantUniqueValidator extends ObjectBehavior
         $variant->getId()->willReturn(1);
         $conflictualVariant->getId()->willReturn(3);
 
-        $context->addViolationAtSubPath('sku', 'Variant with given sku already exists', ANY_ARGUMENT)->shouldBeCalled();
+        $context->addViolationAt('sku', 'Variant with given sku already exists', ANY_ARGUMENT)->shouldBeCalled();
 
         $this->validate($variant, $constraint);
     }
@@ -66,7 +66,7 @@ class VariantUniqueValidator extends ObjectBehavior
         $variant->getSku()->willReturn('111AAA');
         $variantRepository->findOneBy(array('sku' => '111AAA'))->shouldBeCalled()->willReturn(null);
 
-        $context->addViolationAtSubPath(ANY_ARGUMENTS)->shouldNotBeCalled();
+        $context->addViolationAt(ANY_ARGUMENTS)->shouldNotBeCalled();
 
         $this->validate($variant, $constraint);
     }
@@ -87,7 +87,7 @@ class VariantUniqueValidator extends ObjectBehavior
         $variant->getId()->willReturn(3);
         $conflictualVariant->getId()->willReturn(3);
 
-        $context->addViolationAtSubPath(ANY_ARGUMENTS)->shouldNotBeCalled();
+        $context->addViolationAt(ANY_ARGUMENTS)->shouldNotBeCalled();
 
         $this->validate($variant, $constraint);
     }

@@ -58,7 +58,7 @@ class VariantUniqueValidator extends ConstraintValidator
         $conflictualVariant = $this->variantRepository->findOneBy($criteria);
 
         if (null !== $conflictualVariant && $conflictualVariant->getId() !== $variant->getId()) {
-            $this->context->addViolationAtSubPath($constraint->property, $constraint->message, array(
+            $this->context->addViolationAt($constraint->property, $constraint->message, array(
                 '%property%' => $constraint->property
             ));
         }
