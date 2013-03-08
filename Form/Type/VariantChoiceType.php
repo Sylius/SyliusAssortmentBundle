@@ -29,23 +29,6 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 class VariantChoiceType extends AbstractType
 {
     /**
-     * Bundle driver.
-     *
-     * @var string
-     */
-    protected $driver;
-
-    /**
-     * Constructor.
-     *
-     * @param string $driver The bundle driver
-     */
-    public function __construct($driver)
-    {
-        $this->driver = $driver;
-    }
-
-    /**
      * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
@@ -54,7 +37,7 @@ class VariantChoiceType extends AbstractType
             throw new FormException('You have to pass "Sylius\Bundle\AssortmentBundle\Model\ProductInterface" as "product" option to variant choice type');
         }
 
-        if ($options['multiple'] && SyliusAssortmentBundle::DRIVER_DOCTRINE_ORM === $this->driver) {
+        if ($options['multiple']) {
             $builder->prependClientTransformer(new CollectionToArrayTransformer());
         }
     }
