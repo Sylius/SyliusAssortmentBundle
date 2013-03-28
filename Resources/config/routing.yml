@@ -1,0 +1,3 @@
+sylius_product:
+    resource: @SyliusAssortmentBundle/Resources/config/routing/product.yml
+    prefix: /products
