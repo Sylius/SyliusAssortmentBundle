@@ -29,7 +29,7 @@ use Sylius\Bundle\AssortmentBundle\Model\ProductInterface;
  *     ->addProperty('collection', 2013)
  *     ->addOption('size', array('S', 'M', 'L'))
  *     ->save()
- *    ;
+ * ;
  * </code>
  *
  * @author Saša Stamenković <umpirsky@gmail.com>

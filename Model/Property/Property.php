@@ -47,16 +47,16 @@ class Property implements PropertyInterface
     protected $presentation;
 
     /**
+     * @var Array
+     */
+    protected $options;
+
+    /**
      * Creation time.
      *
      * @var DateTime
      */
     protected $createdAt;
-
-    /**
-     * @var Array
-     */
-    protected $options;
 
     /**
      * Last update time.
@@ -120,22 +120,6 @@ class Property implements PropertyInterface
         $this->presentation = $presentation;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getCreatedAt()
-    {
-        return $this->createdAt;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getUpdatedAt()
-    {
-        return $this->updatedAt;
-    }
-
     public function setType($type)
     {
         $this->type = $type;
@@ -168,5 +152,21 @@ class Property implements PropertyInterface
     public function getOptions()
     {
         return $this->options;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
     }
 }
