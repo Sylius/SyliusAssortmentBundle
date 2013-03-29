@@ -61,7 +61,7 @@ class Variant implements VariantInterface
     /**
      * Option values.
      *
-     * @var array
+     * @var ArrayCollection
      */
     protected $options;
 
