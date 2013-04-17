@@ -12,6 +12,7 @@
 namespace Sylius\Bundle\AssortmentBundle\Model\Option;
 
 use Doctrine\Common\Collections\Collection;
+use Sylius\Bundle\ResourceBundle\Model\TimestampableInterface;
 
 /**
  * Product option interface.
@@ -22,7 +23,7 @@ use Doctrine\Common\Collections\Collection;
  *
  * @author Paweł Jędrzejewski <pjedrzejewski@diweb.pl>
  */
-interface OptionInterface
+interface OptionInterface extends TimestampableInterface
 {
     /**
      * Get internal name.
@@ -93,18 +94,4 @@ interface OptionInterface
      * @return Boolean
      */
     public function hasValue(OptionValueInterface $optionValue);
-
-    /**
-     * Get creation time.
-     *
-     * @return DateTime
-     */
-    public function getCreatedAt();
-
-    /**
-     * Get the time of last update.
-     *
-     * @return DateTime
-     */
-    public function getUpdatedAt();
 }

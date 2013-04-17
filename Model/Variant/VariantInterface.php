@@ -14,6 +14,8 @@ namespace Sylius\Bundle\AssortmentBundle\Model\Variant;
 use Doctrine\Common\Collections\Collection;
 use Sylius\Bundle\AssortmentBundle\Model\Option\OptionValueInterface;
 use Sylius\Bundle\AssortmentBundle\Model\ProductInterface;
+use Sylius\Bundle\ResourceBundle\Model\SoftDeletableInterface;
+use Sylius\Bundle\ResourceBundle\Model\TimestampableInterface;
 
 /**
  * Product variant interface.
@@ -24,7 +26,7 @@ use Sylius\Bundle\AssortmentBundle\Model\ProductInterface;
  *
  * @author Paweł Jędrzejewski <pjedrzejewski@diweb.pl>
  */
-interface VariantInterface
+interface VariantInterface extends SoftDeletableInterface, TimestampableInterface
 {
     /**
      * Checks whether variant is master.
@@ -81,7 +83,7 @@ interface VariantInterface
     /**
      * Set product.
      *
-     * @param ProductInterface or null $product
+     * @param ProductInterface|null $product
      */
     public function setProduct(ProductInterface $product = null);
 
@@ -150,40 +152,4 @@ interface VariantInterface
      * @param VariantInterface $masterVariant
      */
     public function setDefaults(VariantInterface $masterVariant);
-
-    /**
-     * Get creation time.
-     *
-     * @return DateTime
-     */
-    public function getCreatedAt();
-
-    /**
-     * Get the time of last update.
-     *
-     * @return DateTime
-     */
-    public function getUpdatedAt();
-
-    /**
-     * Is variant deleted?
-     *
-     * @return Boolean
-     */
-    public function isDeleted();
-
-    /**
-     * Get the time of deletion.
-     * Used for soft removal of variant.
-     *
-     * @return DateTime
-     */
-    public function getDeletedAt();
-
-    /**
-     * Set deletion time.
-     *
-     * @param DateTime $deletedAt
-     */
-    public function setDeletedAt(\DateTime $deletedAt);
 }

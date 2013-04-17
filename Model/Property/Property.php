@@ -54,20 +54,20 @@ class Property implements PropertyInterface
     /**
      * Creation time.
      *
-     * @var DateTime
+     * @var \DateTime
      */
     protected $createdAt;
 
     /**
      * Last update time.
      *
-     * @var DateTime
+     * @var \DateTime
      */
     protected $updatedAt;
 
     public function __construct()
     {
-        $this->createdAt = new \DateTime('now');
+        $this->createdAt = new \DateTime();
         $this->type = 'text';
         $this->options = array();
     }
@@ -165,8 +165,24 @@ class Property implements PropertyInterface
     /**
      * {@inheritdoc}
      */
+    public function setCreatedAt(\DateTime $createdAt)
+    {
+        $this->createdAt = $createdAt;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function getUpdatedAt()
     {
         return $this->updatedAt;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setUpdatedAt(\DateTime $updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
     }
 }

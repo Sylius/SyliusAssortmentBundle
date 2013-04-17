@@ -11,12 +11,15 @@
 
 namespace Sylius\Bundle\AssortmentBundle\Model;
 
+use Sylius\Bundle\ResourceBundle\Model\SoftDeletableInterface;
+use Sylius\Bundle\ResourceBundle\Model\TimestampableInterface;
+
 /**
  * Basic product interface.
  *
  * @author Paweł Jędrzejewski <pjedrzejewski@diweb.pl>
  */
-interface ProductInterface
+interface ProductInterface extends SoftDeletableInterface, TimestampableInterface
 {
     /**
      * Get product name.
@@ -106,40 +109,4 @@ interface ProductInterface
      * @param string $metaDescription
      */
     public function setMetaDescription($metaDescription);
-
-    /**
-     * Get creation time.
-     *
-     * @return DateTime
-     */
-    public function getCreatedAt();
-
-    /**
-     * Get the time of last update.
-     *
-     * @return DateTime
-     */
-    public function getUpdatedAt();
-
-    /**
-     * Is product deleted?
-     *
-     * @return Boolean
-     */
-    public function isDeleted();
-
-    /**
-     * Get the time of deletion.
-     * Used for soft removal of product.
-     *
-     * @return DateTime
-     */
-    public function getDeletedAt();
-
-    /**
-     * Set deletion time.
-     *
-     * @param DateTime $deletedAt
-     */
-    public function setDeletedAt(\DateTime $deletedAt);
 }

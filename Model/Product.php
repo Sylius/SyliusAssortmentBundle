@@ -53,7 +53,7 @@ class Product implements ProductInterface
     /**
      * Available on.
      *
-     * @var DateTime
+     * @var \DateTime
      */
     protected $availableOn;
 
@@ -74,21 +74,21 @@ class Product implements ProductInterface
     /**
      * Creation time.
      *
-     * @var DateTime
+     * @var \DateTime
      */
     protected $createdAt;
 
     /**
      * Last update time.
      *
-     * @var DateTime
+     * @var \DateTime
      */
     protected $updatedAt;
 
     /**
      * Deletion time.
      *
-     * @var DateTime
+     * @var \DateTime
      */
     protected $deletedAt;
 
@@ -97,8 +97,8 @@ class Product implements ProductInterface
      */
     public function __construct()
     {
-        $this->availableOn = new \DateTime('now');
-        $this->createdAt = new \DateTime('now');
+        $this->availableOn = new \DateTime();
+        $this->createdAt = new \DateTime();
     }
 
     /**
@@ -114,7 +114,7 @@ class Product implements ProductInterface
      */
     public function getName()
     {
-      return $this->name;
+        return $this->name;
     }
 
     /**
@@ -122,7 +122,7 @@ class Product implements ProductInterface
      */
     public function setName($name)
     {
-      $this->name = $name;
+        $this->name = $name;
     }
 
     /**
@@ -130,7 +130,7 @@ class Product implements ProductInterface
      */
     public function getSlug()
     {
-      return $this->slug;
+        return $this->slug;
     }
 
     /**
@@ -224,6 +224,14 @@ class Product implements ProductInterface
     /**
      * {@inheritdoc}
      */
+    public function setCreatedAt(\DateTime $createdAt)
+    {
+        $this->createdAt = $createdAt;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function getUpdatedAt()
     {
         return $this->updatedAt;
@@ -232,9 +240,17 @@ class Product implements ProductInterface
     /**
      * {@inheritdoc}
      */
+    public function setUpdatedAt(\DateTime $updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function isDeleted()
     {
-        return null !== $this->deletedAt && new \DateTime('now') >= $this->deletedAt;
+        return null !== $this->deletedAt && new \DateTime() >= $this->deletedAt;
     }
 
     /**
