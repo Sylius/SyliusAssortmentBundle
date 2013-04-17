@@ -54,14 +54,14 @@ class Option implements OptionInterface
     /**
      * Creation time.
      *
-     * @var DateTime
+     * @var \DateTime
      */
     protected $createdAt;
 
     /**
      * Last update time.
      *
-     * @var DateTime
+     * @var \DateTime
      */
     protected $updatedAt;
 
@@ -71,7 +71,7 @@ class Option implements OptionInterface
     public function __construct()
     {
         $this->values = new ArrayCollection();
-        $this->createdAt = new \DateTime('now');
+        $this->createdAt = new \DateTime();
     }
 
     /**
@@ -179,8 +179,24 @@ class Option implements OptionInterface
     /**
      * {@inheritdoc}
      */
+    public function setCreatedAt(\DateTime $createdAt)
+    {
+        $this->createdAt = $createdAt;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function getUpdatedAt()
     {
         return $this->updatedAt;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setUpdatedAt(\DateTime $updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
     }
 }

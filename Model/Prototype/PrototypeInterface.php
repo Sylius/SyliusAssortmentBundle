@@ -14,6 +14,7 @@ namespace Sylius\Bundle\AssortmentBundle\Model\Prototype;
 use Doctrine\Common\Collections\Collection;
 use Sylius\Bundle\AssortmentBundle\Model\Option\OptionInterface;
 use Sylius\Bundle\AssortmentBundle\Model\Property\PropertyInterface;
+use Sylius\Bundle\ResourceBundle\Model\TimestampableInterface;
 
 /**
  * Used to generate full product form.
@@ -21,7 +22,7 @@ use Sylius\Bundle\AssortmentBundle\Model\Property\PropertyInterface;
  *
  * @author Paweł Jędrzejewski <pjedrzejewski@diweb.pl>
  */
-interface PrototypeInterface
+interface PrototypeInterface extends TimestampableInterface
 {
     /**
      * Get name, in most cases it will be displayed by user only in backend.
@@ -111,18 +112,4 @@ interface PrototypeInterface
      * @return Boolean
      */
     public function hasOption(OptionInterface $option);
-
-    /**
-     * Get creation time.
-     *
-     * @return DateTime
-     */
-    public function getCreatedAt();
-
-    /**
-     * Get the time of last update.
-     *
-     * @return DateTime
-     */
-    public function getUpdatedAt();
 }

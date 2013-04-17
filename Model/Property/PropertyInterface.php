@@ -11,12 +11,14 @@
 
 namespace Sylius\Bundle\AssortmentBundle\Model\Property;
 
+use Sylius\Bundle\ResourceBundle\Model\TimestampableInterface;
+
 /**
  * Product property interface.
  *
  * @author Paweł Jędrzejewski <pjedrzejewski@diweb.pl>
  */
-interface PropertyInterface
+interface PropertyInterface extends TimestampableInterface
 {
     /**
      * Get internal name.
@@ -60,20 +62,6 @@ interface PropertyInterface
      * @param string $type
      */
     public function setType($type);
-
-    /**
-     * Get creation time.
-     *
-     * @return DateTime
-     */
-    public function getCreatedAt();
-
-    /**
-     * Get the time of last update.
-     *
-     * @return DateTime
-     */
-    public function getUpdatedAt();
 
     /**
      * @return array
