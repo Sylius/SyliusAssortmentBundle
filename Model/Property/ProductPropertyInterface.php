@@ -30,7 +30,7 @@ interface ProductPropertyInterface
     /**
      * Set product.
      *
-     * @param ProductInterface or null $product
+     * @param ProductInterface|null $product
      */
     public function setProduct(ProductInterface $product = null);
 

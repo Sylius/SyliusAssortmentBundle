@@ -68,28 +68,28 @@ class Variant implements VariantInterface
     /**
      * Available on.
      *
-     * @var DateTime
+     * @var \DateTime
      */
     protected $availableOn;
 
     /**
      * Creation time.
      *
-     * @var DateTime
+     * @var \DateTime
      */
     protected $createdAt;
 
     /**
      * Last update time.
      *
-     * @var DateTime
+     * @var \DateTime
      */
     protected $updatedAt;
 
     /**
      * Deletion time.
      *
-     * @var DateTime
+     * @var \DateTime
      */
     protected $deletedAt;
 
@@ -100,8 +100,8 @@ class Variant implements VariantInterface
     {
         $this->master = false;
         $this->options = new ArrayCollection();
-        $this->availableOn = new \DateTime('now');
-        $this->createdAt = new \DateTime('now');
+        $this->availableOn = new \DateTime();
+        $this->createdAt = new \DateTime();
     }
 
     /**
@@ -271,6 +271,14 @@ class Variant implements VariantInterface
     /**
      * {@inheritdoc}
      */
+    public function setCreatedAt(\DateTime $createdAt)
+    {
+        $this->createdAt = $createdAt;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function getUpdatedAt()
     {
         return $this->updatedAt;
@@ -279,9 +287,17 @@ class Variant implements VariantInterface
     /**
      * {@inheritdoc}
      */
+    public function setUpdatedAt(\DateTime $updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function isDeleted()
     {
-        return null !== $this->deletedAt && new \DateTime('now') >= $this->deletedAt;
+        return null !== $this->deletedAt && new \DateTime() >= $this->deletedAt;
     }
 
     /**

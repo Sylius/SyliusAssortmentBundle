@@ -66,7 +66,7 @@ interface CustomizableProductInterface extends ProductInterface
     /**
      * Sets all product variants.
      *
-     * @param Collection
+     * @param Collection $variants
      */
     public function setVariants(Collection $variants);
 
@@ -148,7 +148,7 @@ interface CustomizableProductInterface extends ProductInterface
     /**
      * Sets all product product properties.
      *
-     * @param Collection of ProductPropertyInterface
+     * @param Collection $properties Array of ProductPropertyInterface
      */
     public function setProperties(Collection $properties);
 
