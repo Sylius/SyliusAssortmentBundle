@@ -77,7 +77,7 @@
             </trans-unit>
             <trans-unit id="20">
                 <source>sylius.property.name.min_length</source>
-                <target>Property name must be at least one character long.|Property name must be at least {{ limit }} characters long.</target>
+                <target>Property name must be at least 1 character long.|Property name must be at least {{ limit }} characters long.</target>
             </trans-unit>
             <trans-unit id="21">
                 <source>sylius.property.name.max_length</source>
