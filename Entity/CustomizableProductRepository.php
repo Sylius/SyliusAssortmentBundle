@@ -26,8 +26,9 @@ class CustomizableProductRepository extends EntityRepository
     protected function getQueryBuilder()
     {
         return parent::getQueryBuilder()
-            ->select('product, variant, option, optionValue, productProperty, property')
+            ->select('product, variant, image, option, optionValue, productProperty, property')
             ->leftJoin('product.variants', 'variant')
+            ->leftJoin('variant.images', 'image')
             ->leftJoin('product.options', 'option')
             ->leftJoin('option.values', 'optionValue')
             ->leftJoin('product.properties', 'productProperty')
