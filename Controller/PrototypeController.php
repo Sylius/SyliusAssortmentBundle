@@ -46,11 +46,7 @@ class PrototypeController extends ResourceController
         $form = $productController->getForm($product);
 
         if ($request->isMethod('POST') && $form->bind($request)->isValid()) {
-            $manager = $productController->getManager();
-
-            $manager->persist($product);
-            $manager->flush();
-
+            $productController->create($product);
             $productController->setFlash('success', '%resource% has been successfully created.');
 
             return $productController->redirectTo($product);
