@@ -16,6 +16,7 @@ use Sylius\Bundle\AssortmentBundle\Model\CustomizableProductInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use JMS\TranslationBundle\Annotation\Ignore;
 
 /**
  * Variant match form type.
@@ -31,7 +32,7 @@ class VariantMatchType extends AbstractType
     {
         foreach ($options['product']->getOptions() as $i => $option) {
             $builder->add((string) $i, 'sylius_option_value_choice', array(
-                'label'         => $option->getPresentation(),
+                'label'         => /** @Ignore */ $option->getPresentation(),
                 'option'        => $option,
                 'property_path' => '['.$i.']'
             ));

@@ -16,6 +16,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Exception\FormException;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use JMS\TranslationBundle\Annotation\Ignore;
 
 /**
  * This is special collection type, inspired by original 'collection' type
@@ -46,7 +47,7 @@ class OptionValueCollectionType extends AbstractType
             }
 
             $builder->add((string) $i, 'sylius_option_value_choice', array(
-                'label'         => $option->getName(),
+                'label'         => /** @Ignore */ $option->getName(),
                 'option'        => $option,
                 'property_path' => '['.$i.']'
             ));
