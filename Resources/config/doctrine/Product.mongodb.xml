@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!--
+
+ This file is part of the Sylius package.
+
+ (c) Paweł Jędrzejewski
+
+ For the full copyright and license information, please view the LICENSE
+ file that was distributed with this source code.
+
+-->
+
+<doctrine-mongo-mapping xmlns="http://doctrine-project.org/schemas/odm/doctrine-mongo-mapping"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://doctrine-project.org/schemas/odm/doctrine-mongo-mapping
+                    http://doctrine-project.org/schemas/odm/doctrine-mongo-mapping.xsd"
+      xmlns:gedmo="http://gediminasm.org/schemas/orm/doctrine-extensions-mapping">
+
+    <mapped-superclass name="Sylius\Bundle\AssortmentBundle\Document\Product">
+        <field fieldName="name" name="name" type="string" />
+        <field fieldName="slug" name="slug" type="string">
+            <gedmo:slug fields="name" unique="true" />
+        </field>
+        <field fieldName="description" name="description" type="string" />
+        <field fieldName="availableOn" name="availableOn" type="date" />
+        <field fieldName="metaKeywords" name="metaKeywords" type="string" />
+        <field fieldName="createdAt" name="createdAt" type="date">
+            <gedmo:timestampable on="create"/>
+        </field>
+        <field fieldName="updatedAt" name="updatedAt" type="date">
+            <gedmo:timestampable on="update"/>
+        </field>
+        <field fieldName="deletedAt" name="deletedAt" type="date" />
+        <gedmo:soft-deleteable field-name="deletedAt" />
+    </mapped-superclass>
+
+</doctrine-mongo-mapping>
